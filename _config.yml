@@ -16,9 +16,9 @@
 title: AWS Developer Associate Notes
 email: eshanshafeeq073055@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
- This will be my notes for the aws developer associate course
- that i will be taking from ACloudGuru. I am hoping to take
- the exam by end of JULY or atleast begining of AUGUST.
+    Blog to keep track of what i have been studying for AWS
+    Developer Associate Course. Also will be referrence to
+    study before the exam.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: diehard073055
