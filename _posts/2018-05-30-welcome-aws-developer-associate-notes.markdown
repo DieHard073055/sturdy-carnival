@@ -8,7 +8,7 @@ categories: introduction
 
 This blog will host all the notes that i will be taking as i go through the AWS Developer Associate Course on A Cloud Guru. I will be going through all the lectures and Labs. The main contents of the course are as follows:
 
-- [ ] IAM
+- [x] IAM
 - [ ] EC2
 - [ ] S3
 - [ ] Databases
