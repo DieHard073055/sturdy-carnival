@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-06-01T00:36:24+10:00</updated><id>/</id><title type="html">AWS Developer Associate Notes</title><subtitle>Blog to keep track of what i have been studying for AWS Developer Associate Course. Also will be referrence to study before the exam.</subtitle><entry><title type="html">EC2</title><link href="/compute/2018/05/31/EC2.html" rel="alternate" type="text/html" title="EC2" /><published>2018-05-31T00:00:00+10:00</published><updated>2018-05-31T00:00:00+10:00</updated><id>/compute/2018/05/31/EC2</id><content type="html" xml:base="/compute/2018/05/31/EC2.html">&lt;h3 id=&quot;what-is-ec2&quot;&gt;What is EC2&lt;/h3&gt;
+&lt;p&gt;A web service that provides resizable compute capacity in the cloud. AWS EC2 reduces the time required to obtain and boot a new server instances to minutes, allowing you to quickly scale capacity, both up and down, as your computing requirements change.
+This has changed the economics of computing, by allowing you to pay only for what you actually use. EC2 provides developers the tools to build failure resilient applications and isolate themselves from common failure scenarios.&lt;/p&gt;
+
+&lt;h3 id=&quot;pricing-options&quot;&gt;Pricing Options&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Type&lt;/th&gt;
+      &lt;th&gt;Description&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;On Demand&lt;/td&gt;
+      &lt;td&gt;Allows you to pay a fixed rate by the hour ( or by the second ) with no commitment.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Reserved&lt;/td&gt;
+      &lt;td&gt;Provides you with a capacity reservation, and offer a significant discount on the hourly charge for an instance. 1 Year to 3 Year contracts.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Spot&lt;/td&gt;
+      &lt;td&gt;enables you to bid whatever price you want for instance capacity, providing for even greater savings if your applications have flexible start and end times.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Dedicated Hosts&lt;/td&gt;
+      &lt;td&gt;Physical EC2 servers dedicated for your use. Dedicated Hosts can help you reduce costs by allowing you to use your existing server-bound software licenses.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;on-demand&quot;&gt;On Demand&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Perfect for users that want the low cost and flexibility of AWS EC2 without any up-front payment or long-term commitment.&lt;/li&gt;
+  &lt;li&gt;Applications with short term, spiky, or unpredictable workloads that cannot be interrupted.&lt;/li&gt;
+  &lt;li&gt;Applications being developed or tested on Amazon EC2 for the first time.&lt;/li&gt;
+  &lt;li&gt;Perfect for learning.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;reserved-instances&quot;&gt;Reserved Instances&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Applications with steady state or predicatable usage.&lt;/li&gt;
+  &lt;li&gt;Applications that require reserved capacity&lt;/li&gt;
+  &lt;li&gt;Users can make up-front payments to reduce their total computing costs, even further.
+    &lt;ul&gt;
+      &lt;li&gt;Standard Reserved Instances ( Up to 75% off on-demand price )&lt;/li&gt;
+      &lt;li&gt;Convertible Reserved Instances ( Up to 54% off on-demand price ) feature the capability to change the attributes of the Reserved Instances as long as the exchange results in the creation of Reserved instances of equal or greater value.&lt;/li&gt;
+      &lt;li&gt;Scheduled Reserved Instances are available to launch within the time window you reserve. This option allows you to match your capacity reservation to a predictable recurring schedule that only requires a fraction of a day, a week, or a month.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;spot-instances&quot;&gt;Spot Instances&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Applications that have flexible start and end times.&lt;/li&gt;
+  &lt;li&gt;Applications that are only feasible at very low compute prices.&lt;/li&gt;
+  &lt;li&gt;Users with an urgent need for the large amounts of additional computing capacity.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;dedicated-hosts&quot;&gt;Dedicated Hosts&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Useful for regulatory requirements that may not support multitenant virtualization.&lt;/li&gt;
+  &lt;li&gt;Great for licensing which does not support multi-tenancy or cloud deployments.&lt;/li&gt;
+  &lt;li&gt;Can be purchased On-Demand ( Paid hourly ).&lt;/li&gt;
+  &lt;li&gt;Can be purchased as a reservation for upto 70% off on the On-Demand price.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;ec2-instance-types&quot;&gt;EC2 Instance Types&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Family&lt;/th&gt;
+      &lt;th&gt;Speciality&lt;/th&gt;
+      &lt;th&gt;Use Case&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;F1&lt;/td&gt;
+      &lt;td&gt;Field Programmable Gate Arrays&lt;/td&gt;
+      &lt;td&gt;Genomics research, financial analytics, realtime video processing, big data etc.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;I3&lt;/td&gt;
+      &lt;td&gt;High Speed Storage&lt;/td&gt;
+      &lt;td&gt;NoSQL DBs, Data Warehousing etc.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;G3&lt;/td&gt;
+      &lt;td&gt;Graphics Intensive&lt;/td&gt;
+      &lt;td&gt;Video Encoding, 3D Application Streaming.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;H1&lt;/td&gt;
+      &lt;td&gt;High Disk Throughput&lt;/td&gt;
+      &lt;td&gt;MapReduce-based workloads, distributed file systems such as HDFS and MapR-FS.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;T2&lt;/td&gt;
+      &lt;td&gt;Low Cost, General Purpose&lt;/td&gt;
+      &lt;td&gt;Web servers / Small DB’s.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;D2&lt;/td&gt;
+      &lt;td&gt;Dense Storage&lt;/td&gt;
+      &lt;td&gt;Fileservers / Data Warehousing / Hadoop&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;R4&lt;/td&gt;
+      &lt;td&gt;Memory Optimized&lt;/td&gt;
+      &lt;td&gt;Memory Intensive Applications and Databases.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;M5&lt;/td&gt;
+      &lt;td&gt;General Purpose&lt;/td&gt;
+      &lt;td&gt;Application Servers.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;C5&lt;/td&gt;
+      &lt;td&gt;Compute Optimized&lt;/td&gt;
+      &lt;td&gt;CPU Intensive Applications and Databases.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;P3&lt;/td&gt;
+      &lt;td&gt;Graphics / Gerneral Purpose GPU&lt;/td&gt;
+      &lt;td&gt;Machine Learning, Bit Coin Mining etc.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;X1&lt;/td&gt;
+      &lt;td&gt;Memory Optimized&lt;/td&gt;
+      &lt;td&gt;SAP HANA / Apache Spark etc.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;FIGHT-DR-MCPX.&lt;/p&gt;
+
+&lt;h3 id=&quot;ebs&quot;&gt;EBS&lt;/h3&gt;
+&lt;p&gt;EC2 = Virtual Machine.
+EBS = Virtual Disc.&lt;/p&gt;
+
+&lt;p&gt;Amazon EBS allows you to create storage volumes and attach them to EC2 instances. Once attached, you can create file system on top of these volumes, run a database, or use them in any other way you would use a block device. Amazon EBS volumes are placed in a specific &lt;em&gt;Availability Zone&lt;/em&gt;, where they are automatically replicated to protect you from the failure of a single component.&lt;/p&gt;
+
+&lt;h3 id=&quot;ebs-volume-types&quot;&gt;EBS Volume Types&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;General Purpose SSD (GP2).
+    &lt;ul&gt;
+      &lt;li&gt;General purpose, balances both price and performance.&lt;/li&gt;
+      &lt;li&gt;Ratio of 3 IOPS per GB with upto 10,000 IOPS and the ability to burst up to 3000 IOPS for extended periods of time for volumes at 3334 GiB and above.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Provisioned IOPS SSD (IO1).
+    &lt;ul&gt;
+      &lt;li&gt;Designed for I/O intensive applications such as large relational or NOSQL databases.&lt;/li&gt;
+      &lt;li&gt;Use if you need more than 10,000 IOPS.&lt;/li&gt;
+      &lt;li&gt;Can provision up to 20,000 IOPS per volume.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Throughput Optimized HDD (ST1).
+    &lt;ul&gt;
+      &lt;li&gt;Big data.&lt;/li&gt;
+      &lt;li&gt;Data warehouses.&lt;/li&gt;
+      &lt;li&gt;Log processing.&lt;/li&gt;
+      &lt;li&gt;Cannot be a boot volume.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Cold HDD (SC1).
+    &lt;ul&gt;
+      &lt;li&gt;Lowest Cost Storage for infrequently accessed workloads.&lt;/li&gt;
+      &lt;li&gt;File Server.&lt;/li&gt;
+      &lt;li&gt;Cannot be a boot volume.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Magnetic (Standard).
+    &lt;ul&gt;
+      &lt;li&gt;Lowest cost per gigabyte of all EBS volume types that is bootable. Magnetic volumes are ideal for workloads where data is accessed infrequently, and applications where the lowest storage cost is important.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;ec2-exam-tips&quot;&gt;EC2 Exam tips&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;EC2 Pricing Options
+    &lt;ul&gt;
+      &lt;li&gt;If a spot instance is terminated by amazon ec2, you will not be charged for a partial hour of usage. However, if you terminate the instance yourself, &lt;strong&gt;you will be charged for the complete hour in which the instance ran.&lt;/strong&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;EC2 Family.&lt;/li&gt;
+  &lt;li&gt;EBS Volume types.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="compute," /><category term="virtualization," /><category term="cloud" /><summary type="html">What is EC2 A web service that provides resizable compute capacity in the cloud. AWS EC2 reduces the time required to obtain and boot a new server instances to minutes, allowing you to quickly scale capacity, both up and down, as your computing requirements change. This has changed the economics of computing, by allowing you to pay only for what you actually use. EC2 provides developers the tools to build failure resilient applications and isolate themselves from common failure scenarios.</summary></entry><entry><title type="html">Welcome to AWS Developer Associate Notes</title><link href="/introduction/2018/05/30/welcome-aws-developer-associate-notes.html" rel="alternate" type="text/html" title="Welcome to AWS Developer Associate Notes" /><published>2018-05-30T22:43:32+10:00</published><updated>2018-05-30T22:43:32+10:00</updated><id>/introduction/2018/05/30/welcome-aws-developer-associate-notes</id><content type="html" xml:base="/introduction/2018/05/30/welcome-aws-developer-associate-notes.html">&lt;h1 id=&quot;aws-developer-associate-notes&quot;&gt;AWS Developer Associate Notes&lt;/h1&gt;
+
+&lt;p&gt;This blog will host all the notes that i will be taking as i go through the AWS Developer Associate Course on A Cloud Guru. I will be going through all the lectures and Labs. The main contents of the course are as follows:&lt;/p&gt;
+
+&lt;ul class=&quot;task-list&quot;&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;IAM&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;EC2&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;S3&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Databases&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;DynamoDB&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Simple Queue Service ( SQS )&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Simple Notification Service ( SNS )&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Simple Workflow Service ( SWF )&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Elastic Beanstalk&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;CloudFormation&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;AWS Shared Responsibility&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Route53 &amp;amp; DNS&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Virtual Private Cloud&lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;The Exam&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;After all these topics are covered, i will take some of the simulated exams from their portal and attempt the real deal! Good luck to me!&lt;/p&gt;</content><author><name></name></author><summary type="html">AWS Developer Associate Notes</summary></entry><entry><title type="html">IAM</title><link href="/iam/2018/05/30/IAM.html" rel="alternate" type="text/html" title="IAM" /><published>2018-05-30T00:00:00+10:00</published><updated>2018-05-30T00:00:00+10:00</updated><id>/iam/2018/05/30/IAM</id><content type="html" xml:base="/iam/2018/05/30/IAM.html">&lt;h1 id=&quot;identity-access-management-101&quot;&gt;Identity Access Management 101&lt;/h1&gt;
+
+&lt;h3 id=&quot;what-is-iam&quot;&gt;What is IAM&lt;/h3&gt;
+&lt;p&gt;An AWS service which is dedicated to manage users and fine tune their level of access to the AWS console. Mainly used for the administration and management of user access.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-does-iam-give-you&quot;&gt;What does IAM give you&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Centralised control of your AWS account.&lt;/li&gt;
+  &lt;li&gt;Shared Access to your AWS account.&lt;/li&gt;
+  &lt;li&gt;Granular Permissions.&lt;/li&gt;
+  &lt;li&gt;Identity Federation ( including active directory, facebook, linkedin etc ).&lt;/li&gt;
+  &lt;li&gt;Multifactor Authentication.&lt;/li&gt;
+  &lt;li&gt;Provide temporary access for users/devices and services where necessary.&lt;/li&gt;
+  &lt;li&gt;Allows you to setup your own password rotation policy.&lt;/li&gt;
+  &lt;li&gt;Integrates with many different AWS services&lt;/li&gt;
+  &lt;li&gt;Support PCI DSS Compliance&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;critical-terms&quot;&gt;Critical Terms&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;User - End Users ( poeple )&lt;/li&gt;
+  &lt;li&gt;Groups - A collection of users under one set of permissions.&lt;/li&gt;
+  &lt;li&gt;Roles - You create roles and assign them to AWS resources. ( ie EC2 instance )&lt;/li&gt;
+  &lt;li&gt;Policies - A document that defines one or more permissions ( can be attached to all 3 above )&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;security-token-service--sts-&quot;&gt;Security Token Service ( STS )&lt;/h3&gt;
+&lt;p&gt;Grants users limited and temporary access to AWS resources. Users can come from three sources:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Federation ( typically active directory )
+    &lt;ul&gt;
+      &lt;li&gt;Uses Security Assertion Markup Language ( SAML )&lt;/li&gt;
+      &lt;li&gt;Grants temporary access based off the users Active Directory Credentials. Does not need to be a user in IAM.&lt;/li&gt;
+      &lt;li&gt;Single sign on allows users to log into AWS console without assigning IAM credentails.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Federation with Mobile Apps
+    &lt;ul&gt;
+      &lt;li&gt;Use Facebook/Amazon/Google or other OpenID providers to login.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Cross Account Access
+    &lt;ul&gt;
+      &lt;li&gt;Let users from one AWS account access resources in another.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;understanding-key-terms&quot;&gt;Understanding Key Terms&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Federation:&lt;/strong&gt; Combining or joining a list of users in one domain ( such as IAM ) with a list of users in another domain ( such as Active Directory, Facebook, etc )&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Identity Broker:&lt;/strong&gt; A service that allows you to take an identity from point A and join it ( &lt;em&gt;federate it&lt;/em&gt; ) to point B.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Identity Store:&lt;/strong&gt; Services like Active Directory, Facebook, Google etc.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Identities:&lt;/strong&gt; a user of a service like Facebook etc.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;exam-answer-format&quot;&gt;Exam Answer Format&lt;/h3&gt;
+
+&lt;h5 id=&quot;scenario-1&quot;&gt;Scenario 1&lt;/h5&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Develop an Identity Broker to communicate with LDAP and AWS STS.&lt;/li&gt;
+  &lt;li&gt;Identity Broker always authenticates with LDAP first, then with AWS STS.&lt;/li&gt;
+  &lt;li&gt;Application then gets temporary access to AWS resources.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h5 id=&quot;scenario-2&quot;&gt;Scenario 2&lt;/h5&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Develop an Identity Broker to communicate with LDAP and AWS STS.&lt;/li&gt;
+  &lt;li&gt;Identity Broker always authenticates with LDAP first, gets an IAM Role associated with the user.&lt;/li&gt;
+  &lt;li&gt;Application then authenticates with STS and assumes that IAM Role.&lt;/li&gt;
+  &lt;li&gt;Application uses that IAM role to interact with S3.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;active-directory-federation&quot;&gt;Active Directory Federation&lt;/h3&gt;
+
+&lt;h5 id=&quot;authentication-via-active-directory-federation-service&quot;&gt;Authentication via Active Directory Federation Service&lt;/h5&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Bob heads to the ADFS website to login&lt;/li&gt;
+  &lt;li&gt;The login page authenticates Bob against Active Directory. Depending on the browser Bob may get prompted to enter his active directory credentials.&lt;/li&gt;
+  &lt;li&gt;Bob’s browser recieves a SAML assertion in the form of an authentication response from ADFS.&lt;/li&gt;
+  &lt;li&gt;Bob’s browser posts the SAML assertion to the AWS login endpoint for SAML.
+    &lt;ul&gt;
+      &lt;li&gt;Behind the scene the AssumeRoleWithSAML API is used to request temporary security credentials and then constructs a login URL to the AWS Management Console.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Bob’s browser recieves the login URL and is redirected to the console.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;From bobs perspective all he did was login to the AD portal and then redirected to the AWS management console.&lt;/p&gt;
+
+&lt;h3 id=&quot;web-identity-federation&quot;&gt;Web Identity Federation&lt;/h3&gt;
+
+&lt;h5 id=&quot;web-identity-federation-for-mobile-application&quot;&gt;Web Identity Federation for Mobile Application&lt;/h5&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Step 1 - Authenticate with Identity Provider
+    &lt;ul&gt;
+      &lt;li&gt;ie Facebook, Google, Twitter&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Step 2 - Obtain Temporary Security Credentials
+    &lt;ul&gt;
+      &lt;li&gt;After obtaining an ID token, you can obtain temporary security credentials by making an AssumeRoleWithWebIdentity request.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Step 3 - Access AWS Resource
+    &lt;ul&gt;
+      &lt;li&gt;ie list all the objects in the S3 bucket.&lt;/li&gt;
+      &lt;li&gt;download objects from the S3 bucket.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;summary-of-iam&quot;&gt;Summary of IAM&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;IAM consists of the following
+    &lt;ul&gt;
+      &lt;li&gt;Users - have permissions to access AWS Resources&lt;/li&gt;
+      &lt;li&gt;Groups - which is a way to group the users and apply policies to them collectively.&lt;/li&gt;
+      &lt;li&gt;Roles - a way to apply policies to have programatic access to AWS resources.&lt;/li&gt;
+      &lt;li&gt;Policy Documents - JSON defition of permissions to AWS resources which can be applied to Users, Groups and Roles.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;IAM is universal, does not apply to regions as of yet.&lt;/li&gt;
+  &lt;li&gt;The root account is the account which is created during the AWS account setup. It has complete Admin access by default.&lt;/li&gt;
+  &lt;li&gt;New users have &lt;strong&gt;NO&lt;/strong&gt; permissions when first created.&lt;/li&gt;
+  &lt;li&gt;New users are assigned &lt;strong&gt;Access Key ID &amp;amp; Secret Access Keys&lt;/strong&gt; when first created.
+    &lt;ul&gt;
+      &lt;li&gt;These are not the same as login credentials to login to AWS Management Console. This is only for the programatic access to the AWS resources via the AWS SDK / API’s and AWS Cli.&lt;/li&gt;
+      &lt;li&gt;You only get to view these credentials &lt;strong&gt;(Access Key ID &amp;amp; Secret Access Keys)&lt;/strong&gt; only once, If you loose it has to be regenerated.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Always have to setup &lt;em&gt;Multifactor Authentication&lt;/em&gt; on the root account.&lt;/li&gt;
+  &lt;li&gt;You can create and customise your own password rotation policies.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="accounts," /><category term="management," /><category term="access" /><category term="control," /><category term="security," /><category term="authorization" /><summary type="html">Identity Access Management 101</summary></entry></feed>
