@@ -1,4 +1,761 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.2">Jekyll</generator><link href="https://diehard073055.github.io//sturdy-carnival/feed.xml" rel="self" type="application/atom+xml" /><link href="https://diehard073055.github.io//sturdy-carnival/" rel="alternate" type="text/html" /><updated>2018-06-08T00:12:10+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/</id><title type="html">AWS Developer Associate Notes</title><subtitle>Blog to keep track of what i have been studying for AWS Developer Associate Course. Also will be referrence to study before the exam.</subtitle><entry><title type="html">S3 CLI AND REGIONS</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/07/S3-CLI-AND-REGIONS.html" rel="alternate" type="text/html" title="S3 CLI AND REGIONS" /><published>2018-06-07T00:00:00+10:00</published><updated>2018-06-07T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/06/07/S3-CLI-AND-REGIONS</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/07/S3-CLI-AND-REGIONS.html">&lt;h3 id=&quot;instructions&quot;&gt;Instructions&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.2">Jekyll</generator><link href="https://diehard073055.github.io//sturdy-carnival/feed.xml" rel="self" type="application/atom+xml" /><link href="https://diehard073055.github.io//sturdy-carnival/" rel="alternate" type="text/html" /><updated>2018-06-11T02:51:18+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/</id><title type="html">AWS Developer Associate Notes</title><subtitle>Blog to keep track of what i have been studying for AWS Developer Associate Course. Also will be referrence to study before the exam.</subtitle><entry><title type="html">S3 101</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/11/S3-101.html" rel="alternate" type="text/html" title="S3 101" /><published>2018-06-11T00:00:00+10:00</published><updated>2018-06-11T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/11/S3-101</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/11/S3-101.html">&lt;h3 id=&quot;what-is-s3&quot;&gt;What is S3&lt;/h3&gt;
+&lt;p&gt;S3 provides developer and IT teams with secure durable, highly scalable object storage. Amazon S3 is easy to use, with a simple web service interface to store and retrieve any amount of data from anywhere on the web.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;S3 is a safe place to store your files.&lt;/li&gt;
+  &lt;li&gt;It is Object based storage.&lt;/li&gt;
+  &lt;li&gt;The data is spread across multiple devices and facilities.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;s3-basics&quot;&gt;S3 basics&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Object based storage i.e allows you to upload files.&lt;/li&gt;
+  &lt;li&gt;Files can be from 0 Byte to 5 TB.&lt;/li&gt;
+  &lt;li&gt;There is unlimited storage.&lt;/li&gt;
+  &lt;li&gt;Files are stored in buckets.&lt;/li&gt;
+  &lt;li&gt;S3 is a universal namespace, that is names must be unique globally.&lt;/li&gt;
+  &lt;li&gt;S3 urls are as follows
+    &lt;ul&gt;
+      &lt;li&gt;https://s3-[region].amazonaws.com/[bucketname]&lt;/li&gt;
+      &lt;li&gt;https://s3-eu-west.amazonaws.com/acloudguru&lt;/li&gt;
+      &lt;li&gt;https://s3-ap-southeast-2.amazonaws.com/godsoflinux.com&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;When you upload a file to S3, you will receive a HTTP 200 code if the upload successful.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;data-consistency-model-for-s3&quot;&gt;Data Consistency Model for S3&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Read after write consistency for PUTS of new objects.
+    &lt;ul&gt;
+      &lt;li&gt;When you put a new object in S3, you will get immediate consistency.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Eventual Consistency for overwrite PUTS and DELETES ( can take sometime to propergate ).
+    &lt;ul&gt;
+      &lt;li&gt;You dont get immediate updates when you update or delete files from S3, It takes sometime for the objects to update.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Updates to S3 is ATOMIC
+    &lt;ul&gt;
+      &lt;li&gt;You are either going to get the old data or you are going to get the old data. You will not get partial parts of the old data and new data.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;s3-is-a-simple-key-value-store&quot;&gt;S3 is a simple key value store&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;* S3 is object based, Objects consist of the following.
+    * Key (This is the name of the object)
+    * Value (This is simply the data and is made up of a sequence of bytes )
+    * Version ID ( Important for versioning )
+    * Metadata ( Data about the data you are storing )
+    * Subresources
+        * Access Control Lists ( Who can access this object )
+        * Torrent ( Bittorrent protocol )
+* S3 is lexio graphical, Ordered alphabetically on the key name. Its a design consideration for the application.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;guarantee&quot;&gt;Guarantee&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Built for 99.99% Availability for the S3 platform,&lt;/li&gt;
+  &lt;li&gt;Amazon Guarantee 99.9% availability. ( SLA service level agreement )&lt;/li&gt;
+  &lt;li&gt;Amazon Guarantees 99.999999999% durability for S3 information. 9/11&lt;/li&gt;
+  &lt;li&gt;Tiered Storage Available.&lt;/li&gt;
+  &lt;li&gt;Lifecycle Management
+    &lt;ul&gt;
+      &lt;li&gt;If your data is 30 days old, keep them in this particular storage tier.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Versioning&lt;/li&gt;
+  &lt;li&gt;Encryption&lt;/li&gt;
+  &lt;li&gt;Secure your data using Access Control Lists and Bucket Policies.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;s3---storage-tiers--classes&quot;&gt;S3 - Storage Tiers / Classes&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;S3 - 99.99 availability, 99.999999999% durability, stored redundantly across multiple devices in multiple facilities and is designed to sustain the loss of 2 facilities concurrently.&lt;/li&gt;
+  &lt;li&gt;S3 - IA ( Infrequently Accessed ) For data that accessed less frequently, but requires rapid access when needed. Lower fee than S3, but you are charged a retreval fee.&lt;/li&gt;
+  &lt;li&gt;Reduced Redundancy Storage - Designed to provide 99.99% durability and 99.99% availability of objects over a given year.&lt;/li&gt;
+  &lt;li&gt;Glacier - Very cheap, but used for data archival only. It takes 3 - 5 hours to restore from Glacier.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;charge&quot;&gt;Charge&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;* Storage
+* Requests
+* Storage Management Pricing
+* Data Transfer pricing
+* Transfer acceleration
+    * Amazon S3 Transfer Acceleration Enables Fast, easy and secure transfer of files over long distances between your end users and an S3 bucket. Transfer Acceleration takes advantage of Amazon CloudFront's globally distributed edge locations. As the data arrives at an edge location, data is routed to Amazon S3 over an optimized network path.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;exam-tips&quot;&gt;Exam tips&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Remember that S3 is Object based i.e. allows you to upload files.&lt;/li&gt;
+  &lt;li&gt;File can be from 0 bytes to 5 TB.&lt;/li&gt;
+  &lt;li&gt;There is unlimited storage&lt;/li&gt;
+  &lt;li&gt;Files are stored in buckets&lt;/li&gt;
+  &lt;li&gt;S3 has a universal, that is, names for buckets must be unique globally.&lt;/li&gt;
+  &lt;li&gt;https://s3-ap-southeast-2.amazonaws.com/godsoflinux&lt;/li&gt;
+  &lt;li&gt;Read after write consistency for PUTS of new objects.&lt;/li&gt;
+  &lt;li&gt;Eventual Consistency on overwrites and deletes.&lt;/li&gt;
+  &lt;li&gt;S3 Storage Classes / Tiers
+    &lt;ul&gt;
+      &lt;li&gt;S3 ( durable, immedietely available, frequently accessed )&lt;/li&gt;
+      &lt;li&gt;S3 IA ( Infrequently Accessed, durable, immedietely available )&lt;/li&gt;
+      &lt;li&gt;S3 Reduced Redundency Storage&lt;/li&gt;
+      &lt;li&gt;Glacier ( for archival data which can take 3 to 5 hours to access )&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Remember the core fundementals of an S3 object
+    &lt;ul&gt;
+      &lt;li&gt;Key (name)&lt;/li&gt;
+      &lt;li&gt;Value (data)&lt;/li&gt;
+      &lt;li&gt;Version ID&lt;/li&gt;
+      &lt;li&gt;Metadata&lt;/li&gt;
+      &lt;li&gt;Subresources
+        &lt;ul&gt;
+          &lt;li&gt;ACL&lt;/li&gt;
+          &lt;li&gt;Torrent&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Object based storage only! (for files)&lt;/li&gt;
+  &lt;li&gt;Do not install operating systems on it&lt;/li&gt;
+  &lt;li&gt;Successful uploads will generate HTTP 200 status code.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Read the S3 FAQ before the exam!&lt;/strong&gt;&lt;/p&gt;</content><author><name>Eshan Shafeeq</name></author><category term="storage" /><category term="s3" /><category term="introduction" /><summary type="html">What is S3 S3 provides developer and IT teams with secure durable, highly scalable object storage. Amazon S3 is easy to use, with a simple web service interface to store and retrieve any amount of data from anywhere on the web. S3 is a safe place to store your files. It is Object based storage. The data is spread across multiple devices and facilities.</summary></entry><entry><title type="html">Summary of EC2 Section</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/10/Summary-of-EC2-Section.html" rel="alternate" type="text/html" title="Summary of EC2 Section" /><published>2018-06-10T00:00:00+10:00</published><updated>2018-06-10T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/06/10/Summary-of-EC2-Section</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/10/Summary-of-EC2-Section.html">&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Fundemental Topic&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;Remember to read the &lt;a href=&quot;https://aws.amazon.com/ec2/faqs/&quot;&gt;EC2 FAQ&lt;/a&gt; before going for the exam.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;exam-tips&quot;&gt;Exam Tips&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Know the difference between the pricing models of EC2.
+    &lt;ul&gt;
+      &lt;li&gt;On Demand&lt;/li&gt;
+      &lt;li&gt;Spot&lt;/li&gt;
+      &lt;li&gt;Reserved&lt;/li&gt;
+      &lt;li&gt;Dedicated Hosts&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Remember for Spot Instances
+    &lt;ul&gt;
+      &lt;li&gt;If you terminate the instance, you pay for the hour.&lt;/li&gt;
+      &lt;li&gt;If aws terminates the spot instance, you get the hour it was terminated in for free.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;EC2 Instance Types.
+    &lt;ul&gt;
+      &lt;li&gt;Remember DRMCGIFTPX&lt;/li&gt;
+      &lt;li&gt;D - Dense Storage&lt;/li&gt;
+      &lt;li&gt;R - Memory Optimized&lt;/li&gt;
+      &lt;li&gt;M - General Purpose ( Production )&lt;/li&gt;
+      &lt;li&gt;C - Compute Optimized&lt;/li&gt;
+      &lt;li&gt;G - Graphics Intensive&lt;/li&gt;
+      &lt;li&gt;I - Storage Optimized&lt;/li&gt;
+      &lt;li&gt;F - Field Programmable Gate arrays&lt;/li&gt;
+      &lt;li&gt;T - Low Cost General Purpose&lt;/li&gt;
+      &lt;li&gt;P - Graphics / General Purpose&lt;/li&gt;
+      &lt;li&gt;X - Memory Optimized ( eXtreme Memory Optimized )&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;EBS Consists of
+    &lt;ul&gt;
+      &lt;li&gt;SSD - General Purpose - GP2 - ( Up to 10,000 IOPS ).&lt;/li&gt;
+      &lt;li&gt;SSD - Provisioned IOPS - IO1 - ( More than 10,000 IOPS ).&lt;/li&gt;
+      &lt;li&gt;HDD - Throughput optimized - ST1 - Frequently accessed workloads.&lt;/li&gt;
+      &lt;li&gt;HDD - Cold - SC1 - less frequently accessed data.&lt;/li&gt;
+      &lt;li&gt;HDD - Magnetic - Standard - Cheap, infrequently accessed storage.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;You cannot mount 1 EBS Volume to multiple EC2 instances, instead use EFS.&lt;/li&gt;
+  &lt;li&gt;Termination Protection is turned off by default, You must turn on termination protection if you would like that safety.&lt;/li&gt;
+  &lt;li&gt;On an EBS backed storage, the default action on instance termination is deleting the EBS volume.&lt;/li&gt;
+  &lt;li&gt;Root Volumes cannot be encrypted by default unless you use a thirdparty tool to encrypt the root volume. (eg: Bitlocker )&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Additional Volumes can be encrypted.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Volumes VS Snapshots
+    &lt;ul&gt;
+      &lt;li&gt;Volumes exists on EBS
+        &lt;ul&gt;
+          &lt;li&gt;Virtual Harddisks&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Snapshots exists on S3&lt;/li&gt;
+      &lt;li&gt;You can take snapshots of a volume, this will store that volume on S3.&lt;/li&gt;
+      &lt;li&gt;Snapshots are point in time copies of that volume.&lt;/li&gt;
+      &lt;li&gt;Snapshots are incremental, this means that only the blocks that have changed since your last snapshots are moved to S3. ( first snapshots takes a while, but afterwards its fine )&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Volumes VS Snapshots - Security
+    &lt;ul&gt;
+      &lt;li&gt;Snapshots of encrypted volumes are encrypted automatically.&lt;/li&gt;
+      &lt;li&gt;Volumes that are restored from snapshots are encrypted automatically.&lt;/li&gt;
+      &lt;li&gt;You can share snapshots with other AWS accounts, or publicly on the AWS market place, only if they are not encrypted.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Snapshots of Root Device Volumes.
+    &lt;ul&gt;
+      &lt;li&gt;To create a snapshot for Amazon EBS volume that serve as root device, you should stop the instance before taking the snapshot ( but can be done on a running instance ).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;EBS vs Instance Store Volumes
+    &lt;ul&gt;
+      &lt;li&gt;Instance Store volumes are sometimes called Ephemeral Storage.&lt;/li&gt;
+      &lt;li&gt;Instance Store volumes cannot be stopped, If the underlying host fails, you will loose your data.&lt;/li&gt;
+      &lt;li&gt;EBS backed instances can be stopped, You will not loose the data on this instance if it is stopped.&lt;/li&gt;
+      &lt;li&gt;You can reboot both, and you will not loose your data.&lt;/li&gt;
+      &lt;li&gt;By default, both ROOT volumes will be deleted on termination, however with EBS volumes, you can tell AWS to keep the root device volume. ( set a FLAG )&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;How to take a snapshot from the RAID Array?
+    &lt;ul&gt;
+      &lt;li&gt;Problem - Take a snapshot, the snapshot excludes data held in the cache by applications and the OS. This tends not to matter on a single volume, however using multiple volumes in a RAID array, this can be a problem due to interdependencies of the array.&lt;/li&gt;
+      &lt;li&gt;Solution - Take an application consistent snapshot.
+        &lt;ul&gt;
+          &lt;li&gt;Stop the application from writing to disk&lt;/li&gt;
+          &lt;li&gt;Flush all caches to the disk.
+            &lt;ul&gt;
+              &lt;li&gt;Freeze the file system.&lt;/li&gt;
+              &lt;li&gt;Unmount the RAID Array.&lt;/li&gt;
+              &lt;li&gt;Shutdown the associated EC2 instance.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Amazon Machine Images
+    &lt;ul&gt;
+      &lt;li&gt;AMI’s are regional - You can only launch an AMI from the region in which it is stored. However you can copy AMI’s to other regions using the console, commandline or the Amazon EC2 API.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Cloudwatch Monitoring
+    &lt;ul&gt;
+      &lt;li&gt;Standard monitoring is enabled by default for EC2. ( Every 5 minutes )&lt;/li&gt;
+      &lt;li&gt;You can enable Detailed Monitoring ( Every minute ).&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;CloudWatch is for performance monitoring.&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;CloudTrail is for Auditing&lt;/strong&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;What can you create with CloudWatch ?
+    &lt;ul&gt;
+      &lt;li&gt;Dashboards - Create awesome dashboards to see what is happening with your aws environment.&lt;/li&gt;
+      &lt;li&gt;Alarms - Allows you to set alarms that notify you when particular thresholds are hit.&lt;/li&gt;
+      &lt;li&gt;Events - CloudWatch Events help you to respond to state changes in your aws resources.&lt;/li&gt;
+      &lt;li&gt;Logs - CloudWatch logs help you to aggregate, monitor, and store logs.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Roles
+    &lt;ul&gt;
+      &lt;li&gt;Roles are more secure than storing your access key and secret access key on individual EC2 instances.&lt;/li&gt;
+      &lt;li&gt;Roles are much easier to manage than having secret access keys around in terms of security.
+        &lt;ul&gt;
+          &lt;li&gt;If you loose your security key, you will have to delete the old ones and create a new one.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Roles can now be assigned to an EC2 instance after it has been provisioned using both the commandline and the AWS console.&lt;/li&gt;
+      &lt;li&gt;Roles are global&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Instance Metadata
+    &lt;ul&gt;
+      &lt;li&gt;Used to get information about an instance ( such as public IPV4 )&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;curl http://169.254.169.254/latest/meta-data/&lt;/code&gt; will all the available information.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;EFS
+    &lt;ul&gt;
+      &lt;li&gt;Support the Network File System Version 4 protocol (NFSv4)&lt;/li&gt;
+      &lt;li&gt;You only pay for the storage you use ( no pre-provisioning required )&lt;/li&gt;
+      &lt;li&gt;Can scale upto petabytes&lt;/li&gt;
+      &lt;li&gt;Can support thousands of concurrent NFS connections&lt;/li&gt;
+      &lt;li&gt;Data is stored across multiple AZ’s within a region.&lt;/li&gt;
+      &lt;li&gt;Read After Write Consistency&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Lambda
+    &lt;ul&gt;
+      &lt;li&gt;AWS lambda is a compute service where you can upload your code and create lambda function. AWS Lambda takes care of provisioning and managing the servers that you use to run the code. You dont have to worry about the operating systems, patching, scaling, etc. You can use Lambda in the following ways.&lt;/li&gt;
+      &lt;li&gt;As an event driven compute service, AWS runs your code in response to events. These events could be changes to your data in an Amazon S3 bucket or an Amazon DynamoDB table.&lt;/li&gt;
+      &lt;li&gt;As a compute service to run your code in response to HTTP requests using Amazon API gateway or API calls made using AWS SDK’s. This is what we use at A Cloud Guru.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="summary" /><category term="wrappingup" /><category term="ec2" /><category term="compute" /><category term="tips" /><summary type="html">Fundemental Topic Remember to read the EC2 FAQ before going for the exam.</summary></entry><entry><title type="html">SDK Exam Tips</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/10/SDK-Exam-Tips.html" rel="alternate" type="text/html" title="SDK Exam Tips" /><published>2018-06-10T00:00:00+10:00</published><updated>2018-06-10T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/06/10/SDK-Exam-Tips</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/10/SDK-Exam-Tips.html">&lt;h3 id=&quot;know-the-available-sdks&quot;&gt;Know the available sdks&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://aws.amazon.com/tools/&quot;&gt;official documentation on sdk’s&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Android, IOS, Nodejs (WEB)&lt;/li&gt;
+  &lt;li&gt;Java&lt;/li&gt;
+  &lt;li&gt;.Net&lt;/li&gt;
+  &lt;li&gt;Nodejs&lt;/li&gt;
+  &lt;li&gt;PHP&lt;/li&gt;
+  &lt;li&gt;Python&lt;/li&gt;
+  &lt;li&gt;Ruby&lt;/li&gt;
+  &lt;li&gt;Go&lt;/li&gt;
+  &lt;li&gt;C++&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;sdk-default-region&quot;&gt;SDK Default Region&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Default Region - US-EAST-1&lt;/li&gt;
+  &lt;li&gt;Some have default regions (Java)&lt;/li&gt;
+  &lt;li&gt;Some do not (Node.js)
+    &lt;ul&gt;
+      &lt;li&gt;If a region is not specified it will default back to US-EAST-1&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="compute" /><category term="examtips" /><category term="tips" /><category term="exam" /><category term="sdk" /><category term="programming" /><summary type="html">Know the available sdks official documentation on sdk’s Android, IOS, Nodejs (WEB) Java .Net Nodejs PHP Python Ruby Go C++</summary></entry><entry><title type="html">Lambda</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/10/Lambda.html" rel="alternate" type="text/html" title="Lambda" /><published>2018-06-10T00:00:00+10:00</published><updated>2018-06-10T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/06/10/Lambda</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/10/Lambda.html">&lt;h3 id=&quot;what-is-lambda-&quot;&gt;What is lambda ?&lt;/h3&gt;
+&lt;p&gt;AWS Lambda is a compute service where you can upload your code and create a Lambda function. AWS Lambda takes care of provisioning and managing the servers that you use to run the code. You dont have to worry about operating systems, patching, scaling, etc. You can use Lambda in the following ways.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;As an &lt;strong&gt;Event Driven Compute Service&lt;/strong&gt; where AWS Lambda runs your code in response to events. These events could be changes to data in an Amazon S3 bucket or an Amazon DynamoDB table.&lt;/li&gt;
+  &lt;li&gt;As a compute service to run your code in response to HTTP requests using Amazon API Gateway or API calls made using AWS SDKs.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;create-a-lambda&quot;&gt;Create a lambda&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Services-&amp;gt;Compute-&amp;gt;Lambda-&amp;gt;Create Function&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Select Blue Print
+    &lt;ul&gt;
+      &lt;li&gt;Author from scratch&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Configure Triggers
+    &lt;ul&gt;
+      &lt;li&gt;Available Triggers
+        &lt;ul&gt;
+          &lt;li&gt;API Gateway&lt;/li&gt;
+          &lt;li&gt;AWS IoT&lt;/li&gt;
+          &lt;li&gt;Alexa Skills Kit&lt;/li&gt;
+          &lt;li&gt;Alexa Smart Home&lt;/li&gt;
+          &lt;li&gt;CloudFront&lt;/li&gt;
+          &lt;li&gt;CloudWatch Events&lt;/li&gt;
+          &lt;li&gt;CloudWatch Logs&lt;/li&gt;
+          &lt;li&gt;CodeCommit&lt;/li&gt;
+          &lt;li&gt;Cognito Sync Trigger&lt;/li&gt;
+          &lt;li&gt;DynamoDB&lt;/li&gt;
+          &lt;li&gt;Kinesis&lt;/li&gt;
+          &lt;li&gt;S3&lt;/li&gt;
+          &lt;li&gt;SNS&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Select API Gateway&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Configure Function
+    &lt;ul&gt;
+      &lt;li&gt;Available Languages
+        &lt;ul&gt;
+          &lt;li&gt;C#&lt;/li&gt;
+          &lt;li&gt;Nodejs&lt;/li&gt;
+          &lt;li&gt;Python&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;lambda-pricing&quot;&gt;Lambda Pricing&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Number of requests
+    &lt;ul&gt;
+      &lt;li&gt;First 1 million requests are free. $0.20 per 1 million requests afterwards.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Duration
+    &lt;ul&gt;
+      &lt;li&gt;Duration is calculated from the time your code begins executing until it returns or otherwise terminates, rounded up to the nearest 100ms. The pricing depends on the amount of memory you allocate to your function. You are charged $0.00001667 for every GB/second used.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;pros-on-lambda&quot;&gt;Pros on Lambda&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;No Servers&lt;/li&gt;
+  &lt;li&gt;Continuous Scaling&lt;/li&gt;
+  &lt;li&gt;Super Super Super cheap&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;exam-tips&quot;&gt;Exam Tips&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Lambda scales out ( not up ) automatically.&lt;/li&gt;
+  &lt;li&gt;Lambda functions are independent, 1 event = 1 function.&lt;/li&gt;
+  &lt;li&gt;Lambda is serverless.&lt;/li&gt;
+  &lt;li&gt;Lambdas can trigger other lambda functions, 1 event can = x functions if functions trigger other functions.&lt;/li&gt;
+  &lt;li&gt;Architectures can get extremely complicated, AWS x-ray allows you to debug what is happening.&lt;/li&gt;
+  &lt;li&gt;Lambda can do things globally, It can be used to backup S3 buckets to other S3 buckets etc.&lt;/li&gt;
+  &lt;li&gt;Know which services can trigger lambda&lt;/li&gt;
+  &lt;li&gt;Lambdas can run for at most 5 minutes.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;other-serverless-services&quot;&gt;Other serverless services&lt;/h5&gt;
+&lt;ul&gt;
+  &lt;li&gt;API Gateway&lt;/li&gt;
+  &lt;li&gt;S3&lt;/li&gt;
+  &lt;li&gt;DynamoDB&lt;/li&gt;
+  &lt;li&gt;Definetely not EC2&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="lambda" /><category term="serverless" /><category term="function" /><category term="compute" /><summary type="html">What is lambda ? AWS Lambda is a compute service where you can upload your code and create a Lambda function. AWS Lambda takes care of provisioning and managing the servers that you use to run the code. You dont have to worry about operating systems, patching, scaling, etc. You can use Lambda in the following ways.</summary></entry><entry><title type="html">EC2 Instance Metadata</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/09/EC2-Instance-Metadata.html" rel="alternate" type="text/html" title="EC2 Instance Metadata" /><published>2018-06-09T00:00:00+10:00</published><updated>2018-06-09T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/06/09/EC2-Instance-Metadata</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/09/EC2-Instance-Metadata.html">&lt;h3 id=&quot;pre-requisite&quot;&gt;Pre-requisite&lt;/h3&gt;
+&lt;p&gt;Have an ec2 instance ready when you wanna start this lab.&lt;/p&gt;
+
+&lt;h3 id=&quot;instructions&quot;&gt;Instructions&lt;/h3&gt;
+&lt;p&gt;In order to see a list of all the metadata for the ec2 instance you’re on.&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl http://169.254.169.254/latest/meta-data
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;That should list out all the options available for you. For you to obtain the IPV4 public address for the ec2 instance.&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl http://169.254.169.254/latest/public-ipv4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;That should give you the public ipv4.&lt;/p&gt;
+
+&lt;p&gt;You can use the same concept with any programming language to get the ec2 instance metadata.&lt;/p&gt;</content><author><name>Eshan Shafeeq</name></author><category term="ec2" /><category term="metadata" /><category term="compute" /><category term="lab" /><summary type="html">Pre-requisite Have an ec2 instance ready when you wanna start this lab.</summary></entry><entry><title type="html">EC2 Elastic Load Balancer</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/09/EC2-ELB.html" rel="alternate" type="text/html" title="EC2 Elastic Load Balancer" /><published>2018-06-09T00:00:00+10:00</published><updated>2018-06-09T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/06/09/EC2-ELB</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/09/EC2-ELB.html">&lt;h2 id=&quot;types-of-load-balancers&quot;&gt;Types of load balancers&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;Application load balancers
+    &lt;ul&gt;
+      &lt;li&gt;Work at layer 7 ( Preferred Method )&lt;/li&gt;
+      &lt;li&gt;Newest 2016&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Classic load balancer
+    &lt;ul&gt;
+      &lt;li&gt;Layer 4 routing TCP layer&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;creating-a-load-balancer&quot;&gt;Creating a Load balancer&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Services-&amp;gt;EC2-&amp;gt;[left panel]ELB-&amp;gt;Create Load Balancer&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Select Classic Load Balancer&lt;/li&gt;
+  &lt;li&gt;Define Load Balancers
+    &lt;ul&gt;
+      &lt;li&gt;Make sure its not an internal load balancer.&lt;/li&gt;
+      &lt;li&gt;If youre using default vpc keep advanced vpc disabled.&lt;/li&gt;
+      &lt;li&gt;leave the rest as default&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Assign Security Group.
+    &lt;ul&gt;
+      &lt;li&gt;Leave it as default.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Configure Health Check.
+    &lt;ul&gt;
+      &lt;li&gt;Use HTTP&lt;/li&gt;
+      &lt;li&gt;Set ping path as health.html&lt;/li&gt;
+      &lt;li&gt;Set response timeout as 2 seconds&lt;/li&gt;
+      &lt;li&gt;Interval at 5 seconds&lt;/li&gt;
+      &lt;li&gt;Unhealthy threshold 2&lt;/li&gt;
+      &lt;li&gt;Healthy threshold 3&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Add your EC2 Instances&lt;/li&gt;
+  &lt;li&gt;Add tags!
+    &lt;ul&gt;
+      &lt;li&gt;Very important to keep track for the cost tracking&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Review and launch -&amp;gt; Create&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;It will take sometime to register the load balancer and the load balancer to come online.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Instance monitored by ELB are reported as ; InService, or OutofService&lt;/li&gt;
+  &lt;li&gt;Health Checks check the instace health by doing a http request and getting the expected response from it.&lt;/li&gt;
+  &lt;li&gt;Hace their own DNS name. Never will be given an IP address.&lt;/li&gt;
+  &lt;li&gt;Read the ELB FAQ for Classic Load Balancers.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="compute" /><category term="elb" /><category term="ec2" /><category term="lab" /><summary type="html">Types of load balancers Application load balancers Work at layer 7 ( Preferred Method ) Newest 2016 Classic load balancer Layer 4 routing TCP layer</summary></entry><entry><title type="html">AWS Study Guide</title><link href="https://diehard073055.github.io//sturdy-carnival/exam/study/guide/2018/06/09/AWS-Study-Guide.html" rel="alternate" type="text/html" title="AWS Study Guide" /><published>2018-06-09T00:00:00+10:00</published><updated>2018-06-09T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/exam/study/guide/2018/06/09/AWS-Study-Guide</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/exam/study/guide/2018/06/09/AWS-Study-Guide.html">&lt;h1 id=&quot;learning&quot;&gt;Learning&lt;/h1&gt;
+
+&lt;h3 id=&quot;distributed-practice&quot;&gt;Distributed Practice&lt;/h3&gt;
+&lt;p&gt;Spend a little bit of time every day of the month. Spreading out the learning makes things stick.&lt;/p&gt;
+
+&lt;h3 id=&quot;varied--interleaved-practise&quot;&gt;Varied / Interleaved Practise&lt;/h3&gt;
+&lt;p&gt;Frequently change tasks and topics so that you are forced to think about the material in different ways. Easier to learn new things by incoperating and reinforcing previously-learned material. Let your existing &lt;strong&gt;mental model&lt;/strong&gt; help you learn new things. Use your mental model often since it will help you strengthen and refine it.&lt;/p&gt;
+
+&lt;h3 id=&quot;spaced-repetition&quot;&gt;Spaced Repetition&lt;/h3&gt;
+&lt;p&gt;Review Information before you forget it completely. Revisit information when your mental model has improved. Spread out the learning time.&lt;/p&gt;
+
+&lt;h1 id=&quot;zooming-in--zooming-out&quot;&gt;Zooming in &amp;amp; Zooming out&lt;/h1&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Wikipedia : [A]bstraction is a technique for arranging complexity of computer systems. It works by establishing a level of complexity on which a person interacts with the system, suppressing the more complex details below the current level.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;Abstractions&lt;/strong&gt; are very important in software systems. It is the foundation of amazon web services. (&lt;em&gt;but just really anything in technology is&lt;/em&gt;).&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Your goal is to architect and build systems. Think about the data flow through your entire system.&lt;/li&gt;
+  &lt;li&gt;Nothing exists in isolation, services interconnect, the systems interacts with other systems.&lt;/li&gt;
+  &lt;li&gt;Change over time is a key dimension in all tradeoff decisions, a “perfect” system that cannot be changed is fundementally broken, because the context around that system will eventually change.&lt;/li&gt;
+  &lt;li&gt;Technically debt, what you do now determines how easy it will be to make changes later.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;mental-models&quot;&gt;Mental Models&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;You remember things you understand&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The image of the world around us, which we carry in our head, is just a model. Nobody in his head imagines all the world, government or country. He has only selected concepts, and relationships between them, and uses those to represent the real system.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;what-is-a-mental-model&quot;&gt;What is a mental model&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;A simplified representation of reality that your mind uses to anticipate events or draw conclusions. A way to describe what your brain builds when you understand something. The way your brain organizes information it learns into heirarchies, its when you use logic instead of memorization. Recognizing patterns.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;value-proposition&quot;&gt;Value Proposition&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Predictive capability&lt;/li&gt;
+  &lt;li&gt;Quicker and easier learning: Understanding vs Memorization.&lt;/li&gt;
+  &lt;li&gt;Brain is better at remembering related concepts than unrelated details.&lt;/li&gt;
+  &lt;li&gt;More memorization can dilute older information.&lt;/li&gt;
+  &lt;li&gt;More understanding improves mental models.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;how-to-build-a-mental-model&quot;&gt;How to build a mental model&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Double loop learning&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;single-loop-learning&quot;&gt;Single loop learning&lt;/h5&gt;
+&lt;p&gt;Is error correction by following the rules and operating norms when solving problem. Some thing like a feedback control loop.&lt;/p&gt;
+
+&lt;h5 id=&quot;double-loop-learning&quot;&gt;Double loop learning&lt;/h5&gt;
+&lt;p&gt;Is error correction by changing and critically questioning the rules and operating norms when solving problems.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;This involves more thinking outside the box.&lt;/li&gt;
+  &lt;li&gt;Creativity is a must.&lt;/li&gt;
+  &lt;li&gt;Thinking outside the operating norms.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This allows us to question which situation is the best to reach our end goal.&lt;/p&gt;
+
+&lt;h3 id=&quot;progression--building-the-mental-model-&quot;&gt;Progression ( Building the mental model )&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;When new information clashes with your mental model, you will have to rebuild your mental model. &lt;strong&gt;Forced rebuilds&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;Eventually becomes more robust and require fewer major changes, which results for efficient assimilation of info, high-efficiency learning and functional expertise.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;questions&quot;&gt;Questions&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Elaborative investigation uses questions like “why?” and “how?” to understand the meaning of information to be learned.&lt;/li&gt;
+  &lt;li&gt;Socratic Method, based on asking and answering questions to stimulate critical thinking and to draw out ideas and underlying presumptions.&lt;/li&gt;
+  &lt;li&gt;Five whys - used to learn the root cause of a defect or problem by repeating the question “why?”. Each answer forms the basis of the next question.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;why&quot;&gt;Why?&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Keep asking this about everything.&lt;/li&gt;
+  &lt;li&gt;Why does this service or feature exist? why would someone want it?&lt;/li&gt;
+  &lt;li&gt;Why does it work the way it does?&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Why are the limits set the way they are?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Are they for my protection?&lt;/li&gt;
+  &lt;li&gt;Are they to help AWS manage scaling?&lt;/li&gt;
+  &lt;li&gt;Are they trying to encourage/force me to use better designs?&lt;/li&gt;
+  &lt;li&gt;Are they implementation artifacts?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;what&quot;&gt;What?&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;What assumptions have i made?&lt;/li&gt;
+  &lt;li&gt;What assumptions have aws made?&lt;/li&gt;
+  &lt;li&gt;What is the key purpose of this service/feature?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;when&quot;&gt;When?&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;When does the abstractions leak? When does what i know ( believe ) change?
+    &lt;ul&gt;
+      &lt;li&gt;Does it break under load?&lt;/li&gt;
+      &lt;li&gt;During certain kinds of outages? ( AZ down? Other service having problems? )&lt;/li&gt;
+      &lt;li&gt;Randomly but rare? ( Amortized costs? Network glitches? )&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;When might i get throttled or hit service limits?
+    &lt;ul&gt;
+      &lt;li&gt;Which ones are fixed in stone?&lt;/li&gt;
+      &lt;li&gt;Which ones can be changed?&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;how-&quot;&gt;How ?&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;How is this similar to what i’ve seen before?&lt;/li&gt;
+  &lt;li&gt;How is this different from what i’ve seen before?&lt;/li&gt;
+  &lt;li&gt;How did they build this?
+    &lt;ul&gt;
+      &lt;li&gt;Based on my understanding, what should be the limitations?&lt;/li&gt;
+      &lt;li&gt;Am i right about this?&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;How can i test what i believe?&lt;/li&gt;
+  &lt;li&gt;How does AWS handle failures?&lt;/li&gt;
+  &lt;li&gt;How do i handle failures?&lt;/li&gt;
+  &lt;li&gt;How does this intergrate with other services?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;who-&quot;&gt;Who ?&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Who is the target for this service?&lt;/li&gt;
+  &lt;li&gt;Service offerings target real user scenarios - based on customer feedback&lt;/li&gt;
+  &lt;li&gt;Integrate those into your mental model to make better predictions about how it should / does work.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;how-teaching-others-can-help&quot;&gt;How teaching others can help&lt;/h1&gt;
+
+&lt;h3 id=&quot;teaching&quot;&gt;Teaching&lt;/h3&gt;
+&lt;p&gt;Forces you to communicate what you have learned. Requires you to understand the material more deeply. May also result in further questions that you hadnt considered. Explaining in detail to someone else will concrete these in your head.&lt;/p&gt;
+
+&lt;h3 id=&quot;dive-in&quot;&gt;Dive in!&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Find a forum question that interests you. Research it until you can answer it. With full explanations. Make your response defensible, not just an opinion or guess. Use quotes from and links to official documentation!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;30-second-summary&quot;&gt;30 Second Summary&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;On any topic or technology.&lt;/li&gt;
+  &lt;li&gt;Recite a 15 to 30 second summary.&lt;/li&gt;
+  &lt;li&gt;Key strengths.&lt;/li&gt;
+  &lt;li&gt;Key weaknesses.&lt;/li&gt;
+  &lt;li&gt;How it interacts with other services.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;visualization&quot;&gt;Visualization&lt;/h1&gt;
+
+&lt;p&gt;Its not just vision.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;The words “visualization” and “imagery” are in some ways misleading. while the domiant sense is usually vision, visualization does not just involve seeing. The more senses you involve, the stronger the effect. Hear a switch click when you turn it on, or feel an engine turn over and the vibrations when you start it. Smell fuel when you check a fuel tank.. All these can significantly improve how your visualizations work.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;example&quot;&gt;Example&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Imagine yourself as a network packet.&lt;/li&gt;
+  &lt;li&gt;On your way home ( a client system ).&lt;/li&gt;
+  &lt;li&gt;To work ( a load-balanced server in a VPC ).&lt;/li&gt;
+  &lt;li&gt;Driving and turning along roads ( network hops, routing, load balancing ).&lt;/li&gt;
+  &lt;li&gt;And passing security checkpoints (firewalls, network ACLs, security groups).&lt;/li&gt;
+  &lt;li&gt;Some are machines that always check your papers ( stateless; nACLs)&lt;/li&gt;
+  &lt;li&gt;Others have guards that remember you on the way back ( stateful;SGs )&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;pdca&quot;&gt;PDCA&lt;/h1&gt;
+
+&lt;h3 id=&quot;what-is-pdca&quot;&gt;What is PDCA&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Plan
+    &lt;ul&gt;
+      &lt;li&gt;Plan what youre going to do to learn some new material&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Do
+    &lt;ul&gt;
+      &lt;li&gt;Do what you planned; set about actually learning it.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Check
+    &lt;ul&gt;
+      &lt;li&gt;Check how well that plan worked-both how easy and how effective it was.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Adjust
+    &lt;ul&gt;
+      &lt;li&gt;Adjust your plan for future learning, emphasizing techniques that worked well.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;what-to-do-before-the-exam&quot;&gt;What to do before the exam&lt;/h1&gt;
+
+&lt;h3 id=&quot;month-before&quot;&gt;Month before&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Read AWS Certification FAQ
+    &lt;ul&gt;
+      &lt;li&gt;Think about the exam process.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Read Exam blueprint
+    &lt;ul&gt;
+      &lt;li&gt;Pay attention to the exam waiting in each content domain&lt;/li&gt;
+      &lt;li&gt;Read every line item.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Take ACLOUD.Guru certification course final practice exam
+    &lt;ul&gt;
+      &lt;li&gt;Take for first time, as assessment.&lt;/li&gt;
+      &lt;li&gt;Repeat until consistently scoring 100%.&lt;/li&gt;
+      &lt;li&gt;Understand why every incorrect answer is wrong.&lt;/li&gt;
+      &lt;li&gt;Unserstand why every correct answer is right.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Read certification course forum posts about the exam feedback.
+    &lt;ul&gt;
+      &lt;li&gt;Read throught the 20-30 highest-ranked from the last 2-8 weeks.&lt;/li&gt;
+      &lt;li&gt;Read through all exam related posts from the last 2-8 weeks.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;week-or-two-before&quot;&gt;Week or Two Before&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Take aws practise exam for the first time.
+    &lt;ul&gt;
+      &lt;li&gt;Late enough to evaluate yourself.&lt;/li&gt;
+      &lt;li&gt;Early enough to refresh on weak areas.&lt;/li&gt;
+      &lt;li&gt;Early enough to reschedule / cancel without penalty, if necessary.&lt;/li&gt;
+      &lt;li&gt;Take screenshots!&lt;/li&gt;
+      &lt;li&gt;Rip the questions and responses apart!&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Read the latest exam feedback forum posts.&lt;/li&gt;
+  &lt;li&gt;Schedule exam.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;day-before&quot;&gt;Day Before&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Rewatch training course summary lessons&lt;/li&gt;
+  &lt;li&gt;Review your own notes.&lt;/li&gt;
+  &lt;li&gt;Download some key course videos to phone.&lt;/li&gt;
+  &lt;li&gt;Read top forum posts with details to remember.&lt;/li&gt;
+  &lt;li&gt;Consider reading most recent forum posts for very latest feedback.&lt;/li&gt;
+  &lt;li&gt;Read AWS sample questions.&lt;/li&gt;
+  &lt;li&gt;Review questions from AWS practise exam.&lt;/li&gt;
+  &lt;li&gt;Review memorization items.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;evening-before&quot;&gt;Evening Before&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Double check details.
+    &lt;ul&gt;
+      &lt;li&gt;Exam location&lt;/li&gt;
+      &lt;li&gt;Exam time.&lt;/li&gt;
+      &lt;li&gt;All Documents ( Govt-issued picture ID ) ( Additional ID ).&lt;/li&gt;
+      &lt;li&gt;Set out printed exam details.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Metally prepare.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;just-before&quot;&gt;Just Before&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Come early!
+    &lt;ul&gt;
+      &lt;li&gt;Last minute review notes&lt;/li&gt;
+      &lt;li&gt;watch key downloaded training videos&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Go to the bath room.&lt;/li&gt;
+  &lt;li&gt;Validate IDs and the exam registration with proctor&lt;/li&gt;
+  &lt;li&gt;Lock up everything you have.
+    &lt;ul&gt;
+      &lt;li&gt;Empty every pocket of everything.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="certification" /><category term="examguide" /><category term="aws" /><category term="study" /><summary type="html">Learning</summary></entry><entry><title type="html">S3 CLI AND REGIONS</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/07/S3-CLI-AND-REGIONS.html" rel="alternate" type="text/html" title="S3 CLI AND REGIONS" /><published>2018-06-07T00:00:00+10:00</published><updated>2018-06-07T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/06/07/S3-CLI-AND-REGIONS</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/07/S3-CLI-AND-REGIONS.html">&lt;h3 id=&quot;instructions&quot;&gt;Instructions&lt;/h3&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Launch an EC2 instance with the default settings, and no roles attached to it.
@@ -118,484 +875,4 @@ On the tab &lt;code class=&quot;highlighter-rouge&quot;&gt;3. Configure Instance
 &lt;p&gt;If you have added the S3 access to the role you attached to the ec2 instance. You can try.&lt;/p&gt;
 &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aws s3 &lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;and now it should just work with out asking you to configure things. Even if you check the directory &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.aws&lt;/code&gt; it should be empty. So even if your ec2 instance got compromised, you dont have to delete your access credentials.&lt;/p&gt;</content><author><name>Eshan Shafeeq</name></author><category term="compute" /><category term="ec2" /><category term="awscli" /><category term="lab" /><category term="programaticaccess" /><summary type="html">In order to get aws cli running, you need to create a user in IAM with programatic access. Save the credentials.csv file. You only get to download this once. Only give user the permission for the resource you want the user to access, and nothing more.</summary></entry><entry><title type="html">EC2 AWS CLI DEV</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/06/EC2-AWS-CLI-DEV.html" rel="alternate" type="text/html" title="EC2 AWS CLI DEV" /><published>2018-06-06T00:00:00+10:00</published><updated>2018-06-06T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/06/06/EC2-AWS-CLI-DEV</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/06/EC2-AWS-CLI-DEV.html">&lt;h3 id=&quot;to-create-a-new-ec2-instance&quot;&gt;To create a new ec2 instance&lt;/h3&gt;
-
-&lt;p&gt;Inorder to create a new ec2 instance from the commandline, we first need to know which AMI we want to use. We could pass the option &lt;code class=&quot;highlighter-rouge&quot;&gt;describe-images&lt;/code&gt; to the aws cli and we can get the list. But that would return you a huge list. To list out the images from amazon you can use the following command.&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aws ec2 describe-images &lt;span class=&quot;nt&quot;&gt;--owners&lt;/span&gt; amazon &lt;span class=&quot;nt&quot;&gt;--filters&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Name=platform,Values=Linux1&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Name=root-device-type,Values=ebs&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;you can go to the console, get the SubnetID of the ec2 instance you are logged in. 
-you also have to make sure you have a keypair on aws. Try the following command launch your instance.&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aws ec2 run-instances &lt;span class=&quot;nt&quot;&gt;--image-id&lt;/span&gt; ami-165a0876 &lt;span class=&quot;nt&quot;&gt;--count&lt;/span&gt; 1 &lt;span class=&quot;nt&quot;&gt;--instance-type&lt;/span&gt; t2.micro &lt;span class=&quot;nt&quot;&gt;--key-name&lt;/span&gt; MyKeyPair &lt;span class=&quot;nt&quot;&gt;--security-groups-ids&lt;/span&gt; sg-d03bafb7 &lt;span class=&quot;nt&quot;&gt;--subnet-id&lt;/span&gt; subnet123abc
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;It should have provisioned your ec2 instance if you do not have any problems in your command.&lt;/p&gt;
-
-&lt;p&gt;Now to terminate instances, all you need to do is grab the instance ids and then type the following command.&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aws ec2 terminate-instances &lt;span class=&quot;nt&quot;&gt;--instance-ids&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;instance &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Be careful when you issue that command, it will completely destroy your ec2 instance.&lt;/p&gt;
-
-&lt;h3 id=&quot;commands&quot;&gt;Commands&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Command&lt;/th&gt;
-      &lt;th&gt;Description&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;aws ec2 describe-instances&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;will show all the information about your instances&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;aws ec2 describe-images&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;will show all the information about all the available images. Be aware this will spam your terminal with a never ending list of json&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;aws ec2 run-instances&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;will create a new instance and launch&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;aws ec2 start-instances&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;will start a stopped instance&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;strong&gt;Dont get confused about start-instances and run-instances&lt;/strong&gt; start instances will not create a new instance! only run instance would create a new instance. And start instance will only start a stopped instance.&lt;/p&gt;</content><author><name>Eshan Shafeeq</name></author><category term="examtips" /><category term="compute" /><category term="awscli" /><category term="ec2" /><category term="developer" /><summary type="html">To create a new ec2 instance</summary></entry><entry><title type="html">EC2 Security Groups</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/05/EC2-Security-Groups.html" rel="alternate" type="text/html" title="EC2 Security Groups" /><published>2018-06-05T00:00:00+10:00</published><updated>2018-06-05T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/06/05/EC2-Security-Groups</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/05/EC2-Security-Groups.html">&lt;p&gt;A Security Group is a Virtual Firewall, which controls traffic in and out of your ec2 instance. Ec2 instances are launched with one or more security groups attached to it. Multiple security groups can be applied to one ec2 instance. This is also the first line of defence against any security threats.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Any change to the security group or implementing rules across security groups, comes into effect immedietly.&lt;/li&gt;
-  &lt;li&gt;Security groups are stateful, any rules added as inbound rules allows outbound rules.&lt;/li&gt;
-  &lt;li&gt;You are not able to deny any traffic, you can only allow traffic since all traffic is blocked by default.&lt;/li&gt;
-  &lt;li&gt;Your ec2 instances will be able to communicate with each other if they have the default security group attached to them, regarless of the region they are based off of.&lt;/li&gt;
-  &lt;li&gt;If you want to attach more than one security group to an instance which is already running, go to actions-&amp;gt;Networking-&amp;gt;Change Security Groups-&amp;gt; and check all the security groups you want to attach for the instance.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;All inbound traffic is blocked by default.&lt;/li&gt;
-  &lt;li&gt;All outbound traffic is allowed.&lt;/li&gt;
-  &lt;li&gt;Changes to security group takes effect immediately.&lt;/li&gt;
-  &lt;li&gt;You can any number of EC2 instances within a security group.&lt;/li&gt;
-  &lt;li&gt;You can have multiple security groups attached to an instance.&lt;/li&gt;
-  &lt;li&gt;Security groups are stateful.&lt;/li&gt;
-  &lt;li&gt;You cannot block specific IP Addresses using security groups, instead use Network Access Control Lists.&lt;/li&gt;
-  &lt;li&gt;You can specify allow rules, but not deny rules.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="firewall" /><category term="security" /><category term="networking" /><category term="virtual firewall" /><summary type="html">A Security Group is a Virtual Firewall, which controls traffic in and out of your ec2 instance. Ec2 instances are launched with one or more security groups attached to it. Multiple security groups can be applied to one ec2 instance. This is also the first line of defence against any security threats.</summary></entry><entry><title type="html">EC2-EFS</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/05/EC2-EFS.html" rel="alternate" type="text/html" title="EC2-EFS" /><published>2018-06-05T00:00:00+10:00</published><updated>2018-06-05T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/06/05/EC2-EFS</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/05/EC2-EFS.html">&lt;h3 id=&quot;elastic-file-system&quot;&gt;Elastic File System&lt;/h3&gt;
-
-&lt;p&gt;Aws elastic file system, is a storage service for EC2 instances. EFS is easy to use and provides a simple interface that allows users to create and configure file systems quickly and easily. With aws EFS, storage capacity is elastic, growing and shrinking automatically as you add and remove files so your applications have storage always when they need it.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Supports the Network File System Version 4 (NFSv4) protocol.&lt;/li&gt;
-  &lt;li&gt;You only pay for the storage you use ( no pre-provisioning required ).&lt;/li&gt;
-  &lt;li&gt;Can scale upto petabytes.&lt;/li&gt;
-  &lt;li&gt;Can support thousands of concurrent NFS connections.&lt;/li&gt;
-  &lt;li&gt;Data is stored across multiple Availability Zones within a region.&lt;/li&gt;
-  &lt;li&gt;Read after Write consistency.&lt;/li&gt;
-  &lt;li&gt;Block based storage, not object based storage.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;creating-a-efs-volume&quot;&gt;Creating a EFS Volume&lt;/h3&gt;
-&lt;p&gt;The way how it connects to EC2 instances is through your VPC. If you do not have any custom VPC’s you can connect them to the default VPC’s for the availability zones in your region.&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Select the VPC you want to connect the EFS to.&lt;/li&gt;
-  &lt;li&gt;Check the availability zones you want to assign them to.&lt;/li&gt;
-  &lt;li&gt;On the availability zones, select the subnets you want them on, add the ip address you want it to have, and also attach the security groups for it.&lt;/li&gt;
-  &lt;li&gt;Add the tags.&lt;/li&gt;
-  &lt;li&gt;After reviewing it, Create the File System.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Fantastic solution to have shared resources.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Eshan Shafeeq</name></author><category term="compute" /><category term="storage" /><summary type="html">Elastic File System</summary></entry><entry><title type="html">EC2 EBS Volumes</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/05/EC2-EBS-Volumes.html" rel="alternate" type="text/html" title="EC2 EBS Volumes" /><published>2018-06-05T00:00:00+10:00</published><updated>2018-06-05T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/06/05/EC2-EBS-Volumes</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/05/EC2-EBS-Volumes.html">&lt;h3 id=&quot;lab&quot;&gt;LAB&lt;/h3&gt;
-
-&lt;p&gt;Go to aws services, and then goto EC2. One the left side panel, select Volumes.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;The EBS volume and the EC2 instance has to be in the same availability zone, in order for the volume to be attached to the EC2 instance.&lt;/li&gt;
-  &lt;li&gt;All root volumes will have a snapshot id, which relates to the machine image its running.&lt;/li&gt;
-  &lt;li&gt;There will be no down time when you modify your volumes, ( change the Hard disk type / change the disk size ). You may run into performance issues.&lt;/li&gt;
-  &lt;li&gt;With standard volumes, you will not be able to modify the volumes. ( ST1 - pure magnetic )&lt;/li&gt;
-  &lt;li&gt;In order to spin up an EC2 instance with the same volume in another availability zone:
-    &lt;ol&gt;
-      &lt;li&gt;Goto Actions and create a snapshot.&lt;/li&gt;
-      &lt;li&gt;Add the required information on the form and click create.&lt;/li&gt;
-      &lt;li&gt;Goto snapshots.&lt;/li&gt;
-      &lt;li&gt;Click on Actions and Select Create a Volume.&lt;/li&gt;
-      &lt;li&gt;You can select any volume type / volume size.&lt;/li&gt;
-      &lt;li&gt;Select any availability zone that you want.&lt;/li&gt;
-      &lt;li&gt;And attach it to the EC2 instance you want.&lt;/li&gt;
-    &lt;/ol&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;Create a snapshot of the EBS volume you would like to move to another EC2 instance, Create a volume from that snapshot.&lt;/li&gt;
-      &lt;li&gt;You can go to snapshots and copy the snapshot to any other region, if you want to switch region.&lt;/li&gt;
-      &lt;li&gt;You can create an image from that snapshot in order to boot from that volume.&lt;/li&gt;
-      &lt;li&gt;Snapshots are normally used for backups, Where as Images are used to create new volumes.&lt;/li&gt;
-      &lt;li&gt;Make sure when you create an image its an image of one volume, when you want to boot off from this image later on.&lt;/li&gt;
-      &lt;li&gt;You can also create AMI’s directly from the snapshots, and then move it to another region.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Root Device is where the operating system is installed at.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;volumes-and-snapshots&quot;&gt;Volumes and Snapshots&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Volumes exists on EBS
-    &lt;ul&gt;
-      &lt;li&gt;Virtual Hard Disk&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Snapshots exist on S3.
-    &lt;ul&gt;
-      &lt;li&gt;When you go to S3, you will not be able to see any buckets with the snapshots in there.&lt;/li&gt;
-      &lt;li&gt;Snapshots are copies of Volumes at a given time.&lt;/li&gt;
-      &lt;li&gt;Taking the second snapshot would only save the state of the blocks that have been modified, and moved to S3.&lt;/li&gt;
-      &lt;li&gt;Your first snapshot will take some time to create, after the first one it wont take that long anymore.&lt;/li&gt;
-      &lt;li&gt;To create a snapshot of a Volume which serve as a Root Volume, you should stop the running instance. But it is possible to take a snapshot of the running instance Root Volume.&lt;/li&gt;
-      &lt;li&gt;You can create AMI’s from both Volumes and Snapshots.&lt;/li&gt;
-      &lt;li&gt;You can change the EBS Volume sizes on the fly, including changing the size and storage type.&lt;/li&gt;
-      &lt;li&gt;Volumes will &lt;strong&gt;ALWAYS&lt;/strong&gt; be in the same availability zone as the EC2 Instance.&lt;/li&gt;
-      &lt;li&gt;To move an EC2 volume from one Availability Zone/Region to another, take a snap or an image of it, then copy it to the new Availability Zone/Region.&lt;/li&gt;
-      &lt;li&gt;Snapshots of encrypted volumes are encrypted automatically.&lt;/li&gt;
-      &lt;li&gt;Volumes restored from encrypted snapshots are encrypted automatically.&lt;/li&gt;
-      &lt;li&gt;You can share snapshots, but only if they are unecrypted.
-        &lt;ul&gt;
-          &lt;li&gt;These snapshots can be shared with other aws accounts or it can be made completely public.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Do this lab at least 3 times!&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Eshan Shafeeq</name></author><category term="compute" /><category term="storage" /><summary type="html">LAB</summary></entry><entry><title type="html">EC2-Lab-Summary</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/04/EC2-Lab-Summary.html" rel="alternate" type="text/html" title="EC2-Lab-Summary" /><published>2018-06-04T00:00:00+10:00</published><updated>2018-06-04T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/06/04/EC2-Lab-Summary</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/04/EC2-Lab-Summary.html">&lt;h3 id=&quot;creating-an-ec2-instance&quot;&gt;Creating an EC2 Instance&lt;/h3&gt;
-&lt;ol&gt;
-  &lt;li&gt;Select a region which you want your EC2 instance to be at.
-    &lt;ul&gt;
-      &lt;li&gt;Older regions will have most of the different types of EC2 instances available, newer ones will have less.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Select an AMI right after clicking on “Launch Instance”.
-    &lt;ul&gt;
-      &lt;li&gt;You have many flavours of AMI’s available.
-        &lt;ol&gt;
-          &lt;li&gt;Amazon Linux AMI&lt;/li&gt;
-          &lt;li&gt;Red Hat Enterprise Linux&lt;/li&gt;
-          &lt;li&gt;SUSE Linux Enterprise Server&lt;/li&gt;
-          &lt;li&gt;Ubuntu Server 16.04 LTS&lt;/li&gt;
-          &lt;li&gt;Microsoft Windows Server&lt;/li&gt;
-        &lt;/ol&gt;
-      &lt;/li&gt;
-      &lt;li&gt;Version numbers of the above will change new version get adapted.&lt;/li&gt;
-      &lt;li&gt;Amazon linux AMI comes with all the required built in tools and SDK’s installed. (Free Tier Eligible)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Choose an Instance Type
-    &lt;ul&gt;
-      &lt;li&gt;t2.micro (Free Tier Eligible)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Configure Instance Details
-    &lt;ul&gt;
-      &lt;li&gt;Main setup page for Ec2&lt;/li&gt;
-      &lt;li&gt;Under VPC you can select one of the subnets, there is one subnet for every single availability zone. &lt;strong&gt;You can never have one subnet that goes across multiple availability zones.&lt;/strong&gt;&lt;/li&gt;
-      &lt;li&gt;Selecting an IAM Role (Optional)&lt;/li&gt;
-      &lt;li&gt;Enable termination protection [ to prevent people from accidentally terminating the instance ]&lt;/li&gt;
-      &lt;li&gt;Additional charges are applied for detailed monitoring.&lt;/li&gt;
-      &lt;li&gt;Advanced details, you can pass in bootstrap scripts to automate tasks.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Add Storage
-    &lt;ul&gt;
-      &lt;li&gt;Select the required storage for the root volume.&lt;/li&gt;
-      &lt;li&gt;by default the &lt;strong&gt;root volume will be deleted&lt;/strong&gt;.&lt;/li&gt;
-      &lt;li&gt;Volume = virtual harddisk&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Set the tags
-    &lt;ul&gt;
-      &lt;li&gt;Help you to control costs.&lt;/li&gt;
-      &lt;li&gt;Always do more than just name tags, drill down upto the department and staff id.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Configure Security Groups
-    &lt;ul&gt;
-      &lt;li&gt;Its a virtual firewall&lt;/li&gt;
-      &lt;li&gt;Set the services you want to allow, [ ssh, http, https ]&lt;/li&gt;
-      &lt;li&gt;You can restrict services to only from your IP.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Review everything and Launch
-    &lt;ul&gt;
-      &lt;li&gt;Create a keypair.&lt;/li&gt;
-      &lt;li&gt;Either upload your own public key or create your keypair on the web interface and download.&lt;/li&gt;
-      &lt;li&gt;Hit launch instance.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;connect-to-the-running-instance&quot;&gt;Connect to the running Instance&lt;/h3&gt;
-
-&lt;p&gt;Use ssh to connect to your instance.&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh ec2-user@[your_ec2_instance_public_ip-address] &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;your_keypair.pem]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Once logged in, it maybe a good idea to update the AMI &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo yum update&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;creating-a-web-server&quot;&gt;Creating a web server&lt;/h3&gt;
-
-&lt;p&gt;Install apache.&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;yum &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;httpd
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Create a &lt;code class=&quot;highlighter-rouge&quot;&gt;index.html&lt;/code&gt; file in &lt;code class=&quot;highlighter-rouge&quot;&gt;/var/www/html/&lt;/code&gt; and then add some &lt;em&gt;HTML&lt;/em&gt; in the file.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-HTML&quot;&gt;&amp;lt;h1&amp;gt;Hello everyone&amp;lt;/h1&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Start and run apache&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;service httpd start
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;head to your public ip address of your ec2 instance on your browser and you should be able to see the web server.&lt;/p&gt;
-
-&lt;h3 id=&quot;health-status-information&quot;&gt;Health Status Information&lt;/h3&gt;
-&lt;p&gt;The bottom panel, on the tab &lt;code class=&quot;highlighter-rouge&quot;&gt;Status Checks&lt;/code&gt;. It has the information about &lt;code class=&quot;highlighter-rouge&quot;&gt;System Status Check&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Instance Status Check&lt;/code&gt;. 
-&lt;strong&gt;System Status Check&lt;/strong&gt; : Check if aws is able to get network packets into the instance. If this status fails, theres probably a problem with the aws infrastructure.
-&lt;strong&gt;Instance Status&lt;/strong&gt; : This check verifies if the instance’s operating system is accepting traffic.&lt;/p&gt;
-
-&lt;h3 id=&quot;monitoring&quot;&gt;Monitoring&lt;/h3&gt;
-&lt;p&gt;The bottom panel, on the tab &lt;code class=&quot;highlighter-rouge&quot;&gt;Monitoring&lt;/code&gt;. You have system metrics which are updated every 5 minutes. You can enable detailed monitoring (which can cost a bit extra).&lt;/p&gt;
-
-&lt;p&gt;All the different metrics here are accesible through cloud watch.&lt;/p&gt;
-
-&lt;h3 id=&quot;lab-summary&quot;&gt;Lab Summary&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;All newly created Instances have &lt;strong&gt;termination protection&lt;/strong&gt; turned off by default, you must turn it on.&lt;/li&gt;
-  &lt;li&gt;On an EBS-backed instance, the default action is for the root EBS volume to be &lt;strong&gt;deleted&lt;/strong&gt; when the instance is terminated.&lt;/li&gt;
-  &lt;li&gt;EBS Root Volumes of your &lt;strong&gt;DEFAULT AMI’s cannot be encrypted.&lt;/strong&gt; You can also use third party tool (such as bitlocker etc) to encrypt the root volume, or this can be done when creating AMI’s (lab to follow) in the AWS console or using the API.&lt;/li&gt;
-  &lt;li&gt;Additional Volumes can be encrypted.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="compute" /><category term="ec2" /><category term="virtual machine" /><category term="lab" /><summary type="html">Creating an EC2 Instance Select a region which you want your EC2 instance to be at. Older regions will have most of the different types of EC2 instances available, newer ones will have less. Select an AMI right after clicking on “Launch Instance”. You have many flavours of AMI’s available. Amazon Linux AMI Red Hat Enterprise Linux SUSE Linux Enterprise Server Ubuntu Server 16.04 LTS Microsoft Windows Server Version numbers of the above will change new version get adapted. Amazon linux AMI comes with all the required built in tools and SDK’s installed. (Free Tier Eligible) Choose an Instance Type t2.micro (Free Tier Eligible) Configure Instance Details Main setup page for Ec2 Under VPC you can select one of the subnets, there is one subnet for every single availability zone. You can never have one subnet that goes across multiple availability zones. Selecting an IAM Role (Optional) Enable termination protection [ to prevent people from accidentally terminating the instance ] Additional charges are applied for detailed monitoring. Advanced details, you can pass in bootstrap scripts to automate tasks. Add Storage Select the required storage for the root volume. by default the root volume will be deleted. Volume = virtual harddisk Set the tags Help you to control costs. Always do more than just name tags, drill down upto the department and staff id. Configure Security Groups Its a virtual firewall Set the services you want to allow, [ ssh, http, https ] You can restrict services to only from your IP. Review everything and Launch Create a keypair. Either upload your own public key or create your keypair on the web interface and download. Hit launch instance.</summary></entry><entry><title type="html">EC2 101</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/05/31/EC2-101.html" rel="alternate" type="text/html" title="EC2 101" /><published>2018-05-31T00:00:00+10:00</published><updated>2018-05-31T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/05/31/EC2-101</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/05/31/EC2-101.html">&lt;h3 id=&quot;what-is-ec2&quot;&gt;What is EC2&lt;/h3&gt;
-&lt;p&gt;A web service that provides resizable compute capacity in the cloud. AWS EC2 reduces the time required to obtain and boot a new server instances to minutes, allowing you to quickly scale capacity, both up and down, as your computing requirements change.
-This has changed the economics of computing, by allowing you to pay only for what you actually use. EC2 provides developers the tools to build failure resilient applications and isolate themselves from common failure scenarios.&lt;/p&gt;
-
-&lt;h3 id=&quot;pricing-options&quot;&gt;Pricing Options&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Type&lt;/th&gt;
-      &lt;th&gt;Description&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;On Demand&lt;/td&gt;
-      &lt;td&gt;Allows you to pay a fixed rate by the hour ( or by the second ) with no commitment.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Reserved&lt;/td&gt;
-      &lt;td&gt;Provides you with a capacity reservation, and offer a significant discount on the hourly charge for an instance. 1 Year to 3 Year contracts.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spot&lt;/td&gt;
-      &lt;td&gt;enables you to bid whatever price you want for instance capacity, providing for even greater savings if your applications have flexible start and end times.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Dedicated Hosts&lt;/td&gt;
-      &lt;td&gt;Physical EC2 servers dedicated for your use. Dedicated Hosts can help you reduce costs by allowing you to use your existing server-bound software licenses.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;on-demand&quot;&gt;On Demand&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Perfect for users that want the low cost and flexibility of AWS EC2 without any up-front payment or long-term commitment.&lt;/li&gt;
-  &lt;li&gt;Applications with short term, spiky, or unpredictable workloads that cannot be interrupted.&lt;/li&gt;
-  &lt;li&gt;Applications being developed or tested on Amazon EC2 for the first time.&lt;/li&gt;
-  &lt;li&gt;Perfect for learning.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;reserved-instances&quot;&gt;Reserved Instances&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Applications with steady state or predicatable usage.&lt;/li&gt;
-  &lt;li&gt;Applications that require reserved capacity&lt;/li&gt;
-  &lt;li&gt;Users can make up-front payments to reduce their total computing costs, even further.
-    &lt;ul&gt;
-      &lt;li&gt;Standard Reserved Instances ( Up to 75% off on-demand price )&lt;/li&gt;
-      &lt;li&gt;Convertible Reserved Instances ( Up to 54% off on-demand price ) feature the capability to change the attributes of the Reserved Instances as long as the exchange results in the creation of Reserved instances of equal or greater value.&lt;/li&gt;
-      &lt;li&gt;Scheduled Reserved Instances are available to launch within the time window you reserve. This option allows you to match your capacity reservation to a predictable recurring schedule that only requires a fraction of a day, a week, or a month.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;spot-instances&quot;&gt;Spot Instances&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Applications that have flexible start and end times.&lt;/li&gt;
-  &lt;li&gt;Applications that are only feasible at very low compute prices.&lt;/li&gt;
-  &lt;li&gt;Users with an urgent need for the large amounts of additional computing capacity.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;dedicated-hosts&quot;&gt;Dedicated Hosts&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Useful for regulatory requirements that may not support multitenant virtualization.&lt;/li&gt;
-  &lt;li&gt;Great for licensing which does not support multi-tenancy or cloud deployments.&lt;/li&gt;
-  &lt;li&gt;Can be purchased On-Demand ( Paid hourly ).&lt;/li&gt;
-  &lt;li&gt;Can be purchased as a reservation for upto 70% off on the On-Demand price.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;ec2-instance-types&quot;&gt;EC2 Instance Types&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Family&lt;/th&gt;
-      &lt;th&gt;Speciality&lt;/th&gt;
-      &lt;th&gt;Use Case&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;F1&lt;/td&gt;
-      &lt;td&gt;Field Programmable Gate Arrays&lt;/td&gt;
-      &lt;td&gt;Genomics research, financial analytics, realtime video processing, big data etc.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;I3&lt;/td&gt;
-      &lt;td&gt;High Speed Storage&lt;/td&gt;
-      &lt;td&gt;NoSQL DBs, Data Warehousing etc.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;G3&lt;/td&gt;
-      &lt;td&gt;Graphics Intensive&lt;/td&gt;
-      &lt;td&gt;Video Encoding, 3D Application Streaming.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;H1&lt;/td&gt;
-      &lt;td&gt;High Disk Throughput&lt;/td&gt;
-      &lt;td&gt;MapReduce-based workloads, distributed file systems such as HDFS and MapR-FS.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;T2&lt;/td&gt;
-      &lt;td&gt;Low Cost, General Purpose&lt;/td&gt;
-      &lt;td&gt;Web servers / Small DB’s.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;D2&lt;/td&gt;
-      &lt;td&gt;Dense Storage&lt;/td&gt;
-      &lt;td&gt;Fileservers / Data Warehousing / Hadoop&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;R4&lt;/td&gt;
-      &lt;td&gt;Memory Optimized&lt;/td&gt;
-      &lt;td&gt;Memory Intensive Applications and Databases.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;M5&lt;/td&gt;
-      &lt;td&gt;General Purpose&lt;/td&gt;
-      &lt;td&gt;Application Servers.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;C5&lt;/td&gt;
-      &lt;td&gt;Compute Optimized&lt;/td&gt;
-      &lt;td&gt;CPU Intensive Applications and Databases.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;P3&lt;/td&gt;
-      &lt;td&gt;Graphics / Gerneral Purpose GPU&lt;/td&gt;
-      &lt;td&gt;Machine Learning, Bit Coin Mining etc.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;X1&lt;/td&gt;
-      &lt;td&gt;Memory Optimized&lt;/td&gt;
-      &lt;td&gt;SAP HANA / Apache Spark etc.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;FIGHT-DR-MCPX.&lt;/p&gt;
-
-&lt;h3 id=&quot;ebs&quot;&gt;EBS&lt;/h3&gt;
-&lt;p&gt;EC2 = Virtual Machine.
-EBS = Virtual Disc.&lt;/p&gt;
-
-&lt;p&gt;Amazon EBS allows you to create storage volumes and attach them to EC2 instances. Once attached, you can create file system on top of these volumes, run a database, or use them in any other way you would use a block device. Amazon EBS volumes are placed in a specific &lt;em&gt;Availability Zone&lt;/em&gt;, where they are automatically replicated to protect you from the failure of a single component.&lt;/p&gt;
-
-&lt;h3 id=&quot;ebs-volume-types&quot;&gt;EBS Volume Types&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;General Purpose SSD (GP2).
-    &lt;ul&gt;
-      &lt;li&gt;General purpose, balances both price and performance.&lt;/li&gt;
-      &lt;li&gt;Ratio of 3 IOPS per GB with upto 10,000 IOPS and the ability to burst up to 3000 IOPS for extended periods of time for volumes at 3334 GiB and above.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Provisioned IOPS SSD (IO1).
-    &lt;ul&gt;
-      &lt;li&gt;Designed for I/O intensive applications such as large relational or NOSQL databases.&lt;/li&gt;
-      &lt;li&gt;Use if you need more than 10,000 IOPS.&lt;/li&gt;
-      &lt;li&gt;Can provision up to 20,000 IOPS per volume.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Throughput Optimized HDD (ST1).
-    &lt;ul&gt;
-      &lt;li&gt;Big data.&lt;/li&gt;
-      &lt;li&gt;Data warehouses.&lt;/li&gt;
-      &lt;li&gt;Log processing.&lt;/li&gt;
-      &lt;li&gt;Cannot be a boot volume.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Cold HDD (SC1).
-    &lt;ul&gt;
-      &lt;li&gt;Lowest Cost Storage for infrequently accessed workloads.&lt;/li&gt;
-      &lt;li&gt;File Server.&lt;/li&gt;
-      &lt;li&gt;Cannot be a boot volume.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Magnetic (Standard).
-    &lt;ul&gt;
-      &lt;li&gt;Lowest cost per gigabyte of all EBS volume types that is bootable. Magnetic volumes are ideal for workloads where data is accessed infrequently, and applications where the lowest storage cost is important.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;ec2-exam-tips&quot;&gt;EC2 Exam tips&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;EC2 Pricing Options
-    &lt;ul&gt;
-      &lt;li&gt;If a spot instance is terminated by amazon ec2, you will not be charged for a partial hour of usage. However, if you terminate the instance yourself, &lt;strong&gt;you will be charged for the complete hour in which the instance ran.&lt;/strong&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;EC2 Family.&lt;/li&gt;
-  &lt;li&gt;EBS Volume types.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="compute," /><category term="virtualization," /><category term="cloud" /><summary type="html">What is EC2 A web service that provides resizable compute capacity in the cloud. AWS EC2 reduces the time required to obtain and boot a new server instances to minutes, allowing you to quickly scale capacity, both up and down, as your computing requirements change. This has changed the economics of computing, by allowing you to pay only for what you actually use. EC2 provides developers the tools to build failure resilient applications and isolate themselves from common failure scenarios.</summary></entry><entry><title type="html">Welcome to AWS Developer Associate Notes</title><link href="https://diehard073055.github.io//sturdy-carnival/introduction/2018/05/30/welcome-aws-developer-associate-notes.html" rel="alternate" type="text/html" title="Welcome to AWS Developer Associate Notes" /><published>2018-05-30T22:43:32+10:00</published><updated>2018-05-30T22:43:32+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/introduction/2018/05/30/welcome-aws-developer-associate-notes</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/introduction/2018/05/30/welcome-aws-developer-associate-notes.html">&lt;h1 id=&quot;aws-developer-associate-notes&quot;&gt;AWS Developer Associate Notes&lt;/h1&gt;
-
-&lt;p&gt;This blog will host all the notes that i will be taking as i go through the AWS Developer Associate Course on A Cloud Guru. I will be going through all the lectures and Labs. The main contents of the course are as follows:&lt;/p&gt;
-
-&lt;ul class=&quot;task-list&quot;&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; checked=&quot;checked&quot; /&gt;IAM&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;EC2&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;S3&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Databases&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;DynamoDB&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Simple Queue Service ( SQS )&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Simple Notification Service ( SNS )&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Simple Workflow Service ( SWF )&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Elastic Beanstalk&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;CloudFormation&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;AWS Shared Responsibility&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Route53 &amp;amp; DNS&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Virtual Private Cloud&lt;/li&gt;
-  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;The Exam&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;After all these topics are covered, i will take some of the simulated exams from their portal and attempt the real deal! Good luck to me!&lt;/p&gt;</content><author><name></name></author><summary type="html">AWS Developer Associate Notes</summary></entry></feed>
+&lt;p&gt;and now it should just work with out asking you to configure things. Even if you check the directory &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.aws&lt;/code&gt; it should be empty. So even if your ec2 instance got compromised, you dont have to delete your access credentials.&lt;/p&gt;</content><author><name>Eshan Shafeeq</name></author><category term="compute" /><category term="ec2" /><category term="awscli" /><category term="lab" /><category term="programaticaccess" /><summary type="html">In order to get aws cli running, you need to create a user in IAM with programatic access. Save the credentials.csv file. You only get to download this once. Only give user the permission for the resource you want the user to access, and nothing more.</summary></entry></feed>

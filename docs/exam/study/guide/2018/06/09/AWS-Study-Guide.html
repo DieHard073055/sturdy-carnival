@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>AWS Study Guide | AWS Developer Associate Notes</title>
+<meta name="generator" content="Jekyll v3.8.2" />
+<meta property="og:title" content="AWS Study Guide" />
+<meta name="author" content="Eshan Shafeeq" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Learning" />
+<meta property="og:description" content="Learning" />
+<link rel="canonical" href="https://diehard073055.github.io//sturdy-carnival/exam/study/guide/2018/06/09/AWS-Study-Guide.html" />
+<meta property="og:url" content="https://diehard073055.github.io//sturdy-carnival/exam/study/guide/2018/06/09/AWS-Study-Guide.html" />
+<meta property="og:site_name" content="AWS Developer Associate Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-06-09T00:00:00+10:00" />
+<script type="application/ld+json">
+{"headline":"AWS Study Guide","description":"Learning","datePublished":"2018-06-09T00:00:00+10:00","dateModified":"2018-06-09T00:00:00+10:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://diehard073055.github.io//sturdy-carnival/exam/study/guide/2018/06/09/AWS-Study-Guide.html"},"url":"https://diehard073055.github.io//sturdy-carnival/exam/study/guide/2018/06/09/AWS-Study-Guide.html","author":{"@type":"Person","name":"Eshan Shafeeq"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/sturdy-carnival/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://diehard073055.github.io//sturdy-carnival/feed.xml" title="AWS Developer Associate Notes" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/sturdy-carnival/">AWS Developer Associate Notes</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/sturdy-carnival/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">AWS Study Guide</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-06-09T00:00:00+10:00" itemprop="datePublished">Jun 9, 2018
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Eshan Shafeeq</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="learning">Learning</h1>
+
+<h3 id="distributed-practice">Distributed Practice</h3>
+<p>Spend a little bit of time every day of the month. Spreading out the learning makes things stick.</p>
+
+<h3 id="varied--interleaved-practise">Varied / Interleaved Practise</h3>
+<p>Frequently change tasks and topics so that you are forced to think about the material in different ways. Easier to learn new things by incoperating and reinforcing previously-learned material. Let your existing <strong>mental model</strong> help you learn new things. Use your mental model often since it will help you strengthen and refine it.</p>
+
+<h3 id="spaced-repetition">Spaced Repetition</h3>
+<p>Review Information before you forget it completely. Revisit information when your mental model has improved. Spread out the learning time.</p>
+
+<h1 id="zooming-in--zooming-out">Zooming in &amp; Zooming out</h1>
+
+<blockquote>
+  <p>Wikipedia : [A]bstraction is a technique for arranging complexity of computer systems. It works by establishing a level of complexity on which a person interacts with the system, suppressing the more complex details below the current level.</p>
+</blockquote>
+
+<p><strong>Abstractions</strong> are very important in software systems. It is the foundation of amazon web services. (<em>but just really anything in technology is</em>).</p>
+
+<ul>
+  <li>Your goal is to architect and build systems. Think about the data flow through your entire system.</li>
+  <li>Nothing exists in isolation, services interconnect, the systems interacts with other systems.</li>
+  <li>Change over time is a key dimension in all tradeoff decisions, a “perfect” system that cannot be changed is fundementally broken, because the context around that system will eventually change.</li>
+  <li>Technically debt, what you do now determines how easy it will be to make changes later.</li>
+</ul>
+
+<h1 id="mental-models">Mental Models</h1>
+
+<p><strong>You remember things you understand</strong></p>
+
+<blockquote>
+  <p>The image of the world around us, which we carry in our head, is just a model. Nobody in his head imagines all the world, government or country. He has only selected concepts, and relationships between them, and uses those to represent the real system.</p>
+</blockquote>
+
+<h3 id="what-is-a-mental-model">What is a mental model</h3>
+<ul>
+  <li>A simplified representation of reality that your mind uses to anticipate events or draw conclusions. A way to describe what your brain builds when you understand something. The way your brain organizes information it learns into heirarchies, its when you use logic instead of memorization. Recognizing patterns.</li>
+</ul>
+
+<h3 id="value-proposition">Value Proposition</h3>
+<ul>
+  <li>Predictive capability</li>
+  <li>Quicker and easier learning: Understanding vs Memorization.</li>
+  <li>Brain is better at remembering related concepts than unrelated details.</li>
+  <li>More memorization can dilute older information.</li>
+  <li>More understanding improves mental models.</li>
+</ul>
+
+<h3 id="how-to-build-a-mental-model">How to build a mental model</h3>
+<p><strong>Double loop learning</strong></p>
+
+<h5 id="single-loop-learning">Single loop learning</h5>
+<p>Is error correction by following the rules and operating norms when solving problem. Some thing like a feedback control loop.</p>
+
+<h5 id="double-loop-learning">Double loop learning</h5>
+<p>Is error correction by changing and critically questioning the rules and operating norms when solving problems.</p>
+
+<ul>
+  <li>This involves more thinking outside the box.</li>
+  <li>Creativity is a must.</li>
+  <li>Thinking outside the operating norms.</li>
+</ul>
+
+<p>This allows us to question which situation is the best to reach our end goal.</p>
+
+<h3 id="progression--building-the-mental-model-">Progression ( Building the mental model )</h3>
+<ul>
+  <li>When new information clashes with your mental model, you will have to rebuild your mental model. <strong>Forced rebuilds</strong></li>
+  <li>Eventually becomes more robust and require fewer major changes, which results for efficient assimilation of info, high-efficiency learning and functional expertise.</li>
+</ul>
+
+<h1 id="questions">Questions</h1>
+
+<ul>
+  <li>Elaborative investigation uses questions like “why?” and “how?” to understand the meaning of information to be learned.</li>
+  <li>Socratic Method, based on asking and answering questions to stimulate critical thinking and to draw out ideas and underlying presumptions.</li>
+  <li>Five whys - used to learn the root cause of a defect or problem by repeating the question “why?”. Each answer forms the basis of the next question.</li>
+</ul>
+
+<h3 id="why">Why?</h3>
+<ul>
+  <li>Keep asking this about everything.</li>
+  <li>Why does this service or feature exist? why would someone want it?</li>
+  <li>Why does it work the way it does?</li>
+  <li>
+    <p>Why are the limits set the way they are?</p>
+  </li>
+  <li>Are they for my protection?</li>
+  <li>Are they to help AWS manage scaling?</li>
+  <li>Are they trying to encourage/force me to use better designs?</li>
+  <li>Are they implementation artifacts?</li>
+</ul>
+
+<h3 id="what">What?</h3>
+<ul>
+  <li>What assumptions have i made?</li>
+  <li>What assumptions have aws made?</li>
+  <li>What is the key purpose of this service/feature?</li>
+</ul>
+
+<h3 id="when">When?</h3>
+<ul>
+  <li>When does the abstractions leak? When does what i know ( believe ) change?
+    <ul>
+      <li>Does it break under load?</li>
+      <li>During certain kinds of outages? ( AZ down? Other service having problems? )</li>
+      <li>Randomly but rare? ( Amortized costs? Network glitches? )</li>
+    </ul>
+  </li>
+  <li>When might i get throttled or hit service limits?
+    <ul>
+      <li>Which ones are fixed in stone?</li>
+      <li>Which ones can be changed?</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="how-">How ?</h3>
+<ul>
+  <li>How is this similar to what i’ve seen before?</li>
+  <li>How is this different from what i’ve seen before?</li>
+  <li>How did they build this?
+    <ul>
+      <li>Based on my understanding, what should be the limitations?</li>
+      <li>Am i right about this?</li>
+    </ul>
+  </li>
+  <li>How can i test what i believe?</li>
+  <li>How does AWS handle failures?</li>
+  <li>How do i handle failures?</li>
+  <li>How does this intergrate with other services?</li>
+</ul>
+
+<h3 id="who-">Who ?</h3>
+<ul>
+  <li>Who is the target for this service?</li>
+  <li>Service offerings target real user scenarios - based on customer feedback</li>
+  <li>Integrate those into your mental model to make better predictions about how it should / does work.</li>
+</ul>
+
+<h1 id="how-teaching-others-can-help">How teaching others can help</h1>
+
+<h3 id="teaching">Teaching</h3>
+<p>Forces you to communicate what you have learned. Requires you to understand the material more deeply. May also result in further questions that you hadnt considered. Explaining in detail to someone else will concrete these in your head.</p>
+
+<h3 id="dive-in">Dive in!</h3>
+<ul>
+  <li>Find a forum question that interests you. Research it until you can answer it. With full explanations. Make your response defensible, not just an opinion or guess. Use quotes from and links to official documentation!</li>
+</ul>
+
+<h3 id="30-second-summary">30 Second Summary</h3>
+<ul>
+  <li>On any topic or technology.</li>
+  <li>Recite a 15 to 30 second summary.</li>
+  <li>Key strengths.</li>
+  <li>Key weaknesses.</li>
+  <li>How it interacts with other services.</li>
+</ul>
+
+<h1 id="visualization">Visualization</h1>
+
+<p>Its not just vision.</p>
+<blockquote>
+  <p>The words “visualization” and “imagery” are in some ways misleading. while the domiant sense is usually vision, visualization does not just involve seeing. The more senses you involve, the stronger the effect. Hear a switch click when you turn it on, or feel an engine turn over and the vibrations when you start it. Smell fuel when you check a fuel tank.. All these can significantly improve how your visualizations work.</p>
+</blockquote>
+
+<h3 id="example">Example</h3>
+<ul>
+  <li>Imagine yourself as a network packet.</li>
+  <li>On your way home ( a client system ).</li>
+  <li>To work ( a load-balanced server in a VPC ).</li>
+  <li>Driving and turning along roads ( network hops, routing, load balancing ).</li>
+  <li>And passing security checkpoints (firewalls, network ACLs, security groups).</li>
+  <li>Some are machines that always check your papers ( stateless; nACLs)</li>
+  <li>Others have guards that remember you on the way back ( stateful;SGs )</li>
+</ul>
+
+<h1 id="pdca">PDCA</h1>
+
+<h3 id="what-is-pdca">What is PDCA</h3>
+<ul>
+  <li>Plan
+    <ul>
+      <li>Plan what youre going to do to learn some new material</li>
+    </ul>
+  </li>
+  <li>Do
+    <ul>
+      <li>Do what you planned; set about actually learning it.</li>
+    </ul>
+  </li>
+  <li>Check
+    <ul>
+      <li>Check how well that plan worked-both how easy and how effective it was.</li>
+    </ul>
+  </li>
+  <li>Adjust
+    <ul>
+      <li>Adjust your plan for future learning, emphasizing techniques that worked well.</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="what-to-do-before-the-exam">What to do before the exam</h1>
+
+<h3 id="month-before">Month before</h3>
+<ul>
+  <li>Read AWS Certification FAQ
+    <ul>
+      <li>Think about the exam process.</li>
+    </ul>
+  </li>
+  <li>Read Exam blueprint
+    <ul>
+      <li>Pay attention to the exam waiting in each content domain</li>
+      <li>Read every line item.</li>
+    </ul>
+  </li>
+  <li>Take ACLOUD.Guru certification course final practice exam
+    <ul>
+      <li>Take for first time, as assessment.</li>
+      <li>Repeat until consistently scoring 100%.</li>
+      <li>Understand why every incorrect answer is wrong.</li>
+      <li>Unserstand why every correct answer is right.</li>
+    </ul>
+  </li>
+  <li>Read certification course forum posts about the exam feedback.
+    <ul>
+      <li>Read throught the 20-30 highest-ranked from the last 2-8 weeks.</li>
+      <li>Read through all exam related posts from the last 2-8 weeks.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="week-or-two-before">Week or Two Before</h3>
+<ul>
+  <li>Take aws practise exam for the first time.
+    <ul>
+      <li>Late enough to evaluate yourself.</li>
+      <li>Early enough to refresh on weak areas.</li>
+      <li>Early enough to reschedule / cancel without penalty, if necessary.</li>
+      <li>Take screenshots!</li>
+      <li>Rip the questions and responses apart!</li>
+    </ul>
+  </li>
+  <li>Read the latest exam feedback forum posts.</li>
+  <li>Schedule exam.</li>
+</ul>
+
+<h3 id="day-before">Day Before</h3>
+<ul>
+  <li>Rewatch training course summary lessons</li>
+  <li>Review your own notes.</li>
+  <li>Download some key course videos to phone.</li>
+  <li>Read top forum posts with details to remember.</li>
+  <li>Consider reading most recent forum posts for very latest feedback.</li>
+  <li>Read AWS sample questions.</li>
+  <li>Review questions from AWS practise exam.</li>
+  <li>Review memorization items.</li>
+</ul>
+
+<h3 id="evening-before">Evening Before</h3>
+<ul>
+  <li>Double check details.
+    <ul>
+      <li>Exam location</li>
+      <li>Exam time.</li>
+      <li>All Documents ( Govt-issued picture ID ) ( Additional ID ).</li>
+      <li>Set out printed exam details.</li>
+    </ul>
+  </li>
+  <li>Metally prepare.</li>
+</ul>
+
+<h3 id="just-before">Just Before</h3>
+<ul>
+  <li>Come early!
+    <ul>
+      <li>Last minute review notes</li>
+      <li>watch key downloaded training videos</li>
+    </ul>
+  </li>
+  <li>Go to the bath room.</li>
+  <li>Validate IDs and the exam registration with proctor</li>
+  <li>Lock up everything you have.
+    <ul>
+      <li>Empty every pocket of everything.</li>
+    </ul>
+  </li>
+</ul>
+
+
+  </div><a class="u-url" href="/sturdy-carnival/exam/study/guide/2018/06/09/AWS-Study-Guide.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/sturdy-carnival/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">AWS Developer Associate Notes</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">AWS Developer Associate Notes</li><li><a class="u-email" href="mailto:eshanshafeeq073055@gmail.com">eshanshafeeq073055@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/DieHard073055"><svg class="svg-icon"><use xlink:href="/sturdy-carnival/assets/minima-social-icons.svg#github"></use></svg> <span class="username">DieHard073055</span></a></li><li><a href="https://www.twitter.com/diehard073055"><svg class="svg-icon"><use xlink:href="/sturdy-carnival/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">diehard073055</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Blog to keep track of what i have been studying for AWS Developer Associate Course. Also will be referrence to study before the exam.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
