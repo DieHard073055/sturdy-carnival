@@ -1,878 +1,483 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.2">Jekyll</generator><link href="https://diehard073055.github.io//sturdy-carnival/feed.xml" rel="self" type="application/atom+xml" /><link href="https://diehard073055.github.io//sturdy-carnival/" rel="alternate" type="text/html" /><updated>2018-06-11T02:55:13+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/</id><title type="html">AWS Developer Associate Notes</title><subtitle>Blog to keep track of what i have been studying for AWS Developer Associate Course. Also will be referrence to study before the exam.</subtitle><entry><title type="html">S3 101</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/11/S3-101.html" rel="alternate" type="text/html" title="S3 101" /><published>2018-06-11T00:00:00+10:00</published><updated>2018-06-11T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/11/S3-101</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/11/S3-101.html">&lt;h3 id=&quot;what-is-s3&quot;&gt;What is S3&lt;/h3&gt;
-&lt;p&gt;S3 provides developer and IT teams with secure durable, highly scalable object storage. Amazon S3 is easy to use, with a simple web service interface to store and retrieve any amount of data from anywhere on the web.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.2">Jekyll</generator><link href="https://diehard073055.github.io//sturdy-carnival/feed.xml" rel="self" type="application/atom+xml" /><link href="https://diehard073055.github.io//sturdy-carnival/" rel="alternate" type="text/html" /><updated>2018-06-14T01:23:43+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/</id><title type="html">AWS Developer Associate Notes</title><subtitle>Blog to keep track of what i have been studying for AWS Developer Associate Course. Also will be referrence to study before the exam.</subtitle><entry><title type="html">Snowball</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/Snowball.html" rel="alternate" type="text/html" title="Snowball" /><published>2018-06-14T00:00:00+10:00</published><updated>2018-06-14T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/Snowball</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/Snowball.html">&lt;p&gt;AWS Import/Export Disk accelerates moving large amounts data into and out of the AWS cloud using portable storage devices for transport. AWS Import/Export Disk transfers your data directly onto and off of storage devices using Amazon’s high-speed internal network and bypassing the internet.&lt;/p&gt;
+
+&lt;h3 id=&quot;types-of-snowballs&quot;&gt;Types of Snowballs&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;S3 is a safe place to store your files.&lt;/li&gt;
-  &lt;li&gt;It is Object based storage.&lt;/li&gt;
-  &lt;li&gt;The data is spread across multiple devices and facilities.&lt;/li&gt;
+  &lt;li&gt;Snowball&lt;/li&gt;
+  &lt;li&gt;Snowball Edge&lt;/li&gt;
+  &lt;li&gt;Snowmobile&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;s3-basics&quot;&gt;S3 basics&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Object based storage i.e allows you to upload files.&lt;/li&gt;
-  &lt;li&gt;Files can be from 0 Byte to 5 TB.&lt;/li&gt;
-  &lt;li&gt;There is unlimited storage.&lt;/li&gt;
-  &lt;li&gt;Files are stored in buckets.&lt;/li&gt;
-  &lt;li&gt;S3 is a universal namespace, that is names must be unique globally.&lt;/li&gt;
-  &lt;li&gt;S3 urls are as follows
-    &lt;ul&gt;
-      &lt;li&gt;https://s3-[region].amazonaws.com/[bucketname]&lt;/li&gt;
-      &lt;li&gt;https://s3-eu-west.amazonaws.com/acloudguru&lt;/li&gt;
-      &lt;li&gt;https://s3-ap-southeast-2.amazonaws.com/godsoflinux.com&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;When you upload a file to S3, you will receive a HTTP 200 code if the upload successful.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h3 id=&quot;snowball&quot;&gt;Snowball&lt;/h3&gt;
+&lt;p&gt;Snowball is petabyte-scale data transport solution that uses secure appliances to transfer large amounts of data into and out of AWS. Using Snowball addresses common challenges with large-scale data transfers including high network costs, long transfer times, and security concerns. Transferring data with Snowball is simple, fast, secure, and can be as little as one-fifth the cost of high-speed internet. 80 TB snowball in all regions. Snowball uses multiple layers of security designed to protect your data including tamper-resistent enclosures, 256-bit encryption, and an industry standard Trusted Platform Module (TPM) designed to ensure both security and full chain-of-custody of your data. Once the data transfer job has been processed and verified, AWS performs a software erasure of Snowball appliance.&lt;/p&gt;
 
-&lt;h3 id=&quot;data-consistency-model-for-s3&quot;&gt;Data Consistency Model for S3&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Read after write consistency for PUTS of new objects.
-    &lt;ul&gt;
-      &lt;li&gt;When you put a new object in S3, you will get immediate consistency.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Eventual Consistency for overwrite PUTS and DELETES ( can take sometime to propergate ).
-    &lt;ul&gt;
-      &lt;li&gt;You dont get immediate updates when you update or delete files from S3, It takes sometime for the objects to update.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Updates to S3 is ATOMIC
-    &lt;ul&gt;
-      &lt;li&gt;You are either going to get the old data or you are going to get the old data. You will not get partial parts of the old data and new data.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;h3 id=&quot;snowball-edge&quot;&gt;Snowball Edge&lt;/h3&gt;
+&lt;p&gt;AWS Snowball Edge is a 100TB data transfer device with on-board storage and compute capabilities. You can use Snowball Edge to move large amounts of data into and out of AWS, as a temporary storage tier for large local datasets, or to support local workloads in remote or offline locations.&lt;/p&gt;
 
-&lt;h3 id=&quot;s3-is-a-simple-key-value-store&quot;&gt;S3 is a simple key value store&lt;/h3&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;* S3 is object based, Objects consist of the following.
-    * Key (This is the name of the object)
-    * Value (This is simply the data and is made up of a sequence of bytes )
-    * Version ID ( Important for versioning )
-    * Metadata ( Data about the data you are storing )
-    * Subresources
-        * Access Control Lists ( Who can access this object )
-        * Torrent ( Bittorrent protocol )
-* S3 is lexicogrpahical, Ordered alphabetically on the key name. Its a design consideration for the application.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Snowball Edge connects your existing applications and infrastructure using standard storage interfaces, streamlinning the data transfer process and minimizing setup and integration. Snowball Edge can cluster together to form a local storage tier and process your data on-premises, helping ensure your applications continue to run even when they are not able to access the cloud.&lt;/p&gt;
 
-&lt;h3 id=&quot;guarantee&quot;&gt;Guarantee&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Built for 99.99% Availability for the S3 platform,&lt;/li&gt;
-  &lt;li&gt;Amazon Guarantee 99.9% availability. ( SLA service level agreement )&lt;/li&gt;
-  &lt;li&gt;Amazon Guarantees 99.999999999% durability for S3 information. 9/11&lt;/li&gt;
-  &lt;li&gt;Tiered Storage Available.&lt;/li&gt;
-  &lt;li&gt;Lifecycle Management
-    &lt;ul&gt;
-      &lt;li&gt;If your data is 30 days old, keep them in this particular storage tier.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Versioning&lt;/li&gt;
-  &lt;li&gt;Encryption&lt;/li&gt;
-  &lt;li&gt;Secure your data using Access Control Lists and Bucket Policies.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Its not just storage capacity its compute capacity in a box as well&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;s3---storage-tiers--classes&quot;&gt;S3 - Storage Tiers / Classes&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;S3 - 99.99 availability, 99.999999999% durability, stored redundantly across multiple devices in multiple facilities and is designed to sustain the loss of 2 facilities concurrently.&lt;/li&gt;
-  &lt;li&gt;S3 - IA ( Infrequently Accessed ) For data that accessed less frequently, but requires rapid access when needed. Lower fee than S3, but you are charged a retreval fee.&lt;/li&gt;
-  &lt;li&gt;Reduced Redundancy Storage - Designed to provide 99.99% durability and 99.99% availability of objects over a given year.&lt;/li&gt;
-  &lt;li&gt;Glacier - Very cheap, but used for data archival only. It takes 3 - 5 hours to restore from Glacier.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;charge&quot;&gt;Charge&lt;/h3&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;* Storage
-* Requests
-* Storage Management Pricing
-* Data Transfer pricing
-* Transfer acceleration
-    * Amazon S3 Transfer Acceleration Enables Fast, easy and secure transfer of files over long distances between your end users and an S3 bucket. Transfer Acceleration takes advantage of Amazon CloudFront's globally distributed edge locations. As the data arrives at an edge location, data is routed to Amazon S3 over an optimized network path.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;snowmobile&quot;&gt;Snowmobile&lt;/h3&gt;
+&lt;p&gt;AWS Snowmobile is an Exabyte-scale data transfer service use to move extremely large amounts of data to AWS. You can transfer upto 100PB per Snowmobile. a 45-long ruggedized shipping container, pulled by a semi-trailer truck. Snowmobile makes it easy to move massive volumes of data to the cloud, including video libraries, image repositories, or even complete data center migration. Transfering data with Snowmobile is secure, fast and cost effective.&lt;/p&gt;
 
 &lt;h3 id=&quot;exam-tips&quot;&gt;Exam tips&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;Remember that S3 is Object based i.e. allows you to upload files.&lt;/li&gt;
-  &lt;li&gt;File can be from 0 bytes to 5 TB.&lt;/li&gt;
-  &lt;li&gt;There is unlimited storage&lt;/li&gt;
-  &lt;li&gt;Files are stored in buckets&lt;/li&gt;
-  &lt;li&gt;S3 has a universal, that is, names for buckets must be unique globally.&lt;/li&gt;
-  &lt;li&gt;https://s3-ap-southeast-2.amazonaws.com/godsoflinux&lt;/li&gt;
-  &lt;li&gt;Read after write consistency for PUTS of new objects.&lt;/li&gt;
-  &lt;li&gt;Eventual Consistency on overwrites and deletes.&lt;/li&gt;
+  &lt;li&gt;Understand what snowball is&lt;/li&gt;
+  &lt;li&gt;Understand what Import Export is&lt;/li&gt;
+  &lt;li&gt;Snowball Can do
+    &lt;ul&gt;
+      &lt;li&gt;Import to S3&lt;/li&gt;
+      &lt;li&gt;Export from S3&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="storage" /><category term="transfer" /><summary type="html">AWS Import/Export Disk accelerates moving large amounts data into and out of the AWS cloud using portable storage devices for transport. AWS Import/Export Disk transfers your data directly onto and off of storage devices using Amazon’s high-speed internal network and bypassing the internet.</summary></entry><entry><title type="html">S3 Transfer Acceleration</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/S3-Transfer-Acceleration.html" rel="alternate" type="text/html" title="S3 Transfer Acceleration" /><published>2018-06-14T00:00:00+10:00</published><updated>2018-06-14T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/S3-Transfer-Acceleration</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/S3-Transfer-Acceleration.html">&lt;p&gt;S3 Transfer Acceleration utilises the CloudFront Edge Network to accelerate your uploads to S3. Instead of uploading directly to your S3 bucket, you can use a distinct URL to upload directly to an edge location which will then transfer that to S3. You will get a distinct URL to upload to.&lt;/p&gt;</content><author><name>Eshan Shafeeq</name></author><category term="storage" /><category term="transfer" /><category term="s3" /><category term="transferacceleration" /><summary type="html">S3 Transfer Acceleration utilises the CloudFront Edge Network to accelerate your uploads to S3. Instead of uploading directly to your S3 bucket, you can use a distinct URL to upload directly to an edge location which will then transfer that to S3. You will get a distinct URL to upload to.</summary></entry><entry><title type="html">S3 Storage Summary</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/S3-Storage-Summary.html" rel="alternate" type="text/html" title="S3 Storage Summary" /><published>2018-06-14T00:00:00+10:00</published><updated>2018-06-14T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/S3-Storage-Summary</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/S3-Storage-Summary.html">&lt;h3 id=&quot;s3---exam-tips&quot;&gt;S3 - Exam Tips&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;S3 is an Object based storage, its a place where you upload and download files.
+    &lt;ul&gt;
+      &lt;li&gt;You cannot run an os, or run a database off of S3.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Files can be of size 0 bytes all the way to 5TB.&lt;/li&gt;
+  &lt;li&gt;There is unlimited storage.&lt;/li&gt;
+  &lt;li&gt;Files are stored in Buckets.&lt;/li&gt;
+  &lt;li&gt;S3 is a universal namespace, all bucket names shall be unique globally.&lt;/li&gt;
+  &lt;li&gt;S3 bucket names are like &lt;code class=&quot;highlighter-rouge&quot;&gt;https://s3-[region].amazonaws.com/[bucketname]&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Read after Write Consistency for PUTS of new objects.&lt;/li&gt;
+  &lt;li&gt;Eventual Consistencry for Overwrite PUTS and DELETES. ( takes some time to propergate )&lt;/li&gt;
   &lt;li&gt;S3 Storage Classes / Tiers
     &lt;ul&gt;
-      &lt;li&gt;S3 ( durable, immedietely available, frequently accessed )&lt;/li&gt;
-      &lt;li&gt;S3 IA ( Infrequently Accessed, durable, immedietely available )&lt;/li&gt;
-      &lt;li&gt;S3 Reduced Redundency Storage&lt;/li&gt;
-      &lt;li&gt;Glacier ( for archival data which can take 3 to 5 hours to access )&lt;/li&gt;
+      &lt;li&gt;Standard S3
+        &lt;ul&gt;
+          &lt;li&gt;reliability of 99.999999999%&lt;/li&gt;
+          &lt;li&gt;availability of 99.99%&lt;/li&gt;
+          &lt;li&gt;Immedietly available and frequently accessed&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;S3 Infrequent Access ( IA )
+        &lt;ul&gt;
+          &lt;li&gt;availablity of 99.99%&lt;/li&gt;
+          &lt;li&gt;reliability of 99.999999999%&lt;/li&gt;
+          &lt;li&gt;Immedietly available infrequently accessed.&lt;/li&gt;
+          &lt;li&gt;Charged for retreval&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;S3 Reduced Redundency
+        &lt;ul&gt;
+          &lt;li&gt;reliability and availability of 99.99%&lt;/li&gt;
+          &lt;li&gt;Used for reproducable content ( such as thumbnails etc ).&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Glacier
+        &lt;ul&gt;
+          &lt;li&gt;Archived data, where you have to wait 3 - 5 hour waiting period.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;Remember the core fundementals of an S3 object
+  &lt;li&gt;Core fundementals of S3
     &lt;ul&gt;
-      &lt;li&gt;Key (name)&lt;/li&gt;
-      &lt;li&gt;Value (data)&lt;/li&gt;
+      &lt;li&gt;Key ( name )&lt;/li&gt;
+      &lt;li&gt;Value ( data )&lt;/li&gt;
       &lt;li&gt;Version ID&lt;/li&gt;
-      &lt;li&gt;Metadata&lt;/li&gt;
-      &lt;li&gt;Subresources
+      &lt;li&gt;Metadata ( data about data )&lt;/li&gt;
+      &lt;li&gt;Access control lists&lt;/li&gt;
+      &lt;li&gt;Object based stroage only ( flat files )&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;S3 versioning
+    &lt;ul&gt;
+      &lt;li&gt;Stores all versions of an object ( including all writes and even if you delete an object )&lt;/li&gt;
+      &lt;li&gt;Great backup tool&lt;/li&gt;
+      &lt;li&gt;You pay for storage for all the versions of the object.&lt;/li&gt;
+      &lt;li&gt;Once enabled versioning cannot be disabled, it can only be suspended.&lt;/li&gt;
+      &lt;li&gt;Integrates with lifecycle rules.&lt;/li&gt;
+      &lt;li&gt;Versionings MFA Delete capability, which uses multi-factor authentication, can be used to provide an additional layer of security.&lt;/li&gt;
+      &lt;li&gt;Cross region replication requires versioning enabled on both the source bucket and destination bucket.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Lifecycle Management
+    &lt;ul&gt;
+      &lt;li&gt;Can be used in conjunction with versioning.&lt;/li&gt;
+      &lt;li&gt;Can be applied to current versions and previous versions.&lt;/li&gt;
+      &lt;li&gt;Following actions can now be done.
         &lt;ul&gt;
-          &lt;li&gt;ACL&lt;/li&gt;
-          &lt;li&gt;Torrent&lt;/li&gt;
+          &lt;li&gt;Transition to infrequenct access after a minimum of 30 days since creation date ( files need to be minimum 128kb )&lt;/li&gt;
+          &lt;li&gt;Archived to glacier storage class ( 30 days after IA, if relevant ).&lt;/li&gt;
+          &lt;li&gt;Permenantly Delete Objects&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;Object based storage only! (for files)&lt;/li&gt;
-  &lt;li&gt;Do not install operating systems on it&lt;/li&gt;
-  &lt;li&gt;Successful uploads will generate HTTP 200 status code.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Read the S3 FAQ before the exam!&lt;/strong&gt;&lt;/p&gt;</content><author><name>Eshan Shafeeq</name></author><category term="storage" /><category term="s3" /><category term="introduction" /><summary type="html">What is S3 S3 provides developer and IT teams with secure durable, highly scalable object storage. Amazon S3 is easy to use, with a simple web service interface to store and retrieve any amount of data from anywhere on the web. S3 is a safe place to store your files. It is Object based storage. The data is spread across multiple devices and facilities.</summary></entry><entry><title type="html">Summary of EC2 Section</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/10/Summary-of-EC2-Section.html" rel="alternate" type="text/html" title="Summary of EC2 Section" /><published>2018-06-10T00:00:00+10:00</published><updated>2018-06-10T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/06/10/Summary-of-EC2-Section</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/10/Summary-of-EC2-Section.html">&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Fundemental Topic&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;Remember to read the &lt;a href=&quot;https://aws.amazon.com/ec2/faqs/&quot;&gt;EC2 FAQ&lt;/a&gt; before going for the exam.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;exam-tips&quot;&gt;Exam Tips&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Know the difference between the pricing models of EC2.
+  &lt;li&gt;CloudFront
     &lt;ul&gt;
-      &lt;li&gt;On Demand&lt;/li&gt;
-      &lt;li&gt;Spot&lt;/li&gt;
-      &lt;li&gt;Reserved&lt;/li&gt;
-      &lt;li&gt;Dedicated Hosts&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Remember for Spot Instances
-    &lt;ul&gt;
-      &lt;li&gt;If you terminate the instance, you pay for the hour.&lt;/li&gt;
-      &lt;li&gt;If aws terminates the spot instance, you get the hour it was terminated in for free.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;EC2 Instance Types.
-    &lt;ul&gt;
-      &lt;li&gt;Remember DRMCGIFTPX&lt;/li&gt;
-      &lt;li&gt;D - Dense Storage&lt;/li&gt;
-      &lt;li&gt;R - Memory Optimized&lt;/li&gt;
-      &lt;li&gt;M - General Purpose ( Production )&lt;/li&gt;
-      &lt;li&gt;C - Compute Optimized&lt;/li&gt;
-      &lt;li&gt;G - Graphics Intensive&lt;/li&gt;
-      &lt;li&gt;I - Storage Optimized&lt;/li&gt;
-      &lt;li&gt;F - Field Programmable Gate arrays&lt;/li&gt;
-      &lt;li&gt;T - Low Cost General Purpose&lt;/li&gt;
-      &lt;li&gt;P - Graphics / General Purpose&lt;/li&gt;
-      &lt;li&gt;X - Memory Optimized ( eXtreme Memory Optimized )&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;EBS Consists of
-    &lt;ul&gt;
-      &lt;li&gt;SSD - General Purpose - GP2 - ( Up to 10,000 IOPS ).&lt;/li&gt;
-      &lt;li&gt;SSD - Provisioned IOPS - IO1 - ( More than 10,000 IOPS ).&lt;/li&gt;
-      &lt;li&gt;HDD - Throughput optimized - ST1 - Frequently accessed workloads.&lt;/li&gt;
-      &lt;li&gt;HDD - Cold - SC1 - less frequently accessed data.&lt;/li&gt;
-      &lt;li&gt;HDD - Magnetic - Standard - Cheap, infrequently accessed storage.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;You cannot mount 1 EBS Volume to multiple EC2 instances, instead use EFS.&lt;/li&gt;
-  &lt;li&gt;Termination Protection is turned off by default, You must turn on termination protection if you would like that safety.&lt;/li&gt;
-  &lt;li&gt;On an EBS backed storage, the default action on instance termination is deleting the EBS volume.&lt;/li&gt;
-  &lt;li&gt;Root Volumes cannot be encrypted by default unless you use a thirdparty tool to encrypt the root volume. (eg: Bitlocker )&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Additional Volumes can be encrypted.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Volumes VS Snapshots
-    &lt;ul&gt;
-      &lt;li&gt;Volumes exists on EBS
+      &lt;li&gt;Edge Locations - This is the location where content will be cached.&lt;/li&gt;
+      &lt;li&gt;Origin - This is the origin of all the files that the CDN will distribute. This can be either an S3 bucket, an EC2 instance, an Elastic Load balancer or Route53.&lt;/li&gt;
+      &lt;li&gt;Distribution - This is the name given to the CDN with a collections of Edge Locations.
         &lt;ul&gt;
-          &lt;li&gt;Virtual Harddisks&lt;/li&gt;
+          &lt;li&gt;Web Distribution - Typically used for websites&lt;/li&gt;
+          &lt;li&gt;RTMP - Used for Media Streaming&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;Snapshots exists on S3&lt;/li&gt;
-      &lt;li&gt;You can take snapshots of a volume, this will store that volume on S3.&lt;/li&gt;
-      &lt;li&gt;Snapshots are point in time copies of that volume.&lt;/li&gt;
-      &lt;li&gt;Snapshots are incremental, this means that only the blocks that have changed since your last snapshots are moved to S3. ( first snapshots takes a while, but afterwards its fine )&lt;/li&gt;
+      &lt;li&gt;Edge locations are not just readonly, you can write to them as well. ( Upload files to S3 ).&lt;/li&gt;
+      &lt;li&gt;Object are cached for the life of the TTL ( time to live ) ( default ttl 24hours )&lt;/li&gt;
+      &lt;li&gt;You can clear cached objects, but you will be charged.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;Volumes VS Snapshots - Security
+  &lt;li&gt;Securing your buckets.
     &lt;ul&gt;
-      &lt;li&gt;Snapshots of encrypted volumes are encrypted automatically.&lt;/li&gt;
-      &lt;li&gt;Volumes that are restored from snapshots are encrypted automatically.&lt;/li&gt;
-      &lt;li&gt;You can share snapshots with other AWS accounts, or publicly on the AWS market place, only if they are not encrypted.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Snapshots of Root Device Volumes.
-    &lt;ul&gt;
-      &lt;li&gt;To create a snapshot for Amazon EBS volume that serve as root device, you should stop the instance before taking the snapshot ( but can be done on a running instance ).&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;EBS vs Instance Store Volumes
-    &lt;ul&gt;
-      &lt;li&gt;Instance Store volumes are sometimes called Ephemeral Storage.&lt;/li&gt;
-      &lt;li&gt;Instance Store volumes cannot be stopped, If the underlying host fails, you will loose your data.&lt;/li&gt;
-      &lt;li&gt;EBS backed instances can be stopped, You will not loose the data on this instance if it is stopped.&lt;/li&gt;
-      &lt;li&gt;You can reboot both, and you will not loose your data.&lt;/li&gt;
-      &lt;li&gt;By default, both ROOT volumes will be deleted on termination, however with EBS volumes, you can tell AWS to keep the root device volume. ( set a FLAG )&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;How to take a snapshot from the RAID Array?
-    &lt;ul&gt;
-      &lt;li&gt;Problem - Take a snapshot, the snapshot excludes data held in the cache by applications and the OS. This tends not to matter on a single volume, however using multiple volumes in a RAID array, this can be a problem due to interdependencies of the array.&lt;/li&gt;
-      &lt;li&gt;Solution - Take an application consistent snapshot.
+      &lt;li&gt;By default, all newly created buckets are &lt;strong&gt;PRIVATE&lt;/strong&gt;.&lt;/li&gt;
+      &lt;li&gt;You can setup access control to your buckets using;
         &lt;ul&gt;
-          &lt;li&gt;Stop the application from writing to disk&lt;/li&gt;
-          &lt;li&gt;Flush all caches to the disk.
+          &lt;li&gt;Bucket policies.&lt;/li&gt;
+          &lt;li&gt;Access Control Lists.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;S3 buckets can be configured to create access logs which logs all the access requests made to the bucke. These logs can be stored in another bucket.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Encryption
+    &lt;ul&gt;
+      &lt;li&gt;In-transit Encryption
+        &lt;ul&gt;
+          &lt;li&gt;SSL/TLS (HTTPS)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;In rest
+        &lt;ul&gt;
+          &lt;li&gt;Server Side Encryption
             &lt;ul&gt;
-              &lt;li&gt;Freeze the file system.&lt;/li&gt;
-              &lt;li&gt;Unmount the RAID Array.&lt;/li&gt;
-              &lt;li&gt;Shutdown the associated EC2 instance.&lt;/li&gt;
+              &lt;li&gt;S3 Managed Keys SSE-S3&lt;/li&gt;
+              &lt;li&gt;AWS Managed Keys SSE-KMS
+                &lt;ul&gt;
+                  &lt;li&gt;Allows you to monitor who decrypted which file when. (Audit trail)&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+              &lt;li&gt;Customer provided Keys SSE-C&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;Client Side Encryption
+            &lt;ul&gt;
+              &lt;li&gt;Client uploads encrypted files.&lt;/li&gt;
             &lt;/ul&gt;
           &lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;Amazon Machine Images
+  &lt;li&gt;Storage Gateway
     &lt;ul&gt;
-      &lt;li&gt;AMI’s are regional - You can only launch an AMI from the region in which it is stored. However you can copy AMI’s to other regions using the console, commandline or the Amazon EC2 API.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Cloudwatch Monitoring
-    &lt;ul&gt;
-      &lt;li&gt;Standard monitoring is enabled by default for EC2. ( Every 5 minutes )&lt;/li&gt;
-      &lt;li&gt;You can enable Detailed Monitoring ( Every minute ).&lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;CloudWatch is for performance monitoring.&lt;/strong&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;CloudTrail is for Auditing&lt;/strong&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;What can you create with CloudWatch ?
-    &lt;ul&gt;
-      &lt;li&gt;Dashboards - Create awesome dashboards to see what is happening with your aws environment.&lt;/li&gt;
-      &lt;li&gt;Alarms - Allows you to set alarms that notify you when particular thresholds are hit.&lt;/li&gt;
-      &lt;li&gt;Events - CloudWatch Events help you to respond to state changes in your aws resources.&lt;/li&gt;
-      &lt;li&gt;Logs - CloudWatch logs help you to aggregate, monitor, and store logs.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Roles
-    &lt;ul&gt;
-      &lt;li&gt;Roles are more secure than storing your access key and secret access key on individual EC2 instances.&lt;/li&gt;
-      &lt;li&gt;Roles are much easier to manage than having secret access keys around in terms of security.
+      &lt;li&gt;File Gateway - for flatfiles,  stored directly on S3.&lt;/li&gt;
+      &lt;li&gt;Volume Gateway (ISCI) - block based storage
         &lt;ul&gt;
-          &lt;li&gt;If you loose your security key, you will have to delete the old ones and create a new one.&lt;/li&gt;
+          &lt;li&gt;Stored Volumes - your on premises data is asynchronously backed up to S3.&lt;/li&gt;
+          &lt;li&gt;Cached Volumes - frequently accessed data is cached on premises from S3.&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
-      &lt;li&gt;Roles can now be assigned to an EC2 instance after it has been provisioned using both the commandline and the AWS console.&lt;/li&gt;
-      &lt;li&gt;Roles are global&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Instance Metadata
-    &lt;ul&gt;
-      &lt;li&gt;Used to get information about an instance ( such as public IPV4 )&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;curl http://169.254.169.254/latest/meta-data/&lt;/code&gt; will all the available information.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;EFS
-    &lt;ul&gt;
-      &lt;li&gt;Support the Network File System Version 4 protocol (NFSv4)&lt;/li&gt;
-      &lt;li&gt;You only pay for the storage you use ( no pre-provisioning required )&lt;/li&gt;
-      &lt;li&gt;Can scale upto petabytes&lt;/li&gt;
-      &lt;li&gt;Can support thousands of concurrent NFS connections&lt;/li&gt;
-      &lt;li&gt;Data is stored across multiple AZ’s within a region.&lt;/li&gt;
-      &lt;li&gt;Read After Write Consistency&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Lambda
-    &lt;ul&gt;
-      &lt;li&gt;AWS lambda is a compute service where you can upload your code and create lambda function. AWS Lambda takes care of provisioning and managing the servers that you use to run the code. You dont have to worry about the operating systems, patching, scaling, etc. You can use Lambda in the following ways.&lt;/li&gt;
-      &lt;li&gt;As an event driven compute service, AWS runs your code in response to events. These events could be changes to your data in an Amazon S3 bucket or an Amazon DynamoDB table.&lt;/li&gt;
-      &lt;li&gt;As a compute service to run your code in response to HTTP requests using Amazon API gateway or API calls made using AWS SDK’s. This is what we use at A Cloud Guru.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="summary" /><category term="wrappingup" /><category term="ec2" /><category term="compute" /><category term="tips" /><summary type="html">Fundemental Topic Remember to read the EC2 FAQ before going for the exam.</summary></entry><entry><title type="html">SDK Exam Tips</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/10/SDK-Exam-Tips.html" rel="alternate" type="text/html" title="SDK Exam Tips" /><published>2018-06-10T00:00:00+10:00</published><updated>2018-06-10T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/06/10/SDK-Exam-Tips</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/10/SDK-Exam-Tips.html">&lt;h3 id=&quot;know-the-available-sdks&quot;&gt;Know the available sdks&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&quot;https://aws.amazon.com/tools/&quot;&gt;official documentation on sdk’s&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Android, IOS, Nodejs (WEB)&lt;/li&gt;
-  &lt;li&gt;Java&lt;/li&gt;
-  &lt;li&gt;.Net&lt;/li&gt;
-  &lt;li&gt;Nodejs&lt;/li&gt;
-  &lt;li&gt;PHP&lt;/li&gt;
-  &lt;li&gt;Python&lt;/li&gt;
-  &lt;li&gt;Ruby&lt;/li&gt;
-  &lt;li&gt;Go&lt;/li&gt;
-  &lt;li&gt;C++&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;sdk-default-region&quot;&gt;SDK Default Region&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Default Region - US-EAST-1&lt;/li&gt;
-  &lt;li&gt;Some have default regions (Java)&lt;/li&gt;
-  &lt;li&gt;Some do not (Node.js)
-    &lt;ul&gt;
-      &lt;li&gt;If a region is not specified it will default back to US-EAST-1&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="compute" /><category term="examtips" /><category term="tips" /><category term="exam" /><category term="sdk" /><category term="programming" /><summary type="html">Know the available sdks official documentation on sdk’s Android, IOS, Nodejs (WEB) Java .Net Nodejs PHP Python Ruby Go C++</summary></entry><entry><title type="html">Lambda</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/10/Lambda.html" rel="alternate" type="text/html" title="Lambda" /><published>2018-06-10T00:00:00+10:00</published><updated>2018-06-10T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/06/10/Lambda</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/10/Lambda.html">&lt;h3 id=&quot;what-is-lambda-&quot;&gt;What is lambda ?&lt;/h3&gt;
-&lt;p&gt;AWS Lambda is a compute service where you can upload your code and create a Lambda function. AWS Lambda takes care of provisioning and managing the servers that you use to run the code. You dont have to worry about operating systems, patching, scaling, etc. You can use Lambda in the following ways.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;As an &lt;strong&gt;Event Driven Compute Service&lt;/strong&gt; where AWS Lambda runs your code in response to events. These events could be changes to data in an Amazon S3 bucket or an Amazon DynamoDB table.&lt;/li&gt;
-  &lt;li&gt;As a compute service to run your code in response to HTTP requests using Amazon API Gateway or API calls made using AWS SDKs.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;create-a-lambda&quot;&gt;Create a lambda&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Services-&amp;gt;Compute-&amp;gt;Lambda-&amp;gt;Create Function&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Select Blue Print
-    &lt;ul&gt;
-      &lt;li&gt;Author from scratch&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Configure Triggers
-    &lt;ul&gt;
-      &lt;li&gt;Available Triggers
+      &lt;li&gt;Gateway VIrtual Taped Library (VTL)
         &lt;ul&gt;
-          &lt;li&gt;API Gateway&lt;/li&gt;
-          &lt;li&gt;AWS IoT&lt;/li&gt;
-          &lt;li&gt;Alexa Skills Kit&lt;/li&gt;
-          &lt;li&gt;Alexa Smart Home&lt;/li&gt;
-          &lt;li&gt;CloudFront&lt;/li&gt;
-          &lt;li&gt;CloudWatch Events&lt;/li&gt;
-          &lt;li&gt;CloudWatch Logs&lt;/li&gt;
-          &lt;li&gt;CodeCommit&lt;/li&gt;
-          &lt;li&gt;Cognito Sync Trigger&lt;/li&gt;
-          &lt;li&gt;DynamoDB&lt;/li&gt;
-          &lt;li&gt;Kinesis&lt;/li&gt;
-          &lt;li&gt;S3&lt;/li&gt;
-          &lt;li&gt;SNS&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;Select API Gateway&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Configure Function
-    &lt;ul&gt;
-      &lt;li&gt;Available Languages
-        &lt;ul&gt;
-          &lt;li&gt;C#&lt;/li&gt;
-          &lt;li&gt;Nodejs&lt;/li&gt;
-          &lt;li&gt;Python&lt;/li&gt;
+          &lt;li&gt;Used for backing up your data, from application like Netbackup, Backup Exec, Veam etc.&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ol&gt;
+  &lt;li&gt;Snowball
+    &lt;ul&gt;
+      &lt;li&gt;Snowball - Pure storage 50TB to 80TB&lt;/li&gt;
+      &lt;li&gt;Snowball Edge - Both Compute and Storage Capabilities&lt;/li&gt;
+      &lt;li&gt;Snowmobile - 100PB worth of storage&lt;/li&gt;
+      &lt;li&gt;Understand what snowball is&lt;/li&gt;
+      &lt;li&gt;Understand what Import/Export is&lt;/li&gt;
+      &lt;li&gt;Snowball can import / Export to S3&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;S3 Transfer Acceleration
+    &lt;ul&gt;
+      &lt;li&gt;You can speed up S3 transfer speeds using CloudFront Edge locations, so you can upload files to s3 faster. Extra costs will apply. Greatest Impact on people who are further away geographically.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;S3 static websites.
+    &lt;ul&gt;
+      &lt;li&gt;You can S3 to host static websites.&lt;/li&gt;
+      &lt;li&gt;Serverless&lt;/li&gt;
+      &lt;li&gt;Very Cheap, scales automatically.&lt;/li&gt;
+      &lt;li&gt;Static only, cannot host dynamic sites.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;CORS
+    &lt;ul&gt;
+      &lt;li&gt;Cross origin resource sharing&lt;/li&gt;
+      &lt;li&gt;Needed to enable cors on the resources bucket and state the URL for the origin that will be calling the bucket.&lt;/li&gt;
+      &lt;li&gt;Remeber to use the S3 website url and not the bucket URL, website url has the word website on it.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;When you do a PUT object on S3 you will get a HTTP 200 success code.&lt;/li&gt;
+  &lt;li&gt;You can load files much faster by enabling multipart upload.&lt;/li&gt;
+  &lt;li&gt;Read the S3 FAQ!&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="storage" /><category term="s3" /><category term="summary" /><summary type="html">S3 - Exam Tips S3 is an Object based storage, its a place where you upload and download files. You cannot run an os, or run a database off of S3. Files can be of size 0 bytes all the way to 5TB. There is unlimited storage. Files are stored in Buckets. S3 is a universal namespace, all bucket names shall be unique globally. S3 bucket names are like https://s3-[region].amazonaws.com/[bucketname] Read after Write Consistency for PUTS of new objects. Eventual Consistencry for Overwrite PUTS and DELETES. ( takes some time to propergate ) S3 Storage Classes / Tiers Standard S3 reliability of 99.999999999% availability of 99.99% Immedietly available and frequently accessed S3 Infrequent Access ( IA ) availablity of 99.99% reliability of 99.999999999% Immedietly available infrequently accessed. Charged for retreval S3 Reduced Redundency reliability and availability of 99.99% Used for reproducable content ( such as thumbnails etc ). Glacier Archived data, where you have to wait 3 - 5 hour waiting period. Core fundementals of S3 Key ( name ) Value ( data ) Version ID Metadata ( data about data ) Access control lists Object based stroage only ( flat files ) S3 versioning Stores all versions of an object ( including all writes and even if you delete an object ) Great backup tool You pay for storage for all the versions of the object. Once enabled versioning cannot be disabled, it can only be suspended. Integrates with lifecycle rules. Versionings MFA Delete capability, which uses multi-factor authentication, can be used to provide an additional layer of security. Cross region replication requires versioning enabled on both the source bucket and destination bucket. Lifecycle Management Can be used in conjunction with versioning. Can be applied to current versions and previous versions. Following actions can now be done. Transition to infrequenct access after a minimum of 30 days since creation date ( files need to be minimum 128kb ) Archived to glacier storage class ( 30 days after IA, if relevant ). Permenantly Delete Objects CloudFront Edge Locations - This is the location where content will be cached. Origin - This is the origin of all the files that the CDN will distribute. This can be either an S3 bucket, an EC2 instance, an Elastic Load balancer or Route53. Distribution - This is the name given to the CDN with a collections of Edge Locations. Web Distribution - Typically used for websites RTMP - Used for Media Streaming Edge locations are not just readonly, you can write to them as well. ( Upload files to S3 ). Object are cached for the life of the TTL ( time to live ) ( default ttl 24hours ) You can clear cached objects, but you will be charged. Securing your buckets. By default, all newly created buckets are PRIVATE. You can setup access control to your buckets using; Bucket policies. Access Control Lists. S3 buckets can be configured to create access logs which logs all the access requests made to the bucke. These logs can be stored in another bucket. Encryption In-transit Encryption SSL/TLS (HTTPS) In rest Server Side Encryption S3 Managed Keys SSE-S3 AWS Managed Keys SSE-KMS Allows you to monitor who decrypted which file when. (Audit trail) Customer provided Keys SSE-C Client Side Encryption Client uploads encrypted files.</summary></entry><entry><title type="html">Storage Gateway</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/Storage-Gateway.html" rel="alternate" type="text/html" title="Storage Gateway" /><published>2018-06-13T00:00:00+10:00</published><updated>2018-06-13T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/Storage-Gateway</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/Storage-Gateway.html">&lt;p&gt;AWS Storage Gateway, is a service that connects an on-premises software appliance with cloud-based storage to provide seamless and secure integration between an organization’s on premises IT environment and AWS’s storage infrastructure. The service enables you to securely store data to the AWS cloud for scalable and cost-effective storage.&lt;/p&gt;
 
-&lt;h3 id=&quot;lambda-pricing&quot;&gt;Lambda Pricing&lt;/h3&gt;
+&lt;p&gt;AWS Storage Gateway Software Appliance is available for download as a virtual machine (VM) image that you install on a host in your data center. Storage Gateway support either VMware ESXi or Microsoft Hyper-V. Once youve installed your gateway and associated it with your AWS account though the activation process, you use the AWS Management Console to create the storage gateway option that is right for you.&lt;/p&gt;
+
+&lt;h3 id=&quot;4-types-of-storage-gateways&quot;&gt;4 types of storage gateways&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;Number of requests
+  &lt;li&gt;File Gateway (NFS)&lt;/li&gt;
+  &lt;li&gt;Allows you store flat files in S3 ( word documents, pictures, pdf’s, etc )&lt;/li&gt;
+  &lt;li&gt;Volume Gateways ( iSCSI ) This for block based storage, maybe a volume attached to a VM.
     &lt;ul&gt;
-      &lt;li&gt;First 1 million requests are free. $0.20 per 1 million requests afterwards.&lt;/li&gt;
+      &lt;li&gt;Stored Volume ( Gateway Stored Volumes )&lt;/li&gt;
+      &lt;li&gt;Cached Volume ( Gateway Cached Volumes )&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;Duration
-    &lt;ul&gt;
-      &lt;li&gt;Duration is calculated from the time your code begins executing until it returns or otherwise terminates, rounded up to the nearest 100ms. The pricing depends on the amount of memory you allocate to your function. You are charged $0.00001667 for every GB/second used.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;Tape Gateway ( VTL ) Backup and archiving solution.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;pros-on-lambda&quot;&gt;Pros on Lambda&lt;/h3&gt;
+&lt;h3 id=&quot;file-gateway&quot;&gt;File Gateway&lt;/h3&gt;
+&lt;p&gt;Files are stored as objects in your S3 buckets, accessed through a Network File System (NFS) mount point. Ownership, permissions, and timestamps are durably stored in S3 in the user-metadata of the object associated with the file. Once objects are transferred to S3, they can be managed as native S3 objects, and bucket policies such as versioning, lifecycle management, and cross-region replication apply directly to objects stored in your bucket.&lt;/p&gt;
+
+&lt;h3 id=&quot;volume-gateway&quot;&gt;Volume Gateway&lt;/h3&gt;
+&lt;p&gt;The volume interface presents your applications with disks volumes using iSCSI block protocol. Data written to these volumes can be asynchronously backed up as point-in-time snapshots of your volumes, and stored in the cloud as Amazon EBS snapshots. Snapshots are incremental backups that capture only changed blocks. All snapshots storage is also compressed to minimize your storage charges.&lt;/p&gt;
+
+&lt;h5 id=&quot;stored-volumes&quot;&gt;Stored Volumes&lt;/h5&gt;
+&lt;p&gt;Stored volumes let you store your primary data locally, while asynchronously backing up that data to AWS. Stored volumes provide your on-premises applications with low-latency access to their entire datasets, while providing durable, off-site backups. You can create storage volumes and mount them as iSCSI devices from your on-premises application servers. Data written to your stored volumes is asynchronously backed upto Amazon Simple Storage Service ( Amazon S3 ) in the form of Amazon Elastic Block Store ( Amazon EBS ) snapshots. 1GB - 16TB in size for Stored Volumes.&lt;/p&gt;
+
+&lt;h5 id=&quot;cached-volumes&quot;&gt;Cached Volumes&lt;/h5&gt;
+&lt;p&gt;Cached volumes lets you use Amazon Simple Storage Service ( Amazon S3 ) as your primary data storage while retaining frequently accessed data locally in your storage gateway. Cached volumes minimize the need to scale your on-premises storage infrastructure, while still providing your applications with low-latency access to their frequently accessed data. You can create storage volumes upto 32 TB in size and attach to them as iSCSI devices from your on-premises application servers. Your gateway stores data that you write to these volumes in Amazon S3 and retains recently read data in your on-premises storage gateway’s cache and upload buffer storage. 1GB - 32 TB in size for Cached Volumes.&lt;/p&gt;
+
+&lt;h5 id=&quot;taped-gateway&quot;&gt;Taped Gateway&lt;/h5&gt;
+&lt;p&gt;Tape Gateway offers a durable, cost-effective solution to archive your data in the AWS Cloud. The VTL interface it provides lets you leverage your existing tape-based backup application infrastructure to store data on virtual tape cartridges that you create on your tape gateway. Each tape gateway is preconfigured with a media changer and tape drives, which are available to your existing client backup applications as iSCSI devies. You add tape cartridges as you to archive your data. Supported by NetBackup, Backup Exec, Veam etc.&lt;/p&gt;
+
+&lt;h3 id=&quot;exam-tips&quot;&gt;Exam Tips&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;No Servers&lt;/li&gt;
-  &lt;li&gt;Continuous Scaling&lt;/li&gt;
-  &lt;li&gt;Super Super Super cheap&lt;/li&gt;
+  &lt;li&gt;File Gateway - For flat files, stored directly on S3 - Not os’s&lt;/li&gt;
+  &lt;li&gt;Volumes Gateways (block based storage)
+    &lt;ul&gt;
+      &lt;li&gt;Stored Volumes - Entire Dataset is stored on site is asynchronously backed up to S3.&lt;/li&gt;
+      &lt;li&gt;Cached Volumes - Entire Dataset is stored on S3 and most frequently accessed data is kept on site.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Gateway Virtual Tape Library ( VTL )
+    &lt;ul&gt;
+      &lt;li&gt;Used for backup and uses popular backup applications like NetBackup, Backup Exec, Veam etc.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="storage" /><category term="storagegateway" /><category term="secure" /><summary type="html">AWS Storage Gateway, is a service that connects an on-premises software appliance with cloud-based storage to provide seamless and secure integration between an organization’s on premises IT environment and AWS’s storage infrastructure. The service enables you to securely store data to the AWS cloud for scalable and cost-effective storage.</summary></entry><entry><title type="html">S3 Security and Encryption</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/S3-Security-and-Encryption.html" rel="alternate" type="text/html" title="S3 Security and Encryption" /><published>2018-06-13T00:00:00+10:00</published><updated>2018-06-13T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/S3-Security-and-Encryption</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/S3-Security-and-Encryption.html">&lt;h3 id=&quot;security&quot;&gt;Security&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;By default, all newly created buckets are &lt;strong&gt;PRIVATE&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;You can setup access control to your buckets using;
+    &lt;ul&gt;
+      &lt;li&gt;Bucket Policies - Permissions are applied to the entier bucket.&lt;/li&gt;
+      &lt;li&gt;Access Control List - You can apply different permissions to different objects in the buckets.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;S3 Buckets can be configured to create access logs which log all the requests made to the S3 bucket. This can be done to another bucket.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;encryption&quot;&gt;Encryption&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;In transit ( When sending object to and from your PC )
+    &lt;ul&gt;
+      &lt;li&gt;SSL/TLS Encryption ( HTTPS )&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;At Rest ( When the objects are either in your PC or in the Server )
+    &lt;ul&gt;
+      &lt;li&gt;Server Side Encryption
+        &lt;ul&gt;
+          &lt;li&gt;S3 Managed Keys - SSE-S3&lt;/li&gt;
+          &lt;li&gt;AWS Key Management Service ( AWS KMS ) - Managed Keys - SSE-KMS
+            &lt;ul&gt;
+              &lt;li&gt;These keys provide an audit trail, lets you know who has been using the keys.&lt;/li&gt;
+              &lt;li&gt;Who has been decrypting what and when was it done.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;Server Side Encryption with Customer Provided Keys - SSE-C&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Client Side Encryption ( You encrypt the files and then you upload them to S3 )&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="s3" /><category term="security" /><category term="encryption" /><category term="secure" /><category term="administration" /><category term="storage" /><summary type="html">Security By default, all newly created buckets are PRIVATE. You can setup access control to your buckets using; Bucket Policies - Permissions are applied to the entier bucket. Access Control List - You can apply different permissions to different objects in the buckets. S3 Buckets can be configured to create access logs which log all the requests made to the S3 bucket. This can be done to another bucket.</summary></entry><entry><title type="html">S3 Lifecycle Management</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/S3-Lifecycle-Management.html" rel="alternate" type="text/html" title="S3 Lifecycle Management" /><published>2018-06-13T00:00:00+10:00</published><updated>2018-06-13T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/S3-Lifecycle-Management</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/S3-Lifecycle-Management.html">&lt;ul&gt;
+  &lt;li&gt;Can be used in conjunction with versioning&lt;/li&gt;
+  &lt;li&gt;Can be applied to current versions and previous versions.&lt;/li&gt;
+  &lt;li&gt;Following actions can now be done:
+    &lt;ul&gt;
+      &lt;li&gt;Transition to the standard infrequently accessed storage class
+        &lt;ul&gt;
+          &lt;li&gt;File sizes have to be bigger than 128kb and a minimum 30 days after creation.&lt;/li&gt;
+          &lt;li&gt;Archive it to glacier storage class ( 30 days after IA, if relevant )&lt;/li&gt;
+          &lt;li&gt;Permanently Delete&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="storage" /><category term="s3" /><category term="lifecycle" /><category term="management" /><summary type="html">Can be used in conjunction with versioning Can be applied to current versions and previous versions. Following actions can now be done: Transition to the standard infrequently accessed storage class File sizes have to be bigger than 128kb and a minimum 30 days after creation. Archive it to glacier storage class ( 30 days after IA, if relevant ) Permanently Delete</summary></entry><entry><title type="html">S3 Cross Region Replication</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/S3-Cross-Region-Replication.html" rel="alternate" type="text/html" title="S3 Cross Region Replication" /><published>2018-06-13T00:00:00+10:00</published><updated>2018-06-13T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/S3-Cross-Region-Replication</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/S3-Cross-Region-Replication.html">&lt;h3 id=&quot;instructions&quot;&gt;Instructions&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Create 2 buckets one in london, and sydney&lt;/li&gt;
+  &lt;li&gt;Enable Cross Region Replication on the london bucket
+    &lt;ul&gt;
+      &lt;li&gt;In order for Cross Region Replication to work, you need both buckets with versioning enabled.&lt;/li&gt;
+      &lt;li&gt;You can enable CRR on just a prefix on a bucket.&lt;/li&gt;
+      &lt;li&gt;Set the bucket storage class from standard to IA.&lt;/li&gt;
+      &lt;li&gt;Hit save!&lt;/li&gt;
+      &lt;li&gt;Existing objects will not be replicated into both the buckets, Only new objects get replicated into the other buckets&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;If you want to copy your current items in bucket one to bucket two.
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aws s3 &lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--recursive&lt;/span&gt; s3://[bucket_1] s3://[bucket_2]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Items that have been copied over, by default has permission set to private.&lt;/li&gt;
+      &lt;li&gt;If you delete an item from bucket 1, it sets a delete marker on bucket 1 and does the same on bucket 2.&lt;/li&gt;
+      &lt;li&gt;If you delete the delete marker on bucket 1 it does not delete on bucket 2.&lt;/li&gt;
+      &lt;li&gt;If you revert to an older version in bucket 1, you must do so in bucket 2, because the changes are not refelcted automatically in bucket 2.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;exam-tips&quot;&gt;Exam Tips&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;Lambda scales out ( not up ) automatically.&lt;/li&gt;
-  &lt;li&gt;Lambda functions are independent, 1 event = 1 function.&lt;/li&gt;
-  &lt;li&gt;Lambda is serverless.&lt;/li&gt;
-  &lt;li&gt;Lambdas can trigger other lambda functions, 1 event can = x functions if functions trigger other functions.&lt;/li&gt;
-  &lt;li&gt;Architectures can get extremely complicated, AWS x-ray allows you to debug what is happening.&lt;/li&gt;
-  &lt;li&gt;Lambda can do things globally, It can be used to backup S3 buckets to other S3 buckets etc.&lt;/li&gt;
-  &lt;li&gt;Know which services can trigger lambda&lt;/li&gt;
-  &lt;li&gt;Lambdas can run for at most 5 minutes.&lt;/li&gt;
+  &lt;li&gt;Versioning Must be enabled on both the source and destination buckets&lt;/li&gt;
+  &lt;li&gt;Region must be unique.&lt;/li&gt;
+  &lt;li&gt;Files in an existing must be replicated across regions manually, otherwise it does not get replicated automatically.&lt;/li&gt;
+  &lt;li&gt;You cannot replicate to multiple bucket or daisy chain it at this time.&lt;/li&gt;
+  &lt;li&gt;delete markers are replicated.&lt;/li&gt;
+  &lt;li&gt;deleting individual version or delete markers will not be replicated.&lt;/li&gt;
+  &lt;li&gt;Understanding what cross region replication is at a high level.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="crossregionreplication" /><category term="s3" /><category term="storage" /><summary type="html">Instructions</summary></entry><entry><title type="html">CloudFront</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/CloudFront.html" rel="alternate" type="text/html" title="CloudFront" /><published>2018-06-13T00:00:00+10:00</published><updated>2018-06-13T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/CloudFront</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/CloudFront.html">&lt;p&gt;A content delivery network (CDN) is a system of distributed servers (network) that delivers webpages and other web content to a user based on the geographic locations of the user, the origin of the webpage and a content delivery server.&lt;/p&gt;
+
+&lt;p&gt;Amazon cloudfront can be used to deliver your entire website, including dynamic, static, streaming, and interactive content using a global network of edge locations. Requests for your content are automatically routed to the nearest edge location, so content is delivered with the best possible performance.&lt;/p&gt;
+
+&lt;p&gt;Amazon CloudFront is optimized to work with other Amazon web services, like amazon simple storage service, amazon elastic cloud compute, amazon elastic load balancing, and amazon route 53. Amazon CloudFront also works seamlessly  with any Non-Aws origin server, which stores the original, definitive versions of your files.&lt;/p&gt;
+
+&lt;h3 id=&quot;key-terminology&quot;&gt;Key terminology&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Edge Location&lt;/strong&gt; - This is the location where content will be cached. This is seperate to an AWS Region/AZ.
+    &lt;ul&gt;
+      &lt;li&gt;Edge Locations are not &lt;strong&gt;READ-ONLY&lt;/strong&gt;. You can &lt;strong&gt;WRITE&lt;/strong&gt; to them too. ( ie put an object on to them ). This will be replicated back to the origin server.&lt;/li&gt;
+      &lt;li&gt;Objects are cached for the life of the TTL ( Time To Live )&lt;/li&gt;
+      &lt;li&gt;You can clear cached objects, but you will be charged.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Origin&lt;/strong&gt; - This is the origin of all the files that the CDN will distribute. This can be either an S3 bucket, an EC2 Instance, an Elastic Load Balancer or Route53.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Distribution&lt;/strong&gt; - This is the name given to the CDN which consists of a collection of Edge Locations.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Web Distribution&lt;/strong&gt; - Typically used for Websites.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;RTMP&lt;/strong&gt; - Used for Media Streaming.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h5 id=&quot;other-serverless-services&quot;&gt;Other serverless services&lt;/h5&gt;
+&lt;h3 id=&quot;lab&quot;&gt;LAB&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;API Gateway&lt;/li&gt;
-  &lt;li&gt;S3&lt;/li&gt;
-  &lt;li&gt;DynamoDB&lt;/li&gt;
-  &lt;li&gt;Definetely not EC2&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="lambda" /><category term="serverless" /><category term="function" /><category term="compute" /><summary type="html">What is lambda ? AWS Lambda is a compute service where you can upload your code and create a Lambda function. AWS Lambda takes care of provisioning and managing the servers that you use to run the code. You dont have to worry about operating systems, patching, scaling, etc. You can use Lambda in the following ways.</summary></entry><entry><title type="html">EC2 Instance Metadata</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/09/EC2-Instance-Metadata.html" rel="alternate" type="text/html" title="EC2 Instance Metadata" /><published>2018-06-09T00:00:00+10:00</published><updated>2018-06-09T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/06/09/EC2-Instance-Metadata</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/09/EC2-Instance-Metadata.html">&lt;h3 id=&quot;pre-requisite&quot;&gt;Pre-requisite&lt;/h3&gt;
-&lt;p&gt;Have an ec2 instance ready when you wanna start this lab.&lt;/p&gt;
+  &lt;li&gt;Create a bucket in s3 to be used with CloudFront.&lt;/li&gt;
+  &lt;li&gt;Upload an image to that bucket.&lt;/li&gt;
+  &lt;li&gt;Goto CloudFront and click on create distribution network.&lt;/li&gt;
+  &lt;li&gt;Click on get start under Web.&lt;/li&gt;
+  &lt;li&gt;Select the s3 bucket on the origin domain name. (dropdown menu)&lt;/li&gt;
+  &lt;li&gt;Select Yes for restricting bucket access.&lt;/li&gt;
+  &lt;li&gt;Create a new identity for bucket access.&lt;/li&gt;
+  &lt;li&gt;Update bucket policy to grant read permissions.&lt;/li&gt;
+  &lt;li&gt;Under default cache behaviour Viewer protocol policy Redirect HTTP to HTTPS&lt;/li&gt;
+  &lt;li&gt;Restrict Viewer Access ( Use signed urls or signed cookies ) if you want to have restrictions.&lt;/li&gt;
+  &lt;li&gt;Hit save and it should be deployed in around 15 minutes.&lt;/li&gt;
+  &lt;li&gt;You can also enable geo restrictions
+    &lt;ul&gt;
+      &lt;li&gt;either black countries or whitelist countries but not both.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;If you want to remove an object from the cache immedietely ( Costs MONEY ), you can do so by creating an Invalidation.&lt;/li&gt;
+  &lt;li&gt;After youre done with setting up, make sure you delete the distribution network because this does cost you money.
+    &lt;ul&gt;
+      &lt;li&gt;First select the distribution network, and click on disable (15 - 30) mins later you will be able to click on delete.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="storage" /><category term="cloudfront" /><category term="cdn" /><category term="s3" /><summary type="html">A content delivery network (CDN) is a system of distributed servers (network) that delivers webpages and other web content to a user based on the geographic locations of the user, the origin of the webpage and a content delivery server.</summary></entry><entry><title type="html">S3 Enable Versioning</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/12/S3-Enable-Versioning.html" rel="alternate" type="text/html" title="S3 Enable Versioning" /><published>2018-06-12T00:00:00+10:00</published><updated>2018-06-12T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/12/S3-Enable-Versioning</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/12/S3-Enable-Versioning.html">&lt;h3 id=&quot;instructions&quot;&gt;Instructions&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Loggin to the aws console and head over to aws s3&lt;/li&gt;
+  &lt;li&gt;Create a new bucket, click next instead of create.&lt;/li&gt;
+  &lt;li&gt;Enable versioning and click next until bucket is created.&lt;/li&gt;
+  &lt;li&gt;Once versioning has been enabled for a bucket.
+    &lt;ul&gt;
+      &lt;li&gt;You cannot remove versioning from the bucket.&lt;/li&gt;
+      &lt;li&gt;You can stop the bucket from creating more versions.&lt;/li&gt;
+      &lt;li&gt;If you want to completely remove versioning from the bucket, create a new bucket, transfer everything to that bucket.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;If you deleted an object, you can restore that object as well. You will be able to restore it to any point in time.&lt;/li&gt;
+&lt;/ul&gt;
 
+&lt;h3 id=&quot;tips&quot;&gt;Tips&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Stores all versions of an object (including all writes and even if you object)&lt;/li&gt;
+  &lt;li&gt;Great Backup tool&lt;/li&gt;
+  &lt;li&gt;Once enabled, Versioning cannot be disabled, only suspended.&lt;/li&gt;
+  &lt;li&gt;Integrated with Life cycle rules.&lt;/li&gt;
+  &lt;li&gt;Versioning’s MFA Delete capability, which uses multi-factor authentication, can be used to provide an additional layer of security. ( bucket level and object level )&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="storage" /><category term="s3" /><category term="versioning" /><summary type="html">Instructions Loggin to the aws console and head over to aws s3 Create a new bucket, click next instead of create. Enable versioning and click next until bucket is created. Once versioning has been enabled for a bucket. You cannot remove versioning from the bucket. You can stop the bucket from creating more versions. If you want to completely remove versioning from the bucket, create a new bucket, transfer everything to that bucket. If you deleted an object, you can restore that object as well. You will be able to restore it to any point in time.</summary></entry><entry><title type="html">Serverless Website</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/11/Serverless-Website.html" rel="alternate" type="text/html" title="Serverless Website" /><published>2018-06-11T00:00:00+10:00</published><updated>2018-06-11T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/11/Serverless-Website</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/11/Serverless-Website.html">&lt;p&gt;This will be example of the simplest serverless website possible.&lt;/p&gt;
 &lt;h3 id=&quot;instructions&quot;&gt;Instructions&lt;/h3&gt;
-&lt;p&gt;In order to see a list of all the metadata for the ec2 instance you’re on.&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl http://169.254.169.254/latest/meta-data
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;That should list out all the options available for you. For you to obtain the IPV4 public address for the ec2 instance.&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl http://169.254.169.254/latest/public-ipv4
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;That should give you the public ipv4.&lt;/p&gt;
-
-&lt;p&gt;You can use the same concept with any programming language to get the ec2 instance metadata.&lt;/p&gt;</content><author><name>Eshan Shafeeq</name></author><category term="ec2" /><category term="metadata" /><category term="compute" /><category term="lab" /><summary type="html">Pre-requisite Have an ec2 instance ready when you wanna start this lab.</summary></entry><entry><title type="html">EC2 Elastic Load Balancer</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/09/EC2-ELB.html" rel="alternate" type="text/html" title="EC2 Elastic Load Balancer" /><published>2018-06-09T00:00:00+10:00</published><updated>2018-06-09T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/06/09/EC2-ELB</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/09/EC2-ELB.html">&lt;h2 id=&quot;types-of-load-balancers&quot;&gt;Types of load balancers&lt;/h2&gt;
-&lt;ol&gt;
-  &lt;li&gt;Application load balancers
+&lt;ul&gt;
+  &lt;li&gt;First we will need to create a lambda function
     &lt;ul&gt;
-      &lt;li&gt;Work at layer 7 ( Preferred Method )&lt;/li&gt;
-      &lt;li&gt;Newest 2016&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Classic load balancer
-    &lt;ul&gt;
-      &lt;li&gt;Layer 4 routing TCP layer&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;creating-a-load-balancer&quot;&gt;Creating a Load balancer&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Services-&amp;gt;EC2-&amp;gt;[left panel]ELB-&amp;gt;Create Load Balancer&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Select Classic Load Balancer&lt;/li&gt;
-  &lt;li&gt;Define Load Balancers
-    &lt;ul&gt;
-      &lt;li&gt;Make sure its not an internal load balancer.&lt;/li&gt;
-      &lt;li&gt;If youre using default vpc keep advanced vpc disabled.&lt;/li&gt;
-      &lt;li&gt;leave the rest as default&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Assign Security Group.
-    &lt;ul&gt;
-      &lt;li&gt;Leave it as default.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Configure Health Check.
-    &lt;ul&gt;
-      &lt;li&gt;Use HTTP&lt;/li&gt;
-      &lt;li&gt;Set ping path as health.html&lt;/li&gt;
-      &lt;li&gt;Set response timeout as 2 seconds&lt;/li&gt;
-      &lt;li&gt;Interval at 5 seconds&lt;/li&gt;
-      &lt;li&gt;Unhealthy threshold 2&lt;/li&gt;
-      &lt;li&gt;Healthy threshold 3&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Add your EC2 Instances&lt;/li&gt;
-  &lt;li&gt;Add tags!
-    &lt;ul&gt;
-      &lt;li&gt;Very important to keep track for the cost tracking&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Review and launch -&amp;gt; Create&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;It will take sometime to register the load balancer and the load balancer to come online.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Instance monitored by ELB are reported as ; InService, or OutofService&lt;/li&gt;
-  &lt;li&gt;Health Checks check the instace health by doing a http request and getting the expected response from it.&lt;/li&gt;
-  &lt;li&gt;Hace their own DNS name. Never will be given an IP address.&lt;/li&gt;
-  &lt;li&gt;Read the ELB FAQ for Classic Load Balancers.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="compute" /><category term="elb" /><category term="ec2" /><category term="lab" /><summary type="html">Types of load balancers Application load balancers Work at layer 7 ( Preferred Method ) Newest 2016 Classic load balancer Layer 4 routing TCP layer</summary></entry><entry><title type="html">AWS Study Guide</title><link href="https://diehard073055.github.io//sturdy-carnival/exam/study/guide/2018/06/09/AWS-Study-Guide.html" rel="alternate" type="text/html" title="AWS Study Guide" /><published>2018-06-09T00:00:00+10:00</published><updated>2018-06-09T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/exam/study/guide/2018/06/09/AWS-Study-Guide</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/exam/study/guide/2018/06/09/AWS-Study-Guide.html">&lt;h1 id=&quot;learning&quot;&gt;Learning&lt;/h1&gt;
-
-&lt;h3 id=&quot;distributed-practice&quot;&gt;Distributed Practice&lt;/h3&gt;
-&lt;p&gt;Spend a little bit of time every day of the month. Spreading out the learning makes things stick.&lt;/p&gt;
-
-&lt;h3 id=&quot;varied--interleaved-practise&quot;&gt;Varied / Interleaved Practise&lt;/h3&gt;
-&lt;p&gt;Frequently change tasks and topics so that you are forced to think about the material in different ways. Easier to learn new things by incoperating and reinforcing previously-learned material. Let your existing &lt;strong&gt;mental model&lt;/strong&gt; help you learn new things. Use your mental model often since it will help you strengthen and refine it.&lt;/p&gt;
-
-&lt;h3 id=&quot;spaced-repetition&quot;&gt;Spaced Repetition&lt;/h3&gt;
-&lt;p&gt;Review Information before you forget it completely. Revisit information when your mental model has improved. Spread out the learning time.&lt;/p&gt;
-
-&lt;h1 id=&quot;zooming-in--zooming-out&quot;&gt;Zooming in &amp;amp; Zooming out&lt;/h1&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Wikipedia : [A]bstraction is a technique for arranging complexity of computer systems. It works by establishing a level of complexity on which a person interacts with the system, suppressing the more complex details below the current level.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;Abstractions&lt;/strong&gt; are very important in software systems. It is the foundation of amazon web services. (&lt;em&gt;but just really anything in technology is&lt;/em&gt;).&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Your goal is to architect and build systems. Think about the data flow through your entire system.&lt;/li&gt;
-  &lt;li&gt;Nothing exists in isolation, services interconnect, the systems interacts with other systems.&lt;/li&gt;
-  &lt;li&gt;Change over time is a key dimension in all tradeoff decisions, a “perfect” system that cannot be changed is fundementally broken, because the context around that system will eventually change.&lt;/li&gt;
-  &lt;li&gt;Technically debt, what you do now determines how easy it will be to make changes later.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;mental-models&quot;&gt;Mental Models&lt;/h1&gt;
-
-&lt;p&gt;&lt;strong&gt;You remember things you understand&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;The image of the world around us, which we carry in our head, is just a model. Nobody in his head imagines all the world, government or country. He has only selected concepts, and relationships between them, and uses those to represent the real system.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;what-is-a-mental-model&quot;&gt;What is a mental model&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;A simplified representation of reality that your mind uses to anticipate events or draw conclusions. A way to describe what your brain builds when you understand something. The way your brain organizes information it learns into heirarchies, its when you use logic instead of memorization. Recognizing patterns.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;value-proposition&quot;&gt;Value Proposition&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Predictive capability&lt;/li&gt;
-  &lt;li&gt;Quicker and easier learning: Understanding vs Memorization.&lt;/li&gt;
-  &lt;li&gt;Brain is better at remembering related concepts than unrelated details.&lt;/li&gt;
-  &lt;li&gt;More memorization can dilute older information.&lt;/li&gt;
-  &lt;li&gt;More understanding improves mental models.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;how-to-build-a-mental-model&quot;&gt;How to build a mental model&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Double loop learning&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h5 id=&quot;single-loop-learning&quot;&gt;Single loop learning&lt;/h5&gt;
-&lt;p&gt;Is error correction by following the rules and operating norms when solving problem. Some thing like a feedback control loop.&lt;/p&gt;
-
-&lt;h5 id=&quot;double-loop-learning&quot;&gt;Double loop learning&lt;/h5&gt;
-&lt;p&gt;Is error correction by changing and critically questioning the rules and operating norms when solving problems.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;This involves more thinking outside the box.&lt;/li&gt;
-  &lt;li&gt;Creativity is a must.&lt;/li&gt;
-  &lt;li&gt;Thinking outside the operating norms.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This allows us to question which situation is the best to reach our end goal.&lt;/p&gt;
-
-&lt;h3 id=&quot;progression--building-the-mental-model-&quot;&gt;Progression ( Building the mental model )&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;When new information clashes with your mental model, you will have to rebuild your mental model. &lt;strong&gt;Forced rebuilds&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;Eventually becomes more robust and require fewer major changes, which results for efficient assimilation of info, high-efficiency learning and functional expertise.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;questions&quot;&gt;Questions&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Elaborative investigation uses questions like “why?” and “how?” to understand the meaning of information to be learned.&lt;/li&gt;
-  &lt;li&gt;Socratic Method, based on asking and answering questions to stimulate critical thinking and to draw out ideas and underlying presumptions.&lt;/li&gt;
-  &lt;li&gt;Five whys - used to learn the root cause of a defect or problem by repeating the question “why?”. Each answer forms the basis of the next question.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;why&quot;&gt;Why?&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Keep asking this about everything.&lt;/li&gt;
-  &lt;li&gt;Why does this service or feature exist? why would someone want it?&lt;/li&gt;
-  &lt;li&gt;Why does it work the way it does?&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Why are the limits set the way they are?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Are they for my protection?&lt;/li&gt;
-  &lt;li&gt;Are they to help AWS manage scaling?&lt;/li&gt;
-  &lt;li&gt;Are they trying to encourage/force me to use better designs?&lt;/li&gt;
-  &lt;li&gt;Are they implementation artifacts?&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;what&quot;&gt;What?&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;What assumptions have i made?&lt;/li&gt;
-  &lt;li&gt;What assumptions have aws made?&lt;/li&gt;
-  &lt;li&gt;What is the key purpose of this service/feature?&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;when&quot;&gt;When?&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;When does the abstractions leak? When does what i know ( believe ) change?
-    &lt;ul&gt;
-      &lt;li&gt;Does it break under load?&lt;/li&gt;
-      &lt;li&gt;During certain kinds of outages? ( AZ down? Other service having problems? )&lt;/li&gt;
-      &lt;li&gt;Randomly but rare? ( Amortized costs? Network glitches? )&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;When might i get throttled or hit service limits?
-    &lt;ul&gt;
-      &lt;li&gt;Which ones are fixed in stone?&lt;/li&gt;
-      &lt;li&gt;Which ones can be changed?&lt;/li&gt;
+      &lt;li&gt;Select python 3.6 for the language&lt;/li&gt;
+      &lt;li&gt;add the following code to your lambda&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;how-&quot;&gt;How ?&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;How is this similar to what i’ve seen before?&lt;/li&gt;
-  &lt;li&gt;How is this different from what i’ve seen before?&lt;/li&gt;
-  &lt;li&gt;How did they build this?
-    &lt;ul&gt;
-      &lt;li&gt;Based on my understanding, what should be the limitations?&lt;/li&gt;
-      &lt;li&gt;Am i right about this?&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;How can i test what i believe?&lt;/li&gt;
-  &lt;li&gt;How does AWS handle failures?&lt;/li&gt;
-  &lt;li&gt;How do i handle failures?&lt;/li&gt;
-  &lt;li&gt;How does this intergrate with other services?&lt;/li&gt;
-&lt;/ul&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;lambda_handler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;In lambda_handler&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-&lt;h3 id=&quot;who-&quot;&gt;Who ?&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Who is the target for this service?&lt;/li&gt;
-  &lt;li&gt;Service offerings target real user scenarios - based on customer feedback&lt;/li&gt;
-  &lt;li&gt;Integrate those into your mental model to make better predictions about how it should / does work.&lt;/li&gt;
-&lt;/ul&gt;
+    &lt;span class=&quot;n&quot;&gt;resp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;statusCode&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;headers&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;Access-Control-Allow-Origin&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;*&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;body&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;This response is from a lambda function running in ohio!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-&lt;h1 id=&quot;how-teaching-others-can-help&quot;&gt;How teaching others can help&lt;/h1&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resp&lt;/span&gt;
 
-&lt;h3 id=&quot;teaching&quot;&gt;Teaching&lt;/h3&gt;
-&lt;p&gt;Forces you to communicate what you have learned. Requires you to understand the material more deeply. May also result in further questions that you hadnt considered. Explaining in detail to someone else will concrete these in your head.&lt;/p&gt;
-
-&lt;h3 id=&quot;dive-in&quot;&gt;Dive in!&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Find a forum question that interests you. Research it until you can answer it. With full explanations. Make your response defensible, not just an opinion or guess. Use quotes from and links to official documentation!&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;30-second-summary&quot;&gt;30 Second Summary&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;On any topic or technology.&lt;/li&gt;
-  &lt;li&gt;Recite a 15 to 30 second summary.&lt;/li&gt;
-  &lt;li&gt;Key strengths.&lt;/li&gt;
-  &lt;li&gt;Key weaknesses.&lt;/li&gt;
-  &lt;li&gt;How it interacts with other services.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;visualization&quot;&gt;Visualization&lt;/h1&gt;
-
-&lt;p&gt;Its not just vision.&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;The words “visualization” and “imagery” are in some ways misleading. while the domiant sense is usually vision, visualization does not just involve seeing. The more senses you involve, the stronger the effect. Hear a switch click when you turn it on, or feel an engine turn over and the vibrations when you start it. Smell fuel when you check a fuel tank.. All these can significantly improve how your visualizations work.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;example&quot;&gt;Example&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Imagine yourself as a network packet.&lt;/li&gt;
-  &lt;li&gt;On your way home ( a client system ).&lt;/li&gt;
-  &lt;li&gt;To work ( a load-balanced server in a VPC ).&lt;/li&gt;
-  &lt;li&gt;Driving and turning along roads ( network hops, routing, load balancing ).&lt;/li&gt;
-  &lt;li&gt;And passing security checkpoints (firewalls, network ACLs, security groups).&lt;/li&gt;
-  &lt;li&gt;Some are machines that always check your papers ( stateless; nACLs)&lt;/li&gt;
-  &lt;li&gt;Others have guards that remember you on the way back ( stateful;SGs )&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;pdca&quot;&gt;PDCA&lt;/h1&gt;
-
-&lt;h3 id=&quot;what-is-pdca&quot;&gt;What is PDCA&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Plan
-    &lt;ul&gt;
-      &lt;li&gt;Plan what youre going to do to learn some new material&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Do
-    &lt;ul&gt;
-      &lt;li&gt;Do what you planned; set about actually learning it.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Check
-    &lt;ul&gt;
-      &lt;li&gt;Check how well that plan worked-both how easy and how effective it was.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Adjust
-    &lt;ul&gt;
-      &lt;li&gt;Adjust your plan for future learning, emphasizing techniques that worked well.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;what-to-do-before-the-exam&quot;&gt;What to do before the exam&lt;/h1&gt;
-
-&lt;h3 id=&quot;month-before&quot;&gt;Month before&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Read AWS Certification FAQ
-    &lt;ul&gt;
-      &lt;li&gt;Think about the exam process.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Read Exam blueprint
-    &lt;ul&gt;
-      &lt;li&gt;Pay attention to the exam waiting in each content domain&lt;/li&gt;
-      &lt;li&gt;Read every line item.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Take ACLOUD.Guru certification course final practice exam
-    &lt;ul&gt;
-      &lt;li&gt;Take for first time, as assessment.&lt;/li&gt;
-      &lt;li&gt;Repeat until consistently scoring 100%.&lt;/li&gt;
-      &lt;li&gt;Understand why every incorrect answer is wrong.&lt;/li&gt;
-      &lt;li&gt;Unserstand why every correct answer is right.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Read certification course forum posts about the exam feedback.
-    &lt;ul&gt;
-      &lt;li&gt;Read throught the 20-30 highest-ranked from the last 2-8 weeks.&lt;/li&gt;
-      &lt;li&gt;Read through all exam related posts from the last 2-8 weeks.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;week-or-two-before&quot;&gt;Week or Two Before&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Take aws practise exam for the first time.
-    &lt;ul&gt;
-      &lt;li&gt;Late enough to evaluate yourself.&lt;/li&gt;
-      &lt;li&gt;Early enough to refresh on weak areas.&lt;/li&gt;
-      &lt;li&gt;Early enough to reschedule / cancel without penalty, if necessary.&lt;/li&gt;
-      &lt;li&gt;Take screenshots!&lt;/li&gt;
-      &lt;li&gt;Rip the questions and responses apart!&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Read the latest exam feedback forum posts.&lt;/li&gt;
-  &lt;li&gt;Schedule exam.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;day-before&quot;&gt;Day Before&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Rewatch training course summary lessons&lt;/li&gt;
-  &lt;li&gt;Review your own notes.&lt;/li&gt;
-  &lt;li&gt;Download some key course videos to phone.&lt;/li&gt;
-  &lt;li&gt;Read top forum posts with details to remember.&lt;/li&gt;
-  &lt;li&gt;Consider reading most recent forum posts for very latest feedback.&lt;/li&gt;
-  &lt;li&gt;Read AWS sample questions.&lt;/li&gt;
-  &lt;li&gt;Review questions from AWS practise exam.&lt;/li&gt;
-  &lt;li&gt;Review memorization items.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;evening-before&quot;&gt;Evening Before&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Double check details.
-    &lt;ul&gt;
-      &lt;li&gt;Exam location&lt;/li&gt;
-      &lt;li&gt;Exam time.&lt;/li&gt;
-      &lt;li&gt;All Documents ( Govt-issued picture ID ) ( Additional ID ).&lt;/li&gt;
-      &lt;li&gt;Set out printed exam details.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Metally prepare.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;just-before&quot;&gt;Just Before&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Come early!
-    &lt;ul&gt;
-      &lt;li&gt;Last minute review notes&lt;/li&gt;
-      &lt;li&gt;watch key downloaded training videos&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Go to the bath room.&lt;/li&gt;
-  &lt;li&gt;Validate IDs and the exam registration with proctor&lt;/li&gt;
-  &lt;li&gt;Lock up everything you have.
-    &lt;ul&gt;
-      &lt;li&gt;Empty every pocket of everything.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="certification" /><category term="examguide" /><category term="aws" /><category term="study" /><summary type="html">Learning</summary></entry><entry><title type="html">S3 CLI AND REGIONS</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/07/S3-CLI-AND-REGIONS.html" rel="alternate" type="text/html" title="S3 CLI AND REGIONS" /><published>2018-06-07T00:00:00+10:00</published><updated>2018-06-07T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/06/07/S3-CLI-AND-REGIONS</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/07/S3-CLI-AND-REGIONS.html">&lt;h3 id=&quot;instructions&quot;&gt;Instructions&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Launch an EC2 instance with the default settings, and no roles attached to it.
-    &lt;ul&gt;
-      &lt;li&gt;t2.micro&lt;/li&gt;
-      &lt;li&gt;Amazon linux AMI&lt;/li&gt;
-      &lt;li&gt;default configuration settings&lt;/li&gt;
-      &lt;li&gt;add to a security group which has HTTP, HTTPS and SSH from 0.0.0.0&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Create 3 S3 buckets.
-    &lt;ul&gt;
-      &lt;li&gt;One in London&lt;/li&gt;
-      &lt;li&gt;One in Northern Virginia&lt;/li&gt;
-      &lt;li&gt;One in Sydney&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Add some random objects to those buckets.
-    &lt;ul&gt;
-      &lt;li&gt;Should be unique&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Create a role with &lt;code class=&quot;highlighter-rouge&quot;&gt;amazon s3 full access&lt;/code&gt; and attach it to your EC2.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;SSH into your ec2 instances, and you can copy those items from your buckets into your ec2 instance
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aws s3 &lt;span class=&quot;nb&quot;&gt;cp &lt;/span&gt;s3://[bucketname] ./
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-    &lt;ul&gt;
-      &lt;li&gt;This works regardless of which region the bucket is in, before you would have to provide the –region flag with the region.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Eshan Shafeeq</name></author><category term="goodhabits" /><category term="compute" /><category term="s3" /><category term="awscli" /><category term="ec2" /><category term="lab" /><summary type="html">Instructions</summary></entry><entry><title type="html">Bash Scripting Lab</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/07/Bash-Scripting-Lab.html" rel="alternate" type="text/html" title="Bash Scripting Lab" /><published>2018-06-07T00:00:00+10:00</published><updated>2018-06-07T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/06/07/Bash-Scripting-Lab</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/07/Bash-Scripting-Lab.html">&lt;p&gt;In this lab we are going to pass a bash script to the ec2 instance before it is launched to automate some of the tasks we want the instance to execute before we ssh in.&lt;/p&gt;
-
-&lt;h3 id=&quot;instructions&quot;&gt;Instructions&lt;/h3&gt;
-
-&lt;p&gt;Create an ec2 instance to launch.
-Make sure you assign the role s3-admin-access to this instance.
-On the tab &lt;code class=&quot;highlighter-rouge&quot;&gt;3. Configure Instance&lt;/code&gt; -&amp;gt; Advanced Details -&amp;gt; User Data &lt;code class=&quot;highlighter-rouge&quot;&gt;!&lt;/code&gt;. Make sure As text option is selected. And then add then pass the following bash script to it.&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# Log file to log all the events&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;LOGFILE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/ec2-user/ONBOOT.log
-
-
-&lt;span class=&quot;c&quot;&gt;# Install updates to the server&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;yum update &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; 2&amp;gt;&amp;amp;1 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$LOGFILE&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# Install apache&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;yum &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;httpd &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; 2&amp;gt;&amp;amp;1 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$LOGFILE&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# Start the apache service and set the service to run on boot&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;service httpd start 2&amp;gt;&amp;amp;1 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$LOGFILE&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;chkconfig httpd on 2&amp;gt;&amp;amp;1 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$LOGFILE&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# Copy website from s3 to /var/www/html&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;aws s3 &lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--recursive&lt;/span&gt; s3://[bucketname] /var/www/html/ 2&amp;amp;1 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$LOGFILE&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Startup script done installing essentials&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$LOGFILE&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;When the instance gets launched, It should have setup the webserver and your file will be available when you head to the instance ip address on the browser. Also after you login, you be able to see the execution logs on the home directory. If anything did go wrong it should be on the logs.&lt;/p&gt;</content><author><name>Eshan Shafeeq</name></author><category term="bashscripting" /><category term="lab" /><category term="ec2" /><category term="s3" /><summary type="html">In this lab we are going to pass a bash script to the ec2 instance before it is launched to automate some of the tasks we want the instance to execute before we ssh in.</summary></entry><entry><title type="html">EC2 AWS CLI</title><link href="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/06/EC2-AWS-CLI.html" rel="alternate" type="text/html" title="EC2 AWS CLI" /><published>2018-06-06T00:00:00+10:00</published><updated>2018-06-06T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/compute/2018/06/06/EC2-AWS-CLI</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/compute/2018/06/06/EC2-AWS-CLI.html">&lt;p&gt;In order to get aws cli running, you need to create a user in IAM with programatic access. Save the &lt;code class=&quot;highlighter-rouge&quot;&gt;credentials.csv&lt;/code&gt; file. &lt;strong&gt;You only get to download this once&lt;/strong&gt;. Only give user the permission for the resource you want the user to access, and nothing more.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Now set the trigger for your lambda function as API Gateway.
+    &lt;ul&gt;
+      &lt;li&gt;Give it any name you want.&lt;/li&gt;
+      &lt;li&gt;Save your lambda settings&lt;/li&gt;
+      &lt;li&gt;Go to API Gateway and make sure its a get request.&lt;/li&gt;
+      &lt;li&gt;Go to stages and get the GET method URL.&lt;/li&gt;
+      &lt;li&gt;See if the URL gives back the response you expect.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Create a bucket in S3 with static website hosting&lt;/li&gt;
+  &lt;li&gt;add the following index.html&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;After spinning up a EC2 instance, run the following command.&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aws s3 &lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;xhttp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;XMLHttpRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;xhttp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onreadystatechange&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readyState&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+            &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;demo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;innerHTML&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;responseText&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;xhttp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;GET&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;API GATEWAY URL&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;xhttp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;align=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;center&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Hello people&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;request()&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Click me!&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;demo&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;It should give you an error saying, &lt;code class=&quot;highlighter-rouge&quot;&gt;unable to locate credentails. You can configure credentials by running &quot;aws configure&quot;.&lt;/code&gt; So run the following command.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;If you have added the API Gateway url in the code above, It should work accordingly.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aws configure
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now enter the &lt;code class=&quot;highlighter-rouge&quot;&gt;Access Key ID&lt;/code&gt; and the &lt;code class=&quot;highlighter-rouge&quot;&gt;Secret Access Key&lt;/code&gt; you downloaded when you created the IAM user with the programatic access. After that try the following command again.&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aws s3 &lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now it should show you a list of all the buckets you have created on s3. If you dont have any buckets it will be empty. You can create a bucket with the following command.&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aws s3 mb s3://&amp;lt;enter your bucket name&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Remember that your bucketname has to be unique across all the buckets that has ever been created in aws.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;In order for you to get help on a specific aws service, you can type &lt;code class=&quot;highlighter-rouge&quot;&gt;aws [service] help&lt;/code&gt;. So for example to get help about s3.&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aws s3 &lt;span class=&quot;nb&quot;&gt;help&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;To get help on a command of the service you can type &lt;code class=&quot;highlighter-rouge&quot;&gt;aws [service] [command] help&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aws s3 mb &lt;span class=&quot;nb&quot;&gt;help&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now since we configured our aws cli to be using the credentials on the ec2 instance. This is risky since if someone did hack in they will use your credentials to do nasty things to your s3 buckets or more. The credentials are stored in &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.aws/credentials&lt;/code&gt;. Dont ever store these credentials in github, in your projects. The best way to do programatic resource management with scripts is to use an ec2 with the right role attached to it. And then ssh-ing into the machine. And then you can run whatever script you wanted to run.&lt;/p&gt;
-
-&lt;p&gt;In order to list all the running ec2 instances, run the command.&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aws ec2 describe-instances
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You will see bunch of information here. and then in order to terminate any running instance type &lt;code class=&quot;highlighter-rouge&quot;&gt;aws ec2 terminate-instances&lt;/code&gt;. You can get the instance id from the &lt;code class=&quot;highlighter-rouge&quot;&gt;aws describe-instances&lt;/code&gt; command.&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aws ec2 describe-instances &lt;span class=&quot;nt&quot;&gt;--instance-ids&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;enter instance &lt;span class=&quot;nb&quot;&gt;id &lt;/span&gt;here]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;make sure you delete the user that you created for this unless you have specific access for you to do something simple on your own machine. To do this the safe way create a role with the required access in IAM. In situations where you have multiple ec2 instances with the credentials file, and the credentials files got leaked. You will need to delete the file and replace the in everysingle ec2 instance. Which can be done programatically, its still ugly. So the best way is to use roles on those ec2 instances.&lt;/p&gt;
-
-&lt;p&gt;So in the case where you want to have an ec2 instance do a bunch of tasks with s3. You should create the s3 admin access role and attach it to your ec2 instance. Also remember &lt;strong&gt;roles are available globally, you cannot create a role for a specific region&lt;/strong&gt;. &lt;em&gt;So after you have created an instance with the right role attached&lt;/em&gt;. You could double check on all the possible actions that is doable from this ec2 instance by going on to polices from the left side panel. Click on policies -&amp;gt; permissions. Here you can view both the json and gui version of all the actions that have been issued for the ec2 instance.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;You can click on a running instance -&amp;gt; Actions -&amp;gt; Instance Settings -&amp;gt; Attach / Replace IAM role, If you want to attach another IAM role.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;If you have added the S3 access to the role you attached to the ec2 instance. You can try.&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aws s3 &lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;and now it should just work with out asking you to configure things. Even if you check the directory &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.aws&lt;/code&gt; it should be empty. So even if your ec2 instance got compromised, you dont have to delete your access credentials.&lt;/p&gt;</content><author><name>Eshan Shafeeq</name></author><category term="compute" /><category term="ec2" /><category term="awscli" /><category term="lab" /><category term="programaticaccess" /><summary type="html">In order to get aws cli running, you need to create a user in IAM with programatic access. Save the credentials.csv file. You only get to download this once. Only give user the permission for the resource you want the user to access, and nothing more.</summary></entry></feed>
+&lt;p&gt;And that is how you build a serverless website with S3, Lambda and API Gateway!&lt;/p&gt;</content><author><name>Eshan Shafeeq</name></author><category term="compute" /><category term="storage" /><category term="apigateway" /><category term="s3" /><category term="lambda" /><category term="serverless" /><summary type="html">This will be example of the simplest serverless website possible. Instructions First we will need to create a lambda function Select python 3.6 for the language add the following code to your lambda</summary></entry></feed>
