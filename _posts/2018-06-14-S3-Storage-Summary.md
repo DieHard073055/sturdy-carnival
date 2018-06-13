@@ -115,6 +115,3 @@
 * You can load files much faster by enabling multipart upload.
 * Read the S3 FAQ!
 
-
-        * 
-
