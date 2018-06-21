@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>DynamoDB Provisioned Throughput Calculations | AWS Developer Associate Notes</title>
+<meta name="generator" content="Jekyll v3.8.2" />
+<meta property="og:title" content="DynamoDB Provisioned Throughput Calculations" />
+<meta name="author" content="Eshan Shafeeq" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Provisioned Throughput Unit of Read provisioned throughput All reads are rounded up to increments of 4KB Eventually Consistent Reads (default) consist of 2 reads per second. Strongly Consistent Reads consist of 1 read per second. Unit of Write provisioned throughput. All writes are 1 KB All writes consist of 1 write per second" />
+<meta property="og:description" content="Provisioned Throughput Unit of Read provisioned throughput All reads are rounded up to increments of 4KB Eventually Consistent Reads (default) consist of 2 reads per second. Strongly Consistent Reads consist of 1 read per second. Unit of Write provisioned throughput. All writes are 1 KB All writes consist of 1 write per second" />
+<link rel="canonical" href="https://diehard073055.github.io//sturdy-carnival/database/2018/06/21/DynamoDB-Provisioned-Throughput-Calculations.html" />
+<meta property="og:url" content="https://diehard073055.github.io//sturdy-carnival/database/2018/06/21/DynamoDB-Provisioned-Throughput-Calculations.html" />
+<meta property="og:site_name" content="AWS Developer Associate Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-06-21T00:00:00+10:00" />
+<script type="application/ld+json">
+{"headline":"DynamoDB Provisioned Throughput Calculations","description":"Provisioned Throughput Unit of Read provisioned throughput All reads are rounded up to increments of 4KB Eventually Consistent Reads (default) consist of 2 reads per second. Strongly Consistent Reads consist of 1 read per second. Unit of Write provisioned throughput. All writes are 1 KB All writes consist of 1 write per second","datePublished":"2018-06-21T00:00:00+10:00","dateModified":"2018-06-21T00:00:00+10:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://diehard073055.github.io//sturdy-carnival/database/2018/06/21/DynamoDB-Provisioned-Throughput-Calculations.html"},"url":"https://diehard073055.github.io//sturdy-carnival/database/2018/06/21/DynamoDB-Provisioned-Throughput-Calculations.html","author":{"@type":"Person","name":"Eshan Shafeeq"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/sturdy-carnival/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://diehard073055.github.io//sturdy-carnival/feed.xml" title="AWS Developer Associate Notes" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/sturdy-carnival/">AWS Developer Associate Notes</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/sturdy-carnival/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">DynamoDB Provisioned Throughput Calculations</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-06-21T00:00:00+10:00" itemprop="datePublished">Jun 21, 2018
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Eshan Shafeeq</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h3 id="provisioned-throughput">Provisioned Throughput</h3>
+<ul>
+  <li>Unit of Read provisioned throughput
+    <ul>
+      <li>All reads are rounded up to increments of 4KB</li>
+      <li>Eventually Consistent Reads (default) consist of 2 reads per second.</li>
+      <li>Strongly Consistent Reads consist of 1 read per second.</li>
+    </ul>
+  </li>
+  <li>Unit of Write provisioned throughput.
+    <ul>
+      <li>All writes are 1 KB</li>
+      <li>All writes consist of 1 write per second</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="the-magic-formula">The magic formula</h3>
+<ul>
+  <li><strong>Question</strong> - you have an application that requires to read 10 items of 1KB per second using eventual consistency. What should you set the read throughput to?</li>
+</ul>
+
+<blockquote>
+  <p><strong>(Size of Read rounded to nearest 4KB chunk / 4KB) x no of items = read throughput</strong>
+<strong>Divide by 2 if eventually consistent.</strong></p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* First we calculate how many read units per item we need.
+
+* 1KB rounded to the nearest 4KB increment = 4KB
+* 4KB / 4KB = 1 read unit per item.
+
+* 1 x 10 read items = 10
+* Using eventual consistency we get 10 / 2 = 5
+* 5 units of read throughput
+</code></pre></div></div>
+
+<hr />
+
+<ul>
+  <li><strong>You have an application that requires to read 10 items of 6 KB per second using eventual consistency. What should you set the read throughput to?</strong>
+    <ul>
+      <li>6 KB rounded to the nearest 4KB increment = 8KB</li>
+      <li>8KB / 4KB = 2 read unit per item</li>
+      <li>2 x 10 read items = 20</li>
+      <li>Using eventual consistency we get 20 / 2 = 10</li>
+      <li>10 units of read throughput</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<ul>
+  <li><strong>You have an application that requires to read 5 items of 10KB per second using eventual consistency. What should you set the read throughput to?</strong>
+    <ul>
+      <li>10KB rounded to the nearest 4KB increment = 12KB</li>
+      <li>12KB / 4KB = 3 read units per item</li>
+      <li>3 x 5 read items = 15</li>
+      <li>using eventual consistency we get 15 / 2 = 7.5 (8) &lt;- since read throughput can only be integer.</li>
+      <li>8 units of read throughput.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<ul>
+  <li><strong>You have an application that requires to read 5 items of 10KB per second using **<em>strong consistency</em></strong>. What should you set the read throughput to?**
+    <ul>
+      <li>10KB rounded to the nearest 4KB increment = 12KB</li>
+      <li>12KB / 4KB = 3 read units per item</li>
+      <li>3 x 5 read items = 15</li>
+      <li>Since we are using strong consistency 15 x 1</li>
+      <li>15 units of read throughput</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<ul>
+  <li><strong>You have an application that requires to write 5 items, with each item being 10KB in size. What should the write throughput be set to?</strong>
+    <ul>
+      <li>10 KB rounded to the nearest 1KB = 10KB</li>
+      <li>10 KB / 1 KB = 10 write units per item</li>
+      <li>10 x 5 write items = 50</li>
+      <li>50 units of write throughput</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<ul>
+  <li><strong>You have an application that requires to write 12 items, with each item being 100KB in size. What should the write throughput be set to?</strong>
+    <ul>
+      <li>100 KB rounded to the nearest 1KB = 100KB</li>
+      <li>100 KB / 1 KB = 100 write units per item</li>
+      <li>100 x 12 write items = 1200</li>
+      <li>1200 units of write throughput</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="error-codes">Error Codes</h3>
+
+<ul>
+  <li>400 HTTP Status Code <strong>ProvisionedThroughputExceededException</strong>
+    <ul>
+      <li>You have exceeded the maximum allowed provisioned throughput for a table or for one or global secondary indexes.</li>
+    </ul>
+  </li>
+</ul>
+
+
+  </div><a class="u-url" href="/sturdy-carnival/database/2018/06/21/DynamoDB-Provisioned-Throughput-Calculations.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/sturdy-carnival/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">AWS Developer Associate Notes</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">AWS Developer Associate Notes</li><li><a class="u-email" href="mailto:eshanshafeeq073055@gmail.com">eshanshafeeq073055@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/DieHard073055"><svg class="svg-icon"><use xlink:href="/sturdy-carnival/assets/minima-social-icons.svg#github"></use></svg> <span class="username">DieHard073055</span></a></li><li><a href="https://www.twitter.com/diehard073055"><svg class="svg-icon"><use xlink:href="/sturdy-carnival/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">diehard073055</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Blog to keep track of what i have been studying for AWS Developer Associate Course. Also will be referrence to study before the exam.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

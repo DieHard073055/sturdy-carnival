@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>DynamoDB Indexes | AWS Developer Associate Notes</title>
+<meta name="generator" content="Jekyll v3.8.2" />
+<meta property="og:title" content="DynamoDB Indexes" />
+<meta name="author" content="Eshan Shafeeq" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Primary Key Two types of primary keys available. Single Attribute (unique ID) Partition Key (Hash Key) composed of one attribute. Composite (unique ID and another attribute eg: DateRange) Partition Key &amp; Sort Key ( Hash &amp; Range ) composed of two attributes." />
+<meta property="og:description" content="Primary Key Two types of primary keys available. Single Attribute (unique ID) Partition Key (Hash Key) composed of one attribute. Composite (unique ID and another attribute eg: DateRange) Partition Key &amp; Sort Key ( Hash &amp; Range ) composed of two attributes." />
+<link rel="canonical" href="https://diehard073055.github.io//sturdy-carnival/database/2018/06/15/DynamoDB-Indexes.html" />
+<meta property="og:url" content="https://diehard073055.github.io//sturdy-carnival/database/2018/06/15/DynamoDB-Indexes.html" />
+<meta property="og:site_name" content="AWS Developer Associate Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-06-15T00:00:00+10:00" />
+<script type="application/ld+json">
+{"headline":"DynamoDB Indexes","description":"Primary Key Two types of primary keys available. Single Attribute (unique ID) Partition Key (Hash Key) composed of one attribute. Composite (unique ID and another attribute eg: DateRange) Partition Key &amp; Sort Key ( Hash &amp; Range ) composed of two attributes.","datePublished":"2018-06-15T00:00:00+10:00","dateModified":"2018-06-15T00:00:00+10:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://diehard073055.github.io//sturdy-carnival/database/2018/06/15/DynamoDB-Indexes.html"},"url":"https://diehard073055.github.io//sturdy-carnival/database/2018/06/15/DynamoDB-Indexes.html","author":{"@type":"Person","name":"Eshan Shafeeq"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/sturdy-carnival/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://diehard073055.github.io//sturdy-carnival/feed.xml" title="AWS Developer Associate Notes" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/sturdy-carnival/">AWS Developer Associate Notes</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/sturdy-carnival/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">DynamoDB Indexes</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-06-15T00:00:00+10:00" itemprop="datePublished">Jun 15, 2018
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Eshan Shafeeq</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h3 id="primary-key">Primary Key</h3>
+<p>Two types of primary keys available.</p>
+<ul>
+  <li><strong>Single Attribute (unique ID)</strong>
+    <ul>
+      <li>Partition Key (Hash Key) composed of one attribute.</li>
+    </ul>
+  </li>
+  <li><strong>Composite (unique ID and another attribute eg: DateRange)</strong>
+    <ul>
+      <li>Partition Key &amp; Sort Key ( Hash &amp; Range ) composed of two attributes.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="partition-key">Partition Key</h3>
+<ul>
+  <li>DynamoDB uses the partition keys value as input to an internal hash function. The output from the hash function determines the partition ( The physical location where the data will be stored. )</li>
+  <li>No two items can have the same partition key.</li>
+</ul>
+
+<h3 id="partition-key--sort-key">Partition Key &amp; Sort Key</h3>
+<ul>
+  <li>DynamoDB uses the partition keys value as input to the internal hash function. The output determines the physical location just like the previous definition.</li>
+  <li>Two items can have the same partition key, but the sort key must be different.</li>
+  <li>All items with the same partition key will be stored together in sorted order by the sort key.</li>
+</ul>
+
+<h3 id="local-secondary-index">Local Secondary Index</h3>
+<ul>
+  <li>Has the partition key, different sort key.</li>
+  <li>Can <strong>only be created when you create the table.</strong> They cannot be removed / modified later either.</li>
+</ul>
+
+<h3 id="global-secondary-index">Global Secondary Index</h3>
+<ul>
+  <li>Has a different partition key and a different sort key.</li>
+  <li>Can be created when your creating the table, and it can be created or added later as well.</li>
+</ul>
+
+<h3 id="dynamodb-streams">DynamoDB Streams</h3>
+<p>Used to capture any kind of modification to the DynamoDB tables.
+    * If a new item is added to the table, the stream captures an image of the entire item. including all of its attributes.
+    * If an item is updated, stream captures the “before” and “after” image of any attributes that were modified in the item.
+    * If an item is deleted from the table, the stream captures an image of the entire item before it was deleted.
+    * If a new user signed up to your website, it creates a new entry in the user table, this will create a stream if you have streams enabled in your dynamo table. You can use the stream to <strong>trigger</strong> lambdas to update a dynamodb table in another region or send a welcome message to the user.</p>
+
+<blockquote>
+  <p>You can export data to csv</p>
+</blockquote>
+
+<blockquote>
+  <p>You can also enable cloudwatch to trigger alarms for different different metrics.</p>
+</blockquote>
+
+<blockquote>
+  <p>You can have upto 5 local secondry indexes (LSI) and 5 global secondary indexes (GSI).</p>
+</blockquote>
+
+
+  </div><a class="u-url" href="/sturdy-carnival/database/2018/06/15/DynamoDB-Indexes.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/sturdy-carnival/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">AWS Developer Associate Notes</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">AWS Developer Associate Notes</li><li><a class="u-email" href="mailto:eshanshafeeq073055@gmail.com">eshanshafeeq073055@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/DieHard073055"><svg class="svg-icon"><use xlink:href="/sturdy-carnival/assets/minima-social-icons.svg#github"></use></svg> <span class="username">DieHard073055</span></a></li><li><a href="https://www.twitter.com/diehard073055"><svg class="svg-icon"><use xlink:href="/sturdy-carnival/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">diehard073055</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Blog to keep track of what i have been studying for AWS Developer Associate Course. Also will be referrence to study before the exam.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

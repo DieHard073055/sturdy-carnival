@@ -1,4 +1,393 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.2">Jekyll</generator><link href="https://diehard073055.github.io//sturdy-carnival/feed.xml" rel="self" type="application/atom+xml" /><link href="https://diehard073055.github.io//sturdy-carnival/" rel="alternate" type="text/html" /><updated>2018-06-14T01:23:43+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/</id><title type="html">AWS Developer Associate Notes</title><subtitle>Blog to keep track of what i have been studying for AWS Developer Associate Course. Also will be referrence to study before the exam.</subtitle><entry><title type="html">Snowball</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/Snowball.html" rel="alternate" type="text/html" title="Snowball" /><published>2018-06-14T00:00:00+10:00</published><updated>2018-06-14T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/Snowball</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/Snowball.html">&lt;p&gt;AWS Import/Export Disk accelerates moving large amounts data into and out of the AWS cloud using portable storage devices for transport. AWS Import/Export Disk transfers your data directly onto and off of storage devices using Amazon’s high-speed internal network and bypassing the internet.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.2">Jekyll</generator><link href="https://diehard073055.github.io//sturdy-carnival/feed.xml" rel="self" type="application/atom+xml" /><link href="https://diehard073055.github.io//sturdy-carnival/" rel="alternate" type="text/html" /><updated>2018-06-22T01:19:51+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/</id><title type="html">AWS Developer Associate Notes</title><subtitle>Blog to keep track of what i have been studying for AWS Developer Associate Course. Also will be referrence to study before the exam.</subtitle><entry><title type="html">DynamoDB Summary</title><link href="https://diehard073055.github.io//sturdy-carnival/database/2018/06/22/DynamoDB-Summary.html" rel="alternate" type="text/html" title="DynamoDB Summary" /><published>2018-06-22T00:00:00+10:00</published><updated>2018-06-22T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/database/2018/06/22/DynamoDB-Summary</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/database/2018/06/22/DynamoDB-Summary.html">&lt;h3 id=&quot;what-is-dynamodb&quot;&gt;What is dynamoDB&lt;/h3&gt;
+&lt;p&gt;Fast and flexible NOSQL database service for all application that need consistent, single digit millisecond latency at any scale. It is a fully managed database and supports both document and key-value data models. Its flexible data model and reliable performance make it a great fit for mobile, web, gaming, ad-tech, IoT and many other applications.&lt;/p&gt;
+
+&lt;h3 id=&quot;quick-facts&quot;&gt;Quick Facts&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Stored on SSD Storage.&lt;/li&gt;
+  &lt;li&gt;Spread Across 3 geographically distinct data centres.&lt;/li&gt;
+  &lt;li&gt;Eventaul Consistent Reads (Default)
+    &lt;ul&gt;
+      &lt;li&gt;Consistency across all copies of data is usually reached within a second. Repeating a read after a short time should return the updated data. (Best read performance).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Strong Consistent Reads
+    &lt;ul&gt;
+      &lt;li&gt;A strongly consistent read returns a result that reflects all writes that received a successful response prior to the read.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;basics&quot;&gt;Basics&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;* Tables
+* Items ( Data in table )
+* Attributes ( Column names in a table )
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;primary-keys&quot;&gt;Primary Keys&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Two types of primary keys available&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Single Attribute (Unique ID)&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Partition Key (Hash key) composed of one attribute.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Composite (Think unique ID and a date range)&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Partition Key &amp;amp; Sort Key (Hash &amp;amp; Range) composed of two attributes.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Partition Key&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;DynamoDB uses the partition key’s value as input to an internal hash function. The output from the hash function determines the partition ( this is simply the physical location in which the data is stored).&lt;/li&gt;
+      &lt;li&gt;No two items in a table can have the same partition key value!&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Partition Key and Sort Key&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;DynamoDB uses the partition key’s value as an input to an internal hash function. The output from the hash function determines the partition ( this is simply the physical location in which the data is stored).&lt;/li&gt;
+      &lt;li&gt;Two items can have the same parition key, but they &lt;strong&gt;must have a different sort key.&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;All items with the same partition key will be stored together but ordered using the sort key value.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;indexes&quot;&gt;Indexes&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Local Secondary Index&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Has the SAME parition key, different sort key.&lt;/li&gt;
+  &lt;li&gt;Can ONLY be created when creating a table. They cannot be removed or modified later.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Global Secondary Index&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Has a DIFFERENT partition key and DIFFERENT sort key.&lt;/li&gt;
+  &lt;li&gt;Can be created at table creation or added LATER.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;dynamodb-streams&quot;&gt;DynamoDB Streams&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Used to capture any kind of modification to the DynamoDB tables.&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;If a new item is added to the table, the stream captures an image of the entire item, including all of its attributes.&lt;/li&gt;
+  &lt;li&gt;If an item is updated, the stream captures the “before” and “after” image of any attributes that were modified in the item.&lt;/li&gt;
+  &lt;li&gt;If an item is deleted from the table, the stream captures an image of the entire item before it was deleted.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;query--scans&quot;&gt;Query &amp;amp; Scans&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;A Query operation finds items in a table using only primary key attribute values. You must provide a partition key attribute name and a distint value to search for.&lt;/li&gt;
+  &lt;li&gt;A Scan operation examines every item in the table. By default,  a Scan returns all of the data attributes for every item; however you can use the &lt;strong&gt;ProjectionExpression&lt;/strong&gt; parameter so that the Scan only returns some of the attributes, rather than all of them.&lt;/li&gt;
+  &lt;li&gt;Try to use a Query operation rather than a Scan operation as it is more efficient.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;dynamodb-provisioned-throughput-calculation&quot;&gt;DynamoDB Provisioned Throughput Calculation&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Read 13 items of 17 KB per second (using eventual consistency)
+    &lt;ol&gt;
+      &lt;li&gt;17KB to the nearest 4KB = 20&lt;/li&gt;
+      &lt;li&gt;20KB / 4KB = 5 read units per item&lt;/li&gt;
+      &lt;li&gt;5 x 13 read items per second = 65&lt;/li&gt;
+      &lt;li&gt;65 / 2 for eventual consistency = 32.5 (33)&lt;/li&gt;
+      &lt;li&gt;33 units of read throughput&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Write 94 items of 3KB per second
+    &lt;ol&gt;
+      &lt;li&gt;3KB to the nearest 1KB = 3&lt;/li&gt;
+      &lt;li&gt;3KB/1KB = 3 write units per item&lt;/li&gt;
+      &lt;li&gt;3 x 94 write items per second = 282&lt;/li&gt;
+      &lt;li&gt;282 / 1&lt;/li&gt;
+      &lt;li&gt;282 units of write throughput capacity&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Error code
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;400 HTTP ProvisionedThroughputExceededException&lt;/strong&gt; - You have exceeded your maximum allowed provisioned throughput for a table or for one or more global secondary indexes.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;steps-taken-to-authenticate-with-web-identity-provider&quot;&gt;Steps taken to authenticate with Web Identity Provider&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;User authenticates with Web identity Provider&lt;/li&gt;
+  &lt;li&gt;They are passed a Token by their ID Provider&lt;/li&gt;
+  &lt;li&gt;Your code calls &lt;strong&gt;AssumeRoleWithWebIdentity&lt;/strong&gt; API and provides the providers token and specifies the ARN for the IAM Role.&lt;/li&gt;
+  &lt;li&gt;App can now access DynamoDB from between 15 minutes to 1 hour (default 1 hour).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;conditional-write&quot;&gt;Conditional Write&lt;/h3&gt;
+&lt;p&gt;If a price equals &lt;strong&gt;X&lt;/strong&gt; then update the price to &lt;strong&gt;Y&lt;/strong&gt;. If the price is not equal to &lt;strong&gt;X&lt;/strong&gt; operation fails. This is an &lt;strong&gt;Idempotent&lt;/strong&gt; operation.&lt;/p&gt;
+
+&lt;h3 id=&quot;atomic-counters&quot;&gt;Atomic Counters&lt;/h3&gt;
+&lt;p&gt;Increment or Decrement a value on an existing attirbute, regardless of its value. This is not an Idempotent operation. May over-count or under-count.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Use conditional writes for critical stuff, atomic counters for non critical stuff.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;batch-operations&quot;&gt;Batch Operations&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;BatchGetItem&lt;/strong&gt; can contain upto 1MB of data and upto 100 items&lt;/li&gt;
+  &lt;li&gt;Can retrieve items from multiple tables.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;READ THE FAQ OF DYNAMODB&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</content><author><name>Eshan Shafeeq</name></author><category term="summary" /><category term="dynamodb" /><category term="database" /><summary type="html">What is dynamoDB Fast and flexible NOSQL database service for all application that need consistent, single digit millisecond latency at any scale. It is a fully managed database and supports both document and key-value data models. Its flexible data model and reliable performance make it a great fit for mobile, web, gaming, ad-tech, IoT and many other applications.</summary></entry><entry><title type="html">DynamoDB - Other Key Facts</title><link href="https://diehard073055.github.io//sturdy-carnival/database/2018/06/22/DynamoDB-Other-Key-Facts.html" rel="alternate" type="text/html" title="DynamoDB - Other Key Facts" /><published>2018-06-22T00:00:00+10:00</published><updated>2018-06-22T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/database/2018/06/22/DynamoDB---Other-Key-Facts</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/database/2018/06/22/DynamoDB-Other-Key-Facts.html">&lt;h4 id=&quot;conditional-writes&quot;&gt;Conditional Writes&lt;/h4&gt;
+&lt;p&gt;Example Scenario&lt;/p&gt;
+
+&lt;p&gt;if two clients were to update a piece of data at the same time, the updates may happen at 2 different facilities, and may create unexpected outcome. In order to prevent this use, conditional writes. Lets say you want to update a price of an item, but you only want to update if its $6. So the first user do UpdateItem if Price is $6 to $15. The Price will change, the second user will also try and do a UpdateItem if Price is $6, but this time the price is 15 and the operation will fail.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;These conditional writes are idempotent. This means that you can send the same conditional write request multiple times, but will have no further effect on the item after the first successful update.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;DynamoDB support atomic counters, where you use the UpdateItem operation to increment or decrement the value of an existing attribute without interfering with other write requests. (All write requests are applied in the order in which they were recieved). For example, a web application might want to maintain a counter per visitor to their site. In this case, the application would need to increment this counter regardless of its current value.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Atomic counter updates are not idempotent. This means the counter will increment each time you call UpdateItem. If you suspect that a previous request was unsuccessful, your application could retry the UpdateItem operation; however this would risk updating the counter twice. This might be acceptable for a web site counter, because you can tolerate with slightly over-or under-counting the visitors. However in a banking application, it would be safer to use a conditional update rather than an atomic counter.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;In the exam you will be asked if you should use the atomic counter or the conditional update, it depends if the data is critical, example voting or banking you would use conditional writes. Where as for website visitor counters you would use atomic counters.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If your application needs to read multiple items, you can use the BatchGetItem API. A single &lt;strong&gt;&lt;em&gt;BatchGetItem&lt;/em&gt;&lt;/strong&gt; request can retrieve up to 1 MB of data, which can contain as many as 100 items. In addition, a single BatchGetItem request can retrieve items from multiple tables.&lt;/p&gt;</content><author><name>Eshan Shafeeq</name></author><category term="dynamodb" /><category term="database" /><category term="keyfacts" /><summary type="html">Conditional Writes Example Scenario</summary></entry><entry><title type="html">Web Identity Providers</title><link href="https://diehard073055.github.io//sturdy-carnival/database/2018/06/21/Web-Identity-Providers.html" rel="alternate" type="text/html" title="Web Identity Providers" /><published>2018-06-21T00:00:00+10:00</published><updated>2018-06-21T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/database/2018/06/21/Web-Identity-Providers</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/database/2018/06/21/Web-Identity-Providers.html">&lt;h3 id=&quot;web-identity-providers&quot;&gt;Web Identity Providers&lt;/h3&gt;
+
+&lt;p&gt;You can authenticate users using &lt;strong&gt;Web Identity Providers&lt;/strong&gt; ( such as Facebook, Google, Amazon, or any other Open-ID Connect-compatible Identity provider). This is done using AssumeRoleWithWebIdentity API.&lt;/p&gt;
+
+&lt;p&gt;You will need to create a role first&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;User Authenticates With WebIDProvider&lt;/li&gt;
+  &lt;li&gt;WebIDProvider gives you a Web Identity Token.&lt;/li&gt;
+  &lt;li&gt;Do the AssumeRoleWithWebIdentity Request to AWS SecurityTokenService (STS)&lt;/li&gt;
+  &lt;li&gt;AWS (STS) gives back Temporary Security Credentials ( Defaults 1 hour )
+    &lt;ul&gt;
+      &lt;li&gt;Access Key ID, Secret Access Key, Session Token.&lt;/li&gt;
+      &lt;li&gt;Expiration ( Time limit )&lt;/li&gt;
+      &lt;li&gt;AssumeRoleID&lt;/li&gt;
+      &lt;li&gt;SubjectFromWebIdentityToken ( The unique ID that appears in an IAM policy variable for this particular identity provider )&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Using these credentials, you can access dynamodb.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;steps-taken-to-authenticate&quot;&gt;Steps taken to authenticate&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;User Authenticates with the ID provider&lt;/li&gt;
+  &lt;li&gt;They are passed a Token by their ID provider.&lt;/li&gt;
+  &lt;li&gt;Your code calls &lt;strong&gt;AssumeRoleWithWebIdentity&lt;/strong&gt; API and provides the providers token and specifies the ARN for the IAM Role.&lt;/li&gt;
+  &lt;li&gt;App can now access DynamoDB from between 15 minutes to 1 hour (default is 1 hour)&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Eshan Shafeeq</name></author><category term="security" /><category term="database" /><category term="social" /><category term="openid" /><category term="assumerolewithwebidentity" /><category term="dynamodb" /><summary type="html">Web Identity Providers</summary></entry><entry><title type="html">DynamoDB Provisioned Throughput Calculations</title><link href="https://diehard073055.github.io//sturdy-carnival/database/2018/06/21/DynamoDB-Provisioned-Throughput-Calculations.html" rel="alternate" type="text/html" title="DynamoDB Provisioned Throughput Calculations" /><published>2018-06-21T00:00:00+10:00</published><updated>2018-06-21T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/database/2018/06/21/DynamoDB-Provisioned-Throughput-Calculations</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/database/2018/06/21/DynamoDB-Provisioned-Throughput-Calculations.html">&lt;h3 id=&quot;provisioned-throughput&quot;&gt;Provisioned Throughput&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Unit of Read provisioned throughput
+    &lt;ul&gt;
+      &lt;li&gt;All reads are rounded up to increments of 4KB&lt;/li&gt;
+      &lt;li&gt;Eventually Consistent Reads (default) consist of 2 reads per second.&lt;/li&gt;
+      &lt;li&gt;Strongly Consistent Reads consist of 1 read per second.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Unit of Write provisioned throughput.
+    &lt;ul&gt;
+      &lt;li&gt;All writes are 1 KB&lt;/li&gt;
+      &lt;li&gt;All writes consist of 1 write per second&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;the-magic-formula&quot;&gt;The magic formula&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Question&lt;/strong&gt; - you have an application that requires to read 10 items of 1KB per second using eventual consistency. What should you set the read throughput to?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;(Size of Read rounded to nearest 4KB chunk / 4KB) x no of items = read throughput&lt;/strong&gt;
+&lt;strong&gt;Divide by 2 if eventually consistent.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;* First we calculate how many read units per item we need.
+
+* 1KB rounded to the nearest 4KB increment = 4KB
+* 4KB / 4KB = 1 read unit per item.
+
+* 1 x 10 read items = 10
+* Using eventual consistency we get 10 / 2 = 5
+* 5 units of read throughput
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;You have an application that requires to read 10 items of 6 KB per second using eventual consistency. What should you set the read throughput to?&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;6 KB rounded to the nearest 4KB increment = 8KB&lt;/li&gt;
+      &lt;li&gt;8KB / 4KB = 2 read unit per item&lt;/li&gt;
+      &lt;li&gt;2 x 10 read items = 20&lt;/li&gt;
+      &lt;li&gt;Using eventual consistency we get 20 / 2 = 10&lt;/li&gt;
+      &lt;li&gt;10 units of read throughput&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;You have an application that requires to read 5 items of 10KB per second using eventual consistency. What should you set the read throughput to?&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;10KB rounded to the nearest 4KB increment = 12KB&lt;/li&gt;
+      &lt;li&gt;12KB / 4KB = 3 read units per item&lt;/li&gt;
+      &lt;li&gt;3 x 5 read items = 15&lt;/li&gt;
+      &lt;li&gt;using eventual consistency we get 15 / 2 = 7.5 (8) &amp;lt;- since read throughput can only be integer.&lt;/li&gt;
+      &lt;li&gt;8 units of read throughput.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;You have an application that requires to read 5 items of 10KB per second using **&lt;em&gt;strong consistency&lt;/em&gt;&lt;/strong&gt;. What should you set the read throughput to?**
+    &lt;ul&gt;
+      &lt;li&gt;10KB rounded to the nearest 4KB increment = 12KB&lt;/li&gt;
+      &lt;li&gt;12KB / 4KB = 3 read units per item&lt;/li&gt;
+      &lt;li&gt;3 x 5 read items = 15&lt;/li&gt;
+      &lt;li&gt;Since we are using strong consistency 15 x 1&lt;/li&gt;
+      &lt;li&gt;15 units of read throughput&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;You have an application that requires to write 5 items, with each item being 10KB in size. What should the write throughput be set to?&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;10 KB rounded to the nearest 1KB = 10KB&lt;/li&gt;
+      &lt;li&gt;10 KB / 1 KB = 10 write units per item&lt;/li&gt;
+      &lt;li&gt;10 x 5 write items = 50&lt;/li&gt;
+      &lt;li&gt;50 units of write throughput&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;You have an application that requires to write 12 items, with each item being 100KB in size. What should the write throughput be set to?&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;100 KB rounded to the nearest 1KB = 100KB&lt;/li&gt;
+      &lt;li&gt;100 KB / 1 KB = 100 write units per item&lt;/li&gt;
+      &lt;li&gt;100 x 12 write items = 1200&lt;/li&gt;
+      &lt;li&gt;1200 units of write throughput&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;error-codes&quot;&gt;Error Codes&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;400 HTTP Status Code &lt;strong&gt;ProvisionedThroughputExceededException&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;You have exceeded the maximum allowed provisioned throughput for a table or for one or global secondary indexes.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="dynamodb" /><category term="database" /><category term="cost" /><category term="throughput" /><category term="calculations" /><summary type="html">Provisioned Throughput Unit of Read provisioned throughput All reads are rounded up to increments of 4KB Eventually Consistent Reads (default) consist of 2 reads per second. Strongly Consistent Reads consist of 1 read per second. Unit of Write provisioned throughput. All writes are 1 KB All writes consist of 1 write per second</summary></entry><entry><title type="html">Scan vs Query API Calls</title><link href="https://diehard073055.github.io//sturdy-carnival/database/2018/06/15/Scan-vs-Query-API-Calls.html" rel="alternate" type="text/html" title="Scan vs Query API Calls" /><published>2018-06-15T00:00:00+10:00</published><updated>2018-06-15T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/database/2018/06/15/Scan-vs-Query-API-Calls</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/database/2018/06/15/Scan-vs-Query-API-Calls.html">&lt;h3 id=&quot;what-is-a-query&quot;&gt;What is a query&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;A Query operation finds items in a table using only primary key attributes values. You must provide a partition attribute name and a distinct value to search for.&lt;/li&gt;
+  &lt;li&gt;You can optionally provide a sort key attribute name and value, and use a comparison operator to refine the search results.&lt;/li&gt;
+  &lt;li&gt;By default, a query returns all of the data attributes for items with the specified primary key(s); however, you can use the &lt;strong&gt;ProjectionExpression&lt;/strong&gt; parameter so that the Query only returns some of the attributes, rather than all of them.&lt;/li&gt;
+  &lt;li&gt;Query results are always sorted by the sort key. If the data type of the sort key is a number, the results are returned in numeric order; otherwise the results are returned in order of ASCII character code values. By default, the sort order is ascending. To reverse the order, set the &lt;strong&gt;ScanIndexForward&lt;/strong&gt; parameter to false.&lt;/li&gt;
+  &lt;li&gt;By default all queries are eventually consistent but can be changed to be strongly consistent.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;what-is-a-scan-&quot;&gt;What is a Scan ?&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;A Scan operation examines every item in the table ( basically a table dump ). By default the scan returns all of the data attributes for every item; however, you can use the &lt;strong&gt;ProjectionExpression&lt;/strong&gt; parameter so that the Scan returns only some of them.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;what-should-i-use-a-query-or-a-scan&quot;&gt;What Should I use, a query or a Scan?&lt;/h3&gt;
+&lt;p&gt;Generally, a Query Operation is more efficient than a Scan operation.&lt;/p&gt;
+
+&lt;p&gt;A Scan operation always scans the entire table, then filters out values to provide the desired result, essentially adding the extra step of removing data from the result set. Avoid using a Scan operation on a large table with a filter that removes many results, if possible. Also, as a table grows, the Scan operation slows. The Scan operation examines every item for the requested values, and can use up the provisioned throughput for a large table in a single operation.&lt;/p&gt;
+
+&lt;p&gt;For quicker response times, design your tables in a way that can use the Query, &lt;em&gt;Get&lt;/em&gt; or &lt;em&gt;BatchGetItem&lt;/em&gt; APIs instead. Alternatively, design your application to use Scan operations in a way that minimizes the impact on your tables request rate.&lt;/p&gt;
+
+&lt;h3 id=&quot;exam-tips&quot;&gt;Exam Tips&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;A Query operation finds the items in a table using only primary key attribute values. You must provide a partition key attribute name and a distinct value to search for.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;A Scan operation examines every item in the table. By default, a Scan returns all of the data attributes for every item; however, you can use the &lt;strong&gt;ProjectionExpression&lt;/strong&gt; parameter so that the Scan only returns some of the attributes, rather than all of them.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Query results are always sorted by the sort key in ascending order. Set &lt;strong&gt;ScanIndexForward&lt;/strong&gt; parameter to false to reverse it.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Try use a Query operation than a scan operation as it is more efficient.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="scan" /><category term="query" /><category term="dynamodb" /><category term="database" /><summary type="html">What is a query A Query operation finds items in a table using only primary key attributes values. You must provide a partition attribute name and a distinct value to search for. You can optionally provide a sort key attribute name and value, and use a comparison operator to refine the search results. By default, a query returns all of the data attributes for items with the specified primary key(s); however, you can use the ProjectionExpression parameter so that the Query only returns some of the attributes, rather than all of them. Query results are always sorted by the sort key. If the data type of the sort key is a number, the results are returned in numeric order; otherwise the results are returned in order of ASCII character code values. By default, the sort order is ascending. To reverse the order, set the ScanIndexForward parameter to false. By default all queries are eventually consistent but can be changed to be strongly consistent.</summary></entry><entry><title type="html">DynamoDB Indexes</title><link href="https://diehard073055.github.io//sturdy-carnival/database/2018/06/15/DynamoDB-Indexes.html" rel="alternate" type="text/html" title="DynamoDB Indexes" /><published>2018-06-15T00:00:00+10:00</published><updated>2018-06-15T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/database/2018/06/15/DynamoDB-Indexes</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/database/2018/06/15/DynamoDB-Indexes.html">&lt;h3 id=&quot;primary-key&quot;&gt;Primary Key&lt;/h3&gt;
+&lt;p&gt;Two types of primary keys available.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Single Attribute (unique ID)&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Partition Key (Hash Key) composed of one attribute.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Composite (unique ID and another attribute eg: DateRange)&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Partition Key &amp;amp; Sort Key ( Hash &amp;amp; Range ) composed of two attributes.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;partition-key&quot;&gt;Partition Key&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;DynamoDB uses the partition keys value as input to an internal hash function. The output from the hash function determines the partition ( The physical location where the data will be stored. )&lt;/li&gt;
+  &lt;li&gt;No two items can have the same partition key.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;partition-key--sort-key&quot;&gt;Partition Key &amp;amp; Sort Key&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;DynamoDB uses the partition keys value as input to the internal hash function. The output determines the physical location just like the previous definition.&lt;/li&gt;
+  &lt;li&gt;Two items can have the same partition key, but the sort key must be different.&lt;/li&gt;
+  &lt;li&gt;All items with the same partition key will be stored together in sorted order by the sort key.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;local-secondary-index&quot;&gt;Local Secondary Index&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Has the partition key, different sort key.&lt;/li&gt;
+  &lt;li&gt;Can &lt;strong&gt;only be created when you create the table.&lt;/strong&gt; They cannot be removed / modified later either.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;global-secondary-index&quot;&gt;Global Secondary Index&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Has a different partition key and a different sort key.&lt;/li&gt;
+  &lt;li&gt;Can be created when your creating the table, and it can be created or added later as well.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;dynamodb-streams&quot;&gt;DynamoDB Streams&lt;/h3&gt;
+&lt;p&gt;Used to capture any kind of modification to the DynamoDB tables.
+    * If a new item is added to the table, the stream captures an image of the entire item. including all of its attributes.
+    * If an item is updated, stream captures the “before” and “after” image of any attributes that were modified in the item.
+    * If an item is deleted from the table, the stream captures an image of the entire item before it was deleted.
+    * If a new user signed up to your website, it creates a new entry in the user table, this will create a stream if you have streams enabled in your dynamo table. You can use the stream to &lt;strong&gt;trigger&lt;/strong&gt; lambdas to update a dynamodb table in another region or send a welcome message to the user.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;You can export data to csv&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;You can also enable cloudwatch to trigger alarms for different different metrics.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;You can have upto 5 local secondry indexes (LSI) and 5 global secondary indexes (GSI).&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Eshan Shafeeq</name></author><category term="indexes" /><category term="primarykeys" /><category term="streams" /><category term="dynamodb" /><category term="nosql" /><summary type="html">Primary Key Two types of primary keys available. Single Attribute (unique ID) Partition Key (Hash Key) composed of one attribute. Composite (unique ID and another attribute eg: DateRange) Partition Key &amp;amp; Sort Key ( Hash &amp;amp; Range ) composed of two attributes.</summary></entry><entry><title type="html">Snowball</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/Snowball.html" rel="alternate" type="text/html" title="Snowball" /><published>2018-06-14T00:00:00+10:00</published><updated>2018-06-14T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/Snowball</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/Snowball.html">&lt;p&gt;AWS Import/Export Disk accelerates moving large amounts data into and out of the AWS cloud using portable storage devices for transport. AWS Import/Export Disk transfers your data directly onto and off of storage devices using Amazon’s high-speed internal network and bypassing the internet.&lt;/p&gt;
 
 &lt;h3 id=&quot;types-of-snowballs&quot;&gt;Types of Snowballs&lt;/h3&gt;
 &lt;ul&gt;
@@ -213,271 +602,64 @@
   &lt;li&gt;When you do a PUT object on S3 you will get a HTTP 200 success code.&lt;/li&gt;
   &lt;li&gt;You can load files much faster by enabling multipart upload.&lt;/li&gt;
   &lt;li&gt;Read the S3 FAQ!&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="storage" /><category term="s3" /><category term="summary" /><summary type="html">S3 - Exam Tips S3 is an Object based storage, its a place where you upload and download files. You cannot run an os, or run a database off of S3. Files can be of size 0 bytes all the way to 5TB. There is unlimited storage. Files are stored in Buckets. S3 is a universal namespace, all bucket names shall be unique globally. S3 bucket names are like https://s3-[region].amazonaws.com/[bucketname] Read after Write Consistency for PUTS of new objects. Eventual Consistencry for Overwrite PUTS and DELETES. ( takes some time to propergate ) S3 Storage Classes / Tiers Standard S3 reliability of 99.999999999% availability of 99.99% Immedietly available and frequently accessed S3 Infrequent Access ( IA ) availablity of 99.99% reliability of 99.999999999% Immedietly available infrequently accessed. Charged for retreval S3 Reduced Redundency reliability and availability of 99.99% Used for reproducable content ( such as thumbnails etc ). Glacier Archived data, where you have to wait 3 - 5 hour waiting period. Core fundementals of S3 Key ( name ) Value ( data ) Version ID Metadata ( data about data ) Access control lists Object based stroage only ( flat files ) S3 versioning Stores all versions of an object ( including all writes and even if you delete an object ) Great backup tool You pay for storage for all the versions of the object. Once enabled versioning cannot be disabled, it can only be suspended. Integrates with lifecycle rules. Versionings MFA Delete capability, which uses multi-factor authentication, can be used to provide an additional layer of security. Cross region replication requires versioning enabled on both the source bucket and destination bucket. Lifecycle Management Can be used in conjunction with versioning. Can be applied to current versions and previous versions. Following actions can now be done. Transition to infrequenct access after a minimum of 30 days since creation date ( files need to be minimum 128kb ) Archived to glacier storage class ( 30 days after IA, if relevant ). Permenantly Delete Objects CloudFront Edge Locations - This is the location where content will be cached. Origin - This is the origin of all the files that the CDN will distribute. This can be either an S3 bucket, an EC2 instance, an Elastic Load balancer or Route53. Distribution - This is the name given to the CDN with a collections of Edge Locations. Web Distribution - Typically used for websites RTMP - Used for Media Streaming Edge locations are not just readonly, you can write to them as well. ( Upload files to S3 ). Object are cached for the life of the TTL ( time to live ) ( default ttl 24hours ) You can clear cached objects, but you will be charged. Securing your buckets. By default, all newly created buckets are PRIVATE. You can setup access control to your buckets using; Bucket policies. Access Control Lists. S3 buckets can be configured to create access logs which logs all the access requests made to the bucke. These logs can be stored in another bucket. Encryption In-transit Encryption SSL/TLS (HTTPS) In rest Server Side Encryption S3 Managed Keys SSE-S3 AWS Managed Keys SSE-KMS Allows you to monitor who decrypted which file when. (Audit trail) Customer provided Keys SSE-C Client Side Encryption Client uploads encrypted files.</summary></entry><entry><title type="html">Storage Gateway</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/Storage-Gateway.html" rel="alternate" type="text/html" title="Storage Gateway" /><published>2018-06-13T00:00:00+10:00</published><updated>2018-06-13T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/Storage-Gateway</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/Storage-Gateway.html">&lt;p&gt;AWS Storage Gateway, is a service that connects an on-premises software appliance with cloud-based storage to provide seamless and secure integration between an organization’s on premises IT environment and AWS’s storage infrastructure. The service enables you to securely store data to the AWS cloud for scalable and cost-effective storage.&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="storage" /><category term="s3" /><category term="summary" /><summary type="html">S3 - Exam Tips S3 is an Object based storage, its a place where you upload and download files. You cannot run an os, or run a database off of S3. Files can be of size 0 bytes all the way to 5TB. There is unlimited storage. Files are stored in Buckets. S3 is a universal namespace, all bucket names shall be unique globally. S3 bucket names are like https://s3-[region].amazonaws.com/[bucketname] Read after Write Consistency for PUTS of new objects. Eventual Consistencry for Overwrite PUTS and DELETES. ( takes some time to propergate ) S3 Storage Classes / Tiers Standard S3 reliability of 99.999999999% availability of 99.99% Immedietly available and frequently accessed S3 Infrequent Access ( IA ) availablity of 99.99% reliability of 99.999999999% Immedietly available infrequently accessed. Charged for retreval S3 Reduced Redundency reliability and availability of 99.99% Used for reproducable content ( such as thumbnails etc ). Glacier Archived data, where you have to wait 3 - 5 hour waiting period. Core fundementals of S3 Key ( name ) Value ( data ) Version ID Metadata ( data about data ) Access control lists Object based stroage only ( flat files ) S3 versioning Stores all versions of an object ( including all writes and even if you delete an object ) Great backup tool You pay for storage for all the versions of the object. Once enabled versioning cannot be disabled, it can only be suspended. Integrates with lifecycle rules. Versionings MFA Delete capability, which uses multi-factor authentication, can be used to provide an additional layer of security. Cross region replication requires versioning enabled on both the source bucket and destination bucket. Lifecycle Management Can be used in conjunction with versioning. Can be applied to current versions and previous versions. Following actions can now be done. Transition to infrequenct access after a minimum of 30 days since creation date ( files need to be minimum 128kb ) Archived to glacier storage class ( 30 days after IA, if relevant ). Permenantly Delete Objects CloudFront Edge Locations - This is the location where content will be cached. Origin - This is the origin of all the files that the CDN will distribute. This can be either an S3 bucket, an EC2 instance, an Elastic Load balancer or Route53. Distribution - This is the name given to the CDN with a collections of Edge Locations. Web Distribution - Typically used for websites RTMP - Used for Media Streaming Edge locations are not just readonly, you can write to them as well. ( Upload files to S3 ). Object are cached for the life of the TTL ( time to live ) ( default ttl 24hours ) You can clear cached objects, but you will be charged. Securing your buckets. By default, all newly created buckets are PRIVATE. You can setup access control to your buckets using; Bucket policies. Access Control Lists. S3 buckets can be configured to create access logs which logs all the access requests made to the bucke. These logs can be stored in another bucket. Encryption In-transit Encryption SSL/TLS (HTTPS) In rest Server Side Encryption S3 Managed Keys SSE-S3 AWS Managed Keys SSE-KMS Allows you to monitor who decrypted which file when. (Audit trail) Customer provided Keys SSE-C Client Side Encryption Client uploads encrypted files.</summary></entry><entry><title type="html">DynamoDB Introduction</title><link href="https://diehard073055.github.io//sturdy-carnival/database/2018/06/14/DynamoDB-Introduction.html" rel="alternate" type="text/html" title="DynamoDB Introduction" /><published>2018-06-14T00:00:00+10:00</published><updated>2018-06-14T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/database/2018/06/14/DynamoDB-Introduction</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/database/2018/06/14/DynamoDB-Introduction.html">&lt;h3 id=&quot;dynamodb-101&quot;&gt;DynamoDB 101&lt;/h3&gt;
+&lt;p&gt;Amazon DynamoDB is a fast and flexible NoSQL database service for all applications that need consistent, single-digit millisecond latency at any scale. It is a fully managed database and supports both document and key-value data models. Its flexible data model and reliable performance make it a great fit for mobile, web, gaming, ad-tech, IoT, and many other applications.&lt;/p&gt;
 
-&lt;p&gt;AWS Storage Gateway Software Appliance is available for download as a virtual machine (VM) image that you install on a host in your data center. Storage Gateway support either VMware ESXi or Microsoft Hyper-V. Once youve installed your gateway and associated it with your AWS account though the activation process, you use the AWS Management Console to create the storage gateway option that is right for you.&lt;/p&gt;
-
-&lt;h3 id=&quot;4-types-of-storage-gateways&quot;&gt;4 types of storage gateways&lt;/h3&gt;
+&lt;h3 id=&quot;quick-facts-about-dynamodb-&quot;&gt;Quick Facts about DynamoDB ?&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;File Gateway (NFS)&lt;/li&gt;
-  &lt;li&gt;Allows you store flat files in S3 ( word documents, pictures, pdf’s, etc )&lt;/li&gt;
-  &lt;li&gt;Volume Gateways ( iSCSI ) This for block based storage, maybe a volume attached to a VM.
+  &lt;li&gt;Stored on SSD Storage&lt;/li&gt;
+  &lt;li&gt;Spread Across 3 geographically distinct data centres.&lt;/li&gt;
+  &lt;li&gt;Eventual Consistent Reads (Defaults)
     &lt;ul&gt;
-      &lt;li&gt;Stored Volume ( Gateway Stored Volumes )&lt;/li&gt;
-      &lt;li&gt;Cached Volume ( Gateway Cached Volumes )&lt;/li&gt;
+      &lt;li&gt;Consistency across all copies of data is usually reached within a second. Repeating a read after a short time should return the updated data. (Best Read Performance)&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;Tape Gateway ( VTL ) Backup and archiving solution.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;file-gateway&quot;&gt;File Gateway&lt;/h3&gt;
-&lt;p&gt;Files are stored as objects in your S3 buckets, accessed through a Network File System (NFS) mount point. Ownership, permissions, and timestamps are durably stored in S3 in the user-metadata of the object associated with the file. Once objects are transferred to S3, they can be managed as native S3 objects, and bucket policies such as versioning, lifecycle management, and cross-region replication apply directly to objects stored in your bucket.&lt;/p&gt;
-
-&lt;h3 id=&quot;volume-gateway&quot;&gt;Volume Gateway&lt;/h3&gt;
-&lt;p&gt;The volume interface presents your applications with disks volumes using iSCSI block protocol. Data written to these volumes can be asynchronously backed up as point-in-time snapshots of your volumes, and stored in the cloud as Amazon EBS snapshots. Snapshots are incremental backups that capture only changed blocks. All snapshots storage is also compressed to minimize your storage charges.&lt;/p&gt;
-
-&lt;h5 id=&quot;stored-volumes&quot;&gt;Stored Volumes&lt;/h5&gt;
-&lt;p&gt;Stored volumes let you store your primary data locally, while asynchronously backing up that data to AWS. Stored volumes provide your on-premises applications with low-latency access to their entire datasets, while providing durable, off-site backups. You can create storage volumes and mount them as iSCSI devices from your on-premises application servers. Data written to your stored volumes is asynchronously backed upto Amazon Simple Storage Service ( Amazon S3 ) in the form of Amazon Elastic Block Store ( Amazon EBS ) snapshots. 1GB - 16TB in size for Stored Volumes.&lt;/p&gt;
-
-&lt;h5 id=&quot;cached-volumes&quot;&gt;Cached Volumes&lt;/h5&gt;
-&lt;p&gt;Cached volumes lets you use Amazon Simple Storage Service ( Amazon S3 ) as your primary data storage while retaining frequently accessed data locally in your storage gateway. Cached volumes minimize the need to scale your on-premises storage infrastructure, while still providing your applications with low-latency access to their frequently accessed data. You can create storage volumes upto 32 TB in size and attach to them as iSCSI devices from your on-premises application servers. Your gateway stores data that you write to these volumes in Amazon S3 and retains recently read data in your on-premises storage gateway’s cache and upload buffer storage. 1GB - 32 TB in size for Cached Volumes.&lt;/p&gt;
-
-&lt;h5 id=&quot;taped-gateway&quot;&gt;Taped Gateway&lt;/h5&gt;
-&lt;p&gt;Tape Gateway offers a durable, cost-effective solution to archive your data in the AWS Cloud. The VTL interface it provides lets you leverage your existing tape-based backup application infrastructure to store data on virtual tape cartridges that you create on your tape gateway. Each tape gateway is preconfigured with a media changer and tape drives, which are available to your existing client backup applications as iSCSI devies. You add tape cartridges as you to archive your data. Supported by NetBackup, Backup Exec, Veam etc.&lt;/p&gt;
-
-&lt;h3 id=&quot;exam-tips&quot;&gt;Exam Tips&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;File Gateway - For flat files, stored directly on S3 - Not os’s&lt;/li&gt;
-  &lt;li&gt;Volumes Gateways (block based storage)
+  &lt;li&gt;Strongly Consistent Reads
     &lt;ul&gt;
-      &lt;li&gt;Stored Volumes - Entire Dataset is stored on site is asynchronously backed up to S3.&lt;/li&gt;
-      &lt;li&gt;Cached Volumes - Entire Dataset is stored on S3 and most frequently accessed data is kept on site.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Gateway Virtual Tape Library ( VTL )
-    &lt;ul&gt;
-      &lt;li&gt;Used for backup and uses popular backup applications like NetBackup, Backup Exec, Veam etc.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="storage" /><category term="storagegateway" /><category term="secure" /><summary type="html">AWS Storage Gateway, is a service that connects an on-premises software appliance with cloud-based storage to provide seamless and secure integration between an organization’s on premises IT environment and AWS’s storage infrastructure. The service enables you to securely store data to the AWS cloud for scalable and cost-effective storage.</summary></entry><entry><title type="html">S3 Security and Encryption</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/S3-Security-and-Encryption.html" rel="alternate" type="text/html" title="S3 Security and Encryption" /><published>2018-06-13T00:00:00+10:00</published><updated>2018-06-13T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/S3-Security-and-Encryption</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/S3-Security-and-Encryption.html">&lt;h3 id=&quot;security&quot;&gt;Security&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;By default, all newly created buckets are &lt;strong&gt;PRIVATE&lt;/strong&gt;.&lt;/li&gt;
-  &lt;li&gt;You can setup access control to your buckets using;
-    &lt;ul&gt;
-      &lt;li&gt;Bucket Policies - Permissions are applied to the entier bucket.&lt;/li&gt;
-      &lt;li&gt;Access Control List - You can apply different permissions to different objects in the buckets.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;S3 Buckets can be configured to create access logs which log all the requests made to the S3 bucket. This can be done to another bucket.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;encryption&quot;&gt;Encryption&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;In transit ( When sending object to and from your PC )
-    &lt;ul&gt;
-      &lt;li&gt;SSL/TLS Encryption ( HTTPS )&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;At Rest ( When the objects are either in your PC or in the Server )
-    &lt;ul&gt;
-      &lt;li&gt;Server Side Encryption
-        &lt;ul&gt;
-          &lt;li&gt;S3 Managed Keys - SSE-S3&lt;/li&gt;
-          &lt;li&gt;AWS Key Management Service ( AWS KMS ) - Managed Keys - SSE-KMS
-            &lt;ul&gt;
-              &lt;li&gt;These keys provide an audit trail, lets you know who has been using the keys.&lt;/li&gt;
-              &lt;li&gt;Who has been decrypting what and when was it done.&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-          &lt;li&gt;Server Side Encryption with Customer Provided Keys - SSE-C&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;Client Side Encryption ( You encrypt the files and then you upload them to S3 )&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="s3" /><category term="security" /><category term="encryption" /><category term="secure" /><category term="administration" /><category term="storage" /><summary type="html">Security By default, all newly created buckets are PRIVATE. You can setup access control to your buckets using; Bucket Policies - Permissions are applied to the entier bucket. Access Control List - You can apply different permissions to different objects in the buckets. S3 Buckets can be configured to create access logs which log all the requests made to the S3 bucket. This can be done to another bucket.</summary></entry><entry><title type="html">S3 Lifecycle Management</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/S3-Lifecycle-Management.html" rel="alternate" type="text/html" title="S3 Lifecycle Management" /><published>2018-06-13T00:00:00+10:00</published><updated>2018-06-13T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/S3-Lifecycle-Management</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/S3-Lifecycle-Management.html">&lt;ul&gt;
-  &lt;li&gt;Can be used in conjunction with versioning&lt;/li&gt;
-  &lt;li&gt;Can be applied to current versions and previous versions.&lt;/li&gt;
-  &lt;li&gt;Following actions can now be done:
-    &lt;ul&gt;
-      &lt;li&gt;Transition to the standard infrequently accessed storage class
-        &lt;ul&gt;
-          &lt;li&gt;File sizes have to be bigger than 128kb and a minimum 30 days after creation.&lt;/li&gt;
-          &lt;li&gt;Archive it to glacier storage class ( 30 days after IA, if relevant )&lt;/li&gt;
-          &lt;li&gt;Permanently Delete&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="storage" /><category term="s3" /><category term="lifecycle" /><category term="management" /><summary type="html">Can be used in conjunction with versioning Can be applied to current versions and previous versions. Following actions can now be done: Transition to the standard infrequently accessed storage class File sizes have to be bigger than 128kb and a minimum 30 days after creation. Archive it to glacier storage class ( 30 days after IA, if relevant ) Permanently Delete</summary></entry><entry><title type="html">S3 Cross Region Replication</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/S3-Cross-Region-Replication.html" rel="alternate" type="text/html" title="S3 Cross Region Replication" /><published>2018-06-13T00:00:00+10:00</published><updated>2018-06-13T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/S3-Cross-Region-Replication</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/S3-Cross-Region-Replication.html">&lt;h3 id=&quot;instructions&quot;&gt;Instructions&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Create 2 buckets one in london, and sydney&lt;/li&gt;
-  &lt;li&gt;Enable Cross Region Replication on the london bucket
-    &lt;ul&gt;
-      &lt;li&gt;In order for Cross Region Replication to work, you need both buckets with versioning enabled.&lt;/li&gt;
-      &lt;li&gt;You can enable CRR on just a prefix on a bucket.&lt;/li&gt;
-      &lt;li&gt;Set the bucket storage class from standard to IA.&lt;/li&gt;
-      &lt;li&gt;Hit save!&lt;/li&gt;
-      &lt;li&gt;Existing objects will not be replicated into both the buckets, Only new objects get replicated into the other buckets&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;If you want to copy your current items in bucket one to bucket two.
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;aws s3 &lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--recursive&lt;/span&gt; s3://[bucket_1] s3://[bucket_2]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-    &lt;ul&gt;
-      &lt;li&gt;Items that have been copied over, by default has permission set to private.&lt;/li&gt;
-      &lt;li&gt;If you delete an item from bucket 1, it sets a delete marker on bucket 1 and does the same on bucket 2.&lt;/li&gt;
-      &lt;li&gt;If you delete the delete marker on bucket 1 it does not delete on bucket 2.&lt;/li&gt;
-      &lt;li&gt;If you revert to an older version in bucket 1, you must do so in bucket 2, because the changes are not refelcted automatically in bucket 2.&lt;/li&gt;
+      &lt;li&gt;A strongly consistent read returns a result that reflects all writes that recieved a successful response prior to the read.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;exam-tips&quot;&gt;Exam Tips&lt;/h3&gt;
+&lt;h3 id=&quot;the-basics&quot;&gt;The Basics&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;Versioning Must be enabled on both the source and destination buckets&lt;/li&gt;
-  &lt;li&gt;Region must be unique.&lt;/li&gt;
-  &lt;li&gt;Files in an existing must be replicated across regions manually, otherwise it does not get replicated automatically.&lt;/li&gt;
-  &lt;li&gt;You cannot replicate to multiple bucket or daisy chain it at this time.&lt;/li&gt;
-  &lt;li&gt;delete markers are replicated.&lt;/li&gt;
-  &lt;li&gt;deleting individual version or delete markers will not be replicated.&lt;/li&gt;
-  &lt;li&gt;Understanding what cross region replication is at a high level.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="crossregionreplication" /><category term="s3" /><category term="storage" /><summary type="html">Instructions</summary></entry><entry><title type="html">CloudFront</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/CloudFront.html" rel="alternate" type="text/html" title="CloudFront" /><published>2018-06-13T00:00:00+10:00</published><updated>2018-06-13T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/CloudFront</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/13/CloudFront.html">&lt;p&gt;A content delivery network (CDN) is a system of distributed servers (network) that delivers webpages and other web content to a user based on the geographic locations of the user, the origin of the webpage and a content delivery server.&lt;/p&gt;
-
-&lt;p&gt;Amazon cloudfront can be used to deliver your entire website, including dynamic, static, streaming, and interactive content using a global network of edge locations. Requests for your content are automatically routed to the nearest edge location, so content is delivered with the best possible performance.&lt;/p&gt;
-
-&lt;p&gt;Amazon CloudFront is optimized to work with other Amazon web services, like amazon simple storage service, amazon elastic cloud compute, amazon elastic load balancing, and amazon route 53. Amazon CloudFront also works seamlessly  with any Non-Aws origin server, which stores the original, definitive versions of your files.&lt;/p&gt;
-
-&lt;h3 id=&quot;key-terminology&quot;&gt;Key terminology&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Edge Location&lt;/strong&gt; - This is the location where content will be cached. This is seperate to an AWS Region/AZ.
-    &lt;ul&gt;
-      &lt;li&gt;Edge Locations are not &lt;strong&gt;READ-ONLY&lt;/strong&gt;. You can &lt;strong&gt;WRITE&lt;/strong&gt; to them too. ( ie put an object on to them ). This will be replicated back to the origin server.&lt;/li&gt;
-      &lt;li&gt;Objects are cached for the life of the TTL ( Time To Live )&lt;/li&gt;
-      &lt;li&gt;You can clear cached objects, but you will be charged.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Origin&lt;/strong&gt; - This is the origin of all the files that the CDN will distribute. This can be either an S3 bucket, an EC2 Instance, an Elastic Load Balancer or Route53.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Distribution&lt;/strong&gt; - This is the name given to the CDN which consists of a collection of Edge Locations.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Web Distribution&lt;/strong&gt; - Typically used for Websites.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;RTMP&lt;/strong&gt; - Used for Media Streaming.&lt;/li&gt;
+  &lt;li&gt;Tables&lt;/li&gt;
+  &lt;li&gt;Items ( Think a row of data in table )&lt;/li&gt;
+  &lt;li&gt;Attributes ( Think a column of data in a table )&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;lab&quot;&gt;LAB&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;DynamoDB can have 35 levels of nesting currently.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;pricing&quot;&gt;Pricing&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;Create a bucket in s3 to be used with CloudFront.&lt;/li&gt;
-  &lt;li&gt;Upload an image to that bucket.&lt;/li&gt;
-  &lt;li&gt;Goto CloudFront and click on create distribution network.&lt;/li&gt;
-  &lt;li&gt;Click on get start under Web.&lt;/li&gt;
-  &lt;li&gt;Select the s3 bucket on the origin domain name. (dropdown menu)&lt;/li&gt;
-  &lt;li&gt;Select Yes for restricting bucket access.&lt;/li&gt;
-  &lt;li&gt;Create a new identity for bucket access.&lt;/li&gt;
-  &lt;li&gt;Update bucket policy to grant read permissions.&lt;/li&gt;
-  &lt;li&gt;Under default cache behaviour Viewer protocol policy Redirect HTTP to HTTPS&lt;/li&gt;
-  &lt;li&gt;Restrict Viewer Access ( Use signed urls or signed cookies ) if you want to have restrictions.&lt;/li&gt;
-  &lt;li&gt;Hit save and it should be deployed in around 15 minutes.&lt;/li&gt;
-  &lt;li&gt;You can also enable geo restrictions
+  &lt;li&gt;Provisioned Throughput Capacity
     &lt;ul&gt;
-      &lt;li&gt;either black countries or whitelist countries but not both.&lt;/li&gt;
+      &lt;li&gt;Write throughput $0.0065 per hour for every 10 units&lt;/li&gt;
+      &lt;li&gt;Read throughput $0.0065 per hour for every 50 units&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;If you want to remove an object from the cache immedietely ( Costs MONEY ), you can do so by creating an Invalidation.&lt;/li&gt;
-  &lt;li&gt;After youre done with setting up, make sure you delete the distribution network because this does cost you money.
-    &lt;ul&gt;
-      &lt;li&gt;First select the distribution network, and click on disable (15 - 30) mins later you will be able to click on delete.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="storage" /><category term="cloudfront" /><category term="cdn" /><category term="s3" /><summary type="html">A content delivery network (CDN) is a system of distributed servers (network) that delivers webpages and other web content to a user based on the geographic locations of the user, the origin of the webpage and a content delivery server.</summary></entry><entry><title type="html">S3 Enable Versioning</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/12/S3-Enable-Versioning.html" rel="alternate" type="text/html" title="S3 Enable Versioning" /><published>2018-06-12T00:00:00+10:00</published><updated>2018-06-12T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/12/S3-Enable-Versioning</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/12/S3-Enable-Versioning.html">&lt;h3 id=&quot;instructions&quot;&gt;Instructions&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Loggin to the aws console and head over to aws s3&lt;/li&gt;
-  &lt;li&gt;Create a new bucket, click next instead of create.&lt;/li&gt;
-  &lt;li&gt;Enable versioning and click next until bucket is created.&lt;/li&gt;
-  &lt;li&gt;Once versioning has been enabled for a bucket.
-    &lt;ul&gt;
-      &lt;li&gt;You cannot remove versioning from the bucket.&lt;/li&gt;
-      &lt;li&gt;You can stop the bucket from creating more versions.&lt;/li&gt;
-      &lt;li&gt;If you want to completely remove versioning from the bucket, create a new bucket, transfer everything to that bucket.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;If you deleted an object, you can restore that object as well. You will be able to restore it to any point in time.&lt;/li&gt;
+  &lt;li&gt;First 25 GB stored per month is free.&lt;/li&gt;
+  &lt;li&gt;Storage costs of $0.25 per month there after.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;tips&quot;&gt;Tips&lt;/h3&gt;
+&lt;p&gt;Lets assume that your application needs to perform 1 million writes and 1 million reads per day, while storing 28GB of data. First, you need to calculate how many writes and reads per second you need. 1 million evenly spread writes per day is equivalent to 1,000,000 ( writes ) / 24 ( hours ) / 60 ( minutes ) / 60 ( seconds ) = 11.6 writes per second. A DynamoDB write capacity unit can handle 1 write per second, so you need 12 write capacity units. For write throughput you are charged $0.0065 for every 10 units.
+So ($0.0065/10) * 12 * 24 = $0.1872 per day.&lt;/p&gt;
+
+&lt;p&gt;Similarly, to handle 1 million strongly consistent reads per day, you need 12 Read Capacity Units. For read throughput you are charged $0.0065 for every 50 units.
+So ( $0.0065/50 ) * 12 * 24 = $0.0374 per day.&lt;/p&gt;
+
+&lt;p&gt;Storage costs is 0.25 per GB per month. Lets assume our database is 28GB. We get the first 25GB for free so we only pay for 3GB of storage which is $0.75 per month.&lt;/p&gt;
+
+&lt;p&gt;Total Cost = $0.1872 per day + $0.0374 per day Plus Storage of 0.75 per month
+( 30 x ( $0.1872 + $0.0374 )) $0.75 = $7.488&lt;/p&gt;
+
+&lt;p&gt;With Free Tier You Get
+25 Read Capacity Units
+25 Write Capacity Units&lt;/p&gt;
+
+&lt;h3 id=&quot;easiest-way-to-learn-dynamodb&quot;&gt;Easiest Way to Learn DynamoDB&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;Stores all versions of an object (including all writes and even if you object)&lt;/li&gt;
-  &lt;li&gt;Great Backup tool&lt;/li&gt;
-  &lt;li&gt;Once enabled, Versioning cannot be disabled, only suspended.&lt;/li&gt;
-  &lt;li&gt;Integrated with Life cycle rules.&lt;/li&gt;
-  &lt;li&gt;Versioning’s MFA Delete capability, which uses multi-factor authentication, can be used to provide an additional layer of security. ( bucket level and object level )&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="storage" /><category term="s3" /><category term="versioning" /><summary type="html">Instructions Loggin to the aws console and head over to aws s3 Create a new bucket, click next instead of create. Enable versioning and click next until bucket is created. Once versioning has been enabled for a bucket. You cannot remove versioning from the bucket. You can stop the bucket from creating more versions. If you want to completely remove versioning from the bucket, create a new bucket, transfer everything to that bucket. If you deleted an object, you can restore that object as well. You will be able to restore it to any point in time.</summary></entry><entry><title type="html">Serverless Website</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/11/Serverless-Website.html" rel="alternate" type="text/html" title="Serverless Website" /><published>2018-06-11T00:00:00+10:00</published><updated>2018-06-11T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/11/Serverless-Website</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/11/Serverless-Website.html">&lt;p&gt;This will be example of the simplest serverless website possible.&lt;/p&gt;
-&lt;h3 id=&quot;instructions&quot;&gt;Instructions&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;First we will need to create a lambda function
-    &lt;ul&gt;
-      &lt;li&gt;Select python 3.6 for the language&lt;/li&gt;
-      &lt;li&gt;add the following code to your lambda&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;lambda_handler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;In lambda_handler&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;resp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;s&quot;&gt;&quot;statusCode&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s&quot;&gt;&quot;headers&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;s&quot;&gt;&quot;Access-Control-Allow-Origin&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;*&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-        &lt;span class=&quot;s&quot;&gt;&quot;body&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;This response is from a lambda function running in ohio!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resp&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Now set the trigger for your lambda function as API Gateway.
-    &lt;ul&gt;
-      &lt;li&gt;Give it any name you want.&lt;/li&gt;
-      &lt;li&gt;Save your lambda settings&lt;/li&gt;
-      &lt;li&gt;Go to API Gateway and make sure its a get request.&lt;/li&gt;
-      &lt;li&gt;Go to stages and get the GET method URL.&lt;/li&gt;
-      &lt;li&gt;See if the URL gives back the response you expect.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Create a bucket in S3 with static website hosting&lt;/li&gt;
-  &lt;li&gt;add the following index.html&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;xhttp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;XMLHttpRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;xhttp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onreadystatechange&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readyState&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;status&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-            &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;demo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;innerHTML&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;responseText&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;xhttp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;GET&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;API GATEWAY URL&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;xhttp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;align=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;center&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Hello people&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;button&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onclick=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;request()&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Click me!&lt;span class=&quot;nt&quot;&gt;&amp;lt;/button&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;demo&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;If you have added the API Gateway url in the code above, It should work accordingly.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;And that is how you build a serverless website with S3, Lambda and API Gateway!&lt;/p&gt;</content><author><name>Eshan Shafeeq</name></author><category term="compute" /><category term="storage" /><category term="apigateway" /><category term="s3" /><category term="lambda" /><category term="serverless" /><summary type="html">This will be example of the simplest serverless website possible. Instructions First we will need to create a lambda function Select python 3.6 for the language add the following code to your lambda</summary></entry></feed>
+  &lt;li&gt;Play with DynamoDB&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="introduction" /><category term="dynamodb" /><category term="nosql" /><category term="database" /><summary type="html">DynamoDB 101 Amazon DynamoDB is a fast and flexible NoSQL database service for all applications that need consistent, single-digit millisecond latency at any scale. It is a fully managed database and supports both document and key-value data models. Its flexible data model and reliable performance make it a great fit for mobile, web, gaming, ad-tech, IoT, and many other applications.</summary></entry></feed>
