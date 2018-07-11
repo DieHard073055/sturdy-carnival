@@ -1,665 +1,469 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.2">Jekyll</generator><link href="https://diehard073055.github.io//sturdy-carnival/feed.xml" rel="self" type="application/atom+xml" /><link href="https://diehard073055.github.io//sturdy-carnival/" rel="alternate" type="text/html" /><updated>2018-06-22T01:19:51+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/</id><title type="html">AWS Developer Associate Notes</title><subtitle>Blog to keep track of what i have been studying for AWS Developer Associate Course. Also will be referrence to study before the exam.</subtitle><entry><title type="html">DynamoDB Summary</title><link href="https://diehard073055.github.io//sturdy-carnival/database/2018/06/22/DynamoDB-Summary.html" rel="alternate" type="text/html" title="DynamoDB Summary" /><published>2018-06-22T00:00:00+10:00</published><updated>2018-06-22T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/database/2018/06/22/DynamoDB-Summary</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/database/2018/06/22/DynamoDB-Summary.html">&lt;h3 id=&quot;what-is-dynamodb&quot;&gt;What is dynamoDB&lt;/h3&gt;
-&lt;p&gt;Fast and flexible NOSQL database service for all application that need consistent, single digit millisecond latency at any scale. It is a fully managed database and supports both document and key-value data models. Its flexible data model and reliable performance make it a great fit for mobile, web, gaming, ad-tech, IoT and many other applications.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.2">Jekyll</generator><link href="https://diehard073055.github.io//sturdy-carnival/feed.xml" rel="self" type="application/atom+xml" /><link href="https://diehard073055.github.io//sturdy-carnival/" rel="alternate" type="text/html" /><updated>2018-07-11T23:09:47+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/</id><title type="html">AWS Developer Associate Notes</title><subtitle>Blog to keep track of what i have been studying for AWS Developer Associate Course. Also will be referrence to study before the exam.</subtitle><entry><title type="html">VPC</title><link href="https://diehard073055.github.io//sturdy-carnival/networking/2018/07/11/VPC.html" rel="alternate" type="text/html" title="VPC" /><published>2018-07-11T00:00:00+10:00</published><updated>2018-07-11T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/networking/2018/07/11/VPC</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/networking/2018/07/11/VPC.html">&lt;h3 id=&quot;what-is-a-vpc&quot;&gt;What is a VPC&lt;/h3&gt;
+&lt;p&gt;This of a VPC as a virtual data centre in the cloud.&lt;/p&gt;
 
-&lt;h3 id=&quot;quick-facts&quot;&gt;Quick Facts&lt;/h3&gt;
+&lt;h3 id=&quot;aws-definition&quot;&gt;AWS Definition&lt;/h3&gt;
+&lt;p&gt;Amazon Virtual Private Cloud (Amazon VPC) lets you provision a logically isolated section of the Amazon Web Services (AWS) Cloud where you can launch AWS resources in a virtual network that you define. You have complete control over your virtual networking environment, including selection of your own IP address range, creation of subnets, and configuration of route tables and network gateways.&lt;/p&gt;
+
+&lt;p&gt;You can easily customize the network configuration for your Amazon Virtual Private Cloud. For example, you can create a public-facing subnet  for your webservers that has access to the Internet, and place your backend systems such as databases, or application servers in a private facing subnet with no Internet access. You can leverage multiple layers of security, including security groups and network access control lists, to help control access to Amazon EC2 Instances in each subnet.&lt;/p&gt;
+
+&lt;p&gt;Additionally You can create Hardware Virtual Private Cloud (VPN) connection between your coorporate datacenter and your VPC and leverage the AWS cloud as an extension of your corporate datacenter.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-can-you-do-with-vpc&quot;&gt;What can you do with VPC?&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;Stored on SSD Storage.&lt;/li&gt;
-  &lt;li&gt;Spread Across 3 geographically distinct data centres.&lt;/li&gt;
-  &lt;li&gt;Eventaul Consistent Reads (Default)
-    &lt;ul&gt;
-      &lt;li&gt;Consistency across all copies of data is usually reached within a second. Repeating a read after a short time should return the updated data. (Best read performance).&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Strong Consistent Reads
-    &lt;ul&gt;
-      &lt;li&gt;A strongly consistent read returns a result that reflects all writes that received a successful response prior to the read.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;Launch instances into a subnet of your choosing.&lt;/li&gt;
+  &lt;li&gt;Assign Custom IP address range in each subnet.&lt;/li&gt;
+  &lt;li&gt;Configure routing tables between subnets.&lt;/li&gt;
+  &lt;li&gt;Create internet gateway and attach it to our VPC.&lt;/li&gt;
+  &lt;li&gt;Much better security control over the AWS resources.&lt;/li&gt;
+  &lt;li&gt;Instance security groups.&lt;/li&gt;
+  &lt;li&gt;Subnet network access control lists (ACLS).&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;basics&quot;&gt;Basics&lt;/h3&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;* Tables
-* Items ( Data in table )
-* Attributes ( Column names in a table )
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;primary-keys&quot;&gt;Primary Keys&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Two types of primary keys available&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Single Attribute (Unique ID)&lt;/p&gt;
+&lt;h3 id=&quot;default-vpc-vs-custom-vpc&quot;&gt;Default VPC vs Custom VPC&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;Partition Key (Hash key) composed of one attribute.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Composite (Think unique ID and a date range)&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Partition Key &amp;amp; Sort Key (Hash &amp;amp; Range) composed of two attributes.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Partition Key&lt;/strong&gt;
+  &lt;li&gt;Default VPC is user friendly, allowing you to immedietely deploy instances.&lt;/li&gt;
+  &lt;li&gt;All Subnets in the default VPC have a route out to the internet.&lt;/li&gt;
+  &lt;li&gt;Each EC2 instance has both public and private IP address.
     &lt;ul&gt;
-      &lt;li&gt;DynamoDB uses the partition key’s value as input to an internal hash function. The output from the hash function determines the partition ( this is simply the physical location in which the data is stored).&lt;/li&gt;
-      &lt;li&gt;No two items in a table can have the same partition key value!&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Partition Key and Sort Key&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;DynamoDB uses the partition key’s value as an input to an internal hash function. The output from the hash function determines the partition ( this is simply the physical location in which the data is stored).&lt;/li&gt;
-      &lt;li&gt;Two items can have the same parition key, but they &lt;strong&gt;must have a different sort key.&lt;/strong&gt;&lt;/li&gt;
-      &lt;li&gt;All items with the same partition key will be stored together but ordered using the sort key value.&lt;/li&gt;
+      &lt;li&gt;If we deploy the instance to a private VPC subnet, the instance will not have any public IP address.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;indexes&quot;&gt;Indexes&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Local Secondary Index&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;vpc-peering&quot;&gt;VPC Peering&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;Has the SAME parition key, different sort key.&lt;/li&gt;
-  &lt;li&gt;Can ONLY be created when creating a table. They cannot be removed or modified later.&lt;/li&gt;
+  &lt;li&gt;Allows you to connect one VPC with another via direct network route using private IP address.&lt;/li&gt;
+  &lt;li&gt;Instances behave as if they were on the same private network.&lt;/li&gt;
+  &lt;li&gt;You can peer VPC’s with other AWS accounts as well as with other VPC’s in the same account.&lt;/li&gt;
+  &lt;li&gt;Peering is in a star configuration: ie 1 central VPC peers with 4 others. &lt;strong&gt;No Transitive Peering!!&lt;/strong&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Global Secondary Index&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Has a DIFFERENT partition key and DIFFERENT sort key.&lt;/li&gt;
-  &lt;li&gt;Can be created at table creation or added LATER.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;dynamodb-streams&quot;&gt;DynamoDB Streams&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Used to capture any kind of modification to the DynamoDB tables.&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;If a new item is added to the table, the stream captures an image of the entire item, including all of its attributes.&lt;/li&gt;
-  &lt;li&gt;If an item is updated, the stream captures the “before” and “after” image of any attributes that were modified in the item.&lt;/li&gt;
-  &lt;li&gt;If an item is deleted from the table, the stream captures an image of the entire item before it was deleted.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;query--scans&quot;&gt;Query &amp;amp; Scans&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;A Query operation finds items in a table using only primary key attribute values. You must provide a partition key attribute name and a distint value to search for.&lt;/li&gt;
-  &lt;li&gt;A Scan operation examines every item in the table. By default,  a Scan returns all of the data attributes for every item; however you can use the &lt;strong&gt;ProjectionExpression&lt;/strong&gt; parameter so that the Scan only returns some of the attributes, rather than all of them.&lt;/li&gt;
-  &lt;li&gt;Try to use a Query operation rather than a Scan operation as it is more efficient.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;dynamodb-provisioned-throughput-calculation&quot;&gt;DynamoDB Provisioned Throughput Calculation&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Read 13 items of 17 KB per second (using eventual consistency)
-    &lt;ol&gt;
-      &lt;li&gt;17KB to the nearest 4KB = 20&lt;/li&gt;
-      &lt;li&gt;20KB / 4KB = 5 read units per item&lt;/li&gt;
-      &lt;li&gt;5 x 13 read items per second = 65&lt;/li&gt;
-      &lt;li&gt;65 / 2 for eventual consistency = 32.5 (33)&lt;/li&gt;
-      &lt;li&gt;33 units of read throughput&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Write 94 items of 3KB per second
-    &lt;ol&gt;
-      &lt;li&gt;3KB to the nearest 1KB = 3&lt;/li&gt;
-      &lt;li&gt;3KB/1KB = 3 write units per item&lt;/li&gt;
-      &lt;li&gt;3 x 94 write items per second = 282&lt;/li&gt;
-      &lt;li&gt;282 / 1&lt;/li&gt;
-      &lt;li&gt;282 units of write throughput capacity&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Error code
-    &lt;ul&gt;
-      &lt;li&gt;&lt;strong&gt;400 HTTP ProvisionedThroughputExceededException&lt;/strong&gt; - You have exceeded your maximum allowed provisioned throughput for a table or for one or more global secondary indexes.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;steps-taken-to-authenticate-with-web-identity-provider&quot;&gt;Steps taken to authenticate with Web Identity Provider&lt;/h3&gt;
-&lt;ol&gt;
-  &lt;li&gt;User authenticates with Web identity Provider&lt;/li&gt;
-  &lt;li&gt;They are passed a Token by their ID Provider&lt;/li&gt;
-  &lt;li&gt;Your code calls &lt;strong&gt;AssumeRoleWithWebIdentity&lt;/strong&gt; API and provides the providers token and specifies the ARN for the IAM Role.&lt;/li&gt;
-  &lt;li&gt;App can now access DynamoDB from between 15 minutes to 1 hour (default 1 hour).&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;conditional-write&quot;&gt;Conditional Write&lt;/h3&gt;
-&lt;p&gt;If a price equals &lt;strong&gt;X&lt;/strong&gt; then update the price to &lt;strong&gt;Y&lt;/strong&gt;. If the price is not equal to &lt;strong&gt;X&lt;/strong&gt; operation fails. This is an &lt;strong&gt;Idempotent&lt;/strong&gt; operation.&lt;/p&gt;
-
-&lt;h3 id=&quot;atomic-counters&quot;&gt;Atomic Counters&lt;/h3&gt;
-&lt;p&gt;Increment or Decrement a value on an existing attirbute, regardless of its value. This is not an Idempotent operation. May over-count or under-count.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Use conditional writes for critical stuff, atomic counters for non critical stuff.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;batch-operations&quot;&gt;Batch Operations&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;BatchGetItem&lt;/strong&gt; can contain upto 1MB of data and upto 100 items&lt;/li&gt;
-  &lt;li&gt;Can retrieve items from multiple tables.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;READ THE FAQ OF DYNAMODB&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</content><author><name>Eshan Shafeeq</name></author><category term="summary" /><category term="dynamodb" /><category term="database" /><summary type="html">What is dynamoDB Fast and flexible NOSQL database service for all application that need consistent, single digit millisecond latency at any scale. It is a fully managed database and supports both document and key-value data models. Its flexible data model and reliable performance make it a great fit for mobile, web, gaming, ad-tech, IoT and many other applications.</summary></entry><entry><title type="html">DynamoDB - Other Key Facts</title><link href="https://diehard073055.github.io//sturdy-carnival/database/2018/06/22/DynamoDB-Other-Key-Facts.html" rel="alternate" type="text/html" title="DynamoDB - Other Key Facts" /><published>2018-06-22T00:00:00+10:00</published><updated>2018-06-22T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/database/2018/06/22/DynamoDB---Other-Key-Facts</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/database/2018/06/22/DynamoDB-Other-Key-Facts.html">&lt;h4 id=&quot;conditional-writes&quot;&gt;Conditional Writes&lt;/h4&gt;
-&lt;p&gt;Example Scenario&lt;/p&gt;
-
-&lt;p&gt;if two clients were to update a piece of data at the same time, the updates may happen at 2 different facilities, and may create unexpected outcome. In order to prevent this use, conditional writes. Lets say you want to update a price of an item, but you only want to update if its $6. So the first user do UpdateItem if Price is $6 to $15. The Price will change, the second user will also try and do a UpdateItem if Price is $6, but this time the price is 15 and the operation will fail.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;These conditional writes are idempotent. This means that you can send the same conditional write request multiple times, but will have no further effect on the item after the first successful update.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;DynamoDB support atomic counters, where you use the UpdateItem operation to increment or decrement the value of an existing attribute without interfering with other write requests. (All write requests are applied in the order in which they were recieved). For example, a web application might want to maintain a counter per visitor to their site. In this case, the application would need to increment this counter regardless of its current value.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Atomic counter updates are not idempotent. This means the counter will increment each time you call UpdateItem. If you suspect that a previous request was unsuccessful, your application could retry the UpdateItem operation; however this would risk updating the counter twice. This might be acceptable for a web site counter, because you can tolerate with slightly over-or under-counting the visitors. However in a banking application, it would be safer to use a conditional update rather than an atomic counter.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;In the exam you will be asked if you should use the atomic counter or the conditional update, it depends if the data is critical, example voting or banking you would use conditional writes. Where as for website visitor counters you would use atomic counters.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;If your application needs to read multiple items, you can use the BatchGetItem API. A single &lt;strong&gt;&lt;em&gt;BatchGetItem&lt;/em&gt;&lt;/strong&gt; request can retrieve up to 1 MB of data, which can contain as many as 100 items. In addition, a single BatchGetItem request can retrieve items from multiple tables.&lt;/p&gt;</content><author><name>Eshan Shafeeq</name></author><category term="dynamodb" /><category term="database" /><category term="keyfacts" /><summary type="html">Conditional Writes Example Scenario</summary></entry><entry><title type="html">Web Identity Providers</title><link href="https://diehard073055.github.io//sturdy-carnival/database/2018/06/21/Web-Identity-Providers.html" rel="alternate" type="text/html" title="Web Identity Providers" /><published>2018-06-21T00:00:00+10:00</published><updated>2018-06-21T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/database/2018/06/21/Web-Identity-Providers</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/database/2018/06/21/Web-Identity-Providers.html">&lt;h3 id=&quot;web-identity-providers&quot;&gt;Web Identity Providers&lt;/h3&gt;
-
-&lt;p&gt;You can authenticate users using &lt;strong&gt;Web Identity Providers&lt;/strong&gt; ( such as Facebook, Google, Amazon, or any other Open-ID Connect-compatible Identity provider). This is done using AssumeRoleWithWebIdentity API.&lt;/p&gt;
-
-&lt;p&gt;You will need to create a role first&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;User Authenticates With WebIDProvider&lt;/li&gt;
-  &lt;li&gt;WebIDProvider gives you a Web Identity Token.&lt;/li&gt;
-  &lt;li&gt;Do the AssumeRoleWithWebIdentity Request to AWS SecurityTokenService (STS)&lt;/li&gt;
-  &lt;li&gt;AWS (STS) gives back Temporary Security Credentials ( Defaults 1 hour )
-    &lt;ul&gt;
-      &lt;li&gt;Access Key ID, Secret Access Key, Session Token.&lt;/li&gt;
-      &lt;li&gt;Expiration ( Time limit )&lt;/li&gt;
-      &lt;li&gt;AssumeRoleID&lt;/li&gt;
-      &lt;li&gt;SubjectFromWebIdentityToken ( The unique ID that appears in an IAM policy variable for this particular identity provider )&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Using these credentials, you can access dynamodb.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;hr /&gt;
-
-&lt;h4 id=&quot;steps-taken-to-authenticate&quot;&gt;Steps taken to authenticate&lt;/h4&gt;
-&lt;ol&gt;
-  &lt;li&gt;User Authenticates with the ID provider&lt;/li&gt;
-  &lt;li&gt;They are passed a Token by their ID provider.&lt;/li&gt;
-  &lt;li&gt;Your code calls &lt;strong&gt;AssumeRoleWithWebIdentity&lt;/strong&gt; API and provides the providers token and specifies the ARN for the IAM Role.&lt;/li&gt;
-  &lt;li&gt;App can now access DynamoDB from between 15 minutes to 1 hour (default is 1 hour)&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Eshan Shafeeq</name></author><category term="security" /><category term="database" /><category term="social" /><category term="openid" /><category term="assumerolewithwebidentity" /><category term="dynamodb" /><summary type="html">Web Identity Providers</summary></entry><entry><title type="html">DynamoDB Provisioned Throughput Calculations</title><link href="https://diehard073055.github.io//sturdy-carnival/database/2018/06/21/DynamoDB-Provisioned-Throughput-Calculations.html" rel="alternate" type="text/html" title="DynamoDB Provisioned Throughput Calculations" /><published>2018-06-21T00:00:00+10:00</published><updated>2018-06-21T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/database/2018/06/21/DynamoDB-Provisioned-Throughput-Calculations</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/database/2018/06/21/DynamoDB-Provisioned-Throughput-Calculations.html">&lt;h3 id=&quot;provisioned-throughput&quot;&gt;Provisioned Throughput&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Unit of Read provisioned throughput
-    &lt;ul&gt;
-      &lt;li&gt;All reads are rounded up to increments of 4KB&lt;/li&gt;
-      &lt;li&gt;Eventually Consistent Reads (default) consist of 2 reads per second.&lt;/li&gt;
-      &lt;li&gt;Strongly Consistent Reads consist of 1 read per second.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Unit of Write provisioned throughput.
-    &lt;ul&gt;
-      &lt;li&gt;All writes are 1 KB&lt;/li&gt;
-      &lt;li&gt;All writes consist of 1 write per second&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;the-magic-formula&quot;&gt;The magic formula&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Question&lt;/strong&gt; - you have an application that requires to read 10 items of 1KB per second using eventual consistency. What should you set the read throughput to?&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;(Size of Read rounded to nearest 4KB chunk / 4KB) x no of items = read throughput&lt;/strong&gt;
-&lt;strong&gt;Divide by 2 if eventually consistent.&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;* First we calculate how many read units per item we need.
-
-* 1KB rounded to the nearest 4KB increment = 4KB
-* 4KB / 4KB = 1 read unit per item.
-
-* 1 x 10 read items = 10
-* Using eventual consistency we get 10 / 2 = 5
-* 5 units of read throughput
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;You have an application that requires to read 10 items of 6 KB per second using eventual consistency. What should you set the read throughput to?&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;6 KB rounded to the nearest 4KB increment = 8KB&lt;/li&gt;
-      &lt;li&gt;8KB / 4KB = 2 read unit per item&lt;/li&gt;
-      &lt;li&gt;2 x 10 read items = 20&lt;/li&gt;
-      &lt;li&gt;Using eventual consistency we get 20 / 2 = 10&lt;/li&gt;
-      &lt;li&gt;10 units of read throughput&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;You have an application that requires to read 5 items of 10KB per second using eventual consistency. What should you set the read throughput to?&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;10KB rounded to the nearest 4KB increment = 12KB&lt;/li&gt;
-      &lt;li&gt;12KB / 4KB = 3 read units per item&lt;/li&gt;
-      &lt;li&gt;3 x 5 read items = 15&lt;/li&gt;
-      &lt;li&gt;using eventual consistency we get 15 / 2 = 7.5 (8) &amp;lt;- since read throughput can only be integer.&lt;/li&gt;
-      &lt;li&gt;8 units of read throughput.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;You have an application that requires to read 5 items of 10KB per second using **&lt;em&gt;strong consistency&lt;/em&gt;&lt;/strong&gt;. What should you set the read throughput to?**
-    &lt;ul&gt;
-      &lt;li&gt;10KB rounded to the nearest 4KB increment = 12KB&lt;/li&gt;
-      &lt;li&gt;12KB / 4KB = 3 read units per item&lt;/li&gt;
-      &lt;li&gt;3 x 5 read items = 15&lt;/li&gt;
-      &lt;li&gt;Since we are using strong consistency 15 x 1&lt;/li&gt;
-      &lt;li&gt;15 units of read throughput&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;You have an application that requires to write 5 items, with each item being 10KB in size. What should the write throughput be set to?&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;10 KB rounded to the nearest 1KB = 10KB&lt;/li&gt;
-      &lt;li&gt;10 KB / 1 KB = 10 write units per item&lt;/li&gt;
-      &lt;li&gt;10 x 5 write items = 50&lt;/li&gt;
-      &lt;li&gt;50 units of write throughput&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;You have an application that requires to write 12 items, with each item being 100KB in size. What should the write throughput be set to?&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;100 KB rounded to the nearest 1KB = 100KB&lt;/li&gt;
-      &lt;li&gt;100 KB / 1 KB = 100 write units per item&lt;/li&gt;
-      &lt;li&gt;100 x 12 write items = 1200&lt;/li&gt;
-      &lt;li&gt;1200 units of write throughput&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;error-codes&quot;&gt;Error Codes&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;400 HTTP Status Code &lt;strong&gt;ProvisionedThroughputExceededException&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;You have exceeded the maximum allowed provisioned throughput for a table or for one or global secondary indexes.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="dynamodb" /><category term="database" /><category term="cost" /><category term="throughput" /><category term="calculations" /><summary type="html">Provisioned Throughput Unit of Read provisioned throughput All reads are rounded up to increments of 4KB Eventually Consistent Reads (default) consist of 2 reads per second. Strongly Consistent Reads consist of 1 read per second. Unit of Write provisioned throughput. All writes are 1 KB All writes consist of 1 write per second</summary></entry><entry><title type="html">Scan vs Query API Calls</title><link href="https://diehard073055.github.io//sturdy-carnival/database/2018/06/15/Scan-vs-Query-API-Calls.html" rel="alternate" type="text/html" title="Scan vs Query API Calls" /><published>2018-06-15T00:00:00+10:00</published><updated>2018-06-15T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/database/2018/06/15/Scan-vs-Query-API-Calls</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/database/2018/06/15/Scan-vs-Query-API-Calls.html">&lt;h3 id=&quot;what-is-a-query&quot;&gt;What is a query&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;A Query operation finds items in a table using only primary key attributes values. You must provide a partition attribute name and a distinct value to search for.&lt;/li&gt;
-  &lt;li&gt;You can optionally provide a sort key attribute name and value, and use a comparison operator to refine the search results.&lt;/li&gt;
-  &lt;li&gt;By default, a query returns all of the data attributes for items with the specified primary key(s); however, you can use the &lt;strong&gt;ProjectionExpression&lt;/strong&gt; parameter so that the Query only returns some of the attributes, rather than all of them.&lt;/li&gt;
-  &lt;li&gt;Query results are always sorted by the sort key. If the data type of the sort key is a number, the results are returned in numeric order; otherwise the results are returned in order of ASCII character code values. By default, the sort order is ascending. To reverse the order, set the &lt;strong&gt;ScanIndexForward&lt;/strong&gt; parameter to false.&lt;/li&gt;
-  &lt;li&gt;By default all queries are eventually consistent but can be changed to be strongly consistent.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;what-is-a-scan-&quot;&gt;What is a Scan ?&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;A Scan operation examines every item in the table ( basically a table dump ). By default the scan returns all of the data attributes for every item; however, you can use the &lt;strong&gt;ProjectionExpression&lt;/strong&gt; parameter so that the Scan returns only some of them.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;what-should-i-use-a-query-or-a-scan&quot;&gt;What Should I use, a query or a Scan?&lt;/h3&gt;
-&lt;p&gt;Generally, a Query Operation is more efficient than a Scan operation.&lt;/p&gt;
-
-&lt;p&gt;A Scan operation always scans the entire table, then filters out values to provide the desired result, essentially adding the extra step of removing data from the result set. Avoid using a Scan operation on a large table with a filter that removes many results, if possible. Also, as a table grows, the Scan operation slows. The Scan operation examines every item for the requested values, and can use up the provisioned throughput for a large table in a single operation.&lt;/p&gt;
-
-&lt;p&gt;For quicker response times, design your tables in a way that can use the Query, &lt;em&gt;Get&lt;/em&gt; or &lt;em&gt;BatchGetItem&lt;/em&gt; APIs instead. Alternatively, design your application to use Scan operations in a way that minimizes the impact on your tables request rate.&lt;/p&gt;
 
 &lt;h3 id=&quot;exam-tips&quot;&gt;Exam Tips&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;A Query operation finds the items in a table using only primary key attribute values. You must provide a partition key attribute name and a distinct value to search for.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;A Scan operation examines every item in the table. By default, a Scan returns all of the data attributes for every item; however, you can use the &lt;strong&gt;ProjectionExpression&lt;/strong&gt; parameter so that the Scan only returns some of the attributes, rather than all of them.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Query results are always sorted by the sort key in ascending order. Set &lt;strong&gt;ScanIndexForward&lt;/strong&gt; parameter to false to reverse it.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Try use a Query operation than a scan operation as it is more efficient.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="scan" /><category term="query" /><category term="dynamodb" /><category term="database" /><summary type="html">What is a query A Query operation finds items in a table using only primary key attributes values. You must provide a partition attribute name and a distinct value to search for. You can optionally provide a sort key attribute name and value, and use a comparison operator to refine the search results. By default, a query returns all of the data attributes for items with the specified primary key(s); however, you can use the ProjectionExpression parameter so that the Query only returns some of the attributes, rather than all of them. Query results are always sorted by the sort key. If the data type of the sort key is a number, the results are returned in numeric order; otherwise the results are returned in order of ASCII character code values. By default, the sort order is ascending. To reverse the order, set the ScanIndexForward parameter to false. By default all queries are eventually consistent but can be changed to be strongly consistent.</summary></entry><entry><title type="html">DynamoDB Indexes</title><link href="https://diehard073055.github.io//sturdy-carnival/database/2018/06/15/DynamoDB-Indexes.html" rel="alternate" type="text/html" title="DynamoDB Indexes" /><published>2018-06-15T00:00:00+10:00</published><updated>2018-06-15T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/database/2018/06/15/DynamoDB-Indexes</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/database/2018/06/15/DynamoDB-Indexes.html">&lt;h3 id=&quot;primary-key&quot;&gt;Primary Key&lt;/h3&gt;
-&lt;p&gt;Two types of primary keys available.&lt;/p&gt;
+  &lt;li&gt;Think of VPC as a logical datacenter in AWS.&lt;/li&gt;
+  &lt;li&gt;Consists of IGWs (Or Virtual Private Gateways), Route Tables, Network Access Control Lists, Subnets, and Security Groups.&lt;/li&gt;
+  &lt;li&gt;1 Subnet = 1 Availability Zone&lt;/li&gt;
+  &lt;li&gt;Security Groups are Stateful; Network Access Control Lists are Stateless.&lt;/li&gt;
+  &lt;li&gt;No Transitive peering.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="networking" /><category term="vpc" /><category term="cloud data centre" /><category term="firewall" /><summary type="html">What is a VPC This of a VPC as a virtual data centre in the cloud.</summary></entry><entry><title type="html">Route53 - Routing Policies</title><link href="https://diehard073055.github.io//sturdy-carnival/2018/06/25/Route53-Routing-Policies.html" rel="alternate" type="text/html" title="Route53 - Routing Policies" /><published>2018-06-25T00:00:00+10:00</published><updated>2018-06-25T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/2018/06/25/Route53---Routing-Policies</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/2018/06/25/Route53-Routing-Policies.html">&lt;h3 id=&quot;types-of-routing-policies&quot;&gt;Types of Routing Policies&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Single Attribute (unique ID)&lt;/strong&gt;
+  &lt;li&gt;Simple&lt;/li&gt;
+  &lt;li&gt;Weighted&lt;/li&gt;
+  &lt;li&gt;Latency&lt;/li&gt;
+  &lt;li&gt;Failover&lt;/li&gt;
+  &lt;li&gt;Geolocation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;simple&quot;&gt;Simple&lt;/h3&gt;
+&lt;p&gt;This is the default routing policy when you create a new record set. This is most commonly used when you have a single resource that performs a given function for your domain, for example, one web server that serves content for the http://acloud.guru website.&lt;/p&gt;
+
+&lt;h3 id=&quot;weighted&quot;&gt;Weighted&lt;/h3&gt;
+&lt;p&gt;This allows you to split your traffic based on different weights assigned. For example you can set 10% of your traffic to go to US-EAST-1 and 90% of your traffic to go to EU-WEST-1. This doesnt do it by request, it does via the length of the day. Usually used for testing your new website.&lt;/p&gt;
+
+&lt;h3 id=&quot;latency&quot;&gt;Latency&lt;/h3&gt;
+&lt;p&gt;Latency based routing allows you to route your traffic based on the lowest network latency for your end user. ( ie which region will give them the fastest response time). To use latency-based routing you create a latency resource record set for the Amazon EC2 ( or ELB ) resource in each region that hosts your website. When Amazon Route 53 receives a query for your site, it selects the latency resource record set for the region that gives the user the lowest latency. Route53 then responds with the value associated with that resource set.&lt;/p&gt;
+
+&lt;h3 id=&quot;failover&quot;&gt;Failover&lt;/h3&gt;
+&lt;p&gt;Failover routing policies are used when you want to create an active/passive setup. For example you may want your primary site to be in EU-WEST-2 and your secondary DR Site in AP-SOUTHEAST-2. Route53 will monitor the health of your primary site using a health check. A health check monitors the health of your endpoints.&lt;/p&gt;
+
+&lt;h3 id=&quot;geolocation&quot;&gt;Geolocation&lt;/h3&gt;
+&lt;p&gt;Allows you to direct your traffic to different routes based on the geographic location of your users. ( location from which the DNS queries originate from ). For example, you might want all queries from Europe to be routed to a fleet of EC2 instances that are specifically configured for your European customers. These servers may have the local language of your European customers and all prices are displayed in Euros.&lt;/p&gt;
+
+&lt;h3 id=&quot;dns-exam-tips&quot;&gt;DNS Exam Tips&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Elastic Load Balancers never have an ipv4 address.&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Understand the difference between an Alias Record and a CNAME.&lt;/li&gt;
+  &lt;li&gt;If youre ever given the choice, always choose an Alias Record over a CNAME, because it dosent cost money.&lt;/li&gt;
+  &lt;li&gt;Remember the different routing polices.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Types of Routing Policies Simple Weighted Latency Failover Geolocation</summary></entry><entry><title type="html">DNS 101</title><link href="https://diehard073055.github.io//sturdy-carnival/networking/2018/06/24/DNS-101.html" rel="alternate" type="text/html" title="DNS 101" /><published>2018-06-24T00:00:00+10:00</published><updated>2018-06-24T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/networking/2018/06/24/DNS-101</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/networking/2018/06/24/DNS-101.html">&lt;ul&gt;
+  &lt;li&gt;DNS is used to convert human friendly names, such as &lt;code class=&quot;highlighter-rouge&quot;&gt;https://google.com&lt;/code&gt; into an Internet Protocol Address such as &lt;code class=&quot;highlighter-rouge&quot;&gt;https://92.93.94.95&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;IP addresses are used by computers to identify each other on the network. IP addresses commonly come in 2 different forms, IPv4 and IPv6.&lt;/li&gt;
+  &lt;li&gt;IPv4 address space is a 32 bit field and has over 4 billion different addresses.&lt;/li&gt;
+  &lt;li&gt;IPv6 address space is a 128 bit field and has over 340 undecillion addresses.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;top-level-domains&quot;&gt;Top Level Domains&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;The last word in a domain name represents the “top level domain”.
     &lt;ul&gt;
-      &lt;li&gt;Partition Key (Hash Key) composed of one attribute.&lt;/li&gt;
+      &lt;li&gt;.com&lt;/li&gt;
+      &lt;li&gt;.edu&lt;/li&gt;
+      &lt;li&gt;.gov&lt;/li&gt;
+      &lt;li&gt;.me&lt;/li&gt;
+      &lt;li&gt;.io&lt;/li&gt;
+      &lt;li&gt;.org&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Composite (unique ID and another attribute eg: DateRange)&lt;/strong&gt;
+  &lt;li&gt;The second word in a domain name represents the second level domain name” &lt;em&gt;optional and depends on the domain.&lt;/em&gt;
     &lt;ul&gt;
-      &lt;li&gt;Partition Key &amp;amp; Sort Key ( Hash &amp;amp; Range ) composed of two attributes.&lt;/li&gt;
+      &lt;li&gt;.&lt;strong&gt;co&lt;/strong&gt;.uk&lt;/li&gt;
+      &lt;li&gt;.&lt;strong&gt;gov&lt;/strong&gt;.uk&lt;/li&gt;
+      &lt;li&gt;.&lt;strong&gt;com&lt;/strong&gt;.au&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;partition-key&quot;&gt;Partition Key&lt;/h3&gt;
+&lt;h3 id=&quot;domain-registrars&quot;&gt;Domain Registrars&lt;/h3&gt;
+&lt;p&gt;A registrar is an authority that can assign domain names directly under one or more top-level domains. These domains are registered with InterNIC, a service of ICANN, which enforces uniqueness of domain names across the Internet. Each domain name becomes registered in a central database known as the WhoIS database.&lt;/p&gt;
+
+&lt;h3 id=&quot;soa-records&quot;&gt;SOA Records&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Start Of Authrority Records&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;The SOA Record Stores Information About&lt;/em&gt;;&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;DynamoDB uses the partition keys value as input to an internal hash function. The output from the hash function determines the partition ( The physical location where the data will be stored. )&lt;/li&gt;
-  &lt;li&gt;No two items can have the same partition key.&lt;/li&gt;
+  &lt;li&gt;The name of the server that supplied the data for the zone.&lt;/li&gt;
+  &lt;li&gt;The administrator of the zone.&lt;/li&gt;
+  &lt;li&gt;The current version of the zone.&lt;/li&gt;
+  &lt;li&gt;The number of seconds a secondary name server should wait before checking for updates.&lt;/li&gt;
+  &lt;li&gt;The number of seconds a secondary name server should wait before retrying a failed zone transfer.&lt;/li&gt;
+  &lt;li&gt;The maximum number of seconds that a secondary name server can use data before it must either be refreshed or expire.&lt;/li&gt;
+  &lt;li&gt;The default number of seconds for the time-to-live file on resource records.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;partition-key--sort-key&quot;&gt;Partition Key &amp;amp; Sort Key&lt;/h3&gt;
+&lt;h3 id=&quot;ns-records&quot;&gt;NS Records&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;DynamoDB uses the partition keys value as input to the internal hash function. The output determines the physical location just like the previous definition.&lt;/li&gt;
-  &lt;li&gt;Two items can have the same partition key, but the sort key must be different.&lt;/li&gt;
-  &lt;li&gt;All items with the same partition key will be stored together in sorted order by the sort key.&lt;/li&gt;
+  &lt;li&gt;NS stands for Name Server Records.&lt;/li&gt;
+  &lt;li&gt;Used by Top Level Domain servers to direct traffic to Content DNS server which contains authoritative DNS records.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;local-secondary-index&quot;&gt;Local Secondary Index&lt;/h3&gt;
+&lt;h3 id=&quot;a-records&quot;&gt;A Records&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;Has the partition key, different sort key.&lt;/li&gt;
-  &lt;li&gt;Can &lt;strong&gt;only be created when you create the table.&lt;/strong&gt; They cannot be removed / modified later either.&lt;/li&gt;
+  &lt;li&gt;The A record is the fundemental type of DNS record and the “A” in A record stands for “Address”.&lt;/li&gt;
+  &lt;li&gt;The A record is used by a computer to translate the name of the domain to the IP address.&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h3 id=&quot;global-secondary-index&quot;&gt;Global Secondary Index&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Has a different partition key and a different sort key.&lt;/li&gt;
-  &lt;li&gt;Can be created when your creating the table, and it can be created or added later as well.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;dynamodb-streams&quot;&gt;DynamoDB Streams&lt;/h3&gt;
-&lt;p&gt;Used to capture any kind of modification to the DynamoDB tables.
-    * If a new item is added to the table, the stream captures an image of the entire item. including all of its attributes.
-    * If an item is updated, stream captures the “before” and “after” image of any attributes that were modified in the item.
-    * If an item is deleted from the table, the stream captures an image of the entire item before it was deleted.
-    * If a new user signed up to your website, it creates a new entry in the user table, this will create a stream if you have streams enabled in your dynamo table. You can use the stream to &lt;strong&gt;trigger&lt;/strong&gt; lambdas to update a dynamodb table in another region or send a welcome message to the user.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;You can export data to csv&lt;/p&gt;
+  &lt;p&gt;Elastic load balancers never have an IPv4 / IPv6 Address, they always have a DNS name.&lt;/p&gt;
 &lt;/blockquote&gt;
 
+&lt;h3 id=&quot;ttl-record&quot;&gt;TTL Record&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;The length that a DNS record is cached on either the Resolving Server or the users own local PC is equal to the value of the “Time To Live” (TTL) in seconds.&lt;/li&gt;
+  &lt;li&gt;The lower the time to live, the faster changes to DNS records take to propagate through the internet.&lt;/li&gt;
+  &lt;li&gt;When migrating to different servers, always remember to lower the TTL to 300 seconds ( 5 minutes ) since 2 days before the migration, since by default the TTL is set to 2 days.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;cnames&quot;&gt;CNAMES&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;A Canonical Name ( CName ) can be used to resolve one domain name to another.&lt;/li&gt;
+  &lt;li&gt;For example, you may have a mobile website with the domain name http://m.acloud.guru that is used for when users browse to your domain name on their mobile devices. You may also want the name http://mobile.acloud.guru to resolve this same address.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;alias-records&quot;&gt;Alias Records&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Alias Records are used to map resource record sets in your hosted zone to Elastic Load Balancers, CloudFront distributions, or S3 buckets that are configured as websites.&lt;/li&gt;
+  &lt;li&gt;Alias Records work like CNAME record in that you can map one DNS name (www.example.com) to another &lt;code class=&quot;highlighter-rouge&quot;&gt;target&lt;/code&gt; DNS name (elb1234.elb.amazonaws.com).&lt;/li&gt;
+  &lt;li&gt;Key difference - A CNAME cant be used for naked domain names (zone apex record)&lt;/li&gt;
+  &lt;li&gt;You cant have a CNAME for http://acloud.guru, it must be either an A record or an Alias.&lt;/li&gt;
+  &lt;li&gt;Alias resource record sets can save you time because Amazon Route53 automatically recognizes changes in the record sets that the alias resource record set refers to.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;exam-tips&quot;&gt;Exam Tips&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;ELB’s do not have a predefined public IPv4 addresses, you resolve them using a DNS name.&lt;/li&gt;
+  &lt;li&gt;Understand the difference between as Alias Record and a CNAME.&lt;/li&gt;
+  &lt;li&gt;Given the choice always choose an Alias Record over a CNAME.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="networking" /><category term="dns" /><category term="ip" /><category term="resolve" /><category term="route53" /><summary type="html">DNS is used to convert human friendly names, such as https://google.com into an Internet Protocol Address such as https://92.93.94.95. IP addresses are used by computers to identify each other on the network. IP addresses commonly come in 2 different forms, IPv4 and IPv6. IPv4 address space is a 32 bit field and has over 4 billion different addresses. IPv6 address space is a 128 bit field and has over 340 undecillion addresses.</summary></entry><entry><title type="html">CloudFormation</title><link href="https://diehard073055.github.io//sturdy-carnival/2018/06/23/CloudFormation.html" rel="alternate" type="text/html" title="CloudFormation" /><published>2018-06-23T00:00:00+10:00</published><updated>2018-06-23T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/2018/06/23/CloudFormation</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/2018/06/23/CloudFormation.html">&lt;h3 id=&quot;what-is-cloudformation-&quot;&gt;What is CloudFormation ?&lt;/h3&gt;
+&lt;p&gt;One of the most powerful parts of AWS, CloudFormation allows you to take what was once traditional hardware infrastructure and convert it into code.&lt;/p&gt;
+
+&lt;p&gt;CloudFormation gives developers and system administrators an way to create and manage a collection of related AWS resources, provisioning and updating them in an orderly and predictable fashion.&lt;/p&gt;
+
+&lt;p&gt;You dont need to figure out the order for provisioning AWS services or the subtleties of making those dependencies work. CloudFormation takes care of this for you.&lt;/p&gt;
+
+&lt;p&gt;After the AWS resources are deployed, you can modify and update them in a controlled and prdictable way, in effect &lt;strong&gt;applying version control to your AWS infrastructure the same way you do with your software.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A &lt;strong&gt;Cloud Formation Template&lt;/strong&gt; is essentially an architectural diagram and a &lt;strong&gt;Cloud Formation Stack&lt;/strong&gt; is the end result of that diagram (i.e. what is actually provisioned ).&lt;/p&gt;
+
+&lt;p&gt;You create, update, and delete a collection of resources by creating, updating, and deleting stacks using CloudFormation templates.&lt;/p&gt;
+
+&lt;p&gt;CloudFormation templates are in &lt;strong&gt;JSON&lt;/strong&gt; format or &lt;strong&gt;YAML&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;elements-of-a-template&quot;&gt;Elements of a template&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Mandatory Elements&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;List of AWS Resources and their associated configuration values.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Optional Elements
+    &lt;ul&gt;
+      &lt;li&gt;The template’s file format &amp;amp; version number&lt;/li&gt;
+      &lt;li&gt;Template Parameters
+        &lt;ul&gt;
+          &lt;li&gt;The input values that are supplied at stack creation time. Limit of 60.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Output values
+    &lt;ul&gt;
+      &lt;li&gt;The output values required once a stack has finished building ( such as the Public IP address, ELB address, etc) Limit of 60.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;List of data tables
+    &lt;ul&gt;
+      &lt;li&gt;Use to look up static configuration values such as AMI’s etc.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;simple-template&quot;&gt;Simple Template&lt;/h3&gt;
+&lt;p&gt;JSON&lt;/p&gt;
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Resources&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;HelloBucket&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;AWS::S3::Bucket&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;YAML&lt;/p&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;Resources&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;HelloBucket&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;AWS::S3::Bucket&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;outputting-data&quot;&gt;Outputting Data&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;You can use Fn:GetAtt to output data.&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s2&quot;&gt;&quot;PublicIP&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Public IP address of the web server&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Value&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Fn::GetAtt&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;WebServerHost&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;PublicIp&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;exam-tips&quot;&gt;Exam Tips&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;By default the &lt;em&gt;“automatic rollback on error”&lt;/em&gt; ferature is &lt;strong&gt;ENABLED&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;You are &lt;strong&gt;CHARGED&lt;/strong&gt; for errors.&lt;/li&gt;
+  &lt;li&gt;CloudFormation is free.&lt;/li&gt;
+  &lt;li&gt;Stacks can wait for applications to be provisioned using the &lt;em&gt;“WaitCondition”&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;You can use the function &lt;em&gt;Fn:GetAtt&lt;/em&gt; to output data.&lt;/li&gt;
+  &lt;li&gt;Route53 completely supported. This includes creating &lt;em&gt;new&lt;/em&gt; hosted zones or &lt;em&gt;updating&lt;/em&gt; existing ones.
+    &lt;ul&gt;
+      &lt;li&gt;You can create A Records, Aliases etc.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;IAM Role Creation and Assignment is also supported.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;If customer is new to AWS use ElasticBeanstalk.&lt;/li&gt;
+  &lt;li&gt;If customer wants to convert their infrastructure into code, use CloudFormation.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">What is CloudFormation ? One of the most powerful parts of AWS, CloudFormation allows you to take what was once traditional hardware infrastructure and convert it into code.</summary></entry><entry><title type="html">Simple Workflow Service</title><link href="https://diehard073055.github.io//sturdy-carnival/workflow/2018/06/22/Simple-Workflow-Service.html" rel="alternate" type="text/html" title="Simple Workflow Service" /><published>2018-06-22T00:00:00+10:00</published><updated>2018-06-22T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/workflow/2018/06/22/Simple-Workflow-Service</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/workflow/2018/06/22/Simple-Workflow-Service.html">&lt;p&gt;Amazon Simple Workflow Service (Amazon SWF) is a web service that makes it easy to coordinate work across distributed application components. Amazon SWF enables applications for a range of use cases, including media processing, web application back-ends, business process workflows, and analytics pipelines, to be designed as a coordination of tasks.&lt;/p&gt;
+
+&lt;p&gt;Tasks represent invocations of various processing steps in an application which can be performed by executable code, web service calls, human actions, and scripts.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Worker are programs that interact with amazon SWF to get tasks.
+    &lt;ul&gt;
+      &lt;li&gt;Process received tasks and return results.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;A decider is a program that controls the coordination of tasks, ie: their ordering, concurrency, and scheduling according to the application logic.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The workers can run on EC2 instances or on machines behind firewalls. Amazon SWF brokers the interactions between workers and deciders. Allows deciders to get consistent views into the progress of tasks and to initiate new tasks in an ongoing manner.&lt;/p&gt;
+
+&lt;p&gt;At the same Amazon SWF stores tasks, assigns them to workers when are ready, and monitors their progress. &lt;strong&gt;It ensures that a task is assigned only once and is never duplicated.&lt;/strong&gt; Since Amazon SWF maintains the applications state durably, workers and deciders dont have to keep track of execution state. They can run independently, and scale quickly.&lt;/p&gt;
+
+&lt;p&gt;All your SWF activities are all scoped into a domain. Domains Isolate a set of types, execution, and tasks list from others within the same account.
+&lt;em&gt;You can register a domain by using the AWS Management Console or by using the RegisterDomain action in the Amazon SWF API.&lt;/em&gt;&lt;/p&gt;
+
 &lt;blockquote&gt;
-  &lt;p&gt;You can also enable cloudwatch to trigger alarms for different different metrics.&lt;/p&gt;
+  &lt;p&gt;Parameters are defined in JSON&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;You can have upto 5 local secondry indexes (LSI) and 5 global secondary indexes (GSI).&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Eshan Shafeeq</name></author><category term="indexes" /><category term="primarykeys" /><category term="streams" /><category term="dynamodb" /><category term="nosql" /><summary type="html">Primary Key Two types of primary keys available. Single Attribute (unique ID) Partition Key (Hash Key) composed of one attribute. Composite (unique ID and another attribute eg: DateRange) Partition Key &amp;amp; Sort Key ( Hash &amp;amp; Range ) composed of two attributes.</summary></entry><entry><title type="html">Snowball</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/Snowball.html" rel="alternate" type="text/html" title="Snowball" /><published>2018-06-14T00:00:00+10:00</published><updated>2018-06-14T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/Snowball</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/Snowball.html">&lt;p&gt;AWS Import/Export Disk accelerates moving large amounts data into and out of the AWS cloud using portable storage devices for transport. AWS Import/Export Disk transfers your data directly onto and off of storage devices using Amazon’s high-speed internal network and bypassing the internet.&lt;/p&gt;
-
-&lt;h3 id=&quot;types-of-snowballs&quot;&gt;Types of Snowballs&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;Snowball&lt;/li&gt;
-  &lt;li&gt;Snowball Edge&lt;/li&gt;
-  &lt;li&gt;Snowmobile&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Maximum Workflow can be 1 year and the value is measured in seconds&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;snowball&quot;&gt;Snowball&lt;/h3&gt;
-&lt;p&gt;Snowball is petabyte-scale data transport solution that uses secure appliances to transfer large amounts of data into and out of AWS. Using Snowball addresses common challenges with large-scale data transfers including high network costs, long transfer times, and security concerns. Transferring data with Snowball is simple, fast, secure, and can be as little as one-fifth the cost of high-speed internet. 80 TB snowball in all regions. Snowball uses multiple layers of security designed to protect your data including tamper-resistent enclosures, 256-bit encryption, and an industry standard Trusted Platform Module (TPM) designed to ensure both security and full chain-of-custody of your data. Once the data transfer job has been processed and verified, AWS performs a software erasure of Snowball appliance.&lt;/p&gt;
-
-&lt;h3 id=&quot;snowball-edge&quot;&gt;Snowball Edge&lt;/h3&gt;
-&lt;p&gt;AWS Snowball Edge is a 100TB data transfer device with on-board storage and compute capabilities. You can use Snowball Edge to move large amounts of data into and out of AWS, as a temporary storage tier for large local datasets, or to support local workloads in remote or offline locations.&lt;/p&gt;
-
-&lt;p&gt;Snowball Edge connects your existing applications and infrastructure using standard storage interfaces, streamlinning the data transfer process and minimizing setup and integration. Snowball Edge can cluster together to form a local storage tier and process your data on-premises, helping ensure your applications continue to run even when they are not able to access the cloud.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Its not just storage capacity its compute capacity in a box as well&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;snowmobile&quot;&gt;Snowmobile&lt;/h3&gt;
-&lt;p&gt;AWS Snowmobile is an Exabyte-scale data transfer service use to move extremely large amounts of data to AWS. You can transfer upto 100PB per Snowmobile. a 45-long ruggedized shipping container, pulled by a semi-trailer truck. Snowmobile makes it easy to move massive volumes of data to the cloud, including video libraries, image repositories, or even complete data center migration. Transfering data with Snowmobile is secure, fast and cost effective.&lt;/p&gt;
-
-&lt;h3 id=&quot;exam-tips&quot;&gt;Exam tips&lt;/h3&gt;
+&lt;h3 id=&quot;swf-vs-sqs&quot;&gt;SWF vs SQS&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;Understand what snowball is&lt;/li&gt;
-  &lt;li&gt;Understand what Import Export is&lt;/li&gt;
-  &lt;li&gt;Snowball Can do
-    &lt;ul&gt;
-      &lt;li&gt;Import to S3&lt;/li&gt;
-      &lt;li&gt;Export from S3&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="storage" /><category term="transfer" /><summary type="html">AWS Import/Export Disk accelerates moving large amounts data into and out of the AWS cloud using portable storage devices for transport. AWS Import/Export Disk transfers your data directly onto and off of storage devices using Amazon’s high-speed internal network and bypassing the internet.</summary></entry><entry><title type="html">S3 Transfer Acceleration</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/S3-Transfer-Acceleration.html" rel="alternate" type="text/html" title="S3 Transfer Acceleration" /><published>2018-06-14T00:00:00+10:00</published><updated>2018-06-14T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/S3-Transfer-Acceleration</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/S3-Transfer-Acceleration.html">&lt;p&gt;S3 Transfer Acceleration utilises the CloudFront Edge Network to accelerate your uploads to S3. Instead of uploading directly to your S3 bucket, you can use a distinct URL to upload directly to an edge location which will then transfer that to S3. You will get a distinct URL to upload to.&lt;/p&gt;</content><author><name>Eshan Shafeeq</name></author><category term="storage" /><category term="transfer" /><category term="s3" /><category term="transferacceleration" /><summary type="html">S3 Transfer Acceleration utilises the CloudFront Edge Network to accelerate your uploads to S3. Instead of uploading directly to your S3 bucket, you can use a distinct URL to upload directly to an edge location which will then transfer that to S3. You will get a distinct URL to upload to.</summary></entry><entry><title type="html">S3 Storage Summary</title><link href="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/S3-Storage-Summary.html" rel="alternate" type="text/html" title="S3 Storage Summary" /><published>2018-06-14T00:00:00+10:00</published><updated>2018-06-14T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/S3-Storage-Summary</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/storage/2018/06/14/S3-Storage-Summary.html">&lt;h3 id=&quot;s3---exam-tips&quot;&gt;S3 - Exam Tips&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;S3 is an Object based storage, its a place where you upload and download files.
-    &lt;ul&gt;
-      &lt;li&gt;You cannot run an os, or run a database off of S3.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Files can be of size 0 bytes all the way to 5TB.&lt;/li&gt;
-  &lt;li&gt;There is unlimited storage.&lt;/li&gt;
-  &lt;li&gt;Files are stored in Buckets.&lt;/li&gt;
-  &lt;li&gt;S3 is a universal namespace, all bucket names shall be unique globally.&lt;/li&gt;
-  &lt;li&gt;S3 bucket names are like &lt;code class=&quot;highlighter-rouge&quot;&gt;https://s3-[region].amazonaws.com/[bucketname]&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Read after Write Consistency for PUTS of new objects.&lt;/li&gt;
-  &lt;li&gt;Eventual Consistencry for Overwrite PUTS and DELETES. ( takes some time to propergate )&lt;/li&gt;
-  &lt;li&gt;S3 Storage Classes / Tiers
-    &lt;ul&gt;
-      &lt;li&gt;Standard S3
-        &lt;ul&gt;
-          &lt;li&gt;reliability of 99.999999999%&lt;/li&gt;
-          &lt;li&gt;availability of 99.99%&lt;/li&gt;
-          &lt;li&gt;Immedietly available and frequently accessed&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;S3 Infrequent Access ( IA )
-        &lt;ul&gt;
-          &lt;li&gt;availablity of 99.99%&lt;/li&gt;
-          &lt;li&gt;reliability of 99.999999999%&lt;/li&gt;
-          &lt;li&gt;Immedietly available infrequently accessed.&lt;/li&gt;
-          &lt;li&gt;Charged for retreval&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;S3 Reduced Redundency
-        &lt;ul&gt;
-          &lt;li&gt;reliability and availability of 99.99%&lt;/li&gt;
-          &lt;li&gt;Used for reproducable content ( such as thumbnails etc ).&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;Glacier
-        &lt;ul&gt;
-          &lt;li&gt;Archived data, where you have to wait 3 - 5 hour waiting period.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Core fundementals of S3
-    &lt;ul&gt;
-      &lt;li&gt;Key ( name )&lt;/li&gt;
-      &lt;li&gt;Value ( data )&lt;/li&gt;
-      &lt;li&gt;Version ID&lt;/li&gt;
-      &lt;li&gt;Metadata ( data about data )&lt;/li&gt;
-      &lt;li&gt;Access control lists&lt;/li&gt;
-      &lt;li&gt;Object based stroage only ( flat files )&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;S3 versioning
-    &lt;ul&gt;
-      &lt;li&gt;Stores all versions of an object ( including all writes and even if you delete an object )&lt;/li&gt;
-      &lt;li&gt;Great backup tool&lt;/li&gt;
-      &lt;li&gt;You pay for storage for all the versions of the object.&lt;/li&gt;
-      &lt;li&gt;Once enabled versioning cannot be disabled, it can only be suspended.&lt;/li&gt;
-      &lt;li&gt;Integrates with lifecycle rules.&lt;/li&gt;
-      &lt;li&gt;Versionings MFA Delete capability, which uses multi-factor authentication, can be used to provide an additional layer of security.&lt;/li&gt;
-      &lt;li&gt;Cross region replication requires versioning enabled on both the source bucket and destination bucket.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Lifecycle Management
-    &lt;ul&gt;
-      &lt;li&gt;Can be used in conjunction with versioning.&lt;/li&gt;
-      &lt;li&gt;Can be applied to current versions and previous versions.&lt;/li&gt;
-      &lt;li&gt;Following actions can now be done.
-        &lt;ul&gt;
-          &lt;li&gt;Transition to infrequenct access after a minimum of 30 days since creation date ( files need to be minimum 128kb )&lt;/li&gt;
-          &lt;li&gt;Archived to glacier storage class ( 30 days after IA, if relevant ).&lt;/li&gt;
-          &lt;li&gt;Permenantly Delete Objects&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;CloudFront
-    &lt;ul&gt;
-      &lt;li&gt;Edge Locations - This is the location where content will be cached.&lt;/li&gt;
-      &lt;li&gt;Origin - This is the origin of all the files that the CDN will distribute. This can be either an S3 bucket, an EC2 instance, an Elastic Load balancer or Route53.&lt;/li&gt;
-      &lt;li&gt;Distribution - This is the name given to the CDN with a collections of Edge Locations.
-        &lt;ul&gt;
-          &lt;li&gt;Web Distribution - Typically used for websites&lt;/li&gt;
-          &lt;li&gt;RTMP - Used for Media Streaming&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;Edge locations are not just readonly, you can write to them as well. ( Upload files to S3 ).&lt;/li&gt;
-      &lt;li&gt;Object are cached for the life of the TTL ( time to live ) ( default ttl 24hours )&lt;/li&gt;
-      &lt;li&gt;You can clear cached objects, but you will be charged.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Securing your buckets.
-    &lt;ul&gt;
-      &lt;li&gt;By default, all newly created buckets are &lt;strong&gt;PRIVATE&lt;/strong&gt;.&lt;/li&gt;
-      &lt;li&gt;You can setup access control to your buckets using;
-        &lt;ul&gt;
-          &lt;li&gt;Bucket policies.&lt;/li&gt;
-          &lt;li&gt;Access Control Lists.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;S3 buckets can be configured to create access logs which logs all the access requests made to the bucke. These logs can be stored in another bucket.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Encryption
-    &lt;ul&gt;
-      &lt;li&gt;In-transit Encryption
-        &lt;ul&gt;
-          &lt;li&gt;SSL/TLS (HTTPS)&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;In rest
-        &lt;ul&gt;
-          &lt;li&gt;Server Side Encryption
-            &lt;ul&gt;
-              &lt;li&gt;S3 Managed Keys SSE-S3&lt;/li&gt;
-              &lt;li&gt;AWS Managed Keys SSE-KMS
-                &lt;ul&gt;
-                  &lt;li&gt;Allows you to monitor who decrypted which file when. (Audit trail)&lt;/li&gt;
-                &lt;/ul&gt;
-              &lt;/li&gt;
-              &lt;li&gt;Customer provided Keys SSE-C&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-          &lt;li&gt;Client Side Encryption
-            &lt;ul&gt;
-              &lt;li&gt;Client uploads encrypted files.&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Storage Gateway
-    &lt;ul&gt;
-      &lt;li&gt;File Gateway - for flatfiles,  stored directly on S3.&lt;/li&gt;
-      &lt;li&gt;Volume Gateway (ISCI) - block based storage
-        &lt;ul&gt;
-          &lt;li&gt;Stored Volumes - your on premises data is asynchronously backed up to S3.&lt;/li&gt;
-          &lt;li&gt;Cached Volumes - frequently accessed data is cached on premises from S3.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;Gateway VIrtual Taped Library (VTL)
-        &lt;ul&gt;
-          &lt;li&gt;Used for backing up your data, from application like Netbackup, Backup Exec, Veam etc.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Snowball
-    &lt;ul&gt;
-      &lt;li&gt;Snowball - Pure storage 50TB to 80TB&lt;/li&gt;
-      &lt;li&gt;Snowball Edge - Both Compute and Storage Capabilities&lt;/li&gt;
-      &lt;li&gt;Snowmobile - 100PB worth of storage&lt;/li&gt;
-      &lt;li&gt;Understand what snowball is&lt;/li&gt;
-      &lt;li&gt;Understand what Import/Export is&lt;/li&gt;
-      &lt;li&gt;Snowball can import / Export to S3&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;S3 Transfer Acceleration
-    &lt;ul&gt;
-      &lt;li&gt;You can speed up S3 transfer speeds using CloudFront Edge locations, so you can upload files to s3 faster. Extra costs will apply. Greatest Impact on people who are further away geographically.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;S3 static websites.
-    &lt;ul&gt;
-      &lt;li&gt;You can S3 to host static websites.&lt;/li&gt;
-      &lt;li&gt;Serverless&lt;/li&gt;
-      &lt;li&gt;Very Cheap, scales automatically.&lt;/li&gt;
-      &lt;li&gt;Static only, cannot host dynamic sites.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;CORS
-    &lt;ul&gt;
-      &lt;li&gt;Cross origin resource sharing&lt;/li&gt;
-      &lt;li&gt;Needed to enable cors on the resources bucket and state the URL for the origin that will be calling the bucket.&lt;/li&gt;
-      &lt;li&gt;Remeber to use the S3 website url and not the bucket URL, website url has the word website on it.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;When you do a PUT object on S3 you will get a HTTP 200 success code.&lt;/li&gt;
-  &lt;li&gt;You can load files much faster by enabling multipart upload.&lt;/li&gt;
-  &lt;li&gt;Read the S3 FAQ!&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="storage" /><category term="s3" /><category term="summary" /><summary type="html">S3 - Exam Tips S3 is an Object based storage, its a place where you upload and download files. You cannot run an os, or run a database off of S3. Files can be of size 0 bytes all the way to 5TB. There is unlimited storage. Files are stored in Buckets. S3 is a universal namespace, all bucket names shall be unique globally. S3 bucket names are like https://s3-[region].amazonaws.com/[bucketname] Read after Write Consistency for PUTS of new objects. Eventual Consistencry for Overwrite PUTS and DELETES. ( takes some time to propergate ) S3 Storage Classes / Tiers Standard S3 reliability of 99.999999999% availability of 99.99% Immedietly available and frequently accessed S3 Infrequent Access ( IA ) availablity of 99.99% reliability of 99.999999999% Immedietly available infrequently accessed. Charged for retreval S3 Reduced Redundency reliability and availability of 99.99% Used for reproducable content ( such as thumbnails etc ). Glacier Archived data, where you have to wait 3 - 5 hour waiting period. Core fundementals of S3 Key ( name ) Value ( data ) Version ID Metadata ( data about data ) Access control lists Object based stroage only ( flat files ) S3 versioning Stores all versions of an object ( including all writes and even if you delete an object ) Great backup tool You pay for storage for all the versions of the object. Once enabled versioning cannot be disabled, it can only be suspended. Integrates with lifecycle rules. Versionings MFA Delete capability, which uses multi-factor authentication, can be used to provide an additional layer of security. Cross region replication requires versioning enabled on both the source bucket and destination bucket. Lifecycle Management Can be used in conjunction with versioning. Can be applied to current versions and previous versions. Following actions can now be done. Transition to infrequenct access after a minimum of 30 days since creation date ( files need to be minimum 128kb ) Archived to glacier storage class ( 30 days after IA, if relevant ). Permenantly Delete Objects CloudFront Edge Locations - This is the location where content will be cached. Origin - This is the origin of all the files that the CDN will distribute. This can be either an S3 bucket, an EC2 instance, an Elastic Load balancer or Route53. Distribution - This is the name given to the CDN with a collections of Edge Locations. Web Distribution - Typically used for websites RTMP - Used for Media Streaming Edge locations are not just readonly, you can write to them as well. ( Upload files to S3 ). Object are cached for the life of the TTL ( time to live ) ( default ttl 24hours ) You can clear cached objects, but you will be charged. Securing your buckets. By default, all newly created buckets are PRIVATE. You can setup access control to your buckets using; Bucket policies. Access Control Lists. S3 buckets can be configured to create access logs which logs all the access requests made to the bucke. These logs can be stored in another bucket. Encryption In-transit Encryption SSL/TLS (HTTPS) In rest Server Side Encryption S3 Managed Keys SSE-S3 AWS Managed Keys SSE-KMS Allows you to monitor who decrypted which file when. (Audit trail) Customer provided Keys SSE-C Client Side Encryption Client uploads encrypted files.</summary></entry><entry><title type="html">DynamoDB Introduction</title><link href="https://diehard073055.github.io//sturdy-carnival/database/2018/06/14/DynamoDB-Introduction.html" rel="alternate" type="text/html" title="DynamoDB Introduction" /><published>2018-06-14T00:00:00+10:00</published><updated>2018-06-14T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/database/2018/06/14/DynamoDB-Introduction</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/database/2018/06/14/DynamoDB-Introduction.html">&lt;h3 id=&quot;dynamodb-101&quot;&gt;DynamoDB 101&lt;/h3&gt;
-&lt;p&gt;Amazon DynamoDB is a fast and flexible NoSQL database service for all applications that need consistent, single-digit millisecond latency at any scale. It is a fully managed database and supports both document and key-value data models. Its flexible data model and reliable performance make it a great fit for mobile, web, gaming, ad-tech, IoT, and many other applications.&lt;/p&gt;
+  &lt;li&gt;Amazon SWF presents a task-oriented API, whereas Amazon SQS offers a message-oriented API.&lt;/li&gt;
+  &lt;li&gt;SWF ensures task is executed only once, where as SQS you have to handle duplicated messages.&lt;/li&gt;
+  &lt;li&gt;SWF keeps track of all the tasks and events in an application, whereas SQS you have to keep track of all the tasks and events.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="workflow" /><category term="taskmanager" /><summary type="html">Amazon Simple Workflow Service (Amazon SWF) is a web service that makes it easy to coordinate work across distributed application components. Amazon SWF enables applications for a range of use cases, including media processing, web application back-ends, business process workflows, and analytics pipelines, to be designed as a coordination of tasks.</summary></entry><entry><title type="html">Simple Queue Service</title><link href="https://diehard073055.github.io//sturdy-carnival/messaging/2018/06/22/Simple-Queue-Service.html" rel="alternate" type="text/html" title="Simple Queue Service" /><published>2018-06-22T00:00:00+10:00</published><updated>2018-06-22T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/messaging/2018/06/22/Simple-Queue-Service</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/messaging/2018/06/22/Simple-Queue-Service.html">&lt;p&gt;Amazon SQS is a web service that gives you access to a message queue that can be used to store messages while waiting for a computer to process them. Amazon SQS is a distributed queue system that enables web service applications to quickly and reliably queue messages that one component in the application generates to be consumed by another component. A queue is a temporary repository for messages that are awaiting processing.&lt;/p&gt;
 
-&lt;h3 id=&quot;quick-facts-about-dynamodb-&quot;&gt;Quick Facts about DynamoDB ?&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Stored on SSD Storage&lt;/li&gt;
-  &lt;li&gt;Spread Across 3 geographically distinct data centres.&lt;/li&gt;
-  &lt;li&gt;Eventual Consistent Reads (Defaults)
-    &lt;ul&gt;
-      &lt;li&gt;Consistency across all copies of data is usually reached within a second. Repeating a read after a short time should return the updated data. (Best Read Performance)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Strongly Consistent Reads
-    &lt;ul&gt;
-      &lt;li&gt;A strongly consistent read returns a result that reflects all writes that recieved a successful response prior to the read.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Using amazon SQS, you can decouple the components of an application so they run independently, with Amazon SQS easing message management between components. Any component of a distributed application can store messages in a fail-safe queue.&lt;/p&gt;
 
-&lt;h3 id=&quot;the-basics&quot;&gt;The Basics&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Tables&lt;/li&gt;
-  &lt;li&gt;Items ( Think a row of data in table )&lt;/li&gt;
-  &lt;li&gt;Attributes ( Think a column of data in a table )&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Messages can contain upto 256KB of text in any format. Any component can later retrieve the messages programmatically using the Amazon SQS API. The queue act as a buffer between the component producing and saving data, and the component receiving the data for processing. This means the queue resolves issues that arise if the producer is producing work faster than the consumer can process it, or if the producer or consumer are only intermittently connected to the network.&lt;/p&gt;
+
+&lt;p&gt;Amazon SQS ensures delivery of each message at least once, and supports multiple readers and writers interacting with the same queue. A single queue can be used simultaneously by many distributed application components, with no need for those components to coordinate with each other to share the queue.&lt;/p&gt;
+
+&lt;p&gt;Amazon SQS is engineered to always be available and deliver messages. One of the resulting tradeoffs is that SQS does not guarantee first in, first out delivery of messages. For many distributed applications, each message can stand on its own, and as long as all messages are delivered, the order is not important.&lt;/p&gt;
+
+&lt;p&gt;If your system requires that the order be preserved, you can place sequencing information in each message, so that you can reorder the messages when the queue returns them.&lt;/p&gt;
+
+&lt;h3 id=&quot;example&quot;&gt;Example&lt;/h3&gt;
+&lt;p&gt;Suppose you have a number of images which needs to be encoded, In an amazon SQS worker queue, you can create an SQS message for each file specifying the command (jpeg-encode) and the location of the file in amazon s3. A pool of EC2 instances running the needed image processing software does the following:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Asynchonously pull the task messages from the queue. ( polling from the queue ).&lt;/li&gt;
+  &lt;li&gt;Retrieves the named file.&lt;/li&gt;
+  &lt;li&gt;Processes the conversion.&lt;/li&gt;
+  &lt;li&gt;Writes the image back to S3&lt;/li&gt;
+  &lt;li&gt;Writes the “task-complete” message to another queue.&lt;/li&gt;
+  &lt;li&gt;Deletes the original task message.&lt;/li&gt;
+  &lt;li&gt;Checks for more messages in the working queue.&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;DynamoDB can have 35 levels of nesting currently.&lt;/p&gt;
+  &lt;p&gt;You can enable auto scaling depending on the size of the queue. More messages in the queue, more ec2 instances you spin up.&lt;/p&gt;
 &lt;/blockquote&gt;
+
+&lt;h3 id=&quot;exam-tips&quot;&gt;Exam Tips&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Does not offer FIFO.&lt;/li&gt;
+  &lt;li&gt;12 hours visibility timeout.&lt;/li&gt;
+  &lt;li&gt;Will deliver messages at least once, most of the time it does deliver your messages exactly once. Design your applications so that even if it did deliver the message more than once, it doesnt create errors.&lt;/li&gt;
+  &lt;li&gt;256KB message sizes now available.&lt;/li&gt;
+  &lt;li&gt;Billed at 64KB chunks.&lt;/li&gt;
+  &lt;li&gt;256 KB messages will be billed at 64 x 4.&lt;/li&gt;
+  &lt;li&gt;First 1 million amazon SQS requests are free.&lt;/li&gt;
+  &lt;li&gt;$0.50 per 1 million Amazon SQS Requests per month thereafter.&lt;/li&gt;
+  &lt;li&gt;A single request can have from 1 to 10 messages, up to a maximum total payload of 256KB.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="sqs" /><category term="messaging" /><category term="polling" /><summary type="html">Amazon SQS is a web service that gives you access to a message queue that can be used to store messages while waiting for a computer to process them. Amazon SQS is a distributed queue system that enables web service applications to quickly and reliably queue messages that one component in the application generates to be consumed by another component. A queue is a temporary repository for messages that are awaiting processing.</summary></entry><entry><title type="html">Simple Notification Service</title><link href="https://diehard073055.github.io//sturdy-carnival/messaging/2018/06/22/Simple-Notification-Service.html" rel="alternate" type="text/html" title="Simple Notification Service" /><published>2018-06-22T00:00:00+10:00</published><updated>2018-06-22T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/messaging/2018/06/22/Simple-Notification-Service</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/messaging/2018/06/22/Simple-Notification-Service.html">&lt;ul&gt;
+  &lt;li&gt;Web service that makes it easy to setup, operate, and send notifications from the cloud.&lt;/li&gt;
+  &lt;li&gt;Provides developers with a highly scaleable, flexible and cost effective capability to publish messages from an application and immedietely deliver them to the subscribers.&lt;/li&gt;
+  &lt;li&gt;Follows the “pub-sub” paradigm - using a “push” mechanism. &lt;em&gt;no need for polling&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;Pay as you go pricing.&lt;/li&gt;
+  &lt;li&gt;Email &amp;amp; SMS&lt;/li&gt;
+  &lt;li&gt;Push notifications to Apple, Google, FireOS, and Windows Devices, as well as Android Devices with Baidu Cloud Push.&lt;/li&gt;
+  &lt;li&gt;SQS and any HTTP endpoint.&lt;/li&gt;
+  &lt;li&gt;Stored in multiple availability zones. - prevents messages being lost.&lt;/li&gt;
+  &lt;li&gt;Allows you to group multiple recipients using topics.&lt;/li&gt;
+  &lt;li&gt;One topic can support deliveries to multiple endpoints ( Will be formatted Appropriately )
+    &lt;ul&gt;
+      &lt;li&gt;iOS&lt;/li&gt;
+      &lt;li&gt;Android&lt;/li&gt;
+      &lt;li&gt;SMS&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;benefits&quot;&gt;Benefits&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Instantaneous, Pushbased Delivery&lt;/li&gt;
+  &lt;li&gt;Simple API’s and easy integration with applications.&lt;/li&gt;
+  &lt;li&gt;Flexible message delivery over multiple transport protocols.&lt;/li&gt;
+  &lt;li&gt;Inexpensive, pay-as-you-go model with no up-front costs.&lt;/li&gt;
+  &lt;li&gt;Web-based AWS Management Console offers the simplicity of a point-and-click interface.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;sns-vs-sqs&quot;&gt;SNS vs SQS&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Both messaging services in AWS&lt;/li&gt;
+  &lt;li&gt;SNS - Push&lt;/li&gt;
+  &lt;li&gt;SQS - Pull ( Polls )&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&quot;pricing&quot;&gt;Pricing&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;Provisioned Throughput Capacity
-    &lt;ul&gt;
-      &lt;li&gt;Write throughput $0.0065 per hour for every 10 units&lt;/li&gt;
-      &lt;li&gt;Read throughput $0.0065 per hour for every 50 units&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;First 25 GB stored per month is free.&lt;/li&gt;
-  &lt;li&gt;Storage costs of $0.25 per month there after.&lt;/li&gt;
+  &lt;li&gt;$0.50 per 1 million SNS Requests&lt;/li&gt;
+  &lt;li&gt;$0.06 per 100,000 Notification Deliveries over HTTP&lt;/li&gt;
+  &lt;li&gt;$0.75 per 100 Notification deliveries over SMS&lt;/li&gt;
+  &lt;li&gt;$2.00 per 100,000 Notification deliveries over Email
+&lt;em&gt;Number of requests + delivery mechanism&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Lets assume that your application needs to perform 1 million writes and 1 million reads per day, while storing 28GB of data. First, you need to calculate how many writes and reads per second you need. 1 million evenly spread writes per day is equivalent to 1,000,000 ( writes ) / 24 ( hours ) / 60 ( minutes ) / 60 ( seconds ) = 11.6 writes per second. A DynamoDB write capacity unit can handle 1 write per second, so you need 12 write capacity units. For write throughput you are charged $0.0065 for every 10 units.
-So ($0.0065/10) * 12 * 24 = $0.1872 per day.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;SNS dataype = JSON&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Eshan Shafeeq</name></author><category term="messaging" /><category term="notification" /><category term="sns" /><summary type="html">Web service that makes it easy to setup, operate, and send notifications from the cloud. Provides developers with a highly scaleable, flexible and cost effective capability to publish messages from an application and immedietely deliver them to the subscribers. Follows the “pub-sub” paradigm - using a “push” mechanism. no need for polling. Pay as you go pricing. Email &amp;amp; SMS Push notifications to Apple, Google, FireOS, and Windows Devices, as well as Android Devices with Baidu Cloud Push. SQS and any HTTP endpoint. Stored in multiple availability zones. - prevents messages being lost. Allows you to group multiple recipients using topics. One topic can support deliveries to multiple endpoints ( Will be formatted Appropriately ) iOS Android SMS</summary></entry><entry><title type="html">SQS Summary</title><link href="https://diehard073055.github.io//sturdy-carnival/messaging/2018/06/22/SQS-Summary.html" rel="alternate" type="text/html" title="SQS Summary" /><published>2018-06-22T00:00:00+10:00</published><updated>2018-06-22T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/messaging/2018/06/22/SQS-Summary</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/messaging/2018/06/22/SQS-Summary.html">&lt;ul&gt;
+  &lt;li&gt;SQS messages can be delivered multiple times and in any order.&lt;/li&gt;
+  &lt;li&gt;Default visibility is 30 seconds.&lt;/li&gt;
+  &lt;li&gt;Maximum timeout is 12 hours.&lt;/li&gt;
+  &lt;li&gt;If you wish to extend the message visibility since the timeout is not enough to fully process and delete the message, you can use &lt;strong&gt;Change Message Visibility&lt;/strong&gt; action to specify a new timeout value. Amazon SQS restarts the timeout period using the new value.&lt;/li&gt;
+  &lt;li&gt;SQS long polling dosent return a response until a message arrives in the queue, or the long poll times out. SQS long polling makes it easy and inexpensive to retrieve messages from your SQS queue as soon as they are available. &lt;em&gt;Maximum long poll timeout = 20 seconds&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Similarly, to handle 1 million strongly consistent reads per day, you need 12 Read Capacity Units. For read throughput you are charged $0.0065 for every 50 units.
-So ( $0.0065/50 ) * 12 * 24 = $0.0374 per day.&lt;/p&gt;
+&lt;h5 id=&quot;example-question&quot;&gt;Example Question&lt;/h5&gt;
+&lt;p&gt;Polling in a tight loops is burning CPU cycles and costing the company money. How could you fix this?
+&lt;strong&gt;Enable long polling&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;Storage costs is 0.25 per GB per month. Lets assume our database is 28GB. We get the first 25GB for free so we only pay for 3GB of storage which is $0.75 per month.&lt;/p&gt;
-
-&lt;p&gt;Total Cost = $0.1872 per day + $0.0374 per day Plus Storage of 0.75 per month
-( 30 x ( $0.1872 + $0.0374 )) $0.75 = $7.488&lt;/p&gt;
-
-&lt;p&gt;With Free Tier You Get
-25 Read Capacity Units
-25 Write Capacity Units&lt;/p&gt;
-
-&lt;h3 id=&quot;easiest-way-to-learn-dynamodb&quot;&gt;Easiest Way to Learn DynamoDB&lt;/h3&gt;
+&lt;h3 id=&quot;fanning-out-sqs&quot;&gt;Fanning out SQS&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;Play with DynamoDB&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="introduction" /><category term="dynamodb" /><category term="nosql" /><category term="database" /><summary type="html">DynamoDB 101 Amazon DynamoDB is a fast and flexible NoSQL database service for all applications that need consistent, single-digit millisecond latency at any scale. It is a fully managed database and supports both document and key-value data models. Its flexible data model and reliable performance make it a great fit for mobile, web, gaming, ad-tech, IoT, and many other applications.</summary></entry></feed>
+  &lt;li&gt;Create an SNS topic in SNS.&lt;/li&gt;
+  &lt;li&gt;Create and subscribe multiple SQS queues to the SNS topic.
+When ever a message is sent to the SNS topic, the message will be fanned out to the SQS queues. SNS will deliver the message to all the SQS queues that are subsribed to the topic.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="summary" /><category term="sqs" /><category term="examtips" /><summary type="html">SQS messages can be delivered multiple times and in any order. Default visibility is 30 seconds. Maximum timeout is 12 hours. If you wish to extend the message visibility since the timeout is not enough to fully process and delete the message, you can use Change Message Visibility action to specify a new timeout value. Amazon SQS restarts the timeout period using the new value. SQS long polling dosent return a response until a message arrives in the queue, or the long poll times out. SQS long polling makes it easy and inexpensive to retrieve messages from your SQS queue as soon as they are available. Maximum long poll timeout = 20 seconds</summary></entry><entry><title type="html">SNS Summary</title><link href="https://diehard073055.github.io//sturdy-carnival/messaging/2018/06/22/SNS-Summary.html" rel="alternate" type="text/html" title="SNS Summary" /><published>2018-06-22T00:00:00+10:00</published><updated>2018-06-22T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/messaging/2018/06/22/SNS-Summary</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/messaging/2018/06/22/SNS-Summary.html">&lt;ul&gt;
+  &lt;li&gt;Instantaneous, push-based delivery (polling)&lt;/li&gt;
+  &lt;li&gt;Protocols include
+    &lt;ul&gt;
+      &lt;li&gt;HTTP&lt;/li&gt;
+      &lt;li&gt;HTTPS&lt;/li&gt;
+      &lt;li&gt;Email&lt;/li&gt;
+      &lt;li&gt;Email JSON&lt;/li&gt;
+      &lt;li&gt;Amazon SQS&lt;/li&gt;
+      &lt;li&gt;Application&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Messages can be customized for each protocol.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="summary" /><category term="sns" /><category term="messaging" /><category term="push" /><summary type="html">Instantaneous, push-based delivery (polling) Protocols include HTTP HTTPS Email Email JSON Amazon SQS Application Messages can be customized for each protocol.</summary></entry><entry><title type="html">Elastic Beanstalk</title><link href="https://diehard073055.github.io//sturdy-carnival/loadbalancer/2018/06/22/Elastic-Beanstalk.html" rel="alternate" type="text/html" title="Elastic Beanstalk" /><published>2018-06-22T00:00:00+10:00</published><updated>2018-06-22T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/loadbalancer/2018/06/22/Elastic-Beanstalk</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/loadbalancer/2018/06/22/Elastic-Beanstalk.html">&lt;ul&gt;
+  &lt;li&gt;Deploy, monitor and scale applications quickly.&lt;/li&gt;
+  &lt;li&gt;Provides developers or end users with the ability to provision application infrastructure in an almost transparent manner.&lt;/li&gt;
+  &lt;li&gt;Gui for AWS&lt;/li&gt;
+  &lt;li&gt;Highly abstract focus towards infrastructure, focusing on components and performance - not configuration and specifications.&lt;/li&gt;
+  &lt;li&gt;Significantly simplify infrastructure management, allowing applications to be deployed into infrastructure environments easily.&lt;/li&gt;
+  &lt;li&gt;Primarily aimed at beginners.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;key-architecture-components&quot;&gt;Key Architecture Components&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Applications are high level structure in beanstalk.&lt;/li&gt;
+  &lt;li&gt;Either your entier application, is one EB application.&lt;/li&gt;
+  &lt;li&gt;Each logical component of your application can be an EB application or a EB environment within an application.&lt;/li&gt;
+  &lt;li&gt;Applications can have multiple environments ( Prod, Staging, Dev, V1, V2, V1.1 or functional type [ backend, frontend] )&lt;/li&gt;
+  &lt;li&gt;Environments are either single instances or scalable.&lt;/li&gt;
+  &lt;li&gt;Environments are either web server environments or worker environments.&lt;/li&gt;
+  &lt;li&gt;Application versions are unique packages which represent versions of apps.&lt;/li&gt;
+  &lt;li&gt;An application is uploaded to Elastic beanstalk as a application bundle - .zip&lt;/li&gt;
+  &lt;li&gt;Each ‘application’ can have many different versions 1:M relationship.&lt;/li&gt;
+  &lt;li&gt;Application versions can be deployed to environments within an Application.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;key-configurations-options&quot;&gt;Key configurations options&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;PHP&lt;/li&gt;
+  &lt;li&gt;.NET&lt;/li&gt;
+  &lt;li&gt;Java&lt;/li&gt;
+  &lt;li&gt;Ruby&lt;/li&gt;
+  &lt;li&gt;Nodejs&lt;/li&gt;
+  &lt;li&gt;Python&lt;/li&gt;
+  &lt;li&gt;Go&lt;/li&gt;
+  &lt;li&gt;Docker&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;You can do both application level updates, as well as configuration level updates. These can be rolling updates, all at once, one instance at a time, also do them by a percentage.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Elastic Beanstalk is a free service. But the services you provision from elastic beanstalk, the pricing depends on what you provision.&lt;/p&gt;
+
+&lt;h3 id=&quot;exam-tips&quot;&gt;Exam Tips&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;You can have multiple versions of your application.&lt;/li&gt;
+  &lt;li&gt;You appplications can be split into tiers ( Web Tier / Application Tier / Database Tier ).&lt;/li&gt;
+  &lt;li&gt;You can update your application.&lt;/li&gt;
+  &lt;li&gt;You can update the configuration.&lt;/li&gt;
+  &lt;li&gt;Updates can be 1 instance at a time, a % of instances or an immutable update.&lt;/li&gt;
+  &lt;li&gt;You pay for the resources that you use, but elastic beanstalk is free.&lt;/li&gt;
+  &lt;li&gt;If elastic beanstalk creates your RDS database then it will delete it when you delete your application. If not then the RDS instance stays.&lt;/li&gt;
+  &lt;li&gt;Languages supported
+    &lt;ul&gt;
+      &lt;li&gt;Apache Tomcat for Java applications&lt;/li&gt;
+      &lt;li&gt;Apache HTTP Server for PHP applications&lt;/li&gt;
+      &lt;li&gt;Apacahe HTTP Server for Python applications&lt;/li&gt;
+      &lt;li&gt;Nginx or Apache HTTP Server for Nodejs applications&lt;/li&gt;
+      &lt;li&gt;Passenger or Puma for Ruby applications&lt;/li&gt;
+      &lt;li&gt;Microsoft IIS, 7.5, 8.0, and 8.5 for .NET applications.&lt;/li&gt;
+      &lt;li&gt;Java SE&lt;/li&gt;
+      &lt;li&gt;Docker&lt;/li&gt;
+      &lt;li&gt;Go&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="loadbalancers" /><category term="elastic" /><category term="elasticbeanstalk" /><category term="scale" /><category term="webapps" /><summary type="html">Deploy, monitor and scale applications quickly. Provides developers or end users with the ability to provision application infrastructure in an almost transparent manner. Gui for AWS Highly abstract focus towards infrastructure, focusing on components and performance - not configuration and specifications. Significantly simplify infrastructure management, allowing applications to be deployed into infrastructure environments easily. Primarily aimed at beginners.</summary></entry></feed>
