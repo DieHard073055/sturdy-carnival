@@ -1,4 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.2">Jekyll</generator><link href="https://diehard073055.github.io//sturdy-carnival/feed.xml" rel="self" type="application/atom+xml" /><link href="https://diehard073055.github.io//sturdy-carnival/" rel="alternate" type="text/html" /><updated>2018-07-11T23:09:47+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/</id><title type="html">AWS Developer Associate Notes</title><subtitle>Blog to keep track of what i have been studying for AWS Developer Associate Course. Also will be referrence to study before the exam.</subtitle><entry><title type="html">VPC</title><link href="https://diehard073055.github.io//sturdy-carnival/networking/2018/07/11/VPC.html" rel="alternate" type="text/html" title="VPC" /><published>2018-07-11T00:00:00+10:00</published><updated>2018-07-11T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/networking/2018/07/11/VPC</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/networking/2018/07/11/VPC.html">&lt;h3 id=&quot;what-is-a-vpc&quot;&gt;What is a VPC&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.2">Jekyll</generator><link href="https://diehard073055.github.io//sturdy-carnival/feed.xml" rel="self" type="application/atom+xml" /><link href="https://diehard073055.github.io//sturdy-carnival/" rel="alternate" type="text/html" /><updated>2018-07-19T00:09:14+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/</id><title type="html">AWS Developer Associate Notes</title><subtitle>Blog to keep track of what i have been studying for AWS Developer Associate Course. Also will be referrence to study before the exam.</subtitle><entry><title type="html">VPC Summary</title><link href="https://diehard073055.github.io//sturdy-carnival/networking/2018/07/18/VPC-Summary.html" rel="alternate" type="text/html" title="VPC Summary" /><published>2018-07-18T00:00:00+10:00</published><updated>2018-07-18T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/networking/2018/07/18/VPC-Summary</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/networking/2018/07/18/VPC-Summary.html">&lt;h3 id=&quot;nat-instances&quot;&gt;NAT Instances&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;When creating NAT instance, Disable Source/Destination check on instances.&lt;/li&gt;
+  &lt;li&gt;NAT instance must be in a public subnet.&lt;/li&gt;
+  &lt;li&gt;There must be a route out of the private subnet to the NAT instance, in order for this to work.&lt;/li&gt;
+  &lt;li&gt;The amount of traffic that NAT instances can support depends on the instance size. If you are bottlenecking, increase the instance size.&lt;/li&gt;
+  &lt;li&gt;You can create high availability using Autoscaling Groups, multiple subnets in different AZ’s, and a script to automate failover.&lt;/li&gt;
+  &lt;li&gt;NAT instances are always behind a security group.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;nat-gateways&quot;&gt;NAT Gateways&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Preferred by the enterprise group.&lt;/li&gt;
+  &lt;li&gt;Scale up automatically upto 10GBps.&lt;/li&gt;
+  &lt;li&gt;No need to patch.&lt;/li&gt;
+  &lt;li&gt;Not associated with security groups.&lt;/li&gt;
+  &lt;li&gt;Automatically assigned with a public ip address.&lt;/li&gt;
+  &lt;li&gt;Remember to update your route tables.&lt;/li&gt;
+  &lt;li&gt;No need to disable Source / Destination checks.&lt;/li&gt;
+  &lt;li&gt;More secure than using NAT instances.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;network-acls&quot;&gt;Network ACLs&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Your VPC automatically comes with a default ACL, and by default it allows all inbound and outbound traffic.&lt;/li&gt;
+  &lt;li&gt;You can create custom network ACLs. And by default custom ACL denies all inbound and outbound traffic until you add rules.&lt;/li&gt;
+  &lt;li&gt;Each subnet in your VPC must be associated with a network ACL. If you dont explicitly associate a subnet with a network ACL, the subnet is automatically associated with the default network ACL.&lt;/li&gt;
+  &lt;li&gt;You can associate a network ACL with multiple subnets; however, a subnet can be associated with only one network ACL at a time. When you associate a network ACL with a subnet, the previous association is removed.&lt;/li&gt;
+  &lt;li&gt;Network ACLs contain a numbered list of rules that is evaluated in order, starting with lowest numbered rule.&lt;/li&gt;
+  &lt;li&gt;Network ACLs have seperate inbound and outbound rules, and each rule can either allow or deny traffic.&lt;/li&gt;
+  &lt;li&gt;Network ACLs are stateless, responses to allow inbound traffic are subjected to the rules for outbound traffic. (vice versa).&lt;/li&gt;
+  &lt;li&gt;Block IP addresses using NACLs&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;application-load-balancers&quot;&gt;Application Load Balancers&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;You will need at least 2 public subnets in order to deploy an application load balancer.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;vpc-flow-logs&quot;&gt;VPC Flow Logs&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;You cannot enable flow logs for VPCs that are peered with your VPC unless the peer VPC is in your account.&lt;/li&gt;
+  &lt;li&gt;You cannot tag a flow log.&lt;/li&gt;
+  &lt;li&gt;After youve created a flow log, you cannot change the configuration; for example, you cannot associate a different IAM rule with the current flow log.&lt;/li&gt;
+  &lt;li&gt;Not all IP traffic is monitored
+    &lt;ul&gt;
+      &lt;li&gt;Traffic generated by instances when they contact Amazon DNS server. If you use your own DNS server, then all traffic to that DNS server is logged.&lt;/li&gt;
+      &lt;li&gt;Traffic generated by a Windows instance for Amazon Windows license activation.&lt;/li&gt;
+      &lt;li&gt;Traffic to and from 169.254.169.254 for instance metadata.&lt;/li&gt;
+      &lt;li&gt;DHCP traffic.&lt;/li&gt;
+      &lt;li&gt;Traffic to the reserved IP address for the default VPC router.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="networking" /><category term="vpc" /><category term="routes" /><category term="security" /><category term="subnet" /><category term="nat" /><summary type="html">NAT Instances When creating NAT instance, Disable Source/Destination check on instances. NAT instance must be in a public subnet. There must be a route out of the private subnet to the NAT instance, in order for this to work. The amount of traffic that NAT instances can support depends on the instance size. If you are bottlenecking, increase the instance size. You can create high availability using Autoscaling Groups, multiple subnets in different AZ’s, and a script to automate failover. NAT instances are always behind a security group.</summary></entry><entry><title type="html">VPC</title><link href="https://diehard073055.github.io//sturdy-carnival/networking/2018/07/11/VPC.html" rel="alternate" type="text/html" title="VPC" /><published>2018-07-11T00:00:00+10:00</published><updated>2018-07-11T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/networking/2018/07/11/VPC</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/networking/2018/07/11/VPC.html">&lt;h3 id=&quot;what-is-a-vpc&quot;&gt;What is a VPC&lt;/h3&gt;
 &lt;p&gt;This of a VPC as a virtual data centre in the cloud.&lt;/p&gt;
 
 &lt;h3 id=&quot;aws-definition&quot;&gt;AWS Definition&lt;/h3&gt;
@@ -38,13 +91,82 @@
   &lt;li&gt;Peering is in a star configuration: ie 1 central VPC peers with 4 others. &lt;strong&gt;No Transitive Peering!!&lt;/strong&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;exam-tips&quot;&gt;Exam Tips&lt;/h3&gt;
+&lt;h3 id=&quot;exam-tips-vpc&quot;&gt;Exam Tips VPC&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;Think of VPC as a logical datacenter in AWS.&lt;/li&gt;
   &lt;li&gt;Consists of IGWs (Or Virtual Private Gateways), Route Tables, Network Access Control Lists, Subnets, and Security Groups.&lt;/li&gt;
   &lt;li&gt;1 Subnet = 1 Availability Zone&lt;/li&gt;
   &lt;li&gt;Security Groups are Stateful; Network Access Control Lists are Stateless.&lt;/li&gt;
   &lt;li&gt;No Transitive peering.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;exam-tips---nat-instances&quot;&gt;Exam Tips - NAT Instances&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;When creating a NAT instance, Disable Source/Destination Check on the Instance.&lt;/li&gt;
+  &lt;li&gt;NAT instances must be in a public subnet.&lt;/li&gt;
+  &lt;li&gt;There must be a route out of the private subnet to the NAT instance, in order for this to work.&lt;/li&gt;
+  &lt;li&gt;The amount of traffic that NAT instances can support depends on the size. If you are bottlenecking, increase the instance size.&lt;/li&gt;
+  &lt;li&gt;You can also create high availability using auto scaling groups, multiple subnets in different AZs, and a script to automate failover.&lt;/li&gt;
+  &lt;li&gt;Its behind a gateway.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;exam-tips---nat-gateways&quot;&gt;Exam Tips - NAT Gateways&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Preferred by the enterprise&lt;/li&gt;
+  &lt;li&gt;Scale automatically upto 10Gbps&lt;/li&gt;
+  &lt;li&gt;No need to patch&lt;/li&gt;
+  &lt;li&gt;Not associated with security groups&lt;/li&gt;
+  &lt;li&gt;Automatically assigned a public ip address&lt;/li&gt;
+  &lt;li&gt;Remember to update your route tables.&lt;/li&gt;
+  &lt;li&gt;No need to disable Source/Destination Checks.&lt;/li&gt;
+  &lt;li&gt;More secure than a NAT instance&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;exam-tips---network-acls&quot;&gt;Exam Tips - Network ACLs&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Your VPC automatically comes a default network ACL, and by default it allows all outbound and inbound traffic.&lt;/li&gt;
+  &lt;li&gt;You can create custom network ACLs. By default, each custom network ACL denies all inbound and outbound traffic until you add rules.&lt;/li&gt;
+  &lt;li&gt;Each subnet in your VPC must be associated with a network ACL. If you dont explicitly associate a subnet with a network ACL, the subnet is automatically associated with the default network ACL.&lt;/li&gt;
+  &lt;li&gt;You can associate a network ACL with multiple subnets; however one subnet can be associated with one network ACL at a time. When you associate a network ACL with a subnet, the previous association is removed.&lt;/li&gt;
+  &lt;li&gt;Network ACLs contain a numbered list of rules that is evaluated in order, starting with the lowest numbered rule.&lt;/li&gt;
+  &lt;li&gt;Network ACLs have seperate inbound and outbound rules, and each rule can either allow or deny traffic.&lt;/li&gt;
+  &lt;li&gt;Network ACLs are stateless; reponses to allowed inbound traffic are subject to the rules for outbound traffic (and vice versa).&lt;/li&gt;
+  &lt;li&gt;Block IP Addresses using ACLs not security groups.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;vpc-flow-logs&quot;&gt;VPC Flow Logs&lt;/h3&gt;
+&lt;p&gt;VPC Flow logs is a feature that enables you to capture information about the IP traffic going to and from network interfaces in your VPC. Flow log data is stored using Amazon CloudWatch Logs. After youve created flow log, you can view and retrieve its data in Amazon CloudWatch Logs.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Flow logs can be created at 3 levels
+    &lt;ul&gt;
+      &lt;li&gt;VPC&lt;/li&gt;
+      &lt;li&gt;Subnet&lt;/li&gt;
+      &lt;li&gt;Network Interface Level&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;exam-tips---vpc-flow-logs&quot;&gt;Exam Tips - VPC Flow Logs&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;You cannot enable flow logs for VPCs that are peered with your VPC unless the peer VPC is in your account.&lt;/li&gt;
+  &lt;li&gt;You cannot tag a flow log.&lt;/li&gt;
+  &lt;li&gt;After you have created a flow log, you cannot change its configuration; for example, you can’t associate a different IAM role with the flow log.&lt;/li&gt;
+  &lt;li&gt;Not all IP traffic is monitored.
+    &lt;ul&gt;
+      &lt;li&gt;Traffic generated by instances when they contact the Amazon DNS server. If you use your own DNS server, then all traffic to that DNS server is logged.&lt;/li&gt;
+      &lt;li&gt;Traffic generated by a Windows instance for Amazon Windows license activation.&lt;/li&gt;
+      &lt;li&gt;Traffic to and from 169.254.169.254 for instance metadata&lt;/li&gt;
+      &lt;li&gt;DHCP traffic.&lt;/li&gt;
+      &lt;li&gt;Traffic to the reserved IP address for the default VPC router.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;nat-vs-bastion&quot;&gt;NAT vs Bastion&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;A NAT instance is used to provide internet traffic to ec2 instances in private subnets&lt;/li&gt;
+  &lt;li&gt;A Bastion is used to securely administer EC2 instances ( using SSH or RDP ) in private subnets. In Australia we call them jump boxes.&lt;/li&gt;
 &lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="networking" /><category term="vpc" /><category term="cloud data centre" /><category term="firewall" /><summary type="html">What is a VPC This of a VPC as a virtual data centre in the cloud.</summary></entry><entry><title type="html">Route53 - Routing Policies</title><link href="https://diehard073055.github.io//sturdy-carnival/2018/06/25/Route53-Routing-Policies.html" rel="alternate" type="text/html" title="Route53 - Routing Policies" /><published>2018-06-25T00:00:00+10:00</published><updated>2018-06-25T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/2018/06/25/Route53---Routing-Policies</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/2018/06/25/Route53-Routing-Policies.html">&lt;h3 id=&quot;types-of-routing-policies&quot;&gt;Types of Routing Policies&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;Simple&lt;/li&gt;
@@ -403,67 +525,4 @@ When ever a message is sent to the SNS topic, the message will be fanned out to 
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;Messages can be customized for each protocol.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="summary" /><category term="sns" /><category term="messaging" /><category term="push" /><summary type="html">Instantaneous, push-based delivery (polling) Protocols include HTTP HTTPS Email Email JSON Amazon SQS Application Messages can be customized for each protocol.</summary></entry><entry><title type="html">Elastic Beanstalk</title><link href="https://diehard073055.github.io//sturdy-carnival/loadbalancer/2018/06/22/Elastic-Beanstalk.html" rel="alternate" type="text/html" title="Elastic Beanstalk" /><published>2018-06-22T00:00:00+10:00</published><updated>2018-06-22T00:00:00+10:00</updated><id>https://diehard073055.github.io//sturdy-carnival/loadbalancer/2018/06/22/Elastic-Beanstalk</id><content type="html" xml:base="https://diehard073055.github.io//sturdy-carnival/loadbalancer/2018/06/22/Elastic-Beanstalk.html">&lt;ul&gt;
-  &lt;li&gt;Deploy, monitor and scale applications quickly.&lt;/li&gt;
-  &lt;li&gt;Provides developers or end users with the ability to provision application infrastructure in an almost transparent manner.&lt;/li&gt;
-  &lt;li&gt;Gui for AWS&lt;/li&gt;
-  &lt;li&gt;Highly abstract focus towards infrastructure, focusing on components and performance - not configuration and specifications.&lt;/li&gt;
-  &lt;li&gt;Significantly simplify infrastructure management, allowing applications to be deployed into infrastructure environments easily.&lt;/li&gt;
-  &lt;li&gt;Primarily aimed at beginners.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;key-architecture-components&quot;&gt;Key Architecture Components&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Applications are high level structure in beanstalk.&lt;/li&gt;
-  &lt;li&gt;Either your entier application, is one EB application.&lt;/li&gt;
-  &lt;li&gt;Each logical component of your application can be an EB application or a EB environment within an application.&lt;/li&gt;
-  &lt;li&gt;Applications can have multiple environments ( Prod, Staging, Dev, V1, V2, V1.1 or functional type [ backend, frontend] )&lt;/li&gt;
-  &lt;li&gt;Environments are either single instances or scalable.&lt;/li&gt;
-  &lt;li&gt;Environments are either web server environments or worker environments.&lt;/li&gt;
-  &lt;li&gt;Application versions are unique packages which represent versions of apps.&lt;/li&gt;
-  &lt;li&gt;An application is uploaded to Elastic beanstalk as a application bundle - .zip&lt;/li&gt;
-  &lt;li&gt;Each ‘application’ can have many different versions 1:M relationship.&lt;/li&gt;
-  &lt;li&gt;Application versions can be deployed to environments within an Application.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;key-configurations-options&quot;&gt;Key configurations options&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;PHP&lt;/li&gt;
-  &lt;li&gt;.NET&lt;/li&gt;
-  &lt;li&gt;Java&lt;/li&gt;
-  &lt;li&gt;Ruby&lt;/li&gt;
-  &lt;li&gt;Nodejs&lt;/li&gt;
-  &lt;li&gt;Python&lt;/li&gt;
-  &lt;li&gt;Go&lt;/li&gt;
-  &lt;li&gt;Docker&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;You can do both application level updates, as well as configuration level updates. These can be rolling updates, all at once, one instance at a time, also do them by a percentage.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Elastic Beanstalk is a free service. But the services you provision from elastic beanstalk, the pricing depends on what you provision.&lt;/p&gt;
-
-&lt;h3 id=&quot;exam-tips&quot;&gt;Exam Tips&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;You can have multiple versions of your application.&lt;/li&gt;
-  &lt;li&gt;You appplications can be split into tiers ( Web Tier / Application Tier / Database Tier ).&lt;/li&gt;
-  &lt;li&gt;You can update your application.&lt;/li&gt;
-  &lt;li&gt;You can update the configuration.&lt;/li&gt;
-  &lt;li&gt;Updates can be 1 instance at a time, a % of instances or an immutable update.&lt;/li&gt;
-  &lt;li&gt;You pay for the resources that you use, but elastic beanstalk is free.&lt;/li&gt;
-  &lt;li&gt;If elastic beanstalk creates your RDS database then it will delete it when you delete your application. If not then the RDS instance stays.&lt;/li&gt;
-  &lt;li&gt;Languages supported
-    &lt;ul&gt;
-      &lt;li&gt;Apache Tomcat for Java applications&lt;/li&gt;
-      &lt;li&gt;Apache HTTP Server for PHP applications&lt;/li&gt;
-      &lt;li&gt;Apacahe HTTP Server for Python applications&lt;/li&gt;
-      &lt;li&gt;Nginx or Apache HTTP Server for Nodejs applications&lt;/li&gt;
-      &lt;li&gt;Passenger or Puma for Ruby applications&lt;/li&gt;
-      &lt;li&gt;Microsoft IIS, 7.5, 8.0, and 8.5 for .NET applications.&lt;/li&gt;
-      &lt;li&gt;Java SE&lt;/li&gt;
-      &lt;li&gt;Docker&lt;/li&gt;
-      &lt;li&gt;Go&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="loadbalancers" /><category term="elastic" /><category term="elasticbeanstalk" /><category term="scale" /><category term="webapps" /><summary type="html">Deploy, monitor and scale applications quickly. Provides developers or end users with the ability to provision application infrastructure in an almost transparent manner. Gui for AWS Highly abstract focus towards infrastructure, focusing on components and performance - not configuration and specifications. Significantly simplify infrastructure management, allowing applications to be deployed into infrastructure environments easily. Primarily aimed at beginners.</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Eshan Shafeeq</name></author><category term="summary" /><category term="sns" /><category term="messaging" /><category term="push" /><summary type="html">Instantaneous, push-based delivery (polling) Protocols include HTTP HTTPS Email Email JSON Amazon SQS Application Messages can be customized for each protocol.</summary></entry></feed>
