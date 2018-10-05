@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
  
  <title>The blog of AWS Developer Associate</title>
- <link href="https://diehard073055.github.io/sturdy-carnival/atom.xml" rel="self"/>
- <link href="https://diehard073055.github.io/sturdy-carnival"/>
- <updated>2018-10-05T19:12:13+10:00</updated>
- <id>https://diehard073055.github.io/sturdy-carnival</id>
+ <link href="sturdy-carnival/atom.xml" rel="self"/>
+ <link href="sturdy-carnival"/>
+ <updated>2018-10-05T19:15:10+10:00</updated>
+ <id>sturdy-carnival</id>
  <author>
    <name>AWS Developer Associate</name>
    <email>test@example.com</email>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>VPC Summary</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/networking/2018/07/18/VPC-Summary.html"/>
+   <link href="sturdy-carnival/networking/2018/07/18/VPC-Summary.html"/>
    <updated>2018-07-18T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/networking/2018/07/18/VPC-Summary</id>
+   <id>sturdy-carnival/networking/2018/07/18/VPC-Summary</id>
    <content type="html">&lt;h3 id=&quot;nat-instances&quot;&gt;NAT Instances&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;When creating NAT instance, Disable Source/Destination check on instances.&lt;/li&gt;
@@ -77,9 +77,9 @@
  
  <entry>
    <title>VPC</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/networking/2018/07/11/VPC.html"/>
+   <link href="sturdy-carnival/networking/2018/07/11/VPC.html"/>
    <updated>2018-07-11T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/networking/2018/07/11/VPC</id>
+   <id>sturdy-carnival/networking/2018/07/11/VPC</id>
    <content type="html">&lt;h3 id=&quot;what-is-a-vpc&quot;&gt;What is a VPC&lt;/h3&gt;
 &lt;p&gt;This of a VPC as a virtual data centre in the cloud.&lt;/p&gt;
 
@@ -203,9 +203,9 @@
  
  <entry>
    <title>Route53 - Routing Policies</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/2018/06/25/Route53-Routing-Policies.html"/>
+   <link href="sturdy-carnival/2018/06/25/Route53-Routing-Policies.html"/>
    <updated>2018-06-25T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/2018/06/25/Route53---Routing-Policies</id>
+   <id>sturdy-carnival/2018/06/25/Route53---Routing-Policies</id>
    <content type="html">&lt;h3 id=&quot;types-of-routing-policies&quot;&gt;Types of Routing Policies&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;Simple&lt;/li&gt;
@@ -242,9 +242,9 @@
  
  <entry>
    <title>DNS 101</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/networking/2018/06/24/DNS-101.html"/>
+   <link href="sturdy-carnival/networking/2018/06/24/DNS-101.html"/>
    <updated>2018-06-24T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/networking/2018/06/24/DNS-101</id>
+   <id>sturdy-carnival/networking/2018/06/24/DNS-101</id>
    <content type="html">&lt;ul&gt;
   &lt;li&gt;DNS is used to convert human friendly names, such as &lt;code class=&quot;highlighter-rouge&quot;&gt;https://google.com&lt;/code&gt; into an Internet Protocol Address such as &lt;code class=&quot;highlighter-rouge&quot;&gt;https://92.93.94.95&lt;/code&gt;.&lt;/li&gt;
   &lt;li&gt;IP addresses are used by computers to identify each other on the network. IP addresses commonly come in 2 different forms, IPv4 and IPv6.&lt;/li&gt;
@@ -339,9 +339,9 @@
  
  <entry>
    <title>CloudFormation</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/2018/06/23/CloudFormation.html"/>
+   <link href="sturdy-carnival/2018/06/23/CloudFormation.html"/>
    <updated>2018-06-23T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/2018/06/23/CloudFormation</id>
+   <id>sturdy-carnival/2018/06/23/CloudFormation</id>
    <content type="html">&lt;h3 id=&quot;what-is-cloudformation-&quot;&gt;What is CloudFormation ?&lt;/h3&gt;
 &lt;p&gt;One of the most powerful parts of AWS, CloudFormation allows you to take what was once traditional hardware infrastructure and convert it into code.&lt;/p&gt;
 
@@ -439,9 +439,9 @@
  
  <entry>
    <title>Simple Workflow Service</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/workflow/2018/06/22/Simple-Workflow-Service.html"/>
+   <link href="sturdy-carnival/workflow/2018/06/22/Simple-Workflow-Service.html"/>
    <updated>2018-06-22T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/workflow/2018/06/22/Simple-Workflow-Service</id>
+   <id>sturdy-carnival/workflow/2018/06/22/Simple-Workflow-Service</id>
    <content type="html">&lt;p&gt;Amazon Simple Workflow Service (Amazon SWF) is a web service that makes it easy to coordinate work across distributed application components. Amazon SWF enables applications for a range of use cases, including media processing, web application back-ends, business process workflows, and analytics pipelines, to be designed as a coordination of tasks.&lt;/p&gt;
 
 &lt;p&gt;Tasks represent invocations of various processing steps in an application which can be performed by executable code, web service calls, human actions, and scripts.&lt;/p&gt;
@@ -482,9 +482,9 @@
  
  <entry>
    <title>Simple Queue Service</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/messaging/2018/06/22/Simple-Queue-Service.html"/>
+   <link href="sturdy-carnival/messaging/2018/06/22/Simple-Queue-Service.html"/>
    <updated>2018-06-22T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/messaging/2018/06/22/Simple-Queue-Service</id>
+   <id>sturdy-carnival/messaging/2018/06/22/Simple-Queue-Service</id>
    <content type="html">&lt;p&gt;Amazon SQS is a web service that gives you access to a message queue that can be used to store messages while waiting for a computer to process them. Amazon SQS is a distributed queue system that enables web service applications to quickly and reliably queue messages that one component in the application generates to be consumed by another component. A queue is a temporary repository for messages that are awaiting processing.&lt;/p&gt;
 
 &lt;p&gt;Using amazon SQS, you can decouple the components of an application so they run independently, with Amazon SQS easing message management between components. Any component of a distributed application can store messages in a fail-safe queue.&lt;/p&gt;
@@ -532,9 +532,9 @@
  
  <entry>
    <title>Simple Notification Service</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/messaging/2018/06/22/Simple-Notification-Service.html"/>
+   <link href="sturdy-carnival/messaging/2018/06/22/Simple-Notification-Service.html"/>
    <updated>2018-06-22T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/messaging/2018/06/22/Simple-Notification-Service</id>
+   <id>sturdy-carnival/messaging/2018/06/22/Simple-Notification-Service</id>
    <content type="html">&lt;ul&gt;
   &lt;li&gt;Web service that makes it easy to setup, operate, and send notifications from the cloud.&lt;/li&gt;
   &lt;li&gt;Provides developers with a highly scaleable, flexible and cost effective capability to publish messages from an application and immedietely deliver them to the subscribers.&lt;/li&gt;
@@ -587,9 +587,9 @@
  
  <entry>
    <title>SQS Summary</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/messaging/2018/06/22/SQS-Summary.html"/>
+   <link href="sturdy-carnival/messaging/2018/06/22/SQS-Summary.html"/>
    <updated>2018-06-22T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/messaging/2018/06/22/SQS-Summary</id>
+   <id>sturdy-carnival/messaging/2018/06/22/SQS-Summary</id>
    <content type="html">&lt;ul&gt;
   &lt;li&gt;SQS messages can be delivered multiple times and in any order.&lt;/li&gt;
   &lt;li&gt;Default visibility is 30 seconds.&lt;/li&gt;
@@ -614,9 +614,9 @@ When ever a message is sent to the SNS topic, the message will be fanned out to 
  
  <entry>
    <title>SNS Summary</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/messaging/2018/06/22/SNS-Summary.html"/>
+   <link href="sturdy-carnival/messaging/2018/06/22/SNS-Summary.html"/>
    <updated>2018-06-22T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/messaging/2018/06/22/SNS-Summary</id>
+   <id>sturdy-carnival/messaging/2018/06/22/SNS-Summary</id>
    <content type="html">&lt;ul&gt;
   &lt;li&gt;Instantaneous, push-based delivery (polling)&lt;/li&gt;
   &lt;li&gt;Protocols include
@@ -637,9 +637,9 @@ When ever a message is sent to the SNS topic, the message will be fanned out to 
  
  <entry>
    <title>Elastic Beanstalk</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/loadbalancer/2018/06/22/Elastic-Beanstalk.html"/>
+   <link href="sturdy-carnival/loadbalancer/2018/06/22/Elastic-Beanstalk.html"/>
    <updated>2018-06-22T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/loadbalancer/2018/06/22/Elastic-Beanstalk</id>
+   <id>sturdy-carnival/loadbalancer/2018/06/22/Elastic-Beanstalk</id>
    <content type="html">&lt;ul&gt;
   &lt;li&gt;Deploy, monitor and scale applications quickly.&lt;/li&gt;
   &lt;li&gt;Provides developers or end users with the ability to provision application infrastructure in an almost transparent manner.&lt;/li&gt;
@@ -710,9 +710,9 @@ When ever a message is sent to the SNS topic, the message will be fanned out to 
  
  <entry>
    <title>DynamoDB Summary</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/database/2018/06/22/DynamoDB-Summary.html"/>
+   <link href="sturdy-carnival/database/2018/06/22/DynamoDB-Summary.html"/>
    <updated>2018-06-22T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/database/2018/06/22/DynamoDB-Summary</id>
+   <id>sturdy-carnival/database/2018/06/22/DynamoDB-Summary</id>
    <content type="html">&lt;h3 id=&quot;what-is-dynamodb&quot;&gt;What is dynamoDB&lt;/h3&gt;
 &lt;p&gt;Fast and flexible NOSQL database service for all application that need consistent, single digit millisecond latency at any scale. It is a fully managed database and supports both document and key-value data models. Its flexible data model and reliable performance make it a great fit for mobile, web, gaming, ad-tech, IoT and many other applications.&lt;/p&gt;
 
@@ -853,9 +853,9 @@ When ever a message is sent to the SNS topic, the message will be fanned out to 
  
  <entry>
    <title>DynamoDB - Other Key Facts</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/database/2018/06/22/DynamoDB-Other-Key-Facts.html"/>
+   <link href="sturdy-carnival/database/2018/06/22/DynamoDB-Other-Key-Facts.html"/>
    <updated>2018-06-22T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/database/2018/06/22/DynamoDB---Other-Key-Facts</id>
+   <id>sturdy-carnival/database/2018/06/22/DynamoDB---Other-Key-Facts</id>
    <content type="html">&lt;h4 id=&quot;conditional-writes&quot;&gt;Conditional Writes&lt;/h4&gt;
 &lt;p&gt;Example Scenario&lt;/p&gt;
 
@@ -883,9 +883,9 @@ When ever a message is sent to the SNS topic, the message will be fanned out to 
  
  <entry>
    <title>Web Identity Providers</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/database/2018/06/21/Web-Identity-Providers.html"/>
+   <link href="sturdy-carnival/database/2018/06/21/Web-Identity-Providers.html"/>
    <updated>2018-06-21T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/database/2018/06/21/Web-Identity-Providers</id>
+   <id>sturdy-carnival/database/2018/06/21/Web-Identity-Providers</id>
    <content type="html">&lt;h3 id=&quot;web-identity-providers&quot;&gt;Web Identity Providers&lt;/h3&gt;
 
 &lt;p&gt;You can authenticate users using &lt;strong&gt;Web Identity Providers&lt;/strong&gt; ( such as Facebook, Google, Amazon, or any other Open-ID Connect-compatible Identity provider). This is done using AssumeRoleWithWebIdentity API.&lt;/p&gt;
@@ -922,9 +922,9 @@ When ever a message is sent to the SNS topic, the message will be fanned out to 
  
  <entry>
    <title>DynamoDB Provisioned Throughput Calculations</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/database/2018/06/21/DynamoDB-Provisioned-Throughput-Calculations.html"/>
+   <link href="sturdy-carnival/database/2018/06/21/DynamoDB-Provisioned-Throughput-Calculations.html"/>
    <updated>2018-06-21T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/database/2018/06/21/DynamoDB-Provisioned-Throughput-Calculations</id>
+   <id>sturdy-carnival/database/2018/06/21/DynamoDB-Provisioned-Throughput-Calculations</id>
    <content type="html">&lt;h3 id=&quot;provisioned-throughput&quot;&gt;Provisioned Throughput&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;Unit of Read provisioned throughput
@@ -1047,9 +1047,9 @@ When ever a message is sent to the SNS topic, the message will be fanned out to 
  
  <entry>
    <title>Scan vs Query API Calls</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/database/2018/06/15/Scan-vs-Query-API-Calls.html"/>
+   <link href="sturdy-carnival/database/2018/06/15/Scan-vs-Query-API-Calls.html"/>
    <updated>2018-06-15T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/database/2018/06/15/Scan-vs-Query-API-Calls</id>
+   <id>sturdy-carnival/database/2018/06/15/Scan-vs-Query-API-Calls</id>
    <content type="html">&lt;h3 id=&quot;what-is-a-query&quot;&gt;What is a query&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;A Query operation finds items in a table using only primary key attributes values. You must provide a partition attribute name and a distinct value to search for.&lt;/li&gt;
@@ -1092,9 +1092,9 @@ When ever a message is sent to the SNS topic, the message will be fanned out to 
  
  <entry>
    <title>DynamoDB Indexes</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/database/2018/06/15/DynamoDB-Indexes.html"/>
+   <link href="sturdy-carnival/database/2018/06/15/DynamoDB-Indexes.html"/>
    <updated>2018-06-15T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/database/2018/06/15/DynamoDB-Indexes</id>
+   <id>sturdy-carnival/database/2018/06/15/DynamoDB-Indexes</id>
    <content type="html">&lt;h3 id=&quot;primary-key&quot;&gt;Primary Key&lt;/h3&gt;
 &lt;p&gt;Two types of primary keys available.&lt;/p&gt;
 &lt;ul&gt;
@@ -1159,9 +1159,9 @@ When ever a message is sent to the SNS topic, the message will be fanned out to 
  
  <entry>
    <title>Snowball</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/storage/2018/06/14/Snowball.html"/>
+   <link href="sturdy-carnival/storage/2018/06/14/Snowball.html"/>
    <updated>2018-06-14T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/storage/2018/06/14/Snowball</id>
+   <id>sturdy-carnival/storage/2018/06/14/Snowball</id>
    <content type="html">&lt;p&gt;AWS Import/Export Disk accelerates moving large amounts data into and out of the AWS cloud using portable storage devices for transport. AWS Import/Export Disk transfers your data directly onto and off of storage devices using Amazon’s high-speed internal network and bypassing the internet.&lt;/p&gt;
 
 &lt;h3 id=&quot;types-of-snowballs&quot;&gt;Types of Snowballs&lt;/h3&gt;
@@ -1201,9 +1201,9 @@ When ever a message is sent to the SNS topic, the message will be fanned out to 
  
  <entry>
    <title>S3 Transfer Acceleration</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/storage/2018/06/14/S3-Transfer-Acceleration.html"/>
+   <link href="sturdy-carnival/storage/2018/06/14/S3-Transfer-Acceleration.html"/>
    <updated>2018-06-14T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/storage/2018/06/14/S3-Transfer-Acceleration</id>
+   <id>sturdy-carnival/storage/2018/06/14/S3-Transfer-Acceleration</id>
    <content type="html">&lt;p&gt;S3 Transfer Acceleration utilises the CloudFront Edge Network to accelerate your uploads to S3. Instead of uploading directly to your S3 bucket, you can use a distinct URL to upload directly to an edge location which will then transfer that to S3. You will get a distinct URL to upload to.&lt;/p&gt;
 
 </content>
@@ -1211,9 +1211,9 @@ When ever a message is sent to the SNS topic, the message will be fanned out to 
  
  <entry>
    <title>S3 Storage Summary</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/storage/2018/06/14/S3-Storage-Summary.html"/>
+   <link href="sturdy-carnival/storage/2018/06/14/S3-Storage-Summary.html"/>
    <updated>2018-06-14T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/storage/2018/06/14/S3-Storage-Summary</id>
+   <id>sturdy-carnival/storage/2018/06/14/S3-Storage-Summary</id>
    <content type="html">&lt;h3 id=&quot;s3---exam-tips&quot;&gt;S3 - Exam Tips&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;S3 is an Object based storage, its a place where you upload and download files.
@@ -1404,9 +1404,9 @@ When ever a message is sent to the SNS topic, the message will be fanned out to 
  
  <entry>
    <title>DynamoDB Introduction</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/database/2018/06/14/DynamoDB-Introduction.html"/>
+   <link href="sturdy-carnival/database/2018/06/14/DynamoDB-Introduction.html"/>
    <updated>2018-06-14T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/database/2018/06/14/DynamoDB-Introduction</id>
+   <id>sturdy-carnival/database/2018/06/14/DynamoDB-Introduction</id>
    <content type="html">&lt;h3 id=&quot;dynamodb-101&quot;&gt;DynamoDB 101&lt;/h3&gt;
 &lt;p&gt;Amazon DynamoDB is a fast and flexible NoSQL database service for all applications that need consistent, single-digit millisecond latency at any scale. It is a fully managed database and supports both document and key-value data models. Its flexible data model and reliable performance make it a great fit for mobile, web, gaming, ad-tech, IoT, and many other applications.&lt;/p&gt;
 
@@ -1474,9 +1474,9 @@ So ( $0.0065/50 ) * 12 * 24 = $0.0374 per day.&lt;/p&gt;
  
  <entry>
    <title>Database Essentials</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/database/2018/06/14/Database-Essentials.html"/>
+   <link href="sturdy-carnival/database/2018/06/14/Database-Essentials.html"/>
    <updated>2018-06-14T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/database/2018/06/14/Database-Essentials</id>
+   <id>sturdy-carnival/database/2018/06/14/Database-Essentials</id>
    <content type="html">&lt;h3 id=&quot;what-is-a-relational-database-&quot;&gt;What is a relational database ?&lt;/h3&gt;
 &lt;p&gt;Relational databases are what most of us are all used to. They have been around since 70’s. Very similar to the traditional spread sheet.&lt;/p&gt;
 
@@ -1569,9 +1569,9 @@ AWS schema conversion tool automatically converts the source database schema and
  
  <entry>
    <title>Storage Gateway</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/storage/2018/06/13/Storage-Gateway.html"/>
+   <link href="sturdy-carnival/storage/2018/06/13/Storage-Gateway.html"/>
    <updated>2018-06-13T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/storage/2018/06/13/Storage-Gateway</id>
+   <id>sturdy-carnival/storage/2018/06/13/Storage-Gateway</id>
    <content type="html">&lt;p&gt;AWS Storage Gateway, is a service that connects an on-premises software appliance with cloud-based storage to provide seamless and secure integration between an organization’s on premises IT environment and AWS’s storage infrastructure. The service enables you to securely store data to the AWS cloud for scalable and cost-effective storage.&lt;/p&gt;
 
 &lt;p&gt;AWS Storage Gateway Software Appliance is available for download as a virtual machine (VM) image that you install on a host in your data center. Storage Gateway support either VMware ESXi or Microsoft Hyper-V. Once youve installed your gateway and associated it with your AWS account though the activation process, you use the AWS Management Console to create the storage gateway option that is right for you.&lt;/p&gt;
@@ -1625,9 +1625,9 @@ AWS schema conversion tool automatically converts the source database schema and
  
  <entry>
    <title>S3 Security and Encryption</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/storage/2018/06/13/S3-Security-and-Encryption.html"/>
+   <link href="sturdy-carnival/storage/2018/06/13/S3-Security-and-Encryption.html"/>
    <updated>2018-06-13T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/storage/2018/06/13/S3-Security-and-Encryption</id>
+   <id>sturdy-carnival/storage/2018/06/13/S3-Security-and-Encryption</id>
    <content type="html">&lt;h3 id=&quot;security&quot;&gt;Security&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;By default, all newly created buckets are &lt;strong&gt;PRIVATE&lt;/strong&gt;.&lt;/li&gt;
@@ -1671,9 +1671,9 @@ AWS schema conversion tool automatically converts the source database schema and
  
  <entry>
    <title>S3 Lifecycle Management</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/storage/2018/06/13/S3-Lifecycle-Management.html"/>
+   <link href="sturdy-carnival/storage/2018/06/13/S3-Lifecycle-Management.html"/>
    <updated>2018-06-13T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/storage/2018/06/13/S3-Lifecycle-Management</id>
+   <id>sturdy-carnival/storage/2018/06/13/S3-Lifecycle-Management</id>
    <content type="html">&lt;ul&gt;
   &lt;li&gt;Can be used in conjunction with versioning&lt;/li&gt;
   &lt;li&gt;Can be applied to current versions and previous versions.&lt;/li&gt;
@@ -1695,9 +1695,9 @@ AWS schema conversion tool automatically converts the source database schema and
  
  <entry>
    <title>S3 Cross Region Replication</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/storage/2018/06/13/S3-Cross-Region-Replication.html"/>
+   <link href="sturdy-carnival/storage/2018/06/13/S3-Cross-Region-Replication.html"/>
    <updated>2018-06-13T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/storage/2018/06/13/S3-Cross-Region-Replication</id>
+   <id>sturdy-carnival/storage/2018/06/13/S3-Cross-Region-Replication</id>
    <content type="html">&lt;h3 id=&quot;instructions&quot;&gt;Instructions&lt;/h3&gt;
 
 &lt;ul&gt;
@@ -1738,9 +1738,9 @@ AWS schema conversion tool automatically converts the source database schema and
  
  <entry>
    <title>CloudFront</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/storage/2018/06/13/CloudFront.html"/>
+   <link href="sturdy-carnival/storage/2018/06/13/CloudFront.html"/>
    <updated>2018-06-13T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/storage/2018/06/13/CloudFront</id>
+   <id>sturdy-carnival/storage/2018/06/13/CloudFront</id>
    <content type="html">&lt;p&gt;A content delivery network (CDN) is a system of distributed servers (network) that delivers webpages and other web content to a user based on the geographic locations of the user, the origin of the webpage and a content delivery server.&lt;/p&gt;
 
 &lt;p&gt;Amazon cloudfront can be used to deliver your entire website, including dynamic, static, streaming, and interactive content using a global network of edge locations. Requests for your content are automatically routed to the nearest edge location, so content is delivered with the best possible performance.&lt;/p&gt;
@@ -1793,9 +1793,9 @@ AWS schema conversion tool automatically converts the source database schema and
  
  <entry>
    <title>S3 Enable Versioning</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/storage/2018/06/12/S3-Enable-Versioning.html"/>
+   <link href="sturdy-carnival/storage/2018/06/12/S3-Enable-Versioning.html"/>
    <updated>2018-06-12T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/storage/2018/06/12/S3-Enable-Versioning</id>
+   <id>sturdy-carnival/storage/2018/06/12/S3-Enable-Versioning</id>
    <content type="html">&lt;h3 id=&quot;instructions&quot;&gt;Instructions&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;Loggin to the aws console and head over to aws s3&lt;/li&gt;
@@ -1825,9 +1825,9 @@ AWS schema conversion tool automatically converts the source database schema and
  
  <entry>
    <title>Serverless Website</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/storage/2018/06/11/Serverless-Website.html"/>
+   <link href="sturdy-carnival/storage/2018/06/11/Serverless-Website.html"/>
    <updated>2018-06-11T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/storage/2018/06/11/Serverless-Website</id>
+   <id>sturdy-carnival/storage/2018/06/11/Serverless-Website</id>
    <content type="html">&lt;p&gt;This will be example of the simplest serverless website possible.&lt;/p&gt;
 &lt;h3 id=&quot;instructions&quot;&gt;Instructions&lt;/h3&gt;
 &lt;ul&gt;
@@ -1905,9 +1905,9 @@ AWS schema conversion tool automatically converts the source database schema and
  
  <entry>
    <title>S3 Wesbite</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/storage/2018/06/11/S3-Wesbite.html"/>
+   <link href="sturdy-carnival/storage/2018/06/11/S3-Wesbite.html"/>
    <updated>2018-06-11T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/storage/2018/06/11/S3-Wesbite</id>
+   <id>sturdy-carnival/storage/2018/06/11/S3-Wesbite</id>
    <content type="html">&lt;p&gt;Hosting static content with S3:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Create a bucket with a name you would like.&lt;/li&gt;
@@ -1943,9 +1943,9 @@ AWS schema conversion tool automatically converts the source database schema and
  
  <entry>
    <title>S3 Lab</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/storage/2018/06/11/S3-Lab.html"/>
+   <link href="sturdy-carnival/storage/2018/06/11/S3-Lab.html"/>
    <updated>2018-06-11T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/storage/2018/06/11/S3-Lab</id>
+   <id>sturdy-carnival/storage/2018/06/11/S3-Lab</id>
    <content type="html">&lt;blockquote&gt;
   &lt;p&gt;S3 Buckets are managed at a global level, even two different aws accounts wont be able to have the same bucket name. Since bucketnames are used in a DNS namespace. Every bucket has a web address. &lt;code class=&quot;highlighter-rouge&quot;&gt;https://s3-[region].amazonaws.com/[bucketname]&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2021,9 +2021,9 @@ AWS schema conversion tool automatically converts the source database schema and
  
  <entry>
    <title>S3 101</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/storage/2018/06/11/S3-101.html"/>
+   <link href="sturdy-carnival/storage/2018/06/11/S3-101.html"/>
    <updated>2018-06-11T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/storage/2018/06/11/S3-101</id>
+   <id>sturdy-carnival/storage/2018/06/11/S3-101</id>
    <content type="html">&lt;h3 id=&quot;what-is-s3&quot;&gt;What is S3&lt;/h3&gt;
 &lt;p&gt;S3 provides developer and IT teams with secure durable, highly scalable object storage. Amazon S3 is easy to use, with a simple web service interface to store and retrieve any amount of data from anywhere on the web.&lt;/p&gt;
 &lt;ul&gt;
@@ -2157,9 +2157,9 @@ AWS schema conversion tool automatically converts the source database schema and
  
  <entry>
    <title>Summary of EC2 Section</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/compute/2018/06/10/Summary-of-EC2-Section.html"/>
+   <link href="sturdy-carnival/compute/2018/06/10/Summary-of-EC2-Section.html"/>
    <updated>2018-06-10T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/compute/2018/06/10/Summary-of-EC2-Section</id>
+   <id>sturdy-carnival/compute/2018/06/10/Summary-of-EC2-Section</id>
    <content type="html">&lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;Fundemental Topic&lt;/strong&gt;&lt;/li&gt;
   &lt;li&gt;Remember to read the &lt;a href=&quot;https://aws.amazon.com/ec2/faqs/&quot;&gt;EC2 FAQ&lt;/a&gt; before going for the exam.&lt;/li&gt;
@@ -2326,9 +2326,9 @@ AWS schema conversion tool automatically converts the source database schema and
  
  <entry>
    <title>SDK Exam Tips</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/compute/2018/06/10/SDK-Exam-Tips.html"/>
+   <link href="sturdy-carnival/compute/2018/06/10/SDK-Exam-Tips.html"/>
    <updated>2018-06-10T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/compute/2018/06/10/SDK-Exam-Tips</id>
+   <id>sturdy-carnival/compute/2018/06/10/SDK-Exam-Tips</id>
    <content type="html">&lt;h3 id=&quot;know-the-available-sdks&quot;&gt;Know the available sdks&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&quot;https://aws.amazon.com/tools/&quot;&gt;official documentation on sdk’s&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -2359,9 +2359,9 @@ AWS schema conversion tool automatically converts the source database schema and
  
  <entry>
    <title>Lambda</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/compute/2018/06/10/Lambda.html"/>
+   <link href="sturdy-carnival/compute/2018/06/10/Lambda.html"/>
    <updated>2018-06-10T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/compute/2018/06/10/Lambda</id>
+   <id>sturdy-carnival/compute/2018/06/10/Lambda</id>
    <content type="html">&lt;h3 id=&quot;what-is-lambda-&quot;&gt;What is lambda ?&lt;/h3&gt;
 &lt;p&gt;AWS Lambda is a compute service where you can upload your code and create a Lambda function. AWS Lambda takes care of provisioning and managing the servers that you use to run the code. You dont have to worry about operating systems, patching, scaling, etc. You can use Lambda in the following ways.&lt;/p&gt;
 
@@ -2459,9 +2459,9 @@ AWS schema conversion tool automatically converts the source database schema and
  
  <entry>
    <title>EC2 Instance Metadata</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/compute/2018/06/09/EC2-Instance-Metadata.html"/>
+   <link href="sturdy-carnival/compute/2018/06/09/EC2-Instance-Metadata.html"/>
    <updated>2018-06-09T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/compute/2018/06/09/EC2-Instance-Metadata</id>
+   <id>sturdy-carnival/compute/2018/06/09/EC2-Instance-Metadata</id>
    <content type="html">&lt;h3 id=&quot;pre-requisite&quot;&gt;Pre-requisite&lt;/h3&gt;
 &lt;p&gt;Have an ec2 instance ready when you wanna start this lab.&lt;/p&gt;
 
@@ -2480,9 +2480,9 @@ AWS schema conversion tool automatically converts the source database schema and
  
  <entry>
    <title>EC2 Elastic Load Balancer</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/compute/2018/06/09/EC2-ELB.html"/>
+   <link href="sturdy-carnival/compute/2018/06/09/EC2-ELB.html"/>
    <updated>2018-06-09T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/compute/2018/06/09/EC2-ELB</id>
+   <id>sturdy-carnival/compute/2018/06/09/EC2-ELB</id>
    <content type="html">&lt;h2 id=&quot;types-of-load-balancers&quot;&gt;Types of load balancers&lt;/h2&gt;
 &lt;ol&gt;
   &lt;li&gt;Application load balancers
@@ -2547,9 +2547,9 @@ AWS schema conversion tool automatically converts the source database schema and
  
  <entry>
    <title>AWS Study Guide</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/exam/study/guide/2018/06/09/AWS-Study-Guide.html"/>
+   <link href="sturdy-carnival/exam/study/guide/2018/06/09/AWS-Study-Guide.html"/>
    <updated>2018-06-09T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/exam/study/guide/2018/06/09/AWS-Study-Guide</id>
+   <id>sturdy-carnival/exam/study/guide/2018/06/09/AWS-Study-Guide</id>
    <content type="html">&lt;h1 id=&quot;learning&quot;&gt;Learning&lt;/h1&gt;
 
 &lt;h3 id=&quot;distributed-practice&quot;&gt;Distributed Practice&lt;/h3&gt;
@@ -2846,9 +2846,9 @@ AWS schema conversion tool automatically converts the source database schema and
  
  <entry>
    <title>S3 CLI AND REGIONS</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/compute/2018/06/07/S3-CLI-AND-REGIONS.html"/>
+   <link href="sturdy-carnival/compute/2018/06/07/S3-CLI-AND-REGIONS.html"/>
    <updated>2018-06-07T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/compute/2018/06/07/S3-CLI-AND-REGIONS</id>
+   <id>sturdy-carnival/compute/2018/06/07/S3-CLI-AND-REGIONS</id>
    <content type="html">&lt;h3 id=&quot;instructions&quot;&gt;Instructions&lt;/h3&gt;
 
 &lt;ol&gt;
@@ -2889,9 +2889,9 @@ AWS schema conversion tool automatically converts the source database schema and
  
  <entry>
    <title>Bash Scripting Lab</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/compute/2018/06/07/Bash-Scripting-Lab.html"/>
+   <link href="sturdy-carnival/compute/2018/06/07/Bash-Scripting-Lab.html"/>
    <updated>2018-06-07T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/compute/2018/06/07/Bash-Scripting-Lab</id>
+   <id>sturdy-carnival/compute/2018/06/07/Bash-Scripting-Lab</id>
    <content type="html">&lt;p&gt;In this lab we are going to pass a bash script to the ec2 instance before it is launched to automate some of the tasks we want the instance to execute before we ssh in.&lt;/p&gt;
 
 &lt;h3 id=&quot;instructions&quot;&gt;Instructions&lt;/h3&gt;
@@ -2928,9 +2928,9 @@ On the tab &lt;code class=&quot;highlighter-rouge&quot;&gt;3. Configure Instance
  
  <entry>
    <title>EC2 AWS CLI</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/compute/2018/06/06/EC2-AWS-CLI.html"/>
+   <link href="sturdy-carnival/compute/2018/06/06/EC2-AWS-CLI.html"/>
    <updated>2018-06-06T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/compute/2018/06/06/EC2-AWS-CLI</id>
+   <id>sturdy-carnival/compute/2018/06/06/EC2-AWS-CLI</id>
    <content type="html">&lt;p&gt;In order to get aws cli running, you need to create a user in IAM with programatic access. Save the &lt;code class=&quot;highlighter-rouge&quot;&gt;credentials.csv&lt;/code&gt; file. &lt;strong&gt;You only get to download this once&lt;/strong&gt;. Only give user the permission for the resource you want the user to access, and nothing more.&lt;/p&gt;
 
 &lt;p&gt;After spinning up a EC2 instance, run the following command.&lt;/p&gt;
@@ -2995,9 +2995,9 @@ On the tab &lt;code class=&quot;highlighter-rouge&quot;&gt;3. Configure Instance
  
  <entry>
    <title>EC2 AWS CLI DEV</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/compute/2018/06/06/EC2-AWS-CLI-DEV.html"/>
+   <link href="sturdy-carnival/compute/2018/06/06/EC2-AWS-CLI-DEV.html"/>
    <updated>2018-06-06T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/compute/2018/06/06/EC2-AWS-CLI-DEV</id>
+   <id>sturdy-carnival/compute/2018/06/06/EC2-AWS-CLI-DEV</id>
    <content type="html">&lt;h3 id=&quot;to-create-a-new-ec2-instance&quot;&gt;To create a new ec2 instance&lt;/h3&gt;
 
 &lt;p&gt;Inorder to create a new ec2 instance from the commandline, we first need to know which AMI we want to use. We could pass the option &lt;code class=&quot;highlighter-rouge&quot;&gt;describe-images&lt;/code&gt; to the aws cli and we can get the list. But that would return you a huge list. To list out the images from amazon you can use the following command.&lt;/p&gt;
@@ -3055,9 +3055,9 @@ you also have to make sure you have a keypair on aws. Try the following command 
  
  <entry>
    <title>EC2 Security Groups</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/compute/2018/06/05/EC2-Security-Groups.html"/>
+   <link href="sturdy-carnival/compute/2018/06/05/EC2-Security-Groups.html"/>
    <updated>2018-06-05T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/compute/2018/06/05/EC2-Security-Groups</id>
+   <id>sturdy-carnival/compute/2018/06/05/EC2-Security-Groups</id>
    <content type="html">&lt;p&gt;A Security Group is a Virtual Firewall, which controls traffic in and out of your ec2 instance. Ec2 instances are launched with one or more security groups attached to it. Multiple security groups can be applied to one ec2 instance. This is also the first line of defence against any security threats.&lt;/p&gt;
 
 &lt;ul&gt;
@@ -3085,9 +3085,9 @@ you also have to make sure you have a keypair on aws. Try the following command 
  
  <entry>
    <title>EC2-EFS</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/compute/2018/06/05/EC2-EFS.html"/>
+   <link href="sturdy-carnival/compute/2018/06/05/EC2-EFS.html"/>
    <updated>2018-06-05T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/compute/2018/06/05/EC2-EFS</id>
+   <id>sturdy-carnival/compute/2018/06/05/EC2-EFS</id>
    <content type="html">&lt;h3 id=&quot;elastic-file-system&quot;&gt;Elastic File System&lt;/h3&gt;
 
 &lt;p&gt;Aws elastic file system, is a storage service for EC2 instances. EFS is easy to use and provides a simple interface that allows users to create and configure file systems quickly and easily. With aws EFS, storage capacity is elastic, growing and shrinking automatically as you add and remove files so your applications have storage always when they need it.&lt;/p&gt;
@@ -3120,9 +3120,9 @@ you also have to make sure you have a keypair on aws. Try the following command 
  
  <entry>
    <title>EC2 EBS Volumes</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/compute/2018/06/05/EC2-EBS-Volumes.html"/>
+   <link href="sturdy-carnival/compute/2018/06/05/EC2-EBS-Volumes.html"/>
    <updated>2018-06-05T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/compute/2018/06/05/EC2-EBS-Volumes</id>
+   <id>sturdy-carnival/compute/2018/06/05/EC2-EBS-Volumes</id>
    <content type="html">&lt;h3 id=&quot;lab&quot;&gt;LAB&lt;/h3&gt;
 
 &lt;p&gt;Go to aws services, and then goto EC2. One the left side panel, select Volumes.&lt;/p&gt;
@@ -3196,9 +3196,9 @@ you also have to make sure you have a keypair on aws. Try the following command 
  
  <entry>
    <title>EC2-Lab-Summary</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/compute/2018/06/04/EC2-Lab-Summary.html"/>
+   <link href="sturdy-carnival/compute/2018/06/04/EC2-Lab-Summary.html"/>
    <updated>2018-06-04T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/compute/2018/06/04/EC2-Lab-Summary</id>
+   <id>sturdy-carnival/compute/2018/06/04/EC2-Lab-Summary</id>
    <content type="html">&lt;h3 id=&quot;creating-an-ec2-instance&quot;&gt;Creating an EC2 Instance&lt;/h3&gt;
 &lt;ol&gt;
   &lt;li&gt;Select a region which you want your EC2 instance to be at.
@@ -3311,9 +3311,9 @@ you also have to make sure you have a keypair on aws. Try the following command 
  
  <entry>
    <title>EC2 101</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/compute/2018/05/31/EC2-101.html"/>
+   <link href="sturdy-carnival/compute/2018/05/31/EC2-101.html"/>
    <updated>2018-05-31T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/compute/2018/05/31/EC2-101</id>
+   <id>sturdy-carnival/compute/2018/05/31/EC2-101</id>
    <content type="html">&lt;h3 id=&quot;what-is-ec2&quot;&gt;What is EC2&lt;/h3&gt;
 &lt;p&gt;A web service that provides resizable compute capacity in the cloud. AWS EC2 reduces the time required to obtain and boot a new server instances to minutes, allowing you to quickly scale capacity, both up and down, as your computing requirements change.
 This has changed the economics of computing, by allowing you to pay only for what you actually use. EC2 provides developers the tools to build failure resilient applications and isolate themselves from common failure scenarios.&lt;/p&gt;
@@ -3513,9 +3513,9 @@ EBS = Virtual Disc.&lt;/p&gt;
  
  <entry>
    <title>Welcome to AWS Developer Associate Notes</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/introduction/2018/05/30/welcome-aws-developer-associate-notes.html"/>
+   <link href="sturdy-carnival/introduction/2018/05/30/welcome-aws-developer-associate-notes.html"/>
    <updated>2018-05-30T22:43:32+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/introduction/2018/05/30/welcome-aws-developer-associate-notes</id>
+   <id>sturdy-carnival/introduction/2018/05/30/welcome-aws-developer-associate-notes</id>
    <content type="html">&lt;h1 id=&quot;aws-developer-associate-notes&quot;&gt;AWS Developer Associate Notes&lt;/h1&gt;
 
 &lt;p&gt;This blog will host all the notes that i will be taking as i go through the AWS Developer Associate Course on A Cloud Guru. I will be going through all the lectures and Labs. The main contents of the course are as follows:&lt;/p&gt;
@@ -3543,9 +3543,9 @@ EBS = Virtual Disc.&lt;/p&gt;
  
  <entry>
    <title>IAM</title>
-   <link href="https://diehard073055.github.io/sturdy-carnival/iam/2018/05/30/IAM.html"/>
+   <link href="sturdy-carnival/iam/2018/05/30/IAM.html"/>
    <updated>2018-05-30T00:00:00+10:00</updated>
-   <id>https://diehard073055.github.io/sturdy-carnival/iam/2018/05/30/IAM</id>
+   <id>sturdy-carnival/iam/2018/05/30/IAM</id>
    <content type="html">&lt;h1 id=&quot;identity-access-management-101&quot;&gt;Identity Access Management 101&lt;/h1&gt;
 
 &lt;h3 id=&quot;what-is-iam&quot;&gt;What is IAM&lt;/h3&gt;
