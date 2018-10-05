@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS Developer Associate - S3 Cross Region Replication</title>
+  <meta name="author" content="AWS Developer Associate" />
+  <meta name="description" content="The blog of AWS Developer Associate" />
+  <link rel="canonical" href="http://example.com/storage/2018/06/13/S3-Cross-Region-Replication.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="AWS Developer Associate" href="http://example.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1>Notes</h1>
+  <a href="/">
+    
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+    
+  </a>
+  <h2><a href="/">AWS Developer Associate</a>.</h2>
+  <div id="bio">
+    <p></p>
+    <p>
+      <strong>TODO:</strong> Edit me in <code>_includes/sidebar.html</code>
+    </p>
+  </div>
+  <div id="social">
+    <!--Follow me:
+<div id="stalker">
+  
+  <a title="diehard073055 on Github" href="https://github.com/diehard073055">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+-->
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  June 13, 2018 
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">S3 Cross Region Replication</h1>
+
+<div id="post">
+  <h3 id="instructions">Instructions</h3>
+
+<ul>
+  <li>Create 2 buckets one in london, and sydney</li>
+  <li>Enable Cross Region Replication on the london bucket
+    <ul>
+      <li>In order for Cross Region Replication to work, you need both buckets with versioning enabled.</li>
+      <li>You can enable CRR on just a prefix on a bucket.</li>
+      <li>Set the bucket storage class from standard to IA.</li>
+      <li>Hit save!</li>
+      <li>Existing objects will not be replicated into both the buckets, Only new objects get replicated into the other buckets</li>
+    </ul>
+  </li>
+  <li>If you want to copy your current items in bucket one to bucket two.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3 cp <span class="nt">--recursive</span> s3://[bucket_1] s3://[bucket_2]
+</code></pre></div>    </div>
+    <ul>
+      <li>Items that have been copied over, by default has permission set to private.</li>
+      <li>If you delete an item from bucket 1, it sets a delete marker on bucket 1 and does the same on bucket 2.</li>
+      <li>If you delete the delete marker on bucket 1 it does not delete on bucket 2.</li>
+      <li>If you revert to an older version in bucket 1, you must do so in bucket 2, because the changes are not refelcted automatically in bucket 2.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="exam-tips">Exam Tips</h3>
+<ul>
+  <li>Versioning Must be enabled on both the source and destination buckets</li>
+  <li>Region must be unique.</li>
+  <li>Files in an existing must be replicated across regions manually, otherwise it does not get replicated automatically.</li>
+  <li>You cannot replicate to multiple bucket or daisy chain it at this time.</li>
+  <li>delete markers are replicated.</li>
+  <li>deleting individual version or delete markers will not be replicated.</li>
+  <li>Understanding what cross region replication is at a high level.</li>
+</ul>
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>18 Jul 2018 &raquo;</span> <a href="/networking/2018/07/18/VPC-Summary.html">VPC Summary</a>
+    </li>
+    
+    <li>
+      <span>11 Jul 2018 &raquo;</span> <a href="/networking/2018/07/11/VPC.html">VPC</a>
+    </li>
+    
+    <li>
+      <span>25 Jun 2018 &raquo;</span> <a href="/2018/06/25/Route53-Routing-Policies.html">Route53 - Routing Policies</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © AWS Developer Associate, 2018 &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

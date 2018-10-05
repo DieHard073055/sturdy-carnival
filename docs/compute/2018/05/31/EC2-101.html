@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS Developer Associate - EC2 101</title>
+  <meta name="author" content="AWS Developer Associate" />
+  <meta name="description" content="The blog of AWS Developer Associate" />
+  <link rel="canonical" href="http://example.com/compute/2018/05/31/EC2-101.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="AWS Developer Associate" href="http://example.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1>Notes</h1>
+  <a href="/">
+    
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+    
+  </a>
+  <h2><a href="/">AWS Developer Associate</a>.</h2>
+  <div id="bio">
+    <p></p>
+    <p>
+      <strong>TODO:</strong> Edit me in <code>_includes/sidebar.html</code>
+    </p>
+  </div>
+  <div id="social">
+    <!--Follow me:
+<div id="stalker">
+  
+  <a title="diehard073055 on Github" href="https://github.com/diehard073055">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+-->
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  May 31, 2018 
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">EC2 101</h1>
+
+<div id="post">
+  <h3 id="what-is-ec2">What is EC2</h3>
+<p>A web service that provides resizable compute capacity in the cloud. AWS EC2 reduces the time required to obtain and boot a new server instances to minutes, allowing you to quickly scale capacity, both up and down, as your computing requirements change.
+This has changed the economics of computing, by allowing you to pay only for what you actually use. EC2 provides developers the tools to build failure resilient applications and isolate themselves from common failure scenarios.</p>
+
+<h3 id="pricing-options">Pricing Options</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>On Demand</td>
+      <td>Allows you to pay a fixed rate by the hour ( or by the second ) with no commitment.</td>
+    </tr>
+    <tr>
+      <td>Reserved</td>
+      <td>Provides you with a capacity reservation, and offer a significant discount on the hourly charge for an instance. 1 Year to 3 Year contracts.</td>
+    </tr>
+    <tr>
+      <td>Spot</td>
+      <td>enables you to bid whatever price you want for instance capacity, providing for even greater savings if your applications have flexible start and end times.</td>
+    </tr>
+    <tr>
+      <td>Dedicated Hosts</td>
+      <td>Physical EC2 servers dedicated for your use. Dedicated Hosts can help you reduce costs by allowing you to use your existing server-bound software licenses.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="on-demand">On Demand</h3>
+<ul>
+  <li>Perfect for users that want the low cost and flexibility of AWS EC2 without any up-front payment or long-term commitment.</li>
+  <li>Applications with short term, spiky, or unpredictable workloads that cannot be interrupted.</li>
+  <li>Applications being developed or tested on Amazon EC2 for the first time.</li>
+  <li>Perfect for learning.</li>
+</ul>
+
+<h3 id="reserved-instances">Reserved Instances</h3>
+<ul>
+  <li>Applications with steady state or predicatable usage.</li>
+  <li>Applications that require reserved capacity</li>
+  <li>Users can make up-front payments to reduce their total computing costs, even further.
+    <ul>
+      <li>Standard Reserved Instances ( Up to 75% off on-demand price )</li>
+      <li>Convertible Reserved Instances ( Up to 54% off on-demand price ) feature the capability to change the attributes of the Reserved Instances as long as the exchange results in the creation of Reserved instances of equal or greater value.</li>
+      <li>Scheduled Reserved Instances are available to launch within the time window you reserve. This option allows you to match your capacity reservation to a predictable recurring schedule that only requires a fraction of a day, a week, or a month.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="spot-instances">Spot Instances</h3>
+<ul>
+  <li>Applications that have flexible start and end times.</li>
+  <li>Applications that are only feasible at very low compute prices.</li>
+  <li>Users with an urgent need for the large amounts of additional computing capacity.</li>
+</ul>
+
+<h3 id="dedicated-hosts">Dedicated Hosts</h3>
+<ul>
+  <li>Useful for regulatory requirements that may not support multitenant virtualization.</li>
+  <li>Great for licensing which does not support multi-tenancy or cloud deployments.</li>
+  <li>Can be purchased On-Demand ( Paid hourly ).</li>
+  <li>Can be purchased as a reservation for upto 70% off on the On-Demand price.</li>
+</ul>
+
+<h3 id="ec2-instance-types">EC2 Instance Types</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Family</th>
+      <th>Speciality</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>F1</td>
+      <td>Field Programmable Gate Arrays</td>
+      <td>Genomics research, financial analytics, realtime video processing, big data etc.</td>
+    </tr>
+    <tr>
+      <td>I3</td>
+      <td>High Speed Storage</td>
+      <td>NoSQL DBs, Data Warehousing etc.</td>
+    </tr>
+    <tr>
+      <td>G3</td>
+      <td>Graphics Intensive</td>
+      <td>Video Encoding, 3D Application Streaming.</td>
+    </tr>
+    <tr>
+      <td>H1</td>
+      <td>High Disk Throughput</td>
+      <td>MapReduce-based workloads, distributed file systems such as HDFS and MapR-FS.</td>
+    </tr>
+    <tr>
+      <td>T2</td>
+      <td>Low Cost, General Purpose</td>
+      <td>Web servers / Small DB’s.</td>
+    </tr>
+    <tr>
+      <td>D2</td>
+      <td>Dense Storage</td>
+      <td>Fileservers / Data Warehousing / Hadoop</td>
+    </tr>
+    <tr>
+      <td>R4</td>
+      <td>Memory Optimized</td>
+      <td>Memory Intensive Applications and Databases.</td>
+    </tr>
+    <tr>
+      <td>M5</td>
+      <td>General Purpose</td>
+      <td>Application Servers.</td>
+    </tr>
+    <tr>
+      <td>C5</td>
+      <td>Compute Optimized</td>
+      <td>CPU Intensive Applications and Databases.</td>
+    </tr>
+    <tr>
+      <td>P3</td>
+      <td>Graphics / Gerneral Purpose GPU</td>
+      <td>Machine Learning, Bit Coin Mining etc.</td>
+    </tr>
+    <tr>
+      <td>X1</td>
+      <td>Memory Optimized</td>
+      <td>SAP HANA / Apache Spark etc.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>FIGHT-DR-MCPX.</p>
+
+<h3 id="ebs">EBS</h3>
+<p>EC2 = Virtual Machine.
+EBS = Virtual Disc.</p>
+
+<p>Amazon EBS allows you to create storage volumes and attach them to EC2 instances. Once attached, you can create file system on top of these volumes, run a database, or use them in any other way you would use a block device. Amazon EBS volumes are placed in a specific <em>Availability Zone</em>, where they are automatically replicated to protect you from the failure of a single component.</p>
+
+<h3 id="ebs-volume-types">EBS Volume Types</h3>
+<ul>
+  <li>General Purpose SSD (GP2).
+    <ul>
+      <li>General purpose, balances both price and performance.</li>
+      <li>Ratio of 3 IOPS per GB with upto 10,000 IOPS and the ability to burst up to 3000 IOPS for extended periods of time for volumes at 3334 GiB and above.</li>
+    </ul>
+  </li>
+  <li>Provisioned IOPS SSD (IO1).
+    <ul>
+      <li>Designed for I/O intensive applications such as large relational or NOSQL databases.</li>
+      <li>Use if you need more than 10,000 IOPS.</li>
+      <li>Can provision up to 20,000 IOPS per volume.</li>
+    </ul>
+  </li>
+  <li>Throughput Optimized HDD (ST1).
+    <ul>
+      <li>Big data.</li>
+      <li>Data warehouses.</li>
+      <li>Log processing.</li>
+      <li>Cannot be a boot volume.</li>
+    </ul>
+  </li>
+  <li>Cold HDD (SC1).
+    <ul>
+      <li>Lowest Cost Storage for infrequently accessed workloads.</li>
+      <li>File Server.</li>
+      <li>Cannot be a boot volume.</li>
+    </ul>
+  </li>
+  <li>Magnetic (Standard).
+    <ul>
+      <li>Lowest cost per gigabyte of all EBS volume types that is bootable. Magnetic volumes are ideal for workloads where data is accessed infrequently, and applications where the lowest storage cost is important.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="ec2-exam-tips">EC2 Exam tips</h3>
+<ul>
+  <li>EC2 Pricing Options
+    <ul>
+      <li>If a spot instance is terminated by amazon ec2, you will not be charged for a partial hour of usage. However, if you terminate the instance yourself, <strong>you will be charged for the complete hour in which the instance ran.</strong></li>
+    </ul>
+  </li>
+  <li>EC2 Family.</li>
+  <li>EBS Volume types.</li>
+</ul>
+
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>18 Jul 2018 &raquo;</span> <a href="/networking/2018/07/18/VPC-Summary.html">VPC Summary</a>
+    </li>
+    
+    <li>
+      <span>11 Jul 2018 &raquo;</span> <a href="/networking/2018/07/11/VPC.html">VPC</a>
+    </li>
+    
+    <li>
+      <span>25 Jun 2018 &raquo;</span> <a href="/2018/06/25/Route53-Routing-Policies.html">Route53 - Routing Policies</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © AWS Developer Associate, 2018 &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

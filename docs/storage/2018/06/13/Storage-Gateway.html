@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS Developer Associate - Storage Gateway</title>
+  <meta name="author" content="AWS Developer Associate" />
+  <meta name="description" content="The blog of AWS Developer Associate" />
+  <link rel="canonical" href="http://example.com/storage/2018/06/13/Storage-Gateway.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="AWS Developer Associate" href="http://example.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1>Notes</h1>
+  <a href="/">
+    
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+    
+  </a>
+  <h2><a href="/">AWS Developer Associate</a>.</h2>
+  <div id="bio">
+    <p></p>
+    <p>
+      <strong>TODO:</strong> Edit me in <code>_includes/sidebar.html</code>
+    </p>
+  </div>
+  <div id="social">
+    <!--Follow me:
+<div id="stalker">
+  
+  <a title="diehard073055 on Github" href="https://github.com/diehard073055">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+-->
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  June 13, 2018 
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">Storage Gateway</h1>
+
+<div id="post">
+  <p>AWS Storage Gateway, is a service that connects an on-premises software appliance with cloud-based storage to provide seamless and secure integration between an organization’s on premises IT environment and AWS’s storage infrastructure. The service enables you to securely store data to the AWS cloud for scalable and cost-effective storage.</p>
+
+<p>AWS Storage Gateway Software Appliance is available for download as a virtual machine (VM) image that you install on a host in your data center. Storage Gateway support either VMware ESXi or Microsoft Hyper-V. Once youve installed your gateway and associated it with your AWS account though the activation process, you use the AWS Management Console to create the storage gateway option that is right for you.</p>
+
+<h3 id="4-types-of-storage-gateways">4 types of storage gateways</h3>
+<ul>
+  <li>File Gateway (NFS)</li>
+  <li>Allows you store flat files in S3 ( word documents, pictures, pdf’s, etc )</li>
+  <li>Volume Gateways ( iSCSI ) This for block based storage, maybe a volume attached to a VM.
+    <ul>
+      <li>Stored Volume ( Gateway Stored Volumes )</li>
+      <li>Cached Volume ( Gateway Cached Volumes )</li>
+    </ul>
+  </li>
+  <li>Tape Gateway ( VTL ) Backup and archiving solution.</li>
+</ul>
+
+<h3 id="file-gateway">File Gateway</h3>
+<p>Files are stored as objects in your S3 buckets, accessed through a Network File System (NFS) mount point. Ownership, permissions, and timestamps are durably stored in S3 in the user-metadata of the object associated with the file. Once objects are transferred to S3, they can be managed as native S3 objects, and bucket policies such as versioning, lifecycle management, and cross-region replication apply directly to objects stored in your bucket.</p>
+
+<h3 id="volume-gateway">Volume Gateway</h3>
+<p>The volume interface presents your applications with disks volumes using iSCSI block protocol. Data written to these volumes can be asynchronously backed up as point-in-time snapshots of your volumes, and stored in the cloud as Amazon EBS snapshots. Snapshots are incremental backups that capture only changed blocks. All snapshots storage is also compressed to minimize your storage charges.</p>
+
+<h5 id="stored-volumes">Stored Volumes</h5>
+<p>Stored volumes let you store your primary data locally, while asynchronously backing up that data to AWS. Stored volumes provide your on-premises applications with low-latency access to their entire datasets, while providing durable, off-site backups. You can create storage volumes and mount them as iSCSI devices from your on-premises application servers. Data written to your stored volumes is asynchronously backed upto Amazon Simple Storage Service ( Amazon S3 ) in the form of Amazon Elastic Block Store ( Amazon EBS ) snapshots. 1GB - 16TB in size for Stored Volumes.</p>
+
+<h5 id="cached-volumes">Cached Volumes</h5>
+<p>Cached volumes lets you use Amazon Simple Storage Service ( Amazon S3 ) as your primary data storage while retaining frequently accessed data locally in your storage gateway. Cached volumes minimize the need to scale your on-premises storage infrastructure, while still providing your applications with low-latency access to their frequently accessed data. You can create storage volumes upto 32 TB in size and attach to them as iSCSI devices from your on-premises application servers. Your gateway stores data that you write to these volumes in Amazon S3 and retains recently read data in your on-premises storage gateway’s cache and upload buffer storage. 1GB - 32 TB in size for Cached Volumes.</p>
+
+<h5 id="taped-gateway">Taped Gateway</h5>
+<p>Tape Gateway offers a durable, cost-effective solution to archive your data in the AWS Cloud. The VTL interface it provides lets you leverage your existing tape-based backup application infrastructure to store data on virtual tape cartridges that you create on your tape gateway. Each tape gateway is preconfigured with a media changer and tape drives, which are available to your existing client backup applications as iSCSI devies. You add tape cartridges as you to archive your data. Supported by NetBackup, Backup Exec, Veam etc.</p>
+
+<h3 id="exam-tips">Exam Tips</h3>
+<ul>
+  <li>File Gateway - For flat files, stored directly on S3 - Not os’s</li>
+  <li>Volumes Gateways (block based storage)
+    <ul>
+      <li>Stored Volumes - Entire Dataset is stored on site is asynchronously backed up to S3.</li>
+      <li>Cached Volumes - Entire Dataset is stored on S3 and most frequently accessed data is kept on site.</li>
+    </ul>
+  </li>
+  <li>Gateway Virtual Tape Library ( VTL )
+    <ul>
+      <li>Used for backup and uses popular backup applications like NetBackup, Backup Exec, Veam etc.</li>
+    </ul>
+  </li>
+</ul>
+
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>18 Jul 2018 &raquo;</span> <a href="/networking/2018/07/18/VPC-Summary.html">VPC Summary</a>
+    </li>
+    
+    <li>
+      <span>11 Jul 2018 &raquo;</span> <a href="/networking/2018/07/11/VPC.html">VPC</a>
+    </li>
+    
+    <li>
+      <span>25 Jun 2018 &raquo;</span> <a href="/2018/06/25/Route53-Routing-Policies.html">Route53 - Routing Policies</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © AWS Developer Associate, 2018 &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

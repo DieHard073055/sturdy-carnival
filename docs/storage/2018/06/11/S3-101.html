@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS Developer Associate - S3 101</title>
+  <meta name="author" content="AWS Developer Associate" />
+  <meta name="description" content="The blog of AWS Developer Associate" />
+  <link rel="canonical" href="http://example.com/storage/2018/06/11/S3-101.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="AWS Developer Associate" href="http://example.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1>Notes</h1>
+  <a href="/">
+    
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+    
+  </a>
+  <h2><a href="/">AWS Developer Associate</a>.</h2>
+  <div id="bio">
+    <p></p>
+    <p>
+      <strong>TODO:</strong> Edit me in <code>_includes/sidebar.html</code>
+    </p>
+  </div>
+  <div id="social">
+    <!--Follow me:
+<div id="stalker">
+  
+  <a title="diehard073055 on Github" href="https://github.com/diehard073055">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+-->
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  June 11, 2018 
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">S3 101</h1>
+
+<div id="post">
+  <h3 id="what-is-s3">What is S3</h3>
+<p>S3 provides developer and IT teams with secure durable, highly scalable object storage. Amazon S3 is easy to use, with a simple web service interface to store and retrieve any amount of data from anywhere on the web.</p>
+<ul>
+  <li>S3 is a safe place to store your files.</li>
+  <li>It is Object based storage.</li>
+  <li>The data is spread across multiple devices and facilities.</li>
+</ul>
+
+<h3 id="s3-basics">S3 basics</h3>
+<ul>
+  <li>Object based storage i.e allows you to upload files.</li>
+  <li>Files can be from 0 Byte to 5 TB.</li>
+  <li>There is unlimited storage.</li>
+  <li>Files are stored in buckets.</li>
+  <li>S3 is a universal namespace, that is names must be unique globally.</li>
+  <li>S3 urls are as follows
+    <ul>
+      <li>https://s3-[region].amazonaws.com/[bucketname]</li>
+      <li>https://s3-eu-west.amazonaws.com/acloudguru</li>
+      <li>https://s3-ap-southeast-2.amazonaws.com/godsoflinux.com</li>
+    </ul>
+  </li>
+  <li>When you upload a file to S3, you will receive a HTTP 200 code if the upload successful.</li>
+</ul>
+
+<h3 id="data-consistency-model-for-s3">Data Consistency Model for S3</h3>
+<ul>
+  <li>Read after write consistency for PUTS of new objects.
+    <ul>
+      <li>When you put a new object in S3, you will get immediate consistency.</li>
+    </ul>
+  </li>
+  <li>Eventual Consistency for overwrite PUTS and DELETES ( can take sometime to propergate ).
+    <ul>
+      <li>You dont get immediate updates when you update or delete files from S3, It takes sometime for the objects to update.</li>
+    </ul>
+  </li>
+  <li>Updates to S3 is ATOMIC
+    <ul>
+      <li>You are either going to get the old data or you are going to get the old data. You will not get partial parts of the old data and new data.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="s3-is-a-simple-key-value-store">S3 is a simple key value store</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* S3 is object based, Objects consist of the following.
+    * Key (This is the name of the object)
+    * Value (This is simply the data and is made up of a sequence of bytes )
+    * Version ID ( Important for versioning )
+    * Metadata ( Data about the data you are storing )
+    * Subresources
+        * Access Control Lists ( Who can access this object )
+        * Torrent ( Bittorrent protocol )
+* S3 is lexicogrpahical, Ordered alphabetically on the key name. Its a design consideration for the application.
+</code></pre></div></div>
+
+<h3 id="guarantee">Guarantee</h3>
+<ul>
+  <li>Built for 99.99% Availability for the S3 platform,</li>
+  <li>Amazon Guarantee 99.9% availability. ( SLA service level agreement )</li>
+  <li>Amazon Guarantees 99.999999999% durability for S3 information. 9/11</li>
+  <li>Tiered Storage Available.</li>
+  <li>Lifecycle Management
+    <ul>
+      <li>If your data is 30 days old, keep them in this particular storage tier.</li>
+    </ul>
+  </li>
+  <li>Versioning</li>
+  <li>Encryption</li>
+  <li>Secure your data using Access Control Lists and Bucket Policies.</li>
+</ul>
+
+<h3 id="s3---storage-tiers--classes">S3 - Storage Tiers / Classes</h3>
+<ul>
+  <li>S3 - 99.99 availability, 99.999999999% durability, stored redundantly across multiple devices in multiple facilities and is designed to sustain the loss of 2 facilities concurrently.</li>
+  <li>S3 - IA ( Infrequently Accessed ) For data that accessed less frequently, but requires rapid access when needed. Lower fee than S3, but you are charged a retreval fee.</li>
+  <li>Reduced Redundancy Storage - Designed to provide 99.99% durability and 99.99% availability of objects over a given year.</li>
+  <li>Glacier - Very cheap, but used for data archival only. It takes 3 - 5 hours to restore from Glacier.</li>
+</ul>
+
+<h3 id="charge">Charge</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* Storage
+* Requests
+* Storage Management Pricing
+* Data Transfer pricing
+* Transfer acceleration
+    * Amazon S3 Transfer Acceleration Enables Fast, easy and secure transfer of files over long distances between your end users and an S3 bucket. Transfer Acceleration takes advantage of Amazon CloudFront's globally distributed edge locations. As the data arrives at an edge location, data is routed to Amazon S3 over an optimized network path.
+</code></pre></div></div>
+
+<h3 id="exam-tips">Exam tips</h3>
+<ul>
+  <li>Remember that S3 is Object based i.e. allows you to upload files.</li>
+  <li>File can be from 0 bytes to 5 TB.</li>
+  <li>There is unlimited storage</li>
+  <li>Files are stored in buckets</li>
+  <li>S3 has a universal, that is, names for buckets must be unique globally.</li>
+  <li>https://s3-ap-southeast-2.amazonaws.com/godsoflinux</li>
+  <li>Read after write consistency for PUTS of new objects.</li>
+  <li>Eventual Consistency on overwrites and deletes.</li>
+  <li>S3 Storage Classes / Tiers
+    <ul>
+      <li>S3 ( durable, immedietely available, frequently accessed )</li>
+      <li>S3 IA ( Infrequently Accessed, durable, immedietely available )</li>
+      <li>S3 Reduced Redundency Storage</li>
+      <li>Glacier ( for archival data which can take 3 to 5 hours to access )</li>
+    </ul>
+  </li>
+  <li>Remember the core fundementals of an S3 object
+    <ul>
+      <li>Key (name)</li>
+      <li>Value (data)</li>
+      <li>Version ID</li>
+      <li>Metadata</li>
+      <li>Subresources
+        <ul>
+          <li>ACL</li>
+          <li>Torrent</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Object based storage only! (for files)</li>
+  <li>Do not install operating systems on it</li>
+  <li>Successful uploads will generate HTTP 200 status code.</li>
+</ul>
+
+<p><strong>Read the S3 FAQ before the exam!</strong></p>
+
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>18 Jul 2018 &raquo;</span> <a href="/networking/2018/07/18/VPC-Summary.html">VPC Summary</a>
+    </li>
+    
+    <li>
+      <span>11 Jul 2018 &raquo;</span> <a href="/networking/2018/07/11/VPC.html">VPC</a>
+    </li>
+    
+    <li>
+      <span>25 Jun 2018 &raquo;</span> <a href="/2018/06/25/Route53-Routing-Policies.html">Route53 - Routing Policies</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © AWS Developer Associate, 2018 &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

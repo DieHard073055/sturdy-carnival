@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS Developer Associate - DynamoDB Introduction</title>
+  <meta name="author" content="AWS Developer Associate" />
+  <meta name="description" content="The blog of AWS Developer Associate" />
+  <link rel="canonical" href="http://example.com/database/2018/06/14/DynamoDB-Introduction.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="AWS Developer Associate" href="http://example.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1>Notes</h1>
+  <a href="/">
+    
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+    
+  </a>
+  <h2><a href="/">AWS Developer Associate</a>.</h2>
+  <div id="bio">
+    <p></p>
+    <p>
+      <strong>TODO:</strong> Edit me in <code>_includes/sidebar.html</code>
+    </p>
+  </div>
+  <div id="social">
+    <!--Follow me:
+<div id="stalker">
+  
+  <a title="diehard073055 on Github" href="https://github.com/diehard073055">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+-->
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  June 14, 2018 
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">DynamoDB Introduction</h1>
+
+<div id="post">
+  <h3 id="dynamodb-101">DynamoDB 101</h3>
+<p>Amazon DynamoDB is a fast and flexible NoSQL database service for all applications that need consistent, single-digit millisecond latency at any scale. It is a fully managed database and supports both document and key-value data models. Its flexible data model and reliable performance make it a great fit for mobile, web, gaming, ad-tech, IoT, and many other applications.</p>
+
+<h3 id="quick-facts-about-dynamodb-">Quick Facts about DynamoDB ?</h3>
+<ul>
+  <li>Stored on SSD Storage</li>
+  <li>Spread Across 3 geographically distinct data centres.</li>
+  <li>Eventual Consistent Reads (Defaults)
+    <ul>
+      <li>Consistency across all copies of data is usually reached within a second. Repeating a read after a short time should return the updated data. (Best Read Performance)</li>
+    </ul>
+  </li>
+  <li>Strongly Consistent Reads
+    <ul>
+      <li>A strongly consistent read returns a result that reflects all writes that recieved a successful response prior to the read.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="the-basics">The Basics</h3>
+<ul>
+  <li>Tables</li>
+  <li>Items ( Think a row of data in table )</li>
+  <li>Attributes ( Think a column of data in a table )</li>
+</ul>
+
+<blockquote>
+  <p>DynamoDB can have 35 levels of nesting currently.</p>
+</blockquote>
+
+<h3 id="pricing">Pricing</h3>
+<ul>
+  <li>Provisioned Throughput Capacity
+    <ul>
+      <li>Write throughput $0.0065 per hour for every 10 units</li>
+      <li>Read throughput $0.0065 per hour for every 50 units</li>
+    </ul>
+  </li>
+  <li>First 25 GB stored per month is free.</li>
+  <li>Storage costs of $0.25 per month there after.</li>
+</ul>
+
+<p>Lets assume that your application needs to perform 1 million writes and 1 million reads per day, while storing 28GB of data. First, you need to calculate how many writes and reads per second you need. 1 million evenly spread writes per day is equivalent to 1,000,000 ( writes ) / 24 ( hours ) / 60 ( minutes ) / 60 ( seconds ) = 11.6 writes per second. A DynamoDB write capacity unit can handle 1 write per second, so you need 12 write capacity units. For write throughput you are charged $0.0065 for every 10 units.
+So ($0.0065/10) * 12 * 24 = $0.1872 per day.</p>
+
+<p>Similarly, to handle 1 million strongly consistent reads per day, you need 12 Read Capacity Units. For read throughput you are charged $0.0065 for every 50 units.
+So ( $0.0065/50 ) * 12 * 24 = $0.0374 per day.</p>
+
+<p>Storage costs is 0.25 per GB per month. Lets assume our database is 28GB. We get the first 25GB for free so we only pay for 3GB of storage which is $0.75 per month.</p>
+
+<p>Total Cost = $0.1872 per day + $0.0374 per day Plus Storage of 0.75 per month
+( 30 x ( $0.1872 + $0.0374 )) $0.75 = $7.488</p>
+
+<p>With Free Tier You Get
+25 Read Capacity Units
+25 Write Capacity Units</p>
+
+<h3 id="easiest-way-to-learn-dynamodb">Easiest Way to Learn DynamoDB</h3>
+<ul>
+  <li>Play with DynamoDB</li>
+</ul>
+
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>18 Jul 2018 &raquo;</span> <a href="/networking/2018/07/18/VPC-Summary.html">VPC Summary</a>
+    </li>
+    
+    <li>
+      <span>11 Jul 2018 &raquo;</span> <a href="/networking/2018/07/11/VPC.html">VPC</a>
+    </li>
+    
+    <li>
+      <span>25 Jun 2018 &raquo;</span> <a href="/2018/06/25/Route53-Routing-Policies.html">Route53 - Routing Policies</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © AWS Developer Associate, 2018 &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

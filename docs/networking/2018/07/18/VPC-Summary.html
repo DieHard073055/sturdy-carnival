@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS Developer Associate - VPC Summary</title>
+  <meta name="author" content="AWS Developer Associate" />
+  <meta name="description" content="The blog of AWS Developer Associate" />
+  <link rel="canonical" href="http://example.com/networking/2018/07/18/VPC-Summary.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="AWS Developer Associate" href="http://example.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1>Notes</h1>
+  <a href="/">
+    
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+    
+  </a>
+  <h2><a href="/">AWS Developer Associate</a>.</h2>
+  <div id="bio">
+    <p></p>
+    <p>
+      <strong>TODO:</strong> Edit me in <code>_includes/sidebar.html</code>
+    </p>
+  </div>
+  <div id="social">
+    <!--Follow me:
+<div id="stalker">
+  
+  <a title="diehard073055 on Github" href="https://github.com/diehard073055">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+-->
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  July 18, 2018 
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">VPC Summary</h1>
+
+<div id="post">
+  <h3 id="nat-instances">NAT Instances</h3>
+<ul>
+  <li>When creating NAT instance, Disable Source/Destination check on instances.</li>
+  <li>NAT instance must be in a public subnet.</li>
+  <li>There must be a route out of the private subnet to the NAT instance, in order for this to work.</li>
+  <li>The amount of traffic that NAT instances can support depends on the instance size. If you are bottlenecking, increase the instance size.</li>
+  <li>You can create high availability using Autoscaling Groups, multiple subnets in different AZ’s, and a script to automate failover.</li>
+  <li>NAT instances are always behind a security group.</li>
+</ul>
+
+<h3 id="nat-gateways">NAT Gateways</h3>
+<ul>
+  <li>Preferred by the enterprise group.</li>
+  <li>Scale up automatically upto 10GBps.</li>
+  <li>No need to patch.</li>
+  <li>Not associated with security groups.</li>
+  <li>Automatically assigned with a public ip address.</li>
+  <li>Remember to update your route tables.</li>
+  <li>No need to disable Source / Destination checks.</li>
+  <li>More secure than using NAT instances.</li>
+</ul>
+
+<h3 id="network-acls">Network ACLs</h3>
+<ul>
+  <li>Your VPC automatically comes with a default ACL, and by default it allows all inbound and outbound traffic.</li>
+  <li>You can create custom network ACLs. And by default custom ACL denies all inbound and outbound traffic until you add rules.</li>
+  <li>Each subnet in your VPC must be associated with a network ACL. If you dont explicitly associate a subnet with a network ACL, the subnet is automatically associated with the default network ACL.</li>
+  <li>You can associate a network ACL with multiple subnets; however, a subnet can be associated with only one network ACL at a time. When you associate a network ACL with a subnet, the previous association is removed.</li>
+  <li>Network ACLs contain a numbered list of rules that is evaluated in order, starting with lowest numbered rule.</li>
+  <li>Network ACLs have seperate inbound and outbound rules, and each rule can either allow or deny traffic.</li>
+  <li>Network ACLs are stateless, responses to allow inbound traffic are subjected to the rules for outbound traffic. (vice versa).</li>
+  <li>Block IP addresses using NACLs</li>
+</ul>
+
+<h3 id="application-load-balancers">Application Load Balancers</h3>
+<ul>
+  <li>You will need at least 2 public subnets in order to deploy an application load balancer.</li>
+</ul>
+
+<h3 id="vpc-flow-logs">VPC Flow Logs</h3>
+<ul>
+  <li>You cannot enable flow logs for VPCs that are peered with your VPC unless the peer VPC is in your account.</li>
+  <li>You cannot tag a flow log.</li>
+  <li>After youve created a flow log, you cannot change the configuration; for example, you cannot associate a different IAM rule with the current flow log.</li>
+  <li>Not all IP traffic is monitored
+    <ul>
+      <li>Traffic generated by instances when they contact Amazon DNS server. If you use your own DNS server, then all traffic to that DNS server is logged.</li>
+      <li>Traffic generated by a Windows instance for Amazon Windows license activation.</li>
+      <li>Traffic to and from 169.254.169.254 for instance metadata.</li>
+      <li>DHCP traffic.</li>
+      <li>Traffic to the reserved IP address for the default VPC router.</li>
+    </ul>
+  </li>
+</ul>
+
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>11 Jul 2018 &raquo;</span> <a href="/networking/2018/07/11/VPC.html">VPC</a>
+    </li>
+    
+    <li>
+      <span>25 Jun 2018 &raquo;</span> <a href="/2018/06/25/Route53-Routing-Policies.html">Route53 - Routing Policies</a>
+    </li>
+    
+    <li>
+      <span>24 Jun 2018 &raquo;</span> <a href="/networking/2018/06/24/DNS-101.html">DNS 101</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © AWS Developer Associate, 2018 &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

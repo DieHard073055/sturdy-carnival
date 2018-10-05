@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS Developer Associate - DNS 101</title>
+  <meta name="author" content="AWS Developer Associate" />
+  <meta name="description" content="The blog of AWS Developer Associate" />
+  <link rel="canonical" href="http://example.com/networking/2018/06/24/DNS-101.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="AWS Developer Associate" href="http://example.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1>Notes</h1>
+  <a href="/">
+    
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+    
+  </a>
+  <h2><a href="/">AWS Developer Associate</a>.</h2>
+  <div id="bio">
+    <p></p>
+    <p>
+      <strong>TODO:</strong> Edit me in <code>_includes/sidebar.html</code>
+    </p>
+  </div>
+  <div id="social">
+    <!--Follow me:
+<div id="stalker">
+  
+  <a title="diehard073055 on Github" href="https://github.com/diehard073055">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+-->
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  June 24, 2018 
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">DNS 101</h1>
+
+<div id="post">
+  <ul>
+  <li>DNS is used to convert human friendly names, such as <code class="highlighter-rouge">https://google.com</code> into an Internet Protocol Address such as <code class="highlighter-rouge">https://92.93.94.95</code>.</li>
+  <li>IP addresses are used by computers to identify each other on the network. IP addresses commonly come in 2 different forms, IPv4 and IPv6.</li>
+  <li>IPv4 address space is a 32 bit field and has over 4 billion different addresses.</li>
+  <li>IPv6 address space is a 128 bit field and has over 340 undecillion addresses.</li>
+</ul>
+
+<h3 id="top-level-domains">Top Level Domains</h3>
+<ul>
+  <li>The last word in a domain name represents the “top level domain”.
+    <ul>
+      <li>.com</li>
+      <li>.edu</li>
+      <li>.gov</li>
+      <li>.me</li>
+      <li>.io</li>
+      <li>.org</li>
+    </ul>
+  </li>
+  <li>The second word in a domain name represents the second level domain name” <em>optional and depends on the domain.</em>
+    <ul>
+      <li>.<strong>co</strong>.uk</li>
+      <li>.<strong>gov</strong>.uk</li>
+      <li>.<strong>com</strong>.au</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="domain-registrars">Domain Registrars</h3>
+<p>A registrar is an authority that can assign domain names directly under one or more top-level domains. These domains are registered with InterNIC, a service of ICANN, which enforces uniqueness of domain names across the Internet. Each domain name becomes registered in a central database known as the WhoIS database.</p>
+
+<h3 id="soa-records">SOA Records</h3>
+<p><strong>Start Of Authrority Records</strong></p>
+
+<p><em>The SOA Record Stores Information About</em>;</p>
+<ul>
+  <li>The name of the server that supplied the data for the zone.</li>
+  <li>The administrator of the zone.</li>
+  <li>The current version of the zone.</li>
+  <li>The number of seconds a secondary name server should wait before checking for updates.</li>
+  <li>The number of seconds a secondary name server should wait before retrying a failed zone transfer.</li>
+  <li>The maximum number of seconds that a secondary name server can use data before it must either be refreshed or expire.</li>
+  <li>The default number of seconds for the time-to-live file on resource records.</li>
+</ul>
+
+<h3 id="ns-records">NS Records</h3>
+<ul>
+  <li>NS stands for Name Server Records.</li>
+  <li>Used by Top Level Domain servers to direct traffic to Content DNS server which contains authoritative DNS records.</li>
+</ul>
+
+<h3 id="a-records">A Records</h3>
+<ul>
+  <li>The A record is the fundemental type of DNS record and the “A” in A record stands for “Address”.</li>
+  <li>The A record is used by a computer to translate the name of the domain to the IP address.</li>
+</ul>
+
+<blockquote>
+  <p>Elastic load balancers never have an IPv4 / IPv6 Address, they always have a DNS name.</p>
+</blockquote>
+
+<h3 id="ttl-record">TTL Record</h3>
+<ul>
+  <li>The length that a DNS record is cached on either the Resolving Server or the users own local PC is equal to the value of the “Time To Live” (TTL) in seconds.</li>
+  <li>The lower the time to live, the faster changes to DNS records take to propagate through the internet.</li>
+  <li>When migrating to different servers, always remember to lower the TTL to 300 seconds ( 5 minutes ) since 2 days before the migration, since by default the TTL is set to 2 days.</li>
+</ul>
+
+<h3 id="cnames">CNAMES</h3>
+<ul>
+  <li>A Canonical Name ( CName ) can be used to resolve one domain name to another.</li>
+  <li>For example, you may have a mobile website with the domain name http://m.acloud.guru that is used for when users browse to your domain name on their mobile devices. You may also want the name http://mobile.acloud.guru to resolve this same address.</li>
+</ul>
+
+<h3 id="alias-records">Alias Records</h3>
+<ul>
+  <li>Alias Records are used to map resource record sets in your hosted zone to Elastic Load Balancers, CloudFront distributions, or S3 buckets that are configured as websites.</li>
+  <li>Alias Records work like CNAME record in that you can map one DNS name (www.example.com) to another <code class="highlighter-rouge">target</code> DNS name (elb1234.elb.amazonaws.com).</li>
+  <li>Key difference - A CNAME cant be used for naked domain names (zone apex record)</li>
+  <li>You cant have a CNAME for http://acloud.guru, it must be either an A record or an Alias.</li>
+  <li>Alias resource record sets can save you time because Amazon Route53 automatically recognizes changes in the record sets that the alias resource record set refers to.</li>
+</ul>
+
+<h3 id="exam-tips">Exam Tips</h3>
+<ul>
+  <li>ELB’s do not have a predefined public IPv4 addresses, you resolve them using a DNS name.</li>
+  <li>Understand the difference between as Alias Record and a CNAME.</li>
+  <li>Given the choice always choose an Alias Record over a CNAME.</li>
+</ul>
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>18 Jul 2018 &raquo;</span> <a href="/networking/2018/07/18/VPC-Summary.html">VPC Summary</a>
+    </li>
+    
+    <li>
+      <span>11 Jul 2018 &raquo;</span> <a href="/networking/2018/07/11/VPC.html">VPC</a>
+    </li>
+    
+    <li>
+      <span>25 Jun 2018 &raquo;</span> <a href="/2018/06/25/Route53-Routing-Policies.html">Route53 - Routing Policies</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © AWS Developer Associate, 2018 &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

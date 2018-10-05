@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS Developer Associate - Serverless Website</title>
+  <meta name="author" content="AWS Developer Associate" />
+  <meta name="description" content="The blog of AWS Developer Associate" />
+  <link rel="canonical" href="http://example.com/storage/2018/06/11/Serverless-Website.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="AWS Developer Associate" href="http://example.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1>Notes</h1>
+  <a href="/">
+    
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+    
+  </a>
+  <h2><a href="/">AWS Developer Associate</a>.</h2>
+  <div id="bio">
+    <p></p>
+    <p>
+      <strong>TODO:</strong> Edit me in <code>_includes/sidebar.html</code>
+    </p>
+  </div>
+  <div id="social">
+    <!--Follow me:
+<div id="stalker">
+  
+  <a title="diehard073055 on Github" href="https://github.com/diehard073055">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+-->
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  June 11, 2018 
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">Serverless Website</h1>
+
+<div id="post">
+  <p>This will be example of the simplest serverless website possible.</p>
+<h3 id="instructions">Instructions</h3>
+<ul>
+  <li>First we will need to create a lambda function
+    <ul>
+      <li>Select python 3.6 for the language</li>
+      <li>add the following code to your lambda</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+    <span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"In lambda_handler"</span><span class="p">)</span>
+
+    <span class="n">resp</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">"statusCode"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span>
+        <span class="s">"headers"</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s">"Access-Control-Allow-Origin"</span><span class="p">:</span><span class="s">"*"</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s">"body"</span><span class="p">:</span><span class="s">"This response is from a lambda function running in ohio!"</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">resp</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>Now set the trigger for your lambda function as API Gateway.
+    <ul>
+      <li>Give it any name you want.</li>
+      <li>Save your lambda settings</li>
+      <li>Go to API Gateway and make sure its a get request.</li>
+      <li>Go to stages and get the GET method URL.</li>
+      <li>See if the URL gives back the response you expect.</li>
+    </ul>
+  </li>
+  <li>Create a bucket in S3 with static website hosting</li>
+  <li>add the following index.html</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+<span class="kd">function</span> <span class="nx">request</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">xhttp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+    <span class="nx">xhttp</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">if</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="mi">4</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="mi">200</span> <span class="p">){</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"demo"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+    <span class="nx">xhttp</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span><span class="s2">"API GATEWAY URL"</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="nx">xhttp</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">align=</span><span class="s">"center"</span><span class="nt">&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Hello people<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"request()"</span><span class="nt">&gt;</span>Click me!<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"demo"</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>If you have added the API Gateway url in the code above, It should work accordingly.</li>
+</ul>
+
+<p>And that is how you build a serverless website with S3, Lambda and API Gateway!</p>
+
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>18 Jul 2018 &raquo;</span> <a href="/networking/2018/07/18/VPC-Summary.html">VPC Summary</a>
+    </li>
+    
+    <li>
+      <span>11 Jul 2018 &raquo;</span> <a href="/networking/2018/07/11/VPC.html">VPC</a>
+    </li>
+    
+    <li>
+      <span>25 Jun 2018 &raquo;</span> <a href="/2018/06/25/Route53-Routing-Policies.html">Route53 - Routing Policies</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © AWS Developer Associate, 2018 &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

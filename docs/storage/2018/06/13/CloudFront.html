@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS Developer Associate - CloudFront</title>
+  <meta name="author" content="AWS Developer Associate" />
+  <meta name="description" content="The blog of AWS Developer Associate" />
+  <link rel="canonical" href="http://example.com/storage/2018/06/13/CloudFront.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="AWS Developer Associate" href="http://example.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1>Notes</h1>
+  <a href="/">
+    
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+    
+  </a>
+  <h2><a href="/">AWS Developer Associate</a>.</h2>
+  <div id="bio">
+    <p></p>
+    <p>
+      <strong>TODO:</strong> Edit me in <code>_includes/sidebar.html</code>
+    </p>
+  </div>
+  <div id="social">
+    <!--Follow me:
+<div id="stalker">
+  
+  <a title="diehard073055 on Github" href="https://github.com/diehard073055">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+-->
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  June 13, 2018 
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">CloudFront</h1>
+
+<div id="post">
+  <p>A content delivery network (CDN) is a system of distributed servers (network) that delivers webpages and other web content to a user based on the geographic locations of the user, the origin of the webpage and a content delivery server.</p>
+
+<p>Amazon cloudfront can be used to deliver your entire website, including dynamic, static, streaming, and interactive content using a global network of edge locations. Requests for your content are automatically routed to the nearest edge location, so content is delivered with the best possible performance.</p>
+
+<p>Amazon CloudFront is optimized to work with other Amazon web services, like amazon simple storage service, amazon elastic cloud compute, amazon elastic load balancing, and amazon route 53. Amazon CloudFront also works seamlessly  with any Non-Aws origin server, which stores the original, definitive versions of your files.</p>
+
+<h3 id="key-terminology">Key terminology</h3>
+<ul>
+  <li><strong>Edge Location</strong> - This is the location where content will be cached. This is seperate to an AWS Region/AZ.
+    <ul>
+      <li>Edge Locations are not <strong>READ-ONLY</strong>. You can <strong>WRITE</strong> to them too. ( ie put an object on to them ). This will be replicated back to the origin server.</li>
+      <li>Objects are cached for the life of the TTL ( Time To Live )</li>
+      <li>You can clear cached objects, but you will be charged.</li>
+    </ul>
+  </li>
+  <li><strong>Origin</strong> - This is the origin of all the files that the CDN will distribute. This can be either an S3 bucket, an EC2 Instance, an Elastic Load Balancer or Route53.</li>
+  <li><strong>Distribution</strong> - This is the name given to the CDN which consists of a collection of Edge Locations.</li>
+  <li><strong>Web Distribution</strong> - Typically used for Websites.</li>
+  <li><strong>RTMP</strong> - Used for Media Streaming.</li>
+</ul>
+
+<h3 id="lab">LAB</h3>
+<ul>
+  <li>Create a bucket in s3 to be used with CloudFront.</li>
+  <li>Upload an image to that bucket.</li>
+  <li>Goto CloudFront and click on create distribution network.</li>
+  <li>Click on get start under Web.</li>
+  <li>Select the s3 bucket on the origin domain name. (dropdown menu)</li>
+  <li>Select Yes for restricting bucket access.</li>
+  <li>Create a new identity for bucket access.</li>
+  <li>Update bucket policy to grant read permissions.</li>
+  <li>Under default cache behaviour Viewer protocol policy Redirect HTTP to HTTPS</li>
+  <li>Restrict Viewer Access ( Use signed urls or signed cookies ) if you want to have restrictions.</li>
+  <li>Hit save and it should be deployed in around 15 minutes.</li>
+  <li>You can also enable geo restrictions
+    <ul>
+      <li>either black countries or whitelist countries but not both.</li>
+    </ul>
+  </li>
+  <li>If you want to remove an object from the cache immedietely ( Costs MONEY ), you can do so by creating an Invalidation.</li>
+  <li>After youre done with setting up, make sure you delete the distribution network because this does cost you money.
+    <ul>
+      <li>First select the distribution network, and click on disable (15 - 30) mins later you will be able to click on delete.</li>
+    </ul>
+  </li>
+</ul>
+
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>18 Jul 2018 &raquo;</span> <a href="/networking/2018/07/18/VPC-Summary.html">VPC Summary</a>
+    </li>
+    
+    <li>
+      <span>11 Jul 2018 &raquo;</span> <a href="/networking/2018/07/11/VPC.html">VPC</a>
+    </li>
+    
+    <li>
+      <span>25 Jun 2018 &raquo;</span> <a href="/2018/06/25/Route53-Routing-Policies.html">Route53 - Routing Policies</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © AWS Developer Associate, 2018 &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

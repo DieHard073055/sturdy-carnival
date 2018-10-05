@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS Developer Associate - EC2 AWS CLI</title>
+  <meta name="author" content="AWS Developer Associate" />
+  <meta name="description" content="The blog of AWS Developer Associate" />
+  <link rel="canonical" href="http://example.com/compute/2018/06/06/EC2-AWS-CLI.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="AWS Developer Associate" href="http://example.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1>Notes</h1>
+  <a href="/">
+    
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+    
+  </a>
+  <h2><a href="/">AWS Developer Associate</a>.</h2>
+  <div id="bio">
+    <p></p>
+    <p>
+      <strong>TODO:</strong> Edit me in <code>_includes/sidebar.html</code>
+    </p>
+  </div>
+  <div id="social">
+    <!--Follow me:
+<div id="stalker">
+  
+  <a title="diehard073055 on Github" href="https://github.com/diehard073055">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+-->
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  June 06, 2018 
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">EC2 AWS CLI</h1>
+
+<div id="post">
+  <p>In order to get aws cli running, you need to create a user in IAM with programatic access. Save the <code class="highlighter-rouge">credentials.csv</code> file. <strong>You only get to download this once</strong>. Only give user the permission for the resource you want the user to access, and nothing more.</p>
+
+<p>After spinning up a EC2 instance, run the following command.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3 <span class="nb">ls</span>
+</code></pre></div></div>
+
+<p>It should give you an error saying, <code class="highlighter-rouge">unable to locate credentails. You can configure credentials by running "aws configure".</code> So run the following command.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws configure
+</code></pre></div></div>
+
+<p>Now enter the <code class="highlighter-rouge">Access Key ID</code> and the <code class="highlighter-rouge">Secret Access Key</code> you downloaded when you created the IAM user with the programatic access. After that try the following command again.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3 <span class="nb">ls</span>
+</code></pre></div></div>
+
+<p>Now it should show you a list of all the buckets you have created on s3. If you dont have any buckets it will be empty. You can create a bucket with the following command.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3 mb s3://&lt;enter your bucket name&gt;
+</code></pre></div></div>
+
+<blockquote>
+  <p>Remember that your bucketname has to be unique across all the buckets that has ever been created in aws.</p>
+</blockquote>
+
+<p>In order for you to get help on a specific aws service, you can type <code class="highlighter-rouge">aws [service] help</code>. So for example to get help about s3.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3 <span class="nb">help</span>
+</code></pre></div></div>
+
+<p>To get help on a command of the service you can type <code class="highlighter-rouge">aws [service] [command] help</code>.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3 mb <span class="nb">help</span>
+</code></pre></div></div>
+
+<p>Now since we configured our aws cli to be using the credentials on the ec2 instance. This is risky since if someone did hack in they will use your credentials to do nasty things to your s3 buckets or more. The credentials are stored in <code class="highlighter-rouge">~/.aws/credentials</code>. Dont ever store these credentials in github, in your projects. The best way to do programatic resource management with scripts is to use an ec2 with the right role attached to it. And then ssh-ing into the machine. And then you can run whatever script you wanted to run.</p>
+
+<p>In order to list all the running ec2 instances, run the command.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws ec2 describe-instances
+</code></pre></div></div>
+
+<p>You will see bunch of information here. and then in order to terminate any running instance type <code class="highlighter-rouge">aws ec2 terminate-instances</code>. You can get the instance id from the <code class="highlighter-rouge">aws describe-instances</code> command.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws ec2 describe-instances <span class="nt">--instance-ids</span> <span class="o">[</span>enter instance id here]
+</code></pre></div></div>
+
+<p>make sure you delete the user that you created for this unless you have specific access for you to do something simple on your own machine. To do this the safe way create a role with the required access in IAM. In situations where you have multiple ec2 instances with the credentials file, and the credentials files got leaked. You will need to delete the file and replace the in everysingle ec2 instance. Which can be done programatically, its still ugly. So the best way is to use roles on those ec2 instances.</p>
+
+<p>So in the case where you want to have an ec2 instance do a bunch of tasks with s3. You should create the s3 admin access role and attach it to your ec2 instance. Also remember <strong>roles are available globally, you cannot create a role for a specific region</strong>. <em>So after you have created an instance with the right role attached</em>. You could double check on all the possible actions that is doable from this ec2 instance by going on to polices from the left side panel. Click on policies -&gt; permissions. Here you can view both the json and gui version of all the actions that have been issued for the ec2 instance.</p>
+
+<blockquote>
+  <p>You can click on a running instance -&gt; Actions -&gt; Instance Settings -&gt; Attach / Replace IAM role, If you want to attach another IAM role.</p>
+</blockquote>
+
+<p>If you have added the S3 access to the role you attached to the ec2 instance. You can try.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3 <span class="nb">ls</span>
+</code></pre></div></div>
+<p>and now it should just work with out asking you to configure things. Even if you check the directory <code class="highlighter-rouge">~/.aws</code> it should be empty. So even if your ec2 instance got compromised, you dont have to delete your access credentials.</p>
+
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>18 Jul 2018 &raquo;</span> <a href="/networking/2018/07/18/VPC-Summary.html">VPC Summary</a>
+    </li>
+    
+    <li>
+      <span>11 Jul 2018 &raquo;</span> <a href="/networking/2018/07/11/VPC.html">VPC</a>
+    </li>
+    
+    <li>
+      <span>25 Jun 2018 &raquo;</span> <a href="/2018/06/25/Route53-Routing-Policies.html">Route53 - Routing Policies</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © AWS Developer Associate, 2018 &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

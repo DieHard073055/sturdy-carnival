@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS Developer Associate - EC2 AWS CLI DEV</title>
+  <meta name="author" content="AWS Developer Associate" />
+  <meta name="description" content="The blog of AWS Developer Associate" />
+  <link rel="canonical" href="http://example.com/compute/2018/06/06/EC2-AWS-CLI-DEV.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="AWS Developer Associate" href="http://example.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1>Notes</h1>
+  <a href="/">
+    
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+    
+  </a>
+  <h2><a href="/">AWS Developer Associate</a>.</h2>
+  <div id="bio">
+    <p></p>
+    <p>
+      <strong>TODO:</strong> Edit me in <code>_includes/sidebar.html</code>
+    </p>
+  </div>
+  <div id="social">
+    <!--Follow me:
+<div id="stalker">
+  
+  <a title="diehard073055 on Github" href="https://github.com/diehard073055">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+-->
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  June 06, 2018 
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">EC2 AWS CLI DEV</h1>
+
+<div id="post">
+  <h3 id="to-create-a-new-ec2-instance">To create a new ec2 instance</h3>
+
+<p>Inorder to create a new ec2 instance from the commandline, we first need to know which AMI we want to use. We could pass the option <code class="highlighter-rouge">describe-images</code> to the aws cli and we can get the list. But that would return you a huge list. To list out the images from amazon you can use the following command.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws ec2 describe-images <span class="nt">--owners</span> amazon <span class="nt">--filters</span> <span class="s2">"Name=platform,Values=Linux1"</span> <span class="s2">"Name=root-device-type,Values=ebs"</span>
+</code></pre></div></div>
+<p>you can go to the console, get the SubnetID of the ec2 instance you are logged in. 
+you also have to make sure you have a keypair on aws. Try the following command launch your instance.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws ec2 run-instances <span class="nt">--image-id</span> ami-165a0876 <span class="nt">--count</span> 1 <span class="nt">--instance-type</span> t2.micro <span class="nt">--key-name</span> MyKeyPair <span class="nt">--security-groups-ids</span> sg-d03bafb7 <span class="nt">--subnet-id</span> subnet123abc
+</code></pre></div></div>
+
+<p>It should have provisioned your ec2 instance if you do not have any problems in your command.</p>
+
+<p>Now to terminate instances, all you need to do is grab the instance ids and then type the following command.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws ec2 terminate-instances <span class="nt">--instance-ids</span> <span class="o">[</span>instance id]
+</code></pre></div></div>
+
+<p>Be careful when you issue that command, it will completely destroy your ec2 instance.</p>
+
+<h3 id="commands">Commands</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">aws ec2 describe-instances</code></td>
+      <td>will show all the information about your instances</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">aws ec2 describe-images</code></td>
+      <td>will show all the information about all the available images. Be aware this will spam your terminal with a never ending list of json</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">aws ec2 run-instances</code></td>
+      <td>will create a new instance and launch</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">aws ec2 start-instances</code></td>
+      <td>will start a stopped instance</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Dont get confused about start-instances and run-instances</strong> start instances will not create a new instance! only run instance would create a new instance. And start instance will only start a stopped instance.</p>
+
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>18 Jul 2018 &raquo;</span> <a href="/networking/2018/07/18/VPC-Summary.html">VPC Summary</a>
+    </li>
+    
+    <li>
+      <span>11 Jul 2018 &raquo;</span> <a href="/networking/2018/07/11/VPC.html">VPC</a>
+    </li>
+    
+    <li>
+      <span>25 Jun 2018 &raquo;</span> <a href="/2018/06/25/Route53-Routing-Policies.html">Route53 - Routing Policies</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © AWS Developer Associate, 2018 &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

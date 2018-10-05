@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS Developer Associate - Lambda</title>
+  <meta name="author" content="AWS Developer Associate" />
+  <meta name="description" content="The blog of AWS Developer Associate" />
+  <link rel="canonical" href="http://example.com/compute/2018/06/10/Lambda.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="AWS Developer Associate" href="http://example.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1>Notes</h1>
+  <a href="/">
+    
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+    
+  </a>
+  <h2><a href="/">AWS Developer Associate</a>.</h2>
+  <div id="bio">
+    <p></p>
+    <p>
+      <strong>TODO:</strong> Edit me in <code>_includes/sidebar.html</code>
+    </p>
+  </div>
+  <div id="social">
+    <!--Follow me:
+<div id="stalker">
+  
+  <a title="diehard073055 on Github" href="https://github.com/diehard073055">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+-->
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  June 10, 2018 
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">Lambda</h1>
+
+<div id="post">
+  <h3 id="what-is-lambda-">What is lambda ?</h3>
+<p>AWS Lambda is a compute service where you can upload your code and create a Lambda function. AWS Lambda takes care of provisioning and managing the servers that you use to run the code. You dont have to worry about operating systems, patching, scaling, etc. You can use Lambda in the following ways.</p>
+
+<ul>
+  <li>As an <strong>Event Driven Compute Service</strong> where AWS Lambda runs your code in response to events. These events could be changes to data in an Amazon S3 bucket or an Amazon DynamoDB table.</li>
+  <li>As a compute service to run your code in response to HTTP requests using Amazon API Gateway or API calls made using AWS SDKs.</li>
+</ul>
+
+<h3 id="create-a-lambda">Create a lambda</h3>
+<p><strong>Services-&gt;Compute-&gt;Lambda-&gt;Create Function</strong></p>
+
+<ol>
+  <li>Select Blue Print
+    <ul>
+      <li>Author from scratch</li>
+    </ul>
+  </li>
+  <li>Configure Triggers
+    <ul>
+      <li>Available Triggers
+        <ul>
+          <li>API Gateway</li>
+          <li>AWS IoT</li>
+          <li>Alexa Skills Kit</li>
+          <li>Alexa Smart Home</li>
+          <li>CloudFront</li>
+          <li>CloudWatch Events</li>
+          <li>CloudWatch Logs</li>
+          <li>CodeCommit</li>
+          <li>Cognito Sync Trigger</li>
+          <li>DynamoDB</li>
+          <li>Kinesis</li>
+          <li>S3</li>
+          <li>SNS</li>
+        </ul>
+      </li>
+      <li>Select API Gateway</li>
+    </ul>
+  </li>
+  <li>Configure Function
+    <ul>
+      <li>Available Languages
+        <ul>
+          <li>C#</li>
+          <li>Nodejs</li>
+          <li>Python</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="lambda-pricing">Lambda Pricing</h3>
+<ul>
+  <li>Number of requests
+    <ul>
+      <li>First 1 million requests are free. $0.20 per 1 million requests afterwards.</li>
+    </ul>
+  </li>
+  <li>Duration
+    <ul>
+      <li>Duration is calculated from the time your code begins executing until it returns or otherwise terminates, rounded up to the nearest 100ms. The pricing depends on the amount of memory you allocate to your function. You are charged $0.00001667 for every GB/second used.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="pros-on-lambda">Pros on Lambda</h3>
+<ul>
+  <li>No Servers</li>
+  <li>Continuous Scaling</li>
+  <li>Super Super Super cheap</li>
+</ul>
+
+<h3 id="exam-tips">Exam Tips</h3>
+<ul>
+  <li>Lambda scales out ( not up ) automatically.</li>
+  <li>Lambda functions are independent, 1 event = 1 function.</li>
+  <li>Lambda is serverless.</li>
+  <li>Lambdas can trigger other lambda functions, 1 event can = x functions if functions trigger other functions.</li>
+  <li>Architectures can get extremely complicated, AWS x-ray allows you to debug what is happening.</li>
+  <li>Lambda can do things globally, It can be used to backup S3 buckets to other S3 buckets etc.</li>
+  <li>Know which services can trigger lambda</li>
+  <li>Lambdas can run for at most 5 minutes.</li>
+</ul>
+
+<h5 id="other-serverless-services">Other serverless services</h5>
+<ul>
+  <li>API Gateway</li>
+  <li>S3</li>
+  <li>DynamoDB</li>
+  <li>Definetely not EC2</li>
+</ul>
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>18 Jul 2018 &raquo;</span> <a href="/networking/2018/07/18/VPC-Summary.html">VPC Summary</a>
+    </li>
+    
+    <li>
+      <span>11 Jul 2018 &raquo;</span> <a href="/networking/2018/07/11/VPC.html">VPC</a>
+    </li>
+    
+    <li>
+      <span>25 Jun 2018 &raquo;</span> <a href="/2018/06/25/Route53-Routing-Policies.html">Route53 - Routing Policies</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © AWS Developer Associate, 2018 &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS Developer Associate - Summary of EC2 Section</title>
+  <meta name="author" content="AWS Developer Associate" />
+  <meta name="description" content="The blog of AWS Developer Associate" />
+  <link rel="canonical" href="http://example.com/compute/2018/06/10/Summary-of-EC2-Section.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="AWS Developer Associate" href="http://example.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1>Notes</h1>
+  <a href="/">
+    
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+    
+  </a>
+  <h2><a href="/">AWS Developer Associate</a>.</h2>
+  <div id="bio">
+    <p></p>
+    <p>
+      <strong>TODO:</strong> Edit me in <code>_includes/sidebar.html</code>
+    </p>
+  </div>
+  <div id="social">
+    <!--Follow me:
+<div id="stalker">
+  
+  <a title="diehard073055 on Github" href="https://github.com/diehard073055">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+-->
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  June 10, 2018 
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">Summary of EC2 Section</h1>
+
+<div id="post">
+  <ul>
+  <li><strong>Fundemental Topic</strong></li>
+  <li>Remember to read the <a href="https://aws.amazon.com/ec2/faqs/">EC2 FAQ</a> before going for the exam.</li>
+</ul>
+
+<h3 id="exam-tips">Exam Tips</h3>
+<ul>
+  <li>Know the difference between the pricing models of EC2.
+    <ul>
+      <li>On Demand</li>
+      <li>Spot</li>
+      <li>Reserved</li>
+      <li>Dedicated Hosts</li>
+    </ul>
+  </li>
+  <li>Remember for Spot Instances
+    <ul>
+      <li>If you terminate the instance, you pay for the hour.</li>
+      <li>If aws terminates the spot instance, you get the hour it was terminated in for free.</li>
+    </ul>
+  </li>
+  <li>EC2 Instance Types.
+    <ul>
+      <li>Remember DRMCGIFTPX</li>
+      <li>D - Dense Storage</li>
+      <li>R - Memory Optimized</li>
+      <li>M - General Purpose ( Production )</li>
+      <li>C - Compute Optimized</li>
+      <li>G - Graphics Intensive</li>
+      <li>I - Storage Optimized</li>
+      <li>F - Field Programmable Gate arrays</li>
+      <li>T - Low Cost General Purpose</li>
+      <li>P - Graphics / General Purpose</li>
+      <li>X - Memory Optimized ( eXtreme Memory Optimized )</li>
+    </ul>
+  </li>
+  <li>EBS Consists of
+    <ul>
+      <li>SSD - General Purpose - GP2 - ( Up to 10,000 IOPS ).</li>
+      <li>SSD - Provisioned IOPS - IO1 - ( More than 10,000 IOPS ).</li>
+      <li>HDD - Throughput optimized - ST1 - Frequently accessed workloads.</li>
+      <li>HDD - Cold - SC1 - less frequently accessed data.</li>
+      <li>HDD - Magnetic - Standard - Cheap, infrequently accessed storage.</li>
+    </ul>
+  </li>
+  <li>You cannot mount 1 EBS Volume to multiple EC2 instances, instead use EFS.</li>
+  <li>Termination Protection is turned off by default, You must turn on termination protection if you would like that safety.</li>
+  <li>On an EBS backed storage, the default action on instance termination is deleting the EBS volume.</li>
+  <li>Root Volumes cannot be encrypted by default unless you use a thirdparty tool to encrypt the root volume. (eg: Bitlocker )</li>
+  <li>
+    <p>Additional Volumes can be encrypted.</p>
+  </li>
+  <li>Volumes VS Snapshots
+    <ul>
+      <li>Volumes exists on EBS
+        <ul>
+          <li>Virtual Harddisks</li>
+        </ul>
+      </li>
+      <li>Snapshots exists on S3</li>
+      <li>You can take snapshots of a volume, this will store that volume on S3.</li>
+      <li>Snapshots are point in time copies of that volume.</li>
+      <li>Snapshots are incremental, this means that only the blocks that have changed since your last snapshots are moved to S3. ( first snapshots takes a while, but afterwards its fine )</li>
+    </ul>
+  </li>
+  <li>Volumes VS Snapshots - Security
+    <ul>
+      <li>Snapshots of encrypted volumes are encrypted automatically.</li>
+      <li>Volumes that are restored from snapshots are encrypted automatically.</li>
+      <li>You can share snapshots with other AWS accounts, or publicly on the AWS market place, only if they are not encrypted.</li>
+    </ul>
+  </li>
+  <li>Snapshots of Root Device Volumes.
+    <ul>
+      <li>To create a snapshot for Amazon EBS volume that serve as root device, you should stop the instance before taking the snapshot ( but can be done on a running instance ).</li>
+    </ul>
+  </li>
+  <li>EBS vs Instance Store Volumes
+    <ul>
+      <li>Instance Store volumes are sometimes called Ephemeral Storage.</li>
+      <li>Instance Store volumes cannot be stopped, If the underlying host fails, you will loose your data.</li>
+      <li>EBS backed instances can be stopped, You will not loose the data on this instance if it is stopped.</li>
+      <li>You can reboot both, and you will not loose your data.</li>
+      <li>By default, both ROOT volumes will be deleted on termination, however with EBS volumes, you can tell AWS to keep the root device volume. ( set a FLAG )</li>
+    </ul>
+  </li>
+  <li>How to take a snapshot from the RAID Array?
+    <ul>
+      <li>Problem - Take a snapshot, the snapshot excludes data held in the cache by applications and the OS. This tends not to matter on a single volume, however using multiple volumes in a RAID array, this can be a problem due to interdependencies of the array.</li>
+      <li>Solution - Take an application consistent snapshot.
+        <ul>
+          <li>Stop the application from writing to disk</li>
+          <li>Flush all caches to the disk.
+            <ul>
+              <li>Freeze the file system.</li>
+              <li>Unmount the RAID Array.</li>
+              <li>Shutdown the associated EC2 instance.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Amazon Machine Images
+    <ul>
+      <li>AMI’s are regional - You can only launch an AMI from the region in which it is stored. However you can copy AMI’s to other regions using the console, commandline or the Amazon EC2 API.</li>
+    </ul>
+  </li>
+  <li>Cloudwatch Monitoring
+    <ul>
+      <li>Standard monitoring is enabled by default for EC2. ( Every 5 minutes )</li>
+      <li>You can enable Detailed Monitoring ( Every minute ).</li>
+      <li><strong>CloudWatch is for performance monitoring.</strong></li>
+      <li><strong>CloudTrail is for Auditing</strong></li>
+    </ul>
+  </li>
+  <li>What can you create with CloudWatch ?
+    <ul>
+      <li>Dashboards - Create awesome dashboards to see what is happening with your aws environment.</li>
+      <li>Alarms - Allows you to set alarms that notify you when particular thresholds are hit.</li>
+      <li>Events - CloudWatch Events help you to respond to state changes in your aws resources.</li>
+      <li>Logs - CloudWatch logs help you to aggregate, monitor, and store logs.</li>
+    </ul>
+  </li>
+  <li>Roles
+    <ul>
+      <li>Roles are more secure than storing your access key and secret access key on individual EC2 instances.</li>
+      <li>Roles are much easier to manage than having secret access keys around in terms of security.
+        <ul>
+          <li>If you loose your security key, you will have to delete the old ones and create a new one.</li>
+        </ul>
+      </li>
+      <li>Roles can now be assigned to an EC2 instance after it has been provisioned using both the commandline and the AWS console.</li>
+      <li>Roles are global</li>
+    </ul>
+  </li>
+  <li>Instance Metadata
+    <ul>
+      <li>Used to get information about an instance ( such as public IPV4 )</li>
+      <li><code class="highlighter-rouge">curl http://169.254.169.254/latest/meta-data/</code> will all the available information.</li>
+    </ul>
+  </li>
+  <li>EFS
+    <ul>
+      <li>Support the Network File System Version 4 protocol (NFSv4)</li>
+      <li>You only pay for the storage you use ( no pre-provisioning required )</li>
+      <li>Can scale upto petabytes</li>
+      <li>Can support thousands of concurrent NFS connections</li>
+      <li>Data is stored across multiple AZ’s within a region.</li>
+      <li>Read After Write Consistency</li>
+    </ul>
+  </li>
+  <li>Lambda
+    <ul>
+      <li>AWS lambda is a compute service where you can upload your code and create lambda function. AWS Lambda takes care of provisioning and managing the servers that you use to run the code. You dont have to worry about the operating systems, patching, scaling, etc. You can use Lambda in the following ways.</li>
+      <li>As an event driven compute service, AWS runs your code in response to events. These events could be changes to your data in an Amazon S3 bucket or an Amazon DynamoDB table.</li>
+      <li>As a compute service to run your code in response to HTTP requests using Amazon API gateway or API calls made using AWS SDK’s. This is what we use at A Cloud Guru.</li>
+    </ul>
+  </li>
+</ul>
+
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>18 Jul 2018 &raquo;</span> <a href="/networking/2018/07/18/VPC-Summary.html">VPC Summary</a>
+    </li>
+    
+    <li>
+      <span>11 Jul 2018 &raquo;</span> <a href="/networking/2018/07/11/VPC.html">VPC</a>
+    </li>
+    
+    <li>
+      <span>25 Jun 2018 &raquo;</span> <a href="/2018/06/25/Route53-Routing-Policies.html">Route53 - Routing Policies</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © AWS Developer Associate, 2018 &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

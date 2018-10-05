@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS Developer Associate - Bash Scripting Lab</title>
+  <meta name="author" content="AWS Developer Associate" />
+  <meta name="description" content="The blog of AWS Developer Associate" />
+  <link rel="canonical" href="http://example.com/compute/2018/06/07/Bash-Scripting-Lab.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="AWS Developer Associate" href="http://example.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1>Notes</h1>
+  <a href="/">
+    
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+    
+  </a>
+  <h2><a href="/">AWS Developer Associate</a>.</h2>
+  <div id="bio">
+    <p></p>
+    <p>
+      <strong>TODO:</strong> Edit me in <code>_includes/sidebar.html</code>
+    </p>
+  </div>
+  <div id="social">
+    <!--Follow me:
+<div id="stalker">
+  
+  <a title="diehard073055 on Github" href="https://github.com/diehard073055">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+-->
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  June 07, 2018 
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">Bash Scripting Lab</h1>
+
+<div id="post">
+  <p>In this lab we are going to pass a bash script to the ec2 instance before it is launched to automate some of the tasks we want the instance to execute before we ssh in.</p>
+
+<h3 id="instructions">Instructions</h3>
+
+<p>Create an ec2 instance to launch.
+Make sure you assign the role s3-admin-access to this instance.
+On the tab <code class="highlighter-rouge">3. Configure Instance</code> -&gt; Advanced Details -&gt; User Data <code class="highlighter-rouge">!</code>. Make sure As text option is selected. And then add then pass the following bash script to it.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="c"># Log file to log all the events</span>
+<span class="nv">LOGFILE</span><span class="o">=</span>/home/ec2-user/ONBOOT.log
+
+
+<span class="c"># Install updates to the server</span>
+<span class="nb">sudo </span>yum update <span class="nt">-y</span> 2&gt;&amp;1 <span class="o">&gt;&gt;</span> <span class="nv">$LOGFILE</span>
+
+<span class="c"># Install apache</span>
+<span class="nb">sudo </span>yum install httpd <span class="nt">-y</span> 2&gt;&amp;1 <span class="o">&gt;&gt;</span> <span class="nv">$LOGFILE</span>
+
+<span class="c"># Start the apache service and set the service to run on boot</span>
+<span class="nb">sudo </span>service httpd start 2&gt;&amp;1 <span class="o">&gt;&gt;</span> <span class="nv">$LOGFILE</span>
+<span class="nb">sudo </span>chkconfig httpd on 2&gt;&amp;1 <span class="o">&gt;&gt;</span> <span class="nv">$LOGFILE</span>
+
+<span class="c"># Copy website from s3 to /var/www/html</span>
+<span class="nb">sudo </span>aws s3 cp <span class="nt">--recursive</span> s3://[bucketname] /var/www/html/ 2&amp;1 <span class="o">&gt;&gt;</span> <span class="nv">$LOGFILE</span>
+
+<span class="nb">echo</span> <span class="s2">"Startup script done installing essentials"</span> <span class="o">&gt;&gt;</span> <span class="nv">$LOGFILE</span>
+</code></pre></div></div>
+
+<p>When the instance gets launched, It should have setup the webserver and your file will be available when you head to the instance ip address on the browser. Also after you login, you be able to see the execution logs on the home directory. If anything did go wrong it should be on the logs.</p>
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>18 Jul 2018 &raquo;</span> <a href="/networking/2018/07/18/VPC-Summary.html">VPC Summary</a>
+    </li>
+    
+    <li>
+      <span>11 Jul 2018 &raquo;</span> <a href="/networking/2018/07/11/VPC.html">VPC</a>
+    </li>
+    
+    <li>
+      <span>25 Jun 2018 &raquo;</span> <a href="/2018/06/25/Route53-Routing-Policies.html">Route53 - Routing Policies</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © AWS Developer Associate, 2018 &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS Developer Associate - Scan vs Query API Calls</title>
+  <meta name="author" content="AWS Developer Associate" />
+  <meta name="description" content="The blog of AWS Developer Associate" />
+  <link rel="canonical" href="http://example.com/database/2018/06/15/Scan-vs-Query-API-Calls.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="AWS Developer Associate" href="http://example.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1>Notes</h1>
+  <a href="/">
+    
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+    
+  </a>
+  <h2><a href="/">AWS Developer Associate</a>.</h2>
+  <div id="bio">
+    <p></p>
+    <p>
+      <strong>TODO:</strong> Edit me in <code>_includes/sidebar.html</code>
+    </p>
+  </div>
+  <div id="social">
+    <!--Follow me:
+<div id="stalker">
+  
+  <a title="diehard073055 on Github" href="https://github.com/diehard073055">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+-->
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  June 15, 2018 
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">Scan vs Query API Calls</h1>
+
+<div id="post">
+  <h3 id="what-is-a-query">What is a query</h3>
+<ul>
+  <li>A Query operation finds items in a table using only primary key attributes values. You must provide a partition attribute name and a distinct value to search for.</li>
+  <li>You can optionally provide a sort key attribute name and value, and use a comparison operator to refine the search results.</li>
+  <li>By default, a query returns all of the data attributes for items with the specified primary key(s); however, you can use the <strong>ProjectionExpression</strong> parameter so that the Query only returns some of the attributes, rather than all of them.</li>
+  <li>Query results are always sorted by the sort key. If the data type of the sort key is a number, the results are returned in numeric order; otherwise the results are returned in order of ASCII character code values. By default, the sort order is ascending. To reverse the order, set the <strong>ScanIndexForward</strong> parameter to false.</li>
+  <li>By default all queries are eventually consistent but can be changed to be strongly consistent.</li>
+</ul>
+
+<h3 id="what-is-a-scan-">What is a Scan ?</h3>
+<ul>
+  <li>A Scan operation examines every item in the table ( basically a table dump ). By default the scan returns all of the data attributes for every item; however, you can use the <strong>ProjectionExpression</strong> parameter so that the Scan returns only some of them.</li>
+</ul>
+
+<h3 id="what-should-i-use-a-query-or-a-scan">What Should I use, a query or a Scan?</h3>
+<p>Generally, a Query Operation is more efficient than a Scan operation.</p>
+
+<p>A Scan operation always scans the entire table, then filters out values to provide the desired result, essentially adding the extra step of removing data from the result set. Avoid using a Scan operation on a large table with a filter that removes many results, if possible. Also, as a table grows, the Scan operation slows. The Scan operation examines every item for the requested values, and can use up the provisioned throughput for a large table in a single operation.</p>
+
+<p>For quicker response times, design your tables in a way that can use the Query, <em>Get</em> or <em>BatchGetItem</em> APIs instead. Alternatively, design your application to use Scan operations in a way that minimizes the impact on your tables request rate.</p>
+
+<h3 id="exam-tips">Exam Tips</h3>
+<ul>
+  <li>
+    <p>A Query operation finds the items in a table using only primary key attribute values. You must provide a partition key attribute name and a distinct value to search for.</p>
+  </li>
+  <li>
+    <p>A Scan operation examines every item in the table. By default, a Scan returns all of the data attributes for every item; however, you can use the <strong>ProjectionExpression</strong> parameter so that the Scan only returns some of the attributes, rather than all of them.</p>
+  </li>
+  <li>
+    <p>Query results are always sorted by the sort key in ascending order. Set <strong>ScanIndexForward</strong> parameter to false to reverse it.</p>
+  </li>
+  <li>
+    <p>Try use a Query operation than a scan operation as it is more efficient.</p>
+  </li>
+</ul>
+
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>18 Jul 2018 &raquo;</span> <a href="/networking/2018/07/18/VPC-Summary.html">VPC Summary</a>
+    </li>
+    
+    <li>
+      <span>11 Jul 2018 &raquo;</span> <a href="/networking/2018/07/11/VPC.html">VPC</a>
+    </li>
+    
+    <li>
+      <span>25 Jun 2018 &raquo;</span> <a href="/2018/06/25/Route53-Routing-Policies.html">Route53 - Routing Policies</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © AWS Developer Associate, 2018 &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

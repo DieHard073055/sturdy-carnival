@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS Developer Associate - CloudFormation</title>
+  <meta name="author" content="AWS Developer Associate" />
+  <meta name="description" content="The blog of AWS Developer Associate" />
+  <link rel="canonical" href="http://example.com/2018/06/23/CloudFormation.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="AWS Developer Associate" href="http://example.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1>Notes</h1>
+  <a href="/">
+    
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+    
+  </a>
+  <h2><a href="/">AWS Developer Associate</a>.</h2>
+  <div id="bio">
+    <p></p>
+    <p>
+      <strong>TODO:</strong> Edit me in <code>_includes/sidebar.html</code>
+    </p>
+  </div>
+  <div id="social">
+    <!--Follow me:
+<div id="stalker">
+  
+  <a title="diehard073055 on Github" href="https://github.com/diehard073055">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+-->
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  June 23, 2018 
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">CloudFormation</h1>
+
+<div id="post">
+  <h3 id="what-is-cloudformation-">What is CloudFormation ?</h3>
+<p>One of the most powerful parts of AWS, CloudFormation allows you to take what was once traditional hardware infrastructure and convert it into code.</p>
+
+<p>CloudFormation gives developers and system administrators an way to create and manage a collection of related AWS resources, provisioning and updating them in an orderly and predictable fashion.</p>
+
+<p>You dont need to figure out the order for provisioning AWS services or the subtleties of making those dependencies work. CloudFormation takes care of this for you.</p>
+
+<p>After the AWS resources are deployed, you can modify and update them in a controlled and prdictable way, in effect <strong>applying version control to your AWS infrastructure the same way you do with your software.</strong></p>
+
+<p>A <strong>Cloud Formation Template</strong> is essentially an architectural diagram and a <strong>Cloud Formation Stack</strong> is the end result of that diagram (i.e. what is actually provisioned ).</p>
+
+<p>You create, update, and delete a collection of resources by creating, updating, and deleting stacks using CloudFormation templates.</p>
+
+<p>CloudFormation templates are in <strong>JSON</strong> format or <strong>YAML</strong>.</p>
+
+<h3 id="elements-of-a-template">Elements of a template</h3>
+<ul>
+  <li><strong>Mandatory Elements</strong>
+    <ul>
+      <li>List of AWS Resources and their associated configuration values.</li>
+    </ul>
+  </li>
+  <li>Optional Elements
+    <ul>
+      <li>The template’s file format &amp; version number</li>
+      <li>Template Parameters
+        <ul>
+          <li>The input values that are supplied at stack creation time. Limit of 60.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Output values
+    <ul>
+      <li>The output values required once a stack has finished building ( such as the Public IP address, ELB address, etc) Limit of 60.</li>
+    </ul>
+  </li>
+  <li>List of data tables
+    <ul>
+      <li>Use to look up static configuration values such as AMI’s etc.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="simple-template">Simple Template</h3>
+<p>JSON</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"Resources"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"HelloBucket"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"Type"</span><span class="p">:</span><span class="s2">"AWS::S3::Bucket"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>YAML</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">Resources</span><span class="pi">:</span>
+    <span class="na">HelloBucket</span><span class="pi">:</span>
+        <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::S3::Bucket</span>
+</code></pre></div></div>
+
+<h3 id="outputting-data">Outputting Data</h3>
+<p><em>You can use Fn:GetAtt to output data.</em></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"PublicIP"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"Description"</span><span class="p">:</span><span class="s2">"Public IP address of the web server"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Value"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"Fn::GetAtt"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"WebServerHost"</span><span class="p">,</span><span class="s2">"PublicIp"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="exam-tips">Exam Tips</h3>
+<ul>
+  <li>By default the <em>“automatic rollback on error”</em> ferature is <strong>ENABLED</strong>.</li>
+  <li>You are <strong>CHARGED</strong> for errors.</li>
+  <li>CloudFormation is free.</li>
+  <li>Stacks can wait for applications to be provisioned using the <em>“WaitCondition”</em>.</li>
+  <li>You can use the function <em>Fn:GetAtt</em> to output data.</li>
+  <li>Route53 completely supported. This includes creating <em>new</em> hosted zones or <em>updating</em> existing ones.
+    <ul>
+      <li>You can create A Records, Aliases etc.</li>
+    </ul>
+  </li>
+  <li>
+    <p>IAM Role Creation and Assignment is also supported.</p>
+  </li>
+  <li>If customer is new to AWS use ElasticBeanstalk.</li>
+  <li>If customer wants to convert their infrastructure into code, use CloudFormation.</li>
+</ul>
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>18 Jul 2018 &raquo;</span> <a href="/networking/2018/07/18/VPC-Summary.html">VPC Summary</a>
+    </li>
+    
+    <li>
+      <span>11 Jul 2018 &raquo;</span> <a href="/networking/2018/07/11/VPC.html">VPC</a>
+    </li>
+    
+    <li>
+      <span>25 Jun 2018 &raquo;</span> <a href="/2018/06/25/Route53-Routing-Policies.html">Route53 - Routing Policies</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © AWS Developer Associate, 2018 &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

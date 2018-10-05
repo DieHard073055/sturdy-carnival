@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWS Developer Associate - EC2-Lab-Summary</title>
+  <meta name="author" content="AWS Developer Associate" />
+  <meta name="description" content="The blog of AWS Developer Associate" />
+  <link rel="canonical" href="http://example.com/compute/2018/06/04/EC2-Lab-Summary.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/atom+xml" title="AWS Developer Associate" href="http://example.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <h1>Notes</h1>
+  <a href="/">
+    
+    <img src="/logo.png" id="logo" alt="Blog logo"/>
+    
+  </a>
+  <h2><a href="/">AWS Developer Associate</a>.</h2>
+  <div id="bio">
+    <p></p>
+    <p>
+      <strong>TODO:</strong> Edit me in <code>_includes/sidebar.html</code>
+    </p>
+  </div>
+  <div id="social">
+    <!--Follow me:
+<div id="stalker">
+  
+  <a title="diehard073055 on Github" href="https://github.com/diehard073055">
+    <i class="fa fa-github-square"></i>
+  </a>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <a title="Atom feed" id="atom" href="/atom.xml">
+    <i class="fa fa-rss-square"></i>
+  </a>
+  
+</div>
+-->
+  </div>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  June 04, 2018 
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
+
+<h1 class="title">EC2-Lab-Summary</h1>
+
+<div id="post">
+  <h3 id="creating-an-ec2-instance">Creating an EC2 Instance</h3>
+<ol>
+  <li>Select a region which you want your EC2 instance to be at.
+    <ul>
+      <li>Older regions will have most of the different types of EC2 instances available, newer ones will have less.</li>
+    </ul>
+  </li>
+  <li>Select an AMI right after clicking on “Launch Instance”.
+    <ul>
+      <li>You have many flavours of AMI’s available.
+        <ol>
+          <li>Amazon Linux AMI</li>
+          <li>Red Hat Enterprise Linux</li>
+          <li>SUSE Linux Enterprise Server</li>
+          <li>Ubuntu Server 16.04 LTS</li>
+          <li>Microsoft Windows Server</li>
+        </ol>
+      </li>
+      <li>Version numbers of the above will change new version get adapted.</li>
+      <li>Amazon linux AMI comes with all the required built in tools and SDK’s installed. (Free Tier Eligible)</li>
+    </ul>
+  </li>
+  <li>Choose an Instance Type
+    <ul>
+      <li>t2.micro (Free Tier Eligible)</li>
+    </ul>
+  </li>
+  <li>Configure Instance Details
+    <ul>
+      <li>Main setup page for Ec2</li>
+      <li>Under VPC you can select one of the subnets, there is one subnet for every single availability zone. <strong>You can never have one subnet that goes across multiple availability zones.</strong></li>
+      <li>Selecting an IAM Role (Optional)</li>
+      <li>Enable termination protection [ to prevent people from accidentally terminating the instance ]</li>
+      <li>Additional charges are applied for detailed monitoring.</li>
+      <li>Advanced details, you can pass in bootstrap scripts to automate tasks.</li>
+    </ul>
+  </li>
+  <li>Add Storage
+    <ul>
+      <li>Select the required storage for the root volume.</li>
+      <li>by default the <strong>root volume will be deleted</strong>.</li>
+      <li>Volume = virtual harddisk</li>
+    </ul>
+  </li>
+  <li>Set the tags
+    <ul>
+      <li>Help you to control costs.</li>
+      <li>Always do more than just name tags, drill down upto the department and staff id.</li>
+    </ul>
+  </li>
+  <li>Configure Security Groups
+    <ul>
+      <li>Its a virtual firewall</li>
+      <li>Set the services you want to allow, [ ssh, http, https ]</li>
+      <li>You can restrict services to only from your IP.</li>
+    </ul>
+  </li>
+  <li>Review everything and Launch
+    <ul>
+      <li>Create a keypair.</li>
+      <li>Either upload your own public key or create your keypair on the web interface and download.</li>
+      <li>Hit launch instance.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="connect-to-the-running-instance">Connect to the running Instance</h3>
+
+<p>Use ssh to connect to your instance.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh ec2-user@[your_ec2_instance_public_ip-address] <span class="nt">-i</span> <span class="o">[</span>your_keypair.pem]
+</code></pre></div></div>
+<p>Once logged in, it maybe a good idea to update the AMI <code class="highlighter-rouge">sudo yum update</code>.</p>
+
+<h3 id="creating-a-web-server">Creating a web server</h3>
+
+<p>Install apache.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>yum install httpd
+</code></pre></div></div>
+
+<p>Create a <code class="highlighter-rouge">index.html</code> file in <code class="highlighter-rouge">/var/www/html/</code> and then add some <em>HTML</em> in the file.</p>
+<pre><code class="language-HTML">&lt;h1&gt;Hello everyone&lt;/h1&gt;
+</code></pre>
+
+<p>Start and run apache</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>service httpd start
+</code></pre></div></div>
+
+<p>head to your public ip address of your ec2 instance on your browser and you should be able to see the web server.</p>
+
+<h3 id="health-status-information">Health Status Information</h3>
+<p>The bottom panel, on the tab <code class="highlighter-rouge">Status Checks</code>. It has the information about <code class="highlighter-rouge">System Status Check</code> and <code class="highlighter-rouge">Instance Status Check</code>. 
+<strong>System Status Check</strong> : Check if aws is able to get network packets into the instance. If this status fails, theres probably a problem with the aws infrastructure.
+<strong>Instance Status</strong> : This check verifies if the instance’s operating system is accepting traffic.</p>
+
+<h3 id="monitoring">Monitoring</h3>
+<p>The bottom panel, on the tab <code class="highlighter-rouge">Monitoring</code>. You have system metrics which are updated every 5 minutes. You can enable detailed monitoring (which can cost a bit extra).</p>
+
+<p>All the different metrics here are accesible through cloud watch.</p>
+
+<h3 id="lab-summary">Lab Summary</h3>
+<ul>
+  <li>All newly created Instances have <strong>termination protection</strong> turned off by default, you must turn it on.</li>
+  <li>On an EBS-backed instance, the default action is for the root EBS volume to be <strong>deleted</strong> when the instance is terminated.</li>
+  <li>EBS Root Volumes of your <strong>DEFAULT AMI’s cannot be encrypted.</strong> You can also use third party tool (such as bitlocker etc) to encrypt the root volume, or this can be done when creating AMI’s (lab to follow) in the AWS console or using the API.</li>
+  <li>Additional Volumes can be encrypted.</li>
+</ul>
+
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>18 Jul 2018 &raquo;</span> <a href="/networking/2018/07/18/VPC-Summary.html">VPC Summary</a>
+    </li>
+    
+    <li>
+      <span>11 Jul 2018 &raquo;</span> <a href="/networking/2018/07/11/VPC.html">VPC</a>
+    </li>
+    
+    <li>
+      <span>25 Jun 2018 &raquo;</span> <a href="/2018/06/25/Route53-Routing-Policies.html">Route53 - Routing Policies</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      <div class="footer">
+        <div class="disclaimer">
+  
+  <p>
+    The postings on this site are my own and don't necessarily represent my 
+    employer’s positions, strategies or opinions.
+  </p>
+  
+
+  <p>
+    © AWS Developer Associate, 2018 &mdash; built with <a href="http://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/swanson/lagom">Lagom theme</a>
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>
